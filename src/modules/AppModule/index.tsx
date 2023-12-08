@@ -7,7 +7,7 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 // import styles from "./assets/styles.module.scss";
 
-function App() {
+export const App = () => {
   return (
     <Router>
       <div className="wrapper">
@@ -21,6 +21,4 @@ function App() {
       </div>
     </Router>
   );
-}
-
-export default App;
+};
