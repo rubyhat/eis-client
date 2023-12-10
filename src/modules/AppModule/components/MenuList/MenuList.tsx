@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
-import { CustomButton } from "../../../../components/ButtonFilled";
+import { CustomButton } from "../../../../components/CustomButton";
 
 interface LinkObject {
   title: string;

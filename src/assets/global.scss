@@ -68,6 +68,10 @@ body {
   position: relative;
 }
 
+.section {
+  padding: 32px 0;
+}
+
 @mixin large-title {
   font-feature-settings:
     "clig" off,

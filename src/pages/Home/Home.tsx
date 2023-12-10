@@ -1,6 +1,10 @@
-import useTitle from "../../hooks/useTitle";
+import Box from "@mui/material/Box";
+import { HomeModule } from "../../modules/HomeModule";
 
 export const Home = () => {
-  useTitle("Главная страница");
-  return <div>Home</div>;
+  return (
+    <Box className="section">
+      <HomeModule />
+    </Box>
+  );
 };
