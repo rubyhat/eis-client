@@ -7,6 +7,7 @@ import useTitle from "../../hooks/useTitle";
 
 import { SearchWrapper } from "./components/SearchWrapper";
 import { AdvantagesBlock } from "./components/AdvantagesBlock";
+import { CatalogBlock } from "./components/CatalogBlock";
 
 export const HomeModule = () => {
   useTitle("Главная страница");
@@ -19,6 +20,9 @@ export const HomeModule = () => {
           </Grid>
         </Grid>
       </Container>
+      <Box className="section">
+        <CatalogBlock />
+      </Box>
       <Box className="section">
         <AdvantagesBlock />
       </Box>
