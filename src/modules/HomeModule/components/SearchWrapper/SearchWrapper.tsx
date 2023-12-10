@@ -5,7 +5,7 @@ import { SearchForm } from "../SearchForm";
 
 export const SearchWrapper = () => {
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box sx={{ position: "relative", minHeight: 280 }}>
       <SearchTitle
         title="Ваша будущая недвижимость"
         subtitle="Проверенная недвижимость от агентства “Розе”"
