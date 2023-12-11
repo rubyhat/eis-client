@@ -1,12 +1,21 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import clsx from "clsx";
-
-import styles from "./styles.module.scss";
+import { Typography } from "@mui/material";
 
 export const Logotype = () => {
   return (
-    <Link to="/" className={clsx(styles.logotype, "text-callout-regular")}>
-      Roze <span className={styles.span}>Agency</span>
-    </Link>
+    <Typography
+      component={Link}
+      to="/"
+      variant="textCalloutRegular"
+      color="customColors.labelsPrimary"
+      display="flex"
+      alignItems="center"
+    >
+      Roze
+      <Typography color="customColors.colorsBlue" marginLeft={0.5}>
+        Agency
+      </Typography>
+    </Typography>
   );
 };
