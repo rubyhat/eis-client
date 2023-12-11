@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import React from "react";
 
 interface PriceFieldsProps {
   StartPrice: React.ReactNode;
@@ -15,9 +16,13 @@ export const PriceFields = (props: PriceFieldsProps) => {
   return (
     <Box display="flex" alignItems="center">
       <Box sx={inputWrapper}>{StartPrice}</Box>
-      <Typography margin="0 8px">—</Typography>
+      <Typography variant="textCalloutRegular" component="p" margin="0 8px">
+        —
+      </Typography>
       <Box sx={inputWrapper}>{EndPrice}</Box>
-      <Typography marginLeft="8px">₸</Typography>
+      <Typography variant="textCalloutRegular" component="p" marginLeft="8px">
+        ₸
+      </Typography>
     </Box>
   );
 };

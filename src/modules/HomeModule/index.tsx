@@ -8,6 +8,7 @@ import useTitle from "../../hooks/useTitle";
 import { SearchWrapper } from "./components/SearchWrapper";
 import { AdvantagesBlock } from "./components/AdvantagesBlock";
 import { CatalogBlock } from "./components/CatalogBlock";
+import { AboutBlock } from "./components/AboutBlock/AboutBlock";
 
 export const HomeModule = () => {
   useTitle("Главная страница");
@@ -25,6 +26,9 @@ export const HomeModule = () => {
       </Box>
       <Box className="section">
         <AdvantagesBlock />
+      </Box>
+      <Box className="section">
+        <AboutBlock />
       </Box>
     </React.Fragment>
   );
