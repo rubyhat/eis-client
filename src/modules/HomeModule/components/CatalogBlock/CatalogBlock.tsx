@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 import { CatalogCard } from "../CatalogCard";
 import { CatalogCardExtended } from "../CatalogCardExtended";
@@ -31,15 +31,18 @@ const catalogCards = [
 ];
 
 export const CatalogBlock = () => {
+  // todo: create hook usePlatforms with useMediaQuery
+  const theme = useTheme();
+  const isSmOrSmaller = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Container>
-      <Grid container spacing={2}>
+      <Grid container spacing={isSmOrSmaller ? 3 : 2}>
         {catalogCards.map((card, i) => (
-          <Grid item xs={12} md={3} key={i}>
+          <Grid item xs={12} sm={6} lg={3} key={i}>
             <CatalogCard card={card} />
           </Grid>
         ))}
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} sm={6} lg={3}>
           <CatalogCardExtended />
         </Grid>
       </Grid>
