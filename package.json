@@ -5,13 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && npm run watch:css",
+    "build": "tsc && vite build ",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "husky install",
     "precommit": "npm run lint",
     "preview": "vite preview",
-    "release": "release-it",
-    "watch:css": "postcss src/index.css -o src/assets/main.css"
+    "release": "release-it"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

@@ -1,6 +1,7 @@
-import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
 import { CustomButton } from "../../../../components/CustomButton";
+import React from "react";
 
 interface LinkObject {
   title: string;
@@ -24,9 +25,9 @@ export const MenuList = () => {
             to={link.to}
             className="text-callout-regular"
             sx={{
+              color: "customColors.labelsPrimary",
               "&:hover": {
-                color: "var(--colors-blue)",
-                textDecoration: "underline",
+                color: "customColors.colorsBlue",
                 transition: "all 333ms ease",
               },
             }}

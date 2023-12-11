@@ -1,5 +1,6 @@
 import { Typography, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
+import React from "react";
 interface AdvantageItem {
   title: string;
   subtitle: string;

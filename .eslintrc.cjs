@@ -14,9 +14,5 @@ module.exports = {
     semi: ["warn", "always"], // use ;
     "no-console": "warn", // don't build console.log()
     "prefer-const": "warn", // use 'const' for constants instead of 'let'
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
-    ],
   },
 };

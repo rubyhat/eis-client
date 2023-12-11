@@ -19,9 +19,14 @@ export const CatalogCard = (props: CatalogCardProps) => {
   const { imgSrc, imgSrcSet, title, subtitle, link, alt } = props.card;
   const theme = useTheme();
   return (
-    <Box component={Link} to={link}>
+    <Box component={Link} to={link} display="block">
       <Box component="img" src={imgSrc} srcSet={imgSrcSet} alt={alt} />
-      <Typography component="h5" variant="textBodyEmphasized" marginTop={1.5}>
+      <Typography
+        component="h5"
+        color="customColors.labelsPrimary"
+        variant="textBodyEmphasized"
+        marginTop={1}
+      >
         {title}
       </Typography>
       <Typography

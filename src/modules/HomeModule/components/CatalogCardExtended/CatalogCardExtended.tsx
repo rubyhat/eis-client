@@ -1,5 +1,5 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
+import { Box, Typography } from "@mui/material";
 import { CustomButton } from "../../../../components/CustomButton";
 
 const catalogList = [
@@ -24,13 +24,36 @@ const catalogList = [
 export const CatalogCardExtended = () => {
   return (
     <Box
+      display="flex"
+      alignItems="center"
+      flexDirection="column"
+      justifyContent="center"
+      height="200px"
+    >
+      <Typography
+        variant="textBodyRegular"
+        textAlign="center"
+        component="p"
+        marginBottom={1}
+      >
+        Перейдите в Каталог, чтобы найти все актуальные объекты недвижимости
+      </Typography>
+      <CustomButton fullWidth size="large">
+        Посмотреть все
+      </CustomButton>
+    </Box>
+  );
+  return (
+    <Box
       sx={{
         border: "1px solid var(--labels-quaternary)",
         borderRadius: 2,
-        padding: 2,
+        padding: "14px",
       }}
     >
-      <Typography>Каталог</Typography>
+      <Typography component="h3" variant="titleThirdEmphasized">
+        Каталог
+      </Typography>
       <Box component="ul">
         {catalogList.map(({ count, title }, i) => (
           <Box display="flex" alignItems="center" component="li" key={i}>
@@ -43,7 +66,9 @@ export const CatalogCardExtended = () => {
                 marginRight: 0.75,
               }}
             ></Box>
-            {count} {title}
+            <Typography variant="textCalloutRegular" component="p">
+              {count} {title}
+            </Typography>
           </Box>
         ))}
         <CustomButton fullWidth sx={{ marginTop: 1 }}>

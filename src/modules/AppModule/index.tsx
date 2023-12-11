@@ -7,7 +7,7 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { ThemeProvider } from "@emotion/react";
 import { appTheme } from "./appTheme";
-// import styles from "./assets/styles.module.scss";
+import React from "react";
 
 export const App = () => {
   return (
