@@ -149,7 +149,7 @@ body {
 
 .title-third-emphasized {
   @include title-third;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 @mixin text-body {
@@ -169,7 +169,7 @@ body {
 
 .text-body-emphasized {
   @include text-body;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 @mixin text-callout {

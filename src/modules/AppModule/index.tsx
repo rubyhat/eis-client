@@ -5,20 +5,24 @@ import { RouteList } from "../../routeList";
 
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { ThemeProvider } from "@emotion/react";
+import { appTheme } from "./appTheme";
 // import styles from "./assets/styles.module.scss";
 
 export const App = () => {
   return (
     <Router>
-      <div className="wrapper">
-        <Header />
-        <main className="content">
-          <Suspense>
-            <RouteList />
-          </Suspense>
-        </main>
-        <Footer />
-      </div>
+      <ThemeProvider theme={appTheme}>
+        <div className="wrapper">
+          <Header />
+          <main className="content">
+            <Suspense>
+              <RouteList />
+            </Suspense>
+          </main>
+          <Footer />
+        </div>
+      </ThemeProvider>
     </Router>
   );
 };
