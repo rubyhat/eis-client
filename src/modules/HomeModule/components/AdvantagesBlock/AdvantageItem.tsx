@@ -1,6 +1,5 @@
-import { Typography } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
-import React from "react";
 interface AdvantageItem {
   title: string;
   subtitle: string;
@@ -12,10 +11,21 @@ interface AdvantageItemProps {
 
 export const AdvantageItem = (props: AdvantageItemProps) => {
   const { advantage } = props;
+  const theme = useTheme();
   return (
     <Box textAlign="center">
-      <Typography>{advantage.title}</Typography>
-      <Typography color="var(--labels-secondary)">
+      <Typography
+        color={theme.palette.customColors?.labelsPrimary}
+        component="h6"
+        variant="titleLargeRegular"
+      >
+        {advantage.title}
+      </Typography>
+      <Typography
+        component="p"
+        variant="textFootnoteRegular"
+        color={theme.palette.customColors?.labelsSecondary}
+      >
         {advantage.subtitle}
       </Typography>
     </Box>

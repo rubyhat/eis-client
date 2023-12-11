@@ -173,7 +173,9 @@ appTheme = createTheme(
       primary: {
         main: "hsla(211, 100%, 50%, 1)",
       },
+
       customColors: {
+        colorsWhite: "hsla(0, 0%, 100%, 1)",
         colorsRed: "hsla(1, 100%, 56%, 1)",
         colorsRedDark: "hsla(3, 100%, 59%, 1)",
         colorsOrange: "hsla(29, 100%, 50%, 1)",
@@ -188,6 +190,14 @@ appTheme = createTheme(
         colorsIndigoDark: "hsla(234, 76%, 65%, 1)",
         colorsPurple: "hsla(283, 61%, 59%, 1)",
         colorsPurpleDark: "hsla(284, 89%, 66%, 1)",
+
+        labelsPrimary: "hsla(0, 0%, 0%, 1)",
+        labelsSecondary: "hsla(240, 6%, 25%, 0.6)",
+        labelsTertiary: "hsla(240, 6%, 25%, 0.3)",
+        labelsQuaternary: "hsla(240, 6%, 25%, 0.18)",
+
+        gradientPrimary:
+          "linear-gradient(180deg, hsla(0, 0%, 100%, 0.17) 0%,hsla(0, 0%, 100%, 0) 100%),hsla(211, 100%, 50%, 1)",
       },
     },
   },

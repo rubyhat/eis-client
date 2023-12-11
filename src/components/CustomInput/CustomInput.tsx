@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { TbCurrencyTenge } from "react-icons/tb";
@@ -29,12 +29,19 @@ export const CustomInput = (props: CustomInputProps) => {
     required,
     placeholder,
   } = props;
+  const theme = useTheme();
 
   return (
     <Box>
       {formatPrice && <TbCurrencyTenge />}
       {label && (
-        <Typography sx={errors[id] ? { color: "var(--colors-red)" } : {}}>
+        <Typography
+          component="p"
+          variant="textCalloutRegular"
+          sx={
+            errors[id] ? { color: theme.palette.customColors?.colorsRed } : {}
+          }
+        >
           {label}
         </Typography>
       )}
@@ -50,8 +57,8 @@ export const CustomInput = (props: CustomInputProps) => {
           width: "100%",
           border: `1px solid`,
           borderColor: errors[id]
-            ? "var(--colors-red)"
-            : "var(--labels-tertiary)",
+            ? theme.palette.customColors?.colorsRed
+            : theme.palette.customColors?.labelsQuaternary,
           borderRadius: "5px",
           fontSize: "16px",
           padding: "8px",
@@ -61,32 +68,10 @@ export const CustomInput = (props: CustomInputProps) => {
           //   borderColor: "var(--colors-blue)",
           // },
           "&::placeholder": {
-            color: "var(--labels-secondary)",
+            color: theme.palette.customColors?.labelsSecondary,
           },
         }}
       />
     </Box>
   );
 };
-
-// export const CustomInput = (props: TextFieldProps) => {
-//   const { ...otherProps } = props;
-//   return (
-//     <TextField
-//       {...otherProps}
-//       sx={{
-//         "& fieldset": {
-//           borderColor: "var(--labels-tertiary)",
-//           borderRadius: "5px",
-//         },
-//       }}
-//       inputProps={{
-//         sx: {
-//           backgroundColor: "white",
-//           fontSize: 16,
-//           padding: 1,
-//         },
-//       }}
-//     />
-//   );
-// };

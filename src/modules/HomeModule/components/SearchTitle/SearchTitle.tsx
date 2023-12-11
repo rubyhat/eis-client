@@ -10,10 +10,12 @@ export const SearchTitle = (props: SearchTitleProps) => {
   const { title, subtitle } = props;
   return (
     <Box textAlign="center" color="#fff" marginBottom={4} paddingTop={2}>
-      <Typography variant="h4" marginBottom={1}>
+      <Typography component="h1" variant="titleLargeRegular" marginBottom={1}>
         {title}
       </Typography>
-      <Typography variant="body1">{subtitle}</Typography>
+      <Typography component="p" variant="textBodyRegular">
+        {subtitle}
+      </Typography>
     </Box>
   );
 };

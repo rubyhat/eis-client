@@ -113,6 +113,7 @@ declare module "@mui/material/styles" {
     customColors?: PaletteCustomColors;
   }
   interface PaletteCustomColors {
+    colorsWhite: string;
     colorsRed: string;
     colorsRedDark: string;
     colorsOrange: string;
@@ -127,5 +128,12 @@ declare module "@mui/material/styles" {
     colorsIndigoDark: string;
     colorsPurple: string;
     colorsPurpleDark: string;
+
+    gradientPrimary: string;
+
+    labelsPrimary: string;
+    labelsSecondary: string;
+    labelsTertiary: string;
+    labelsQuaternary: string;
   }
 }
