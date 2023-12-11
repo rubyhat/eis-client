@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
-import { CustomButton } from "../../../../components/CustomButton";
 import React from "react";
 
 interface LinkObject {
@@ -15,11 +14,26 @@ const links: LinkObject[] = [
   { title: "Каталог", to: "/kvartiry4" },
 ];
 
-export const MenuList = () => {
+interface MenuListProps {
+  isVertical?: boolean;
+}
+
+export const MenuList = ({ isVertical }: MenuListProps) => {
   return (
-    <Box component="ul" sx={{ display: "flex", alignItems: "center" }}>
+    <Box
+      component="ul"
+      sx={{
+        display: "flex",
+        alignItems: isVertical ? "flex-start" : "center",
+        flexDirection: isVertical ? "column" : "row",
+      }}
+    >
       {links.map((link) => (
-        <Box component="li" key={link.to} sx={{ marginRight: 2 }}>
+        <Box
+          component="li"
+          key={link.to}
+          sx={isVertical ? { marginBottom: 0.75 } : { marginRight: 2 }}
+        >
           <Box
             component={Link}
             to={link.to}
@@ -36,9 +50,6 @@ export const MenuList = () => {
           </Box>
         </Box>
       ))}
-      <CustomButton variant="contained" size="medium">
-        Позвоните нам
-      </CustomButton>
     </Box>
   );
 };

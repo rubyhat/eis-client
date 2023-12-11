@@ -1,19 +1,7 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import React from "react";
 import { Logotype } from "../../../../components/Logotype";
-import { Link } from "react-router-dom";
-
-interface LinkObject {
-  title: string;
-  to: string;
-}
-
-const links: LinkObject[] = [
-  { title: "Квартиры", to: "/kvartiry1" },
-  { title: "Дома и дачи", to: "/kvartiry2" },
-  { title: "Коммерческая недвижимость", to: "/kvartiry3" },
-  { title: "Каталог", to: "/kvartiry4" },
-];
+import { MenuList } from "../MenuList";
 
 export const Footer = () => {
   return (
@@ -44,33 +32,8 @@ export const Footer = () => {
             </Box>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Box component="ul" marginBottom={2}>
-              {links.map(({ title, to }, i) => (
-                <Box
-                  component="li"
-                  key={i}
-                  sx={{
-                    marginBottom: 0.75,
-                    "&:last-child": {
-                      marginBottom: 0,
-                    },
-                  }}
-                >
-                  <Box
-                    component={Link}
-                    to={to}
-                    sx={{
-                      display: "block",
-                      color: "customColors.labelsPrimary",
-                      "&:hover": {
-                        color: "customColors.colorsBlue",
-                      },
-                    }}
-                  >
-                    {title}
-                  </Box>
-                </Box>
-              ))}
+            <Box marginBottom={1.5}>
+              <MenuList isVertical />
             </Box>
             <Typography
               variant="textCalloutRegular"
