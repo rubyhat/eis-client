@@ -17,6 +17,7 @@ const sortButtonStyles = {
   borderRadius: "7px",
   border: "none",
   cursor: "pointer",
+  background: "transparent",
 };
 
 const sortButtonActiveStyles = {
@@ -32,6 +33,12 @@ const separatorStyles = {
   borderRadius: 1,
 };
 
+const sortOptions = [
+  { type: "new", label: "Новые" },
+  { type: "cheap", label: "Дешевые" },
+  { type: "rich", label: "Дорогие" },
+];
+
 export const CatalogSortButtons = () => {
   const { activeSortType, setActiveSortType } = useCatalogStore(
     (state) => state,
@@ -40,63 +47,44 @@ export const CatalogSortButtons = () => {
   const handleButtonClick = (type: ActiveSortType) => {
     setActiveSortType(type);
   };
+
+  // todo: сделать гибко, сейчас hardcode на три кнопки, если кнопок будет больше, то уже не будет работать
+  const shouldShowSeparator = (index: number, side: "start" | "end") => {
+    return (
+      (activeSortType === "new" && index === 1 && side === "end") ||
+      (activeSortType === "rich" && index === 1 && side === "start")
+    );
+  };
+
   return (
     <Box sx={sortWrapperStyles}>
-      <Box
-        component="button"
-        onClick={() => handleButtonClick("new")}
-        sx={
-          activeSortType === "new"
-            ? { ...sortButtonStyles, ...sortButtonActiveStyles }
-            : { ...sortButtonStyles }
-        }
-      >
-        <Typography
-          component="p"
-          variant="textFootnoteRegular"
-          color="customColors.labelsPrimary"
-        >
-          Новые
-        </Typography>
-      </Box>
-      {activeSortType === "rich" && (
-        <Box component="div" sx={separatorStyles} />
-      )}
-      <Box
-        sx={
-          activeSortType === "cheap"
-            ? { ...sortButtonStyles, ...sortButtonActiveStyles }
-            : { ...sortButtonStyles }
-        }
-        component="button"
-        onClick={() => handleButtonClick("cheap")}
-      >
-        <Typography
-          component="p"
-          variant="textFootnoteRegular"
-          color="customColors.labelsPrimary"
-        >
-          Дешевые
-        </Typography>
-      </Box>
-      {activeSortType === "new" && <Box component="div" sx={separatorStyles} />}
-      <Box
-        sx={
-          activeSortType === "rich"
-            ? { ...sortButtonStyles, ...sortButtonActiveStyles }
-            : { ...sortButtonStyles }
-        }
-        component="button"
-        onClick={() => handleButtonClick("rich")}
-      >
-        <Typography
-          component="p"
-          variant="textFootnoteRegular"
-          color="customColors.labelsPrimary"
-        >
-          Дорогие
-        </Typography>
-      </Box>
+      {sortOptions.map(({ type, label }, index) => (
+        <React.Fragment key={index}>
+          {shouldShowSeparator(index, "start") && (
+            <Box component="div" sx={separatorStyles} />
+          )}
+          <Box
+            component="button"
+            onClick={() => handleButtonClick(type as ActiveSortType)}
+            sx={
+              activeSortType === type
+                ? { ...sortButtonStyles, ...sortButtonActiveStyles }
+                : { ...sortButtonStyles }
+            }
+          >
+            <Typography
+              component="p"
+              variant="textFootnoteRegular"
+              color="customColors.labelsPrimary"
+            >
+              {label}
+            </Typography>
+          </Box>
+          {shouldShowSeparator(index, "end") && (
+            <Box component="div" sx={separatorStyles} />
+          )}
+        </React.Fragment>
+      ))}
     </Box>
   );
 };
