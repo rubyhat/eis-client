@@ -1,10 +1,8 @@
-import { Typography, useTheme } from "@mui/material";
+import { SxProps, Typography, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import React from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { TbCurrencyTenge } from "react-icons/tb";
-
-// interface CustomInputProps extends TextFieldProps {}
 
 interface CustomInputProps {
   id: string;
@@ -16,6 +14,7 @@ interface CustomInputProps {
   formatPrice: boolean;
   required?: boolean;
   placeholder?: string;
+  sx?: SxProps;
 }
 
 export const CustomInput = (props: CustomInputProps) => {
@@ -29,11 +28,12 @@ export const CustomInput = (props: CustomInputProps) => {
     formatPrice,
     required,
     placeholder,
+    sx,
   } = props;
   const theme = useTheme();
 
   return (
-    <Box>
+    <Box sx={sx}>
       {formatPrice && <TbCurrencyTenge />}
       {label && (
         <Typography

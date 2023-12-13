@@ -2,21 +2,47 @@ import Box from "@mui/material/Box";
 import React from "react";
 import { SearchTitle } from "../SearchTitle";
 import { SearchForm } from "../SearchForm";
+import { useScreenSize } from "../../../../hooks/useScreenSize";
 
 export const SearchWrapper = () => {
+  const { isMobile, isTablet } = useScreenSize();
+
+  if (isMobile || isTablet) {
+    return (
+      <Box>
+        <Box marginBottom={1}>
+          <SearchTitle
+            title="Ваша будущая недвижимость"
+            subtitle="Проверенная недвижимость от агентства “Розе”"
+            color="customColors.labelsPrimary"
+          />
+          <SearchForm />
+        </Box>
+      </Box>
+    );
+  }
+
   return (
     <Box sx={{ position: "relative", minHeight: 280 }}>
-      <SearchTitle
-        title="Ваша будущая недвижимость"
-        subtitle="Проверенная недвижимость от агентства “Розе”"
-      />
+      <Box marginBottom={4}>
+        <SearchTitle
+          title="Ваша будущая недвижимость"
+          subtitle="Проверенная недвижимость от агентства “Розе”"
+        />
+      </Box>
       <SearchForm />
       <Box
         component="img"
         src="/static/images/img-hero-wallpaper-1x.webp"
         srcSet="/static/images/img-hero-wallpaper-2x.webp 2x"
         alt="hero-wallpaper"
-        sx={{ position: "absolute", zIndex: -1, width: "100%", top: 0 }}
+        sx={{
+          position: "absolute",
+          zIndex: -1,
+          width: "100%",
+          minHeight: 280,
+          top: 0,
+        }}
       />
     </Box>
   );

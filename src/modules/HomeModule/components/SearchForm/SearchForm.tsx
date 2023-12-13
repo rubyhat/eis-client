@@ -10,10 +10,33 @@ import React from "react";
 import { CustomButton } from "../../../../components/CustomButton";
 import { PriceFields } from "../PriceFields";
 import { MenuItem, Select } from "@mui/material";
+import { useScreenSize } from "../../../../hooks/useScreenSize";
 
-const selectInputProps = { padding: 1, fontSize: 16 };
+const selectInputProps = {
+  padding: 1,
+  fontSize: 16,
+};
+const formWrapperStyles = {
+  backgroundColor: "customColors.colorsWhite",
+  borderRadius: 2,
+};
+const formWrapperMobileStyles = {
+  padding: 2,
+  border: "1px solid",
+  borderColor: "customColors.labelsQuaternary",
+};
+const formWrapperDesktopStyles = {
+  padding: 4,
+  margin: "0 50px",
+};
 
 export const SearchForm = () => {
+  const { isMobile, isTablet } = useScreenSize();
+  const formWrapperTotalStyles =
+    isMobile || isTablet
+      ? { ...formWrapperStyles, ...formWrapperMobileStyles }
+      : { ...formWrapperStyles, ...formWrapperDesktopStyles };
+
   const [isLoading, setIsLoading] = React.useState(false);
   const {
     control,
@@ -39,17 +62,15 @@ export const SearchForm = () => {
     <Box
       component="form"
       onSubmit={handleSubmit(handleFormSubmit)}
-      sx={{
-        background: "#fff",
-        padding: 4,
-        borderRadius: 1,
-        margin: "0 50px",
-      }}
+      sx={formWrapperTotalStyles}
     >
       <Box
         display="grid"
-        columnGap={2}
-        gridTemplateColumns="1.75fr 1.25fr 0.75fr 2.25fr 1fr"
+        alignItems="center"
+        gap={2}
+        gridTemplateColumns={
+          isMobile || isTablet ? "" : "1.75fr 1.25fr 0.75fr 2.25fr 1fr"
+        }
       >
         <Controller
           defaultValue="apart"
@@ -58,7 +79,14 @@ export const SearchForm = () => {
           render={({ field }) => (
             <Select
               {...field}
-              sx={{ width: "100%" }}
+              sx={{
+                height: "36px",
+                width: "100%",
+                fontSize: "15px",
+                "& fieldset": {
+                  borderColor: "customColors.labelsQuaternary",
+                },
+              }}
               inputProps={{ sx: selectInputProps }}
             >
               <MenuItem value="apart">Квартиру</MenuItem>
@@ -76,7 +104,14 @@ export const SearchForm = () => {
           render={({ field }) => (
             <Select
               {...field}
-              sx={{ width: "100%" }}
+              sx={{
+                fontSize: "15px",
+                height: "36px",
+                width: "100%",
+                "& fieldset": {
+                  borderColor: "customColors.labelsQuaternary",
+                },
+              }}
               inputProps={{ sx: selectInputProps }}
             >
               <MenuItem value="buy">Купить</MenuItem>
@@ -91,7 +126,14 @@ export const SearchForm = () => {
           render={({ field }) => (
             <Select
               {...field}
-              sx={{ width: "100%" }}
+              sx={{
+                fontSize: "15px",
+                height: "36px",
+                width: "100%",
+                "& fieldset": {
+                  borderColor: "customColors.labelsQuaternary",
+                },
+              }}
               inputProps={{ sx: selectInputProps }}
             >
               <MenuItem value="1">1 ком.</MenuItem>
@@ -126,7 +168,9 @@ export const SearchForm = () => {
             />
           }
         />
-        <CustomButton type="submit">Найти</CustomButton>
+        <CustomButton type="submit" size="small" sx={{ height: "100%" }}>
+          Найти
+        </CustomButton>
       </Box>
     </Box>
   );
