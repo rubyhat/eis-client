@@ -16,14 +16,15 @@ export const SearchTitle = (props: SearchTitleProps) => {
     <Box textAlign="center" color={color || "#fff"} paddingTop={2}>
       <Typography
         component="h1"
-        variant={isMobile ? "titleThirdEmphasized" : "titleLargeRegular"}
-        marginBottom={1}
+        variant={isMobile ? "titleSecondRegular" : "titleLargeRegular"}
+        marginBottom={isMobile ? 0.5 : 1}
       >
         {title}
       </Typography>
       <Typography
         component="p"
         variant={isMobile ? "textCalloutRegular" : "textBodyRegular"}
+        color={isMobile ? "customColors.labelsSecondary" : "inherit"}
       >
         {subtitle}
       </Typography>

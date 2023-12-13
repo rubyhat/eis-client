@@ -111,6 +111,9 @@ h6 {
 
 .section {
   padding: 32px 0;
+  @media (max-width: 768px) {
+    padding: 24px 0;
+  }
 }
 
 @mixin large-title {

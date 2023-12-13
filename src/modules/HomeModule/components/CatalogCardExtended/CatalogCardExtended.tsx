@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { CustomButton } from "../../../../components/CustomButton";
+import { useScreenSize } from "../../../../hooks/useScreenSize";
 
 const catalogList = [
   {
@@ -22,13 +23,14 @@ const catalogList = [
 ];
 
 export const CatalogCardExtended = () => {
+  const { isMobile } = useScreenSize();
   return (
     <Box
       display="flex"
       alignItems="center"
       flexDirection="column"
       justifyContent="center"
-      height="200px"
+      height={isMobile ? "inherit" : "200px"}
     >
       <Typography
         variant="textBodyRegular"
@@ -43,6 +45,7 @@ export const CatalogCardExtended = () => {
       </CustomButton>
     </Box>
   );
+
   return (
     <Box
       sx={{

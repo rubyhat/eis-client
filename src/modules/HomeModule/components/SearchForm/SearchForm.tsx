@@ -67,9 +67,9 @@ export const SearchForm = () => {
       <Box
         display="grid"
         alignItems="center"
-        gap={2}
+        gap={isMobile ? 1.5 : 2}
         gridTemplateColumns={
-          isMobile || isTablet ? "" : "1.75fr 1.25fr 0.75fr 2.25fr 1fr"
+          isMobile || isTablet ? "" : "1.75fr 2fr 2.25fr 1fr"
         }
       >
         <Controller
@@ -89,61 +89,67 @@ export const SearchForm = () => {
               }}
               inputProps={{ sx: selectInputProps }}
             >
-              <MenuItem value="apart">Квартиру</MenuItem>
-              <MenuItem value="house">Дом</MenuItem>
-              <MenuItem value="dachya">Дача</MenuItem>
+              <MenuItem value="apart">Квартира</MenuItem>
+              <MenuItem value="house">Дома и дачи</MenuItem>
               <MenuItem value="earth">Земельный участок</MenuItem>
+              <MenuItem value="dachya">Коммерческая недвижимость</MenuItem>
             </Select>
           )}
         />
 
-        <Controller
-          defaultValue="buy"
-          name="searchType"
-          control={control}
-          render={({ field }) => (
-            <Select
-              {...field}
-              sx={{
-                fontSize: "15px",
-                height: "36px",
-                width: "100%",
-                "& fieldset": {
-                  borderColor: "customColors.labelsQuaternary",
-                },
-              }}
-              inputProps={{ sx: selectInputProps }}
-            >
-              <MenuItem value="buy">Купить</MenuItem>
-              <MenuItem value="rent">Аренда</MenuItem>
-            </Select>
-          )}
-        />
-        <Controller
-          defaultValue="1"
-          name="rooms"
-          control={control}
-          render={({ field }) => (
-            <Select
-              {...field}
-              sx={{
-                fontSize: "15px",
-                height: "36px",
-                width: "100%",
-                "& fieldset": {
-                  borderColor: "customColors.labelsQuaternary",
-                },
-              }}
-              inputProps={{ sx: selectInputProps }}
-            >
-              <MenuItem value="1">1 ком.</MenuItem>
-              <MenuItem value="2">2-х ком.</MenuItem>
-              <MenuItem value="3">3-х ком.</MenuItem>
-              <MenuItem value="4">4-х ком.</MenuItem>
-              <MenuItem value="5">5 и более</MenuItem>
-            </Select>
-          )}
-        />
+        <Box
+          display="grid"
+          gridTemplateColumns="1fr 1fr"
+          gap={isMobile ? 1.5 : 2}
+        >
+          <Controller
+            defaultValue="buy"
+            name="searchType"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                sx={{
+                  fontSize: "15px",
+                  height: "36px",
+                  width: "100%",
+                  "& fieldset": {
+                    borderColor: "customColors.labelsQuaternary",
+                  },
+                }}
+                inputProps={{ sx: selectInputProps }}
+              >
+                <MenuItem value="buy">Купить</MenuItem>
+                <MenuItem value="rent">Аренда</MenuItem>
+              </Select>
+            )}
+          />
+          <Controller
+            defaultValue="1"
+            name="rooms"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                sx={{
+                  fontSize: "15px",
+                  height: "36px",
+                  width: "100%",
+                  "& fieldset": {
+                    borderColor: "customColors.labelsQuaternary",
+                  },
+                }}
+                inputProps={{ sx: selectInputProps }}
+              >
+                <MenuItem value="1">1 ком.</MenuItem>
+                <MenuItem value="2">2-х ком.</MenuItem>
+                <MenuItem value="3">3-х ком.</MenuItem>
+                <MenuItem value="4">4-х ком.</MenuItem>
+                <MenuItem value="5">5 и более</MenuItem>
+              </Select>
+            )}
+          />
+        </Box>
         <PriceFields
           StartPrice={
             <CustomInput
@@ -153,7 +159,7 @@ export const SearchForm = () => {
               disabled={isLoading}
               required
               formatPrice={false}
-              placeholder="от"
+              placeholder={isMobile || isTablet ? "цена от" : "от"}
             />
           }
           EndPrice={
@@ -164,11 +170,15 @@ export const SearchForm = () => {
               disabled={isLoading}
               required
               formatPrice={false}
-              placeholder="до"
+              placeholder={isMobile || isTablet ? "цена до" : "до"}
             />
           }
         />
-        <CustomButton type="submit" size="small" sx={{ height: "100%" }}>
+        <CustomButton
+          type="submit"
+          size={isMobile || isTablet ? "large" : "small"}
+          sx={{ height: "100%" }}
+        >
           Найти
         </CustomButton>
       </Box>

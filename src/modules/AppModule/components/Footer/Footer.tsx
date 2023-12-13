@@ -6,6 +6,7 @@ import { MenuList } from "../MenuList";
 export const Footer = () => {
   return (
     <Box
+      component="footer"
       padding="16px 0"
       border="1px solid"
       borderColor="customColors.labelsQuaternary"

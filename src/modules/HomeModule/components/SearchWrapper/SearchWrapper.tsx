@@ -10,14 +10,14 @@ export const SearchWrapper = () => {
   if (isMobile || isTablet) {
     return (
       <Box>
-        <Box marginBottom={1}>
+        <Box marginBottom={isMobile ? 1.5 : 2}>
           <SearchTitle
             title="Ваша будущая недвижимость"
-            subtitle="Проверенная недвижимость от агентства “Розе”"
+            subtitle="Проверенная недвижимость от агентства «Розе»"
             color="customColors.labelsPrimary"
           />
-          <SearchForm />
         </Box>
+        <SearchForm />
       </Box>
     );
   }
@@ -27,7 +27,7 @@ export const SearchWrapper = () => {
       <Box marginBottom={4}>
         <SearchTitle
           title="Ваша будущая недвижимость"
-          subtitle="Проверенная недвижимость от агентства “Розе”"
+          subtitle="Проверенная недвижимость от агентства «Розе»"
         />
       </Box>
       <SearchForm />

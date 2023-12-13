@@ -21,9 +21,11 @@ export const Header = () => {
 
   return (
     <Box
+      component="header"
       sx={{
-        padding: "16px 0",
-        borderBottom: "1px solid var(--labels-quaternary)",
+        padding: isMobile ? "8px 0" : "16px 0",
+        borderBottom: "1px solid",
+        borderColor: "customColors.labelsQuaternary",
       }}
     >
       <Container>
