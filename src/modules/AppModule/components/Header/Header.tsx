@@ -3,18 +3,17 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { RxHamburgerMenu } from "react-icons/rx";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { IconButton, useTheme } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 import { Logotype } from "../../../../components/Logotype";
 import { MenuList } from "../MenuList";
 import { useHeaderStore } from "../../store/useHeaderStore";
 import { CustomButton } from "../../../../components/CustomButton";
 import { DrawerMenu } from "../DrawerMenu";
+import { useScreenSize } from "../../../../hooks/useScreenSize";
 
 export const Header = () => {
-  const theme = useTheme();
-  const isMdOrSmaller = useMediaQuery(theme.breakpoints.down("md"));
+  const { isTablet, isMobile } = useScreenSize();
 
   const { setIsHeaderBurgerOpen } = useHeaderStore((state) => state);
 
@@ -33,7 +32,7 @@ export const Header = () => {
             <Logotype />
           </Grid>
           <Grid item xs={6} md={10} display="flex" justifyContent="end">
-            {isMdOrSmaller ? (
+            {isTablet || isMobile ? (
               <IconButton color="primary" onClick={handleBurgerIconClick}>
                 <RxHamburgerMenu />
               </IconButton>

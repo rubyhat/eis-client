@@ -84,6 +84,15 @@ const captionSecond = {
 export let appTheme = createTheme({});
 appTheme = createTheme(
   {
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          sizeSmall: { padding: "4px 16px", fontSize: "14px" },
+          sizeMedium: { padding: "8px 16px", fontSize: "15px" },
+          sizeLarge: { padding: "12px 16px", fontSize: "16px" },
+        },
+      },
+    },
     typography: {
       fontFamily: `"SF Pro", "SF Pro Display", "Helvetica", "Roboto", sans-serif`,
       // Titles

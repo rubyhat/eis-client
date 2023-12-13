@@ -1,5 +1,12 @@
 // mui.d.ts
 import "@mui/material/styles";
+declare module "@mui/material/Button" {
+  interface ButtonPropsVariantOverrides {
+    sizeSmall: true;
+    sizeMedium: true;
+    sizeLarge: true;
+  }
+}
 
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
