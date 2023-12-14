@@ -3,6 +3,7 @@ import React from "react";
 import { ActiveSortType, useCatalogStore } from "../../store/useCatalogStore";
 
 const sortWrapperStyles = {
+  width: "100%",
   display: "flex",
   alignItems: "center",
   padding: 0.25,
@@ -12,7 +13,8 @@ const sortWrapperStyles = {
 
 const sortButtonStyles = {
   textAlign: "center",
-  minWidth: "120px",
+  minWidth: "80px",
+  width: "100%",
   padding: "6px 8px",
   borderRadius: "7px",
   border: "none",
@@ -57,7 +59,15 @@ export const CatalogSortButtons = () => {
   };
 
   return (
-    <Box sx={sortWrapperStyles}>
+    <Box
+      sx={{
+        ...sortWrapperStyles,
+        maxWidth: {
+          xs: 1,
+          sm: "366px",
+        },
+      }}
+    >
       {sortOptions.map(({ type, label }, index) => (
         <React.Fragment key={index}>
           {shouldShowSeparator(index, "start") && (

@@ -9,7 +9,7 @@ interface TitleGroupProps {
 
 export const TitleGroup = ({ type, city }: TitleGroupProps) => {
   return (
-    <Box>
+    <Box width={1}>
       <Typography
         component="h1"
         variant="titleLargeRegular"

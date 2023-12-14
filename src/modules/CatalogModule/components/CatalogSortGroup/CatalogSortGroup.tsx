@@ -4,8 +4,24 @@ import { CatalogSortButtons } from "../CatalogSortButtons";
 
 export const CatalogSortGroup = () => {
   return (
-    <Box display="flex" alignItems="center">
-      <Typography component="p" variant="titleThirdRegular" marginRight={2}>
+    <Box
+      display="flex"
+      sx={{
+        alignItems: { xs: "flex-start", md: "center" },
+        flexDirection: { xs: "column", md: "row" },
+      }}
+    >
+      <Typography
+        component="p"
+        variant="titleThirdRegular"
+        sx={{
+          marginRight: 2,
+          display: {
+            xs: "none",
+            md: "inherit",
+          },
+        }}
+      >
         Сортировать:
       </Typography>
       <CatalogSortButtons />
