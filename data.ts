@@ -1,8 +1,3 @@
-import { create } from "zustand";
-import { tempObjectData } from "./tempObjectData";
-
-export type ActiveSortType = "new" | "cheap" | "rich";
-
 export type CategoryType =
   | "apartment"
   | "house"
@@ -12,8 +7,8 @@ export type CategoryType =
   | "factory"
   | "other"; // Категория: квартира, дом, земельный участок, коммерческая недвижимость, бизнес, завод, другое
 export type ServiceType = "buy" | "rent"; // Продажа или аренда
-export type VisibilityStatusType = "active" | "sold" | "canceled" | "checking"; // Активен, Продан, Отменен, На проверке, на клиенте показываем только Активные
 export type HouseConditionType = "perfect" | "good" | "bad" | "free" | "build"; // Хорошее, среднее, требует ремонта, свободная планировка, черновая отделка
+export type VisibilityStatusType = "active" | "sold" | "canceled" | "checking"; // Активен, Продан, Отменен, На проверке, на клиенте показываем только Активные
 export type HouseType = "part" | "full" | "cottage"; // Часть дома, Целый дом, Дача
 export type FurnitureType = "part" | "full" | "none"; // Мебелирован: частично, полностью, без мебели
 export type ElectricType = "part" | "full" | "none"; // Электричество: частично, есть, нет
@@ -112,22 +107,13 @@ export interface Flat extends Apartment {
   totalFloor: number; // Общее количество этажей в здании
 }
 
+// Только в земельном участке
+export interface Land extends ObjectItem {
+  landSquare: string; // Площадь земли
+}
+
+// Можно сделать такие категории, но конкретных характеристик для них не будет
 export interface Commercial extends ObjectItem {}
 export interface Business extends ObjectItem {}
 export interface Factory extends ObjectItem {}
 export interface OtherObject extends ObjectItem {}
-
-export interface Land extends ObjectItem {
-  landSquare: string; // Площадь земли
-}
-export interface CatalogStore {
-  activeSortType: ActiveSortType;
-  estateObject: ObjectItem[];
-  setActiveSortType: (v: ActiveSortType) => void;
-}
-
-export const useCatalogStore = create<CatalogStore>((set) => ({
-  activeSortType: "new",
-  estateObject: tempObjectData,
-  setActiveSortType: (v) => set(() => ({ activeSortType: v })),
-}));

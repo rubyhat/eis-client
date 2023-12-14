@@ -1,6 +1,8 @@
+import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import React from "react";
+import { TbCurrencyTenge } from "react-icons/tb";
+
 import { useScreenSize } from "../../../../hooks/useScreenSize";
 
 interface PriceFieldsProps {
@@ -38,7 +40,7 @@ export const PriceFields = (props: PriceFieldsProps) => {
         component="p"
         marginLeft="8px"
       >
-        ₸
+        <TbCurrencyTenge />
       </Typography>
     </Box>
   );

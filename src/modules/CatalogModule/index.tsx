@@ -1,7 +1,8 @@
 import React from "react";
 import useTitle from "../../hooks/useTitle";
-import { Container, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import { TitleGroup } from "./components/TitleGroup";
+import { CatalogObjectives } from "./components/CatalogObjectives";
 
 export const CatalogModule = () => {
   useTitle("Главная страница");
@@ -12,6 +13,8 @@ export const CatalogModule = () => {
           <TitleGroup type="квартир" city="Караганде" />
         </Grid>
       </Grid>
+      <Box marginTop={2} />
+      <CatalogObjectives />
     </Container>
   );
 };
