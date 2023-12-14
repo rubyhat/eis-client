@@ -13,7 +13,7 @@ export const CatalogModule = () => {
           <TitleGroup type="квартир" city="Караганде" />
         </Grid>
       </Grid>
-      <Box marginTop={2} />
+      <Box marginTop={3} />
       <CatalogObjectives />
     </Container>
   );
