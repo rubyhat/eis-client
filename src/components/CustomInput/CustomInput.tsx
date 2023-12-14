@@ -63,12 +63,8 @@ export const CustomInput = (props: CustomInputProps) => {
           borderRadius: "5px",
           fontSize: "16px",
           padding: "8px",
-          // outline: "none",
-          // transition: "all 333ms ease",
-          // "&:focus": {
-          //   borderColor: "var(--colors-blue)",
-          // },
           "&::placeholder": {
+            fontSize: 16,
             color: theme.palette.customColors?.labelsSecondary,
           },
         }}

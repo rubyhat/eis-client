@@ -47,9 +47,9 @@ export const SearchForm = () => {
     defaultValues: {
       category: "apart",
       searchType: "buy",
-      rooms: "1",
-      startPrice: "",
-      endPrice: "",
+      roomCount: "1",
+      priceStart: "",
+      priceENd: "",
     },
   });
 
@@ -126,7 +126,7 @@ export const SearchForm = () => {
           />
           <Controller
             defaultValue="1"
-            name="rooms"
+            name="roomCount"
             control={control}
             render={({ field }) => (
               <Select
@@ -153,7 +153,7 @@ export const SearchForm = () => {
         <PriceFields
           StartPrice={
             <CustomInput
-              id="startPrice"
+              id="priceStart"
               register={register}
               errors={errors}
               disabled={isLoading}
@@ -164,7 +164,7 @@ export const SearchForm = () => {
           }
           EndPrice={
             <CustomInput
-              id="endPrice"
+              id="priceEnd"
               register={register}
               errors={errors}
               disabled={isLoading}
