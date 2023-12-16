@@ -3,6 +3,7 @@ import useTitle from "../../hooks/useTitle";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { AgentCard } from "../../components/AgentCard/AgentCard";
 import { DetailsList } from "./components/DetailsList/DetailsList";
+import { ImageViewer } from "./components/ImageViewer/ImageViewer";
 
 export const EstateDetailsModule = () => {
   useTitle("Детали объекта недвижимости");
@@ -53,7 +54,9 @@ export const EstateDetailsModule = () => {
             </Typography>
           </Box>
         </Grid>
-        <Grid item md={6}></Grid>
+        <Grid item md={6}>
+          <ImageViewer />
+        </Grid>
       </Grid>
     </Container>
   );
