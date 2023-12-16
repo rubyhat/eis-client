@@ -6,7 +6,7 @@ import { CatalogObjectives } from "./components/CatalogObjectives";
 import { FilterMobileWrapper } from "../FilterModule/components/FilterMobileWrapper/FilterMobileWrapper";
 
 export const CatalogModule = () => {
-  useTitle("Главная страница");
+  useTitle("Каталог - Квартиры в Караганде");
   return (
     <Container>
       <Grid container spacing={2}>
