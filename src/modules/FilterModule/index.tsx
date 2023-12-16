@@ -4,7 +4,13 @@ import { FilterForm } from "./components/FilterForm";
 
 export const FilterModule = () => {
   return (
-    <Box>
+    <Box
+      sx={{
+        borderRadius: 2,
+        boxShadow:
+          "0px 0px 0px 0.5px rgba(0, 0, 0, 0.05), 0px 0.5px 2.5px 0px rgba(0, 0, 0, 0.30)",
+      }}
+    >
       <FilterForm />
     </Box>
   );

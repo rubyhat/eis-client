@@ -49,15 +49,7 @@ export const FilterForm = () => {
     setIsLoading(false);
   };
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit(handleFormSubmit)}
-      sx={{
-        borderRadius: 2,
-        boxShadow:
-          "0px 0px 0px 0.5px rgba(0, 0, 0, 0.05), 0px 0.5px 2.5px 0px rgba(0, 0, 0, 0.30)",
-      }}
-    >
+    <Box component="form" onSubmit={handleSubmit(handleFormSubmit)}>
       <Box padding="12px 16px">
         <Typography component="h6" variant="titleSecondRegular">
           Фильтры

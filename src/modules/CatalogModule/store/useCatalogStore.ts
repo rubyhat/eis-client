@@ -129,5 +129,5 @@ export interface CatalogStore {
 export const useCatalogStore = create<CatalogStore>((set) => ({
   activeSortType: "new",
   estateObject: tempObjectData,
-  setActiveSortType: (v) => set(() => ({ activeSortType: v })),
+  setActiveSortType: (v) => set({ activeSortType: v }),
 }));

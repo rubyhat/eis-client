@@ -1,11 +1,21 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { CustomButton } from "../../../../components/CustomButton";
+import { useFilterStore } from "../../store/useFilterStore";
+import { FilterMobile } from "../FilterMobile/FilterMobile";
 
 export const FilterMobileWrapper = () => {
+  const { setIsMobileFilterModalOpen } = useFilterStore((state) => state);
+
+  const handleFilterButtonClick = () => setIsMobileFilterModalOpen(true);
+
   return (
     <Box
       sx={{
+        display: {
+          xs: "inherit",
+          md: "none",
+        },
         width: {
           xs: 1,
           sm: "min-content",
@@ -21,6 +31,7 @@ export const FilterMobileWrapper = () => {
       }}
     >
       <CustomButton
+        onClick={handleFilterButtonClick}
         fullWidth
         size="small"
         sx={{
@@ -33,6 +44,7 @@ export const FilterMobileWrapper = () => {
       >
         Фильтры
       </CustomButton>
+      <FilterMobile />
     </Box>
   );
 };
