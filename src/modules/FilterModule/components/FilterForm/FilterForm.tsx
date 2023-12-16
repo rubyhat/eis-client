@@ -283,7 +283,7 @@ export const FilterForm = () => {
             variant="textFootnoteRegular"
             marginBottom={0.5}
           >
-            Площадь общая, от м2
+            Площадь общая, от м²
           </Typography>
           <CustomInput
             id="houseSquare"
@@ -302,7 +302,7 @@ export const FilterForm = () => {
             variant="textFootnoteRegular"
             marginBottom={0.5}
           >
-            Площадь кухни, от м2
+            Площадь кухни, от м²
           </Typography>
           <CustomInput
             id="kitchenSquare"

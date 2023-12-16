@@ -27,7 +27,7 @@ export const AgentCard = () => {
       <Box>
         <Typography
           component="h6"
-          variant="textCalloutEmphasized"
+          variant="textBodyEmphasized"
           color="customColors.colorsBlue"
           width={1}
           display="flex"
@@ -41,7 +41,7 @@ export const AgentCard = () => {
             5.0
           </Typography>
         </Typography>
-        <Typography variant="textFootnoteRegular">
+        <Typography variant="textSubheadlineRegular">
           Агент по недвижимости сопровождающий данный объект
         </Typography>
       </Box>
