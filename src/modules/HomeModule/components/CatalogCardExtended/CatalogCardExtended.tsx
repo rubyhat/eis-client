@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import { CustomButton } from "../../../../components/CustomButton";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
+import { useNavigate } from "react-router-dom";
 
 const catalogList = [
   {
@@ -24,6 +25,7 @@ const catalogList = [
 
 export const CatalogCardExtended = () => {
   const { isMobile } = useScreenSize();
+  const navigate = useNavigate();
   return (
     <Box
       display="flex"
@@ -40,7 +42,7 @@ export const CatalogCardExtended = () => {
       >
         Перейдите в Каталог, чтобы найти все актуальные объекты недвижимости
       </Typography>
-      <CustomButton fullWidth size="large">
+      <CustomButton fullWidth size="large" onClick={() => navigate("/catalog")}>
         Посмотреть все
       </CustomButton>
     </Box>

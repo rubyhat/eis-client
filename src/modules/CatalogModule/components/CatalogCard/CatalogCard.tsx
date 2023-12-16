@@ -9,7 +9,11 @@ interface CatalogCardProps {
 }
 export const CatalogCard = ({ item }: CatalogCardProps) => {
   return (
-    <Box component={Link} to="/" color="customColors.labelsPrimary">
+    <Box
+      component={Link}
+      to="/catalog/uuid-1234567890-uiid"
+      color="customColors.labelsPrimary"
+    >
       <Box
         component="img"
         src={item.images[0]}
