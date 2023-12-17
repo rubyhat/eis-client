@@ -44,7 +44,15 @@ const tempThumbs = [
 export const ImageThumbs = () => {
   return (
     <Box
-      sx={{ display: "grid", gap: 1, gridTemplateColumns: "repeat(8, 1fr)" }}
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        // todo: add scroll to mobile ?
+        // maxWidth: "100%",
+        // overflow: "hidden",
+        // overflowX: "scroll",
+        gap: 1,
+      }}
     >
       {tempThumbs.map((thumb, index) => (
         <ImageThumbsItem thumb={thumb} key={index} />

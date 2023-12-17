@@ -43,7 +43,10 @@ export const FeedbackForm = () => {
         onSubmit={handleSubmit(handleFormSubmit)}
         sx={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: {
+            xs: "1fr",
+            sm: "repeat(3, 1fr)",
+          },
           gap: 1.5,
           padding: "12px 0",
         }}
@@ -93,7 +96,7 @@ export const FeedbackForm = () => {
         <FormControlLabel
           control={<Checkbox defaultChecked />}
           label={
-            <Box>
+            <Typography component="p" variant="textCalloutRegular">
               Я согласен с{" "}
               <Box
                 sx={{
@@ -105,7 +108,7 @@ export const FeedbackForm = () => {
               >
                 политикой обработки данных
               </Box>
-            </Box>
+            </Typography>
           }
         />
         <Typography
@@ -115,8 +118,27 @@ export const FeedbackForm = () => {
         >
           или позвоните/напишите нам
         </Typography>
-        <Box>
-          <CustomButton size="small" sx={{ marginRight: 1 }}>
+        <Box
+          sx={{
+            display: {
+              xs: "grid",
+              sm: "block",
+            },
+          }}
+        >
+          <CustomButton
+            size="small"
+            sx={{
+              marginRight: {
+                xs: 0,
+                sm: 1,
+              },
+              marginBottom: {
+                xs: 1,
+                sm: 0,
+              },
+            }}
+          >
             Позвонить
           </CustomButton>
           <CustomButton size="small" isGreenButton>

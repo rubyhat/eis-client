@@ -19,7 +19,7 @@ export const EstateDetailsModule = () => {
             Проспект Нуркена Абдирова, 124/3а
           </Typography>
         </Grid>
-        <Grid item md={6}>
+        <Grid item xs={12} md={5} lg={6}>
           <AgentCard />
           <Box padding="16px 0">
             <DetailsList />
@@ -54,7 +54,7 @@ export const EstateDetailsModule = () => {
             </Typography>
           </Box>
         </Grid>
-        <Grid item md={6}>
+        <Grid item xs={12} md={7} lg={6}>
           <ImageViewer />
         </Grid>
       </Grid>
