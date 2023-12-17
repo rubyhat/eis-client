@@ -15,7 +15,7 @@ interface DrawerMenuProps {
 export const DrawerMenu = ({
   onClick: handleBurgerIconClick,
 }: DrawerMenuProps) => {
-  const isMobile = useScreenSize();
+  const { isMobile } = useScreenSize();
   const { isHeaderBurgerOpen, setIsHeaderBurgerOpen } = useHeaderStore(
     (state) => state,
   );

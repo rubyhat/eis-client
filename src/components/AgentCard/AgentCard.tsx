@@ -8,7 +8,10 @@ export const AgentCard = () => {
         display: "flex",
         alignItems: "center",
         gap: 2,
-        maxWidth: "343px",
+        maxWidth: {
+          sx: 1,
+          sm: "343px",
+        },
         padding: 2,
         borderRadius: 4,
         boxShadow:

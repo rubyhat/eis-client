@@ -2,10 +2,13 @@ import { Box, IconButton, Typography } from "@mui/material";
 import React from "react";
 import { FiShare } from "react-icons/fi";
 import { useEstateDetailsStore } from "../../store/useEstateDetailsStore";
+import { ImageViewerModal } from "../ImageViewerModal/ImageViewerModal";
 
 export const ImagePreview = () => {
-  const { activeImage } = useEstateDetailsStore((state) => state);
-  const handleOpenViewer = () => {};
+  const { activeImage, setIsViewerModalOpen } = useEstateDetailsStore(
+    (state) => state,
+  );
+  const handleOpenViewer = () => setIsViewerModalOpen(true);
   const handleSharePage = () => {};
   return (
     <Box
@@ -15,6 +18,7 @@ export const ImagePreview = () => {
           "0px 0px 0px 0.5px rgba(0, 0, 0, 0.05), 0px 0.5px 2.5px 0px rgba(0, 0, 0, 0.30)",
       }}
     >
+      <ImageViewerModal />
       <Box
         sx={{
           padding: 1,
@@ -67,6 +71,7 @@ export const ImagePreview = () => {
       </Box>
       <Box padding="0 4px">
         <Box
+          onClick={handleOpenViewer}
           component="img"
           src={activeImage}
           alt="Фото объекта"
@@ -74,6 +79,7 @@ export const ImagePreview = () => {
             // todo: turn on with real images
             // border: "1px solid",
             // borderColor: "customColors.labelsSecondary",
+            cursor: "pointer",
             borderRadius: 1.5,
             width: "100%",
           }}
