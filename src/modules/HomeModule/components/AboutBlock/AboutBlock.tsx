@@ -1,7 +1,9 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import React from "react";
+import { useScreenSize } from "../../../../hooks/useScreenSize";
 
 export const AboutBlock = () => {
+  const { isMobile } = useScreenSize();
   return (
     <Container>
       <Grid container spacing={2}>
@@ -48,6 +50,16 @@ export const AboutBlock = () => {
         <Grid item xs={12}>
           <Box component="div" marginBottom="96px" />
         </Grid>
+        {isMobile && (
+          <Grid item xs={12} md={6}>
+            <Box
+              component="img"
+              src="/static/images/about/img-about-house.svg"
+              alt="Проверенная недвижимость"
+              width="100%"
+            />
+          </Grid>
+        )}
         <Grid item xs={12} md={6}>
           <Box
             display="flex"
@@ -80,14 +92,16 @@ export const AboutBlock = () => {
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <Box
-            component="img"
-            src="/static/images/about/img-about-house.svg"
-            alt="Проверенная недвижимость"
-            width="100%"
-          />
-        </Grid>
+        {!isMobile && (
+          <Grid item xs={12} md={6}>
+            <Box
+              component="img"
+              src="/static/images/about/img-about-house.svg"
+              alt="Проверенная недвижимость"
+              width="100%"
+            />
+          </Grid>
+        )}
         <Grid item xs={12}>
           <Box component="div" marginBottom="96px" />
         </Grid>

@@ -1,47 +1,13 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { ImageThumbsItem } from "../ImageThumbsItem/ImageThumbsItem";
-
-const tempThumbs = [
-  {
-    src: "/static/images/img-details-temp-1.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-2.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-1.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-2.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-1.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-2.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-1.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-2.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-1.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-2.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-1.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-2.webp",
-  },
-];
+import { useEstateDetailsStore } from "../../store/useEstateDetailsStore";
 
 export const ImageThumbs = () => {
+  const { images, setActiveImage } = useEstateDetailsStore((state) => state);
+
+  const handleClickThumb = (img: string) => setActiveImage(img);
+
   return (
     <Box
       sx={{
@@ -54,8 +20,10 @@ export const ImageThumbs = () => {
         gap: 1,
       }}
     >
-      {tempThumbs.map((thumb, index) => (
-        <ImageThumbsItem thumb={thumb} key={index} />
+      {images.map((thumb, index) => (
+        <Box key={index} onClick={() => handleClickThumb(thumb.src)}>
+          <ImageThumbsItem thumb={thumb} />
+        </Box>
       ))}
     </Box>
   );

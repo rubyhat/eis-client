@@ -1,8 +1,10 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import React from "react";
 import { FiShare } from "react-icons/fi";
+import { useEstateDetailsStore } from "../../store/useEstateDetailsStore";
 
 export const ImagePreview = () => {
+  const { activeImage } = useEstateDetailsStore((state) => state);
   const handleOpenViewer = () => {};
   const handleSharePage = () => {};
   return (
@@ -66,7 +68,7 @@ export const ImagePreview = () => {
       <Box padding="0 4px">
         <Box
           component="img"
-          src="/static/images/img-details-temp-1.webp"
+          src={activeImage}
           alt="Фото объекта"
           sx={{
             // todo: turn on with real images
