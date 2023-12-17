@@ -11,7 +11,7 @@ interface CustomInputProps {
   register: UseFormRegister<FieldValues>;
   type?: string;
   disabled?: boolean;
-  formatPrice: boolean;
+  formatPrice?: boolean;
   required?: boolean;
   placeholder?: string;
   sx?: SxProps;
@@ -66,7 +66,7 @@ export const CustomInput = (props: CustomInputProps) => {
           outlineColor: "customColors.colorsBlue",
           "&::placeholder": {
             fontSize: 16,
-            color: theme.palette.customColors?.labelsSecondary,
+            color: theme.palette.customColors?.labelsTertiary,
           },
         }}
       />

@@ -137,6 +137,7 @@ declare module "@mui/material/styles" {
     colorsPurpleDark: string;
 
     gradientPrimary: string;
+    gradientGreen: string;
 
     labelsPrimary: string;
     labelsSecondary: string;

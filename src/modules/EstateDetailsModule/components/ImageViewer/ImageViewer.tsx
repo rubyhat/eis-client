@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import { ImagePreview } from "../ImagePreview/ImagePreview";
 import { ImageThumbs } from "../ImageThumbs/ImageThumbs";
+import { FeedbackForm } from "../../../../components/FeedbackForm/FeedbackForm";
 
 export const ImageViewer = () => {
   return (
@@ -19,6 +20,7 @@ export const ImageViewer = () => {
           margin: "16px 0",
         }}
       />
+      <FeedbackForm />
     </Box>
   );
 };
