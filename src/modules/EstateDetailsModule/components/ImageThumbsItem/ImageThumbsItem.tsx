@@ -2,23 +2,19 @@ import { Box } from "@mui/material";
 import React from "react";
 import { useEstateDetailsStore } from "../../store/useEstateDetailsStore";
 
-interface Thumb {
-  src: string;
-}
-
 interface ImageThumbsItemProps {
-  thumb: Thumb;
+  thumb: string;
 }
 export const ImageThumbsItem = ({ thumb }: ImageThumbsItemProps) => {
   const { activeImage } = useEstateDetailsStore((state) => state);
-  const activeThumbStyles = thumb.src === activeImage && {
+  const activeThumbStyles = thumb === activeImage && {
     border: "2px solid",
     borderColor: "customColors.colorsBlue",
   };
   return (
     <Box
       component="img"
-      src={thumb.src}
+      src={thumb}
       alt="Фото Объекта"
       sx={{
         width: 1,

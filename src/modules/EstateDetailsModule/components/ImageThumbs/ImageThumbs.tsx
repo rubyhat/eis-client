@@ -6,7 +6,8 @@ import { useEstateDetailsStore } from "../../store/useEstateDetailsStore";
 export const ImageThumbs = () => {
   const { images, setActiveImage } = useEstateDetailsStore((state) => state);
 
-  const handleClickThumb = (img: string) => setActiveImage(img);
+  const handleClickThumb = (img: string, index: number) =>
+    setActiveImage(img, index);
 
   return (
     <Box
@@ -21,7 +22,7 @@ export const ImageThumbs = () => {
       }}
     >
       {images.map((thumb, index) => (
-        <Box key={index} onClick={() => handleClickThumb(thumb.src)}>
+        <Box key={index} onClick={() => handleClickThumb(thumb, index)}>
           <ImageThumbsItem thumb={thumb} />
         </Box>
       ))}

@@ -5,9 +5,8 @@ import { useEstateDetailsStore } from "../../store/useEstateDetailsStore";
 import { ImageViewerModal } from "../ImageViewerModal/ImageViewerModal";
 
 export const ImagePreview = () => {
-  const { activeImage, setIsViewerModalOpen } = useEstateDetailsStore(
-    (state) => state,
-  );
+  const { activeImage, isViewerModalOpen, setIsViewerModalOpen } =
+    useEstateDetailsStore((state) => state);
   const handleOpenViewer = () => setIsViewerModalOpen(true);
   const handleSharePage = () => {};
   return (
@@ -18,7 +17,7 @@ export const ImagePreview = () => {
           "0px 0px 0px 0.5px rgba(0, 0, 0, 0.05), 0px 0.5px 2.5px 0px rgba(0, 0, 0, 0.30)",
       }}
     >
-      <ImageViewerModal />
+      {isViewerModalOpen && <ImageViewerModal />}
       <Box
         sx={{
           padding: 1,

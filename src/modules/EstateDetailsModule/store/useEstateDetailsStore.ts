@@ -1,61 +1,36 @@
 import { create } from "zustand";
 
 const tempThumbs = [
-  {
-    src: "/static/images/img-details-temp-1.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-2.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-1.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-2.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-1.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-2.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-1.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-2.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-1.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-2.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-1.webp",
-  },
-  {
-    src: "/static/images/img-details-temp-2.webp",
-  },
+  "/static/images/img-details-temp-1.webp",
+  "/static/images/img-details-temp-2.webp",
+  "/static/images/img-details-temp-1.webp",
+  "/static/images/img-details-temp-2.webp",
+  "/static/images/img-details-temp-1.webp",
+  "/static/images/img-details-temp-2.webp",
+  "/static/images/img-details-temp-1.webp",
+  "/static/images/img-details-temp-2.webp",
+  "/static/images/img-details-temp-1.webp",
+  "/static/images/img-details-temp-2.webp",
+  "/static/images/img-details-temp-1.webp",
+  "/static/images/img-details-temp-2.webp",
 ];
 
-interface image {
-  src: string;
-}
 interface EstateDetailsStore {
-  images: image[];
+  images: string[];
   activeImage: string;
+  activeImageIndex: number;
   isViewerModalOpen: boolean;
-  setImages: (v: image[]) => void;
-  setActiveImage: (v: string) => void;
+  setImages: (v: string[]) => void;
+  setActiveImage: (v: string, i: number) => void;
   setIsViewerModalOpen: (v: boolean) => void;
 }
 
 export const useEstateDetailsStore = create<EstateDetailsStore>((set) => ({
-  activeImage: tempThumbs[0].src,
+  activeImage: tempThumbs[0],
+  activeImageIndex: 0,
   images: tempThumbs,
   isViewerModalOpen: false,
   setImages: (v) => set({ images: v }),
-  setActiveImage: (v) => set({ activeImage: v }),
+  setActiveImage: (v, i) => set({ activeImage: v, activeImageIndex: i }),
   setIsViewerModalOpen: (v) => set({ isViewerModalOpen: v }),
 }));
