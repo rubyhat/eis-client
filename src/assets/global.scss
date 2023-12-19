@@ -104,6 +104,11 @@ h6 {
   white-space: pre-line;
 }
 
+.estate-details__swiper-wrapper .slide {
+  &:first-child {
+    margin-left: 16px;
+  }
+}
 .slide {
   position: relative;
 }

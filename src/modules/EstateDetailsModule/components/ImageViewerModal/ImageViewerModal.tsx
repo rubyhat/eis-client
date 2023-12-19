@@ -1,12 +1,13 @@
 import React from "react";
-import { Box, SwipeableDrawer, Typography } from "@mui/material";
+import { Box, IconButton, SwipeableDrawer, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { useScreenSize } from "../../../../hooks/useScreenSize";
 import { useEstateDetailsStore } from "../../store/useEstateDetailsStore";
 import { CustomButton } from "../../../../components/CustomButton";
 
-import "swiper/css";
+import "swiper/scss";
+import { IoClose } from "react-icons/io5";
 
 export const ImageViewerModal = () => {
   const { isViewerModalOpen, activeImageIndex, images, setIsViewerModalOpen } =
@@ -29,15 +30,20 @@ export const ImageViewerModal = () => {
 
   return (
     <SwipeableDrawer
-      anchor={isMobile ? "right" : "top"}
+      anchor={isMobile ? "bottom" : "top"}
       open={isViewerModalOpen}
       onClose={handleCloseViewer}
       onOpen={handleOpenViewer}
       PaperProps={{
         sx: {
-          width: "min-content",
+          width: "100%",
+          maxWidth: "1236px",
           borderRadius: isMobile ? "8px 8px 0 0" : 4,
-          margin: "10% auto",
+          margin: {
+            sx: "none",
+            sm: "10% auto",
+          },
+          // height: "min-content",
         },
       }}
     >
@@ -60,41 +66,65 @@ export const ImageViewerModal = () => {
       ) : (
         <Box
           sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
             padding: 2,
           }}
         >
           <Typography component="h3" variant="titleFirstRegular">
             Просмотр фотографий
           </Typography>
+          <IconButton onClick={handleCloseViewer}>
+            <IoClose />
+          </IconButton>
         </Box>
       )}
-      <Box sx={{ padding: 2, display: "flex", flexDirection: "column" }}>
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={16}
-          initialSlide={activeImageIndex}
-          speed={666}
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box
+          className="estate-details__swiper-wrapper"
+          sx={{
+            padding: {
+              xs: "8px 0",
+              sm: 1,
+            },
+          }}
         >
-          {images.map((image, index) => (
-            <SwiperSlide key={index} className="slide">
-              <Box
-                component="img"
-                src={image}
-                sx={{
-                  width: 1, // занимает 100% ширины контейнера
-                  height: "auto", // автоматическая высота для сохранения пропорций
-                  maxWidth: "100%", // максимальная ширина ограничена шириной контейнера
-                  maxHeight: "700px", // максимальная высота, можно адаптировать
-                  objectFit: "contain", // сохраняет пропорции изображения
-                }}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <Box>
-          <CustomButton>{"<"}</CustomButton>
-          <CustomButton>{">"}</CustomButton>
+          <Swiper
+            slidesPerView={1.1}
+            spaceBetween={8}
+            initialSlide={activeImageIndex}
+            speed={666}
+          >
+            {images.map((image, index) => (
+              <SwiperSlide key={index} className="slide">
+                <Box
+                  component="img"
+                  src={image}
+                  sx={{
+                    borderRadius: 3,
+                    width: 1, // занимает 100% ширины контейнера
+                    height: "auto", // автоматическая высота для сохранения пропорций
+                    maxWidth: "100%", // максимальная ширина ограничена шириной контейнера
+                    objectFit: "contain", // сохраняет пропорции изображения
+                  }}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </Box>
+        {isMobile && (
+          <Box display="flex" padding="8px 0 16px 0">
+            <CustomButton
+              onClick={handleCloseViewer}
+              fullWidth
+              size="large"
+              sx={{ margin: "0 16px" }}
+            >
+              Закрыть
+            </CustomButton>
+          </Box>
+        )}
       </Box>
     </SwipeableDrawer>
   );
