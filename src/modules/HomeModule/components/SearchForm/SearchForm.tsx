@@ -11,6 +11,7 @@ import { CustomButton } from "../../../../components/CustomButton";
 import { PriceFields } from "../PriceFields";
 import { MenuItem, Select } from "@mui/material";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
+import { useNavigate } from "react-router-dom";
 
 const selectInputProps = {
   padding: 1,
@@ -36,6 +37,7 @@ export const SearchForm = () => {
     isMobile || isTablet
       ? { ...formWrapperStyles, ...formWrapperMobileStyles }
       : { ...formWrapperStyles, ...formWrapperDesktopStyles };
+  const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = React.useState(false);
   const {
@@ -49,13 +51,19 @@ export const SearchForm = () => {
       searchType: "buy",
       roomCount: "1",
       priceStart: "",
-      priceENd: "",
+      priceEnd: "",
     },
   });
 
   const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
     setIsLoading(false);
+
+    const filteredData = Object.fromEntries(
+      Object.entries(data).filter(([, value]) => value !== ""),
+    );
+
+    const queryParams = new URLSearchParams(filteredData).toString();
+    navigate(`/catalog?${queryParams}`);
   };
 
   return (
@@ -157,7 +165,6 @@ export const SearchForm = () => {
               register={register}
               errors={errors}
               disabled={isLoading}
-              required
               formatPrice={false}
               placeholder={isMobile || isTablet ? "цена от" : "от"}
             />
@@ -168,7 +175,6 @@ export const SearchForm = () => {
               register={register}
               errors={errors}
               disabled={isLoading}
-              required
               formatPrice={false}
               placeholder={isMobile || isTablet ? "цена до" : "до"}
             />
