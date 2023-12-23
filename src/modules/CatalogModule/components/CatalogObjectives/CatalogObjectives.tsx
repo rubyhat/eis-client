@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import React from "react";
+
 import { tempObjectData } from "../../store/tempObjectData";
 import { CatalogCard } from "../CatalogCard/CatalogCard";
 import { FilterModule } from "../../../FilterModule";

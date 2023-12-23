@@ -3,12 +3,16 @@ import React from "react";
 import { FiShare } from "react-icons/fi";
 import { useEstateDetailsStore } from "../../store/useEstateDetailsStore";
 import { ImageViewerModal } from "../ImageViewerModal/ImageViewerModal";
+import { useCopySharingLink } from "../../../../hooks/useCopySharingLink";
 
 export const ImagePreview = () => {
+  const { copyLink } = useCopySharingLink();
   const { activeImage, isViewerModalOpen, setIsViewerModalOpen } =
     useEstateDetailsStore((state) => state);
   const handleOpenViewer = () => setIsViewerModalOpen(true);
-  const handleSharePage = () => {};
+  const handleSharePage = () => {
+    copyLink();
+  };
   return (
     <Box
       sx={{

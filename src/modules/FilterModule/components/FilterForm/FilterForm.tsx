@@ -16,6 +16,7 @@ import {
 import { CustomButton } from "../../../../components/CustomButton";
 import { CustomInput } from "../../../../components/CustomInput";
 import { useLocation } from "react-router-dom";
+import { useFilterStore } from "../../store";
 
 const selectInputProps = {
   padding: 1,
@@ -23,6 +24,8 @@ const selectInputProps = {
 };
 
 export const FilterForm = () => {
+  // todo: add beatify alert for client that filters was turned on
+  const { setIsMobileFilterModalOpen } = useFilterStore((state) => state);
   const [isLoading, setIsLoading] = React.useState(false);
   const {
     control,
@@ -82,7 +85,17 @@ export const FilterForm = () => {
     );
 
     const queryParams = new URLSearchParams(filteredData).toString();
+    // Получение текущего URL
+    const currentUrl = new URL(window.location.href);
+
+    // Добавление параметров запроса к текущему URL
+    currentUrl.search = queryParams;
+
+    // Обновление URL без перезагрузки страницы
+    window.history.pushState({}, "", currentUrl);
+
     console.log(queryParams); //todo: create request
+    setIsMobileFilterModalOpen(false);
   };
 
   return (
@@ -92,7 +105,7 @@ export const FilterForm = () => {
           Фильтры
         </Typography>
       </Box>
-      <Box padding="12px 16px">
+      <Box padding="0px 16px">
         <Box marginBottom={1.5}>
           <Typography
             component="p"
@@ -441,7 +454,7 @@ export const FilterForm = () => {
           />
         </Box>
       </Box>
-      <Box padding="12px 16px" display="flex" gap={2}>
+      <Box padding="0px 16px 12px 16px" display="flex" gap={2}>
         <CustomButton isCancelVariant size="small" fullWidth>
           Сбросить
         </CustomButton>

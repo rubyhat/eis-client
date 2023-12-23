@@ -28,6 +28,9 @@ export const DetailsList = () => {
         label="Площадь, м²"
       />
       <DetailsListItem title="Хорошее" label="Состояние" />
+      <DetailsListItem title="Есть" label="Ипотека" />
+      <DetailsListItem title="Нет" label="Обмен" />
+      <DetailsListItem title="В порядке" label="Документы" />
       <DetailsListItem
         label="Видео обзор"
         videoLink="https://www.instagram.com/reel/C0yxbgDt63W/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA=="

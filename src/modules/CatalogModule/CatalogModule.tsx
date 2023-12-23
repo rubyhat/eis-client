@@ -4,9 +4,12 @@ import { Box, Container, Grid } from "@mui/material";
 import { TitleGroup } from "./components/TitleGroup";
 import { CatalogObjectives } from "./components/CatalogObjectives";
 import { FilterMobileWrapper } from "../FilterModule/components/FilterMobileWrapper/FilterMobileWrapper";
+import { CustomButton } from "../../components/CustomButton";
+import { useCopySharingLink } from "../../hooks/useCopySharingLink";
 
 export const CatalogModule = () => {
   useTitle("Каталог - Квартиры в Караганде");
+  const { copyLink } = useCopySharingLink(); // todo: remove temp button
   return (
     <Container>
       <Grid container spacing={2}>
@@ -28,6 +31,22 @@ export const CatalogModule = () => {
           >
             <TitleGroup type="квартир" city="Караганде" />
             <FilterMobileWrapper />
+            <CustomButton
+              onClick={copyLink}
+              fullWidth
+              size="small"
+              isGreenButton
+              sx={{
+                marginTop: 1,
+                maxWidth: {
+                  xs: 1,
+                  sm: 120,
+                },
+                height: 34,
+              }}
+            >
+              Поделиться ссылкой
+            </CustomButton>
           </Box>
         </Grid>
       </Grid>
