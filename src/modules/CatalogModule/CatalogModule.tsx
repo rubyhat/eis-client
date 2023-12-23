@@ -40,12 +40,17 @@ export const CatalogModule = () => {
                 marginTop: 1,
                 maxWidth: {
                   xs: 1,
-                  sm: 120,
+                  sm: 270,
+                },
+                marginLeft: {
+                  xs: 0,
+                  sm: 2,
+                  md: 0,
                 },
                 height: 34,
               }}
             >
-              Поделиться ссылкой
+              Поделиться подборкой
             </CustomButton>
           </Box>
         </Grid>
