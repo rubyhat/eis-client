@@ -98,7 +98,8 @@ export const SearchForm = () => {
               inputProps={{ sx: selectInputProps }}
             >
               <MenuItem value="apart">Квартира</MenuItem>
-              <MenuItem value="house">Дома и дачи</MenuItem>
+              <MenuItem value="house">Дома</MenuItem>
+              <MenuItem value="cottage">Дачи</MenuItem>
               <MenuItem value="earth">Земельный участок</MenuItem>
               <MenuItem value="dachya">Коммерческая недвижимость</MenuItem>
             </Select>

@@ -9,7 +9,7 @@ interface LinkObject {
 
 const links: LinkObject[] = [
   { title: "Квартиры", to: "/kvartiry1" },
-  { title: "Дома и дачи", to: "/kvartiry2" },
+  { title: "Дома", to: "/kvartiry2" },
   { title: "Коммерческая недвижимость", to: "/kvartiry3" },
   { title: "Каталог", to: "/kvartiry4" },
 ];

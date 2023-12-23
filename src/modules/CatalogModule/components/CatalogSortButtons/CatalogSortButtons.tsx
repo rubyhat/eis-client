@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import { ActiveSortType, useCatalogStore } from "../../store/useCatalogStore";
+import { IoIosArrowDown } from "react-icons/io";
 
 const sortWrapperStyles = {
   width: "100%",
@@ -37,8 +38,24 @@ const separatorStyles = {
 
 const sortOptions = [
   { type: "new", label: "Новые" },
-  { type: "cheap", label: "Дешевые" },
-  { type: "rich", label: "Дорогие" },
+  {
+    type: "cheap",
+    label: "Стоимость",
+    icon: (
+      <IoIosArrowDown color="#007bff" size={16} style={{ marginLeft: 2 }} />
+    ),
+  },
+  {
+    type: "rich",
+    label: "Стоимость",
+    icon: (
+      <IoIosArrowDown
+        color="#007bff"
+        size={16}
+        style={{ rotate: "180deg", marginLeft: 2 }}
+      />
+    ),
+  },
 ];
 
 export const CatalogSortButtons = () => {
@@ -68,7 +85,7 @@ export const CatalogSortButtons = () => {
         },
       }}
     >
-      {sortOptions.map(({ type, label }, index) => (
+      {sortOptions.map(({ type, label, icon }, index) => (
         <React.Fragment key={index}>
           {shouldShowSeparator(index, "start") && (
             <Box component="div" sx={separatorStyles} />
@@ -86,8 +103,14 @@ export const CatalogSortButtons = () => {
               component="p"
               variant="textFootnoteRegular"
               color="customColors.labelsPrimary"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
               {label}
+              {icon && icon}
             </Typography>
           </Box>
           {shouldShowSeparator(index, "end") && (

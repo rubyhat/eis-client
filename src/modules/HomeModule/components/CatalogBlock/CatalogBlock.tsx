@@ -17,9 +17,9 @@ const catalogCards = [
     imgSrc: "/static/images/home/catalog/img-home-catalog-card-2-1x.webp",
     imgSrcSet: "/static/images/home/catalog/img-home-catalog-card-2-2x.webp 2x",
     title: "Дома",
-    subtitle: "Частные дома и дачи",
+    subtitle: "Частные дома",
     link: "/catalog",
-    alt: "Дома и дачи",
+    alt: "Дома",
   },
   {
     imgSrc: "/static/images/home/catalog/img-home-catalog-card-3-1x.webp",

@@ -126,24 +126,34 @@ export const FeedbackForm = () => {
             },
           }}
         >
-          <CustomButton
-            size="small"
-            sx={{
-              marginRight: {
-                xs: 0,
-                sm: 1,
-              },
-              marginBottom: {
-                xs: 1,
-                sm: 0,
-              },
-            }}
+          <Box component="a" href="tel:87752813783">
+            <CustomButton
+              size="small"
+              fullWidth
+              sx={{
+                marginRight: {
+                  xs: 0,
+                  sm: 1,
+                },
+                marginBottom: {
+                  xs: 1,
+                  sm: 0,
+                },
+              }}
+            >
+              Позвонить
+            </CustomButton>
+          </Box>
+          <Box
+            component="a"
+            href="https://api.whatsapp.com/send?phone=77752813783&text=Здравствуйте, меня интересует недвижимость на Вашем сайте."
+            target="_blank"
+            rel="noreferrer"
           >
-            Позвонить
-          </CustomButton>
-          <CustomButton size="small" isGreenButton>
-            Написать в WhatsApp
-          </CustomButton>
+            <CustomButton fullWidth size="small" isGreenButton>
+              Написать в WhatsApp
+            </CustomButton>
+          </Box>
         </Box>
       </Box>
     </Box>
