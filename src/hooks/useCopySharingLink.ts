@@ -1,3 +1,5 @@
+import toast from "react-hot-toast";
+
 export const useCopySharingLink = () => {
   const copyLink = () => {
     const url = window.location.href;
@@ -6,9 +8,13 @@ export const useCopySharingLink = () => {
     navigator.clipboard
       .writeText(url)
       .then(() => {
-        alert("Ссылка скопирована в буфер обмена!");
+        toast.success("Ссылка успешно скопирована!");
       })
       .catch((err) => {
+        toast.error(
+          "Не удалось скопировать ссылку, возможно Ваш браузер заблокировал это действие",
+        );
+        // eslint-disable-next-line no-console
         console.error("Ошибка при копировании: ", err);
       });
   };
