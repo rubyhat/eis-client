@@ -9,9 +9,10 @@ import { CustomInput } from "../../../../components/CustomInput";
 import React from "react";
 import { CustomButton } from "../../../../components/CustomButton";
 import { PriceFields } from "../PriceFields";
-import { MenuItem, Select } from "@mui/material";
+import { MenuItem, Select, Typography } from "@mui/material";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
 import { useNavigate } from "react-router-dom";
+import { useFilterStore } from "../../../FilterModule/store";
 
 const selectInputProps = {
   padding: 1,
@@ -32,6 +33,7 @@ const formWrapperDesktopStyles = {
 };
 
 export const SearchForm = () => {
+  const { setFilterState, filterState } = useFilterStore((state) => state);
   const { isMobile, isTablet } = useScreenSize();
   const formWrapperTotalStyles =
     isMobile || isTablet
@@ -46,11 +48,11 @@ export const SearchForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
-    //todo: replace keys and values as in catalog schema
     defaultValues: {
-      category: "apart",
-      searchType: "buy",
-      roomCount: "1",
+      city: "krg",
+      category: "apartment",
+      type: "sell",
+      roomCount: "",
       priceStart: "",
       priceEnd: "",
     },
@@ -63,6 +65,7 @@ export const SearchForm = () => {
       Object.entries(data).filter(([, value]) => value !== ""),
     );
 
+    setFilterState({ ...filterState, ...filteredData });
     const queryParams = new URLSearchParams(filteredData).toString();
     navigate(`/catalog?${queryParams}`);
   };
@@ -73,6 +76,37 @@ export const SearchForm = () => {
       onSubmit={handleSubmit(handleFormSubmit)}
       sx={formWrapperTotalStyles}
     >
+      {isMobile && (
+        <Box marginBottom={1.5}>
+          <Controller
+            name="city"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                sx={{
+                  height: "36px",
+                  width: "100%",
+                  fontSize: "15px",
+                  "&:hover": {
+                    "& fieldset": {
+                      borderColor: "hsla(213, 100%, 53%, 1) !important",
+                    },
+                  },
+                  "& fieldset": {
+                    borderColor: "customColors.labelsQuaternary",
+                  },
+                }}
+                inputProps={{ sx: selectInputProps }}
+              >
+                <MenuItem value="krg">Караганда</MenuItem>
+                <MenuItem value="ast">Астана</MenuItem>
+                <MenuItem value="alm">Аламата</MenuItem>
+              </Select>
+            )}
+          />
+        </Box>
+      )}
       <Box
         display="grid"
         alignItems="center"
@@ -115,8 +149,7 @@ export const SearchForm = () => {
           gap={isMobile ? 1.5 : 2}
         >
           <Controller
-            defaultValue="buy"
-            name="searchType"
+            name="type"
             control={control}
             render={({ field }) => (
               <Select
@@ -131,7 +164,7 @@ export const SearchForm = () => {
                 }}
                 inputProps={{ sx: selectInputProps }}
               >
-                <MenuItem value="buy">Купить</MenuItem>
+                <MenuItem value="sell">Продажа</MenuItem>
                 <MenuItem value="rent">Аренда</MenuItem>
               </Select>
             )}
@@ -143,6 +176,7 @@ export const SearchForm = () => {
             render={({ field }) => (
               <Select
                 {...field}
+                displayEmpty
                 sx={{
                   fontSize: "15px",
                   height: "36px",
@@ -153,6 +187,14 @@ export const SearchForm = () => {
                 }}
                 inputProps={{ sx: selectInputProps }}
               >
+                <MenuItem disabled value="">
+                  <Typography
+                    variant="textCalloutRegular"
+                    color="customColors.labelsSecondary"
+                  >
+                    Например: 1 ком.
+                  </Typography>
+                </MenuItem>
                 <MenuItem value="1">1 ком.</MenuItem>
                 <MenuItem value="2">2-х ком.</MenuItem>
                 <MenuItem value="3">3-х ком.</MenuItem>

@@ -115,6 +115,43 @@ export const FilterForm = () => {
             variant="textFootnoteRegular"
             marginBottom={0.5}
           >
+            Тип
+          </Typography>
+          <Controller
+            name="type"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                displayEmpty
+                sx={{
+                  height: "36px",
+                  width: "100%",
+                  fontSize: "15px",
+                  "&:hover": {
+                    "& fieldset": {
+                      borderColor: "hsla(213, 100%, 53%, 1) !important",
+                    },
+                  },
+                  "& fieldset": {
+                    borderColor: "customColors.labelsQuaternary",
+                  },
+                }}
+                inputProps={{ sx: selectInputProps }}
+              >
+                <MenuItem value="sell">Продажа</MenuItem>
+                <MenuItem value="rent">Аренда</MenuItem>
+              </Select>
+            )}
+          />
+        </Box>
+        <Box marginBottom={1.5}>
+          <Typography
+            component="p"
+            color="customColors.labelsSecondary"
+            variant="textFootnoteRegular"
+            marginBottom={0.5}
+          >
             Город
           </Typography>
           <Controller
@@ -295,12 +332,12 @@ export const FilterForm = () => {
                     variant="textCalloutRegular"
                     color="customColors.labelsSecondary"
                   >
-                    Например: Хорошее
+                    Например: Евроремонт
                   </Typography>
                 </MenuItem>
-                <MenuItem value="perfect">Хорошее</MenuItem>
-                <MenuItem value="good">Среднее</MenuItem>
-                <MenuItem value="bad">Требует ремонта</MenuItem>
+                <MenuItem value="perfect">Евроремонт</MenuItem>
+                <MenuItem value="good">Косметический ремонт</MenuItem>
+                <MenuItem value="bad">Без ремонта</MenuItem>
                 <MenuItem value="free">Свободная планировка</MenuItem>
                 <MenuItem value="build">Черновая отделка</MenuItem>
               </Select>
@@ -462,13 +499,18 @@ export const FilterForm = () => {
       <Box padding="0px 16px 12px 16px" display="flex" gap={2}>
         <CustomButton
           isCancelVariant
-          size="small"
+          size="medium"
           fullWidth
           onClick={handleFormReset}
         >
           Сбросить
         </CustomButton>
-        <CustomButton size="small" fullWidth type="submit" disabled={isLoading}>
+        <CustomButton
+          size="medium"
+          fullWidth
+          type="submit"
+          disabled={isLoading}
+        >
           Применить
         </CustomButton>
       </Box>

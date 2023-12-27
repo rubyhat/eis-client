@@ -1,6 +1,12 @@
 import { create } from "zustand";
+import {
+  CategoryType,
+  HouseConditionType,
+  HouseWallMaterialType,
+  ServiceType,
+} from "../../CatalogModule/store";
 
-export const initialFilterState = {
+export const initialFilterState: FilterState = {
   city: "",
   category: "",
   houseWallMaterial: "",
@@ -13,13 +19,11 @@ export const initialFilterState = {
   houseBuildingYear: "",
   mortgage: false,
   hasSwap: false,
+  type: "sell",
 };
 
 export interface FilterState {
   city: string;
-  category: string;
-  houseWallMaterial: string;
-  houseCondition: string;
   roomCount: string;
   priceStart: string;
   priceEnd: string;
@@ -28,6 +32,10 @@ export interface FilterState {
   houseBuildingYear: string;
   mortgage: boolean;
   hasSwap: boolean;
+  type: ServiceType;
+  category: CategoryType | "";
+  houseWallMaterial: HouseWallMaterialType | "";
+  houseCondition: HouseConditionType | "";
 }
 
 export interface FilterStore {
