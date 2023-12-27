@@ -46,6 +46,7 @@ export const SearchForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
+    //todo: replace keys and values as in catalog schema
     defaultValues: {
       category: "apart",
       searchType: "buy",
@@ -81,7 +82,7 @@ export const SearchForm = () => {
         }
       >
         <Controller
-          defaultValue="apart"
+          defaultValue="apartment"
           name="category"
           control={control}
           render={({ field }) => (
@@ -97,11 +98,13 @@ export const SearchForm = () => {
               }}
               inputProps={{ sx: selectInputProps }}
             >
-              <MenuItem value="apart">Квартира</MenuItem>
-              <MenuItem value="house">Дома</MenuItem>
-              <MenuItem value="cottage">Дачи</MenuItem>
-              <MenuItem value="earth">Земельный участок</MenuItem>
-              <MenuItem value="dachya">Коммерческая недвижимость</MenuItem>
+              <MenuItem value="apartment">Квартира</MenuItem>
+              <MenuItem value="house">Дом</MenuItem>
+              <MenuItem value="cottage">Дача</MenuItem>
+              <MenuItem value="land">Земельный участок</MenuItem>
+              <MenuItem value="business">Коммерческая недвижимость</MenuItem>
+              <MenuItem value="factory">Заводы, фабрики</MenuItem>
+              <MenuItem value="other">Другое</MenuItem>
             </Select>
           )}
         />
