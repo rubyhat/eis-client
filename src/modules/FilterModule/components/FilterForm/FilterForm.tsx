@@ -17,7 +17,7 @@ import toast from "react-hot-toast";
 import { CustomButton } from "../../../../components/CustomButton";
 import { CustomInput } from "../../../../components/CustomInput";
 import { useLocation } from "react-router-dom";
-import { initialFilterState, useFilterStore } from "../../store";
+import { FilterState, initialFilterState, useFilterStore } from "../../store";
 
 const selectInputProps = {
   padding: 1,
@@ -34,6 +34,7 @@ export const FilterForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FieldValues>({
     defaultValues: {
       ...filterState,
@@ -75,6 +76,7 @@ export const FilterForm = () => {
       Object.entries(data).filter(([, value]) => value !== ""),
     );
 
+    setFilterState({ ...data } as FilterState);
     const queryParams = new URLSearchParams(filteredData).toString();
     // Получение текущего URL
     const currentUrl = new URL(window.location.href);
@@ -92,8 +94,10 @@ export const FilterForm = () => {
   };
 
   const handleFormReset = () => {
+    reset();
     setFilterState(initialFilterState);
     toast.success("Фльтры успешно сброшены!");
+    setIsMobileFilterModalOpen(false);
   };
 
   return (
