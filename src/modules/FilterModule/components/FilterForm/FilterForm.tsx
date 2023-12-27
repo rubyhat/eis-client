@@ -13,10 +13,11 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
+import toast from "react-hot-toast";
 import { CustomButton } from "../../../../components/CustomButton";
 import { CustomInput } from "../../../../components/CustomInput";
 import { useLocation } from "react-router-dom";
-import { useFilterStore } from "../../store";
+import { initialFilterState, useFilterStore } from "../../store";
 
 const selectInputProps = {
   padding: 1,
@@ -25,7 +26,8 @@ const selectInputProps = {
 
 export const FilterForm = () => {
   // todo: add beatify alert for client that filters was turned on
-  const { setIsMobileFilterModalOpen } = useFilterStore((state) => state);
+  const { filterState, setIsMobileFilterModalOpen, setFilterState } =
+    useFilterStore((state) => state);
   const [isLoading, setIsLoading] = React.useState(false);
   const {
     control,
@@ -34,18 +36,7 @@ export const FilterForm = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      city: "",
-      category: "",
-      houseWallMaterial: "",
-      houseCondition: "",
-      roomCount: "",
-      priceStart: "",
-      priceEnd: "",
-      houseSquare: "",
-      kitchenSquare: "",
-      houseBuildingYear: "",
-      mortgage: false,
-      hasSwap: false,
+      ...filterState,
     },
   });
   const location = useLocation();
@@ -94,8 +85,15 @@ export const FilterForm = () => {
     // Обновление URL без перезагрузки страницы
     window.history.pushState({}, "", currentUrl);
 
+    toast.success("Фльтры успешно включены!");
+
     console.log(queryParams); //todo: create request
     setIsMobileFilterModalOpen(false);
+  };
+
+  const handleFormReset = () => {
+    setFilterState(initialFilterState);
+    toast.success("Фльтры успешно сброшены!");
   };
 
   return (
@@ -458,7 +456,12 @@ export const FilterForm = () => {
         </Box>
       </Box>
       <Box padding="0px 16px 12px 16px" display="flex" gap={2}>
-        <CustomButton isCancelVariant size="small" fullWidth>
+        <CustomButton
+          isCancelVariant
+          size="small"
+          fullWidth
+          onClick={handleFormReset}
+        >
           Сбросить
         </CustomButton>
         <CustomButton size="small" fullWidth type="submit" disabled={isLoading}>

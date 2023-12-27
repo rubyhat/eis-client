@@ -8,6 +8,7 @@ import { Footer } from "./components/Footer";
 import { ThemeProvider } from "@emotion/react";
 import { appTheme } from "./appTheme";
 import React from "react";
+import { ToasterProvider } from "../../providers/ToasterProvider";
 
 export const App = () => {
   return (
@@ -22,6 +23,7 @@ export const App = () => {
           </main>
           <Footer />
         </div>
+        <ToasterProvider />
       </ThemeProvider>
     </Router>
   );
