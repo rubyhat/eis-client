@@ -66,6 +66,7 @@ export const FeedbackForm = () => {
             errors={errors}
             disabled={isLoading}
             placeholder="Введите имя"
+            sx={{ "& input": { height: 42.25 } }}
           />
         </Box>
         <Box>
@@ -83,17 +84,16 @@ export const FeedbackForm = () => {
             errors={errors}
             disabled={isLoading}
             placeholder="Введите телефон"
+            sx={{ "& input": { height: 42.25 } }}
           />
         </Box>
-        <CustomButton
-          size="small"
-          sx={{ height: "36px", alignSelf: "flex-end" }}
-        >
+        <CustomButton size="medium" sx={{ alignSelf: "flex-end" }}>
           Отправить
         </CustomButton>
       </Box>
       <Box>
         <FormControlLabel
+          sx={{ marginRight: 0 }}
           control={<Checkbox defaultChecked />}
           label={
             <Typography component="p" variant="textCalloutRegular">
@@ -111,6 +111,14 @@ export const FeedbackForm = () => {
             </Typography>
           }
         />
+        <Box
+          sx={{
+            width: 1,
+            height: "1px",
+            backgroundColor: "customColors.labelsQuaternary",
+            margin: "16px 0",
+          }}
+        />
         <Typography
           component="p"
           variant="textBodyRegular"
@@ -122,25 +130,16 @@ export const FeedbackForm = () => {
           sx={{
             display: {
               xs: "grid",
-              sm: "block",
+              gap: 8,
+            },
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "1fr 1fr",
             },
           }}
         >
           <Box component="a" href="tel:87752813783">
-            <CustomButton
-              size="small"
-              fullWidth
-              sx={{
-                marginRight: {
-                  xs: 0,
-                  sm: 1,
-                },
-                marginBottom: {
-                  xs: 1,
-                  sm: 0,
-                },
-              }}
-            >
+            <CustomButton size="medium" fullWidth>
               Позвонить
             </CustomButton>
           </Box>
@@ -150,7 +149,7 @@ export const FeedbackForm = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <CustomButton fullWidth size="small" isGreenButton>
+            <CustomButton fullWidth size="medium" isGreenButton>
               Написать в WhatsApp
             </CustomButton>
           </Box>
