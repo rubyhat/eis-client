@@ -15,7 +15,7 @@ export const tempObjectData: ObjectItem[] = [
     isCommercial: false,
     isPledge: false,
     isDocumentsGood: true,
-    type: "buy",
+    type: "sell",
     visibilityStatus: "active",
     category: "apartment",
     estateAgent: {
@@ -80,7 +80,7 @@ export const tempObjectData: ObjectItem[] = [
     isCommercial: true,
     isPledge: false,
     isDocumentsGood: true,
-    type: "buy",
+    type: "sell",
     visibilityStatus: "sold",
     category: "land",
     estateAgent: {
@@ -146,7 +146,7 @@ export const tempObjectData: ObjectItem[] = [
     isCommercial: true,
     isPledge: false,
     isDocumentsGood: true,
-    type: "buy",
+    type: "sell",
     visibilityStatus: "active",
     category: "business",
     estateAgent: {
