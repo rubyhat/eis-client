@@ -3,7 +3,11 @@ import { Box, IconButton, Typography } from "@mui/material";
 import { FaCopy } from "react-icons/fa6";
 import toast from "react-hot-toast";
 
-export const ContactsInfo = () => {
+interface ContactsInfoProps {
+  hiddenTitle?: boolean;
+}
+
+export const ContactsInfo = ({ hiddenTitle }: ContactsInfoProps) => {
   const handleCopyClipboard = (value: string) => {
     navigator.clipboard
       .writeText(value)
@@ -21,10 +25,15 @@ export const ContactsInfo = () => {
 
   return (
     <Box>
-      <Typography component="h3" variant="titleSecondRegular">
+      <Typography
+        component="h3"
+        variant="titleSecondRegular"
+        display={hiddenTitle ? "none" : "inherit"}
+        marginBottom={1.5}
+      >
         Агентство Недвижимости "Розе"
       </Typography>
-      <Box component="ul" sx={{ padding: "12px 0" }}>
+      <Box component="ul">
         <Box component="li">
           <Typography
             component="p"

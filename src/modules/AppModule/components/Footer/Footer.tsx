@@ -2,6 +2,7 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import React from "react";
 import { Logotype } from "../../../../components/Logotype";
 import { MenuList } from "../MenuList";
+import { ContactsInfo } from "../../../ContactsModule/components/ContactsInfo";
 
 export const Footer = () => {
   return (
@@ -13,7 +14,7 @@ export const Footer = () => {
     >
       <Container>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={4}>
             <Box display="flex" alignItems="center">
               <Logotype />
               <Box
@@ -31,8 +32,6 @@ export const Footer = () => {
                 +7 775 281 3783
               </Box>
             </Box>
-          </Grid>
-          <Grid item xs={12} md={4}>
             <Box marginBottom={1.5}>
               <MenuList isVertical />
             </Box>
@@ -42,6 +41,9 @@ export const Footer = () => {
             >
               © 2019–2024 Все права защищены
             </Typography>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <ContactsInfo hiddenTitle />
           </Grid>
         </Grid>
       </Container>
