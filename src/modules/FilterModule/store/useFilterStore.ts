@@ -6,22 +6,6 @@ import {
   ServiceType,
 } from "../../CatalogModule/store";
 
-export const initialFilterState: FilterState = {
-  city: "",
-  category: "",
-  houseWallMaterial: "",
-  houseCondition: "",
-  roomCount: "",
-  priceStart: "",
-  priceEnd: "",
-  houseSquare: "",
-  kitchenSquare: "",
-  houseBuildingYear: "",
-  mortgage: false,
-  hasSwap: false,
-  type: "sell",
-};
-
 export interface FilterState {
   city: string;
   roomCount: string;
@@ -37,6 +21,22 @@ export interface FilterState {
   houseWallMaterial: HouseWallMaterialType | "";
   houseCondition: HouseConditionType | "";
 }
+
+export const initialFilterState: FilterState = {
+  city: "",
+  category: "",
+  houseWallMaterial: "",
+  houseCondition: "",
+  roomCount: "",
+  priceStart: "",
+  priceEnd: "",
+  houseSquare: "",
+  kitchenSquare: "",
+  houseBuildingYear: "",
+  mortgage: false,
+  hasSwap: false,
+  type: "sell",
+};
 
 export interface FilterStore {
   isMobileFilterModalOpen: boolean;

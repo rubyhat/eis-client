@@ -19,13 +19,26 @@ import { CustomInput } from "../../../../components/CustomInput";
 import { useLocation } from "react-router-dom";
 import { FilterState, initialFilterState, useFilterStore } from "../../store";
 
+const selectStyles = {
+  height: "36px",
+  width: "100%",
+  fontSize: "15px",
+  "&:hover": {
+    "& fieldset": {
+      borderColor: "hsla(213, 100%, 53%, 1) !important",
+    },
+  },
+  "& fieldset": {
+    borderColor: "customColors.labelsQuaternary",
+  },
+};
+
 const selectInputProps = {
   padding: 1,
   fontSize: 16,
 };
 
 export const FilterForm = () => {
-  // todo: add beatify alert for client that filters was turned on
   const { filterState, setIsMobileFilterModalOpen, setFilterState } =
     useFilterStore((state) => state);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -49,25 +62,17 @@ export const FilterForm = () => {
 
       // Преобразуем их в объект
       const params = Object.fromEntries(searchParams.entries());
+      const newFilterValues = { ...initialFilterState, ...params };
+      setFilterState(newFilterValues); // обновляем стейт в стейт менеджере
+      reset(newFilterValues); // обновляем стейт в react-hook-form
       console.log("params: ", params);
-
-      // todo: create request
-      // try {
-      //   // Выполняем GET-запрос с параметрами
-      //   const response = await axios.get('/your-endpoint', { params });
-      //   console.log(response.data);
-      //   // Обработка полученных данных
-      // } catch (error) {
-      //   console.error('Ошибка при выполнении запроса:', error);
-      //   // Обработка ошибки
-      // }
     };
 
     // Проверяем, есть ли параметры в URL
     if (location.search) {
       fetchData();
     }
-  }, [location]);
+  }, [location, setFilterState, reset]);
 
   const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(false);
@@ -124,19 +129,7 @@ export const FilterForm = () => {
               <Select
                 {...field}
                 displayEmpty
-                sx={{
-                  height: "36px",
-                  width: "100%",
-                  fontSize: "15px",
-                  "&:hover": {
-                    "& fieldset": {
-                      borderColor: "hsla(213, 100%, 53%, 1) !important",
-                    },
-                  },
-                  "& fieldset": {
-                    borderColor: "customColors.labelsQuaternary",
-                  },
-                }}
+                sx={selectStyles}
                 inputProps={{ sx: selectInputProps }}
               >
                 <MenuItem value="sell">Продажа</MenuItem>
@@ -161,19 +154,7 @@ export const FilterForm = () => {
               <Select
                 {...field}
                 displayEmpty
-                sx={{
-                  height: "36px",
-                  width: "100%",
-                  fontSize: "15px",
-                  "&:hover": {
-                    "& fieldset": {
-                      borderColor: "hsla(213, 100%, 53%, 1) !important",
-                    },
-                  },
-                  "& fieldset": {
-                    borderColor: "customColors.labelsQuaternary",
-                  },
-                }}
+                sx={selectStyles}
                 inputProps={{ sx: selectInputProps }}
               >
                 <MenuItem disabled value="">
@@ -207,19 +188,7 @@ export const FilterForm = () => {
               <Select
                 {...field}
                 displayEmpty
-                sx={{
-                  height: "36px",
-                  width: "100%",
-                  fontSize: "15px",
-                  "&:hover": {
-                    "& fieldset": {
-                      borderColor: "hsla(213, 100%, 53%, 1) !important",
-                    },
-                  },
-                  "& fieldset": {
-                    borderColor: "customColors.labelsQuaternary",
-                  },
-                }}
+                sx={selectStyles}
                 inputProps={{ sx: selectInputProps }}
               >
                 <MenuItem disabled value="">
@@ -257,19 +226,7 @@ export const FilterForm = () => {
               <Select
                 {...field}
                 displayEmpty
-                sx={{
-                  height: "36px",
-                  width: "100%",
-                  fontSize: "15px",
-                  "&:hover": {
-                    "& fieldset": {
-                      borderColor: "hsla(213, 100%, 53%, 1) !important",
-                    },
-                  },
-                  "& fieldset": {
-                    borderColor: "customColors.labelsQuaternary",
-                  },
-                }}
+                sx={selectStyles}
                 inputProps={{ sx: selectInputProps }}
               >
                 <MenuItem disabled value="">
@@ -312,19 +269,7 @@ export const FilterForm = () => {
                 {...field}
                 placeholder="Выбрать состояние"
                 displayEmpty
-                sx={{
-                  height: "36px",
-                  width: "100%",
-                  fontSize: "15px",
-                  "&:hover": {
-                    "& fieldset": {
-                      borderColor: "hsla(213, 100%, 53%, 1) !important",
-                    },
-                  },
-                  "& fieldset": {
-                    borderColor: "customColors.labelsQuaternary",
-                  },
-                }}
+                sx={selectStyles}
                 inputProps={{ sx: selectInputProps }}
               >
                 <MenuItem disabled value="">
@@ -360,14 +305,7 @@ export const FilterForm = () => {
               <Select
                 {...field}
                 displayEmpty
-                sx={{
-                  fontSize: "15px",
-                  height: "36px",
-                  width: "100%",
-                  "& fieldset": {
-                    borderColor: "customColors.labelsQuaternary",
-                  },
-                }}
+                sx={selectStyles}
                 inputProps={{ sx: selectInputProps }}
               >
                 <MenuItem disabled value="">
