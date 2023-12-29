@@ -29,10 +29,10 @@ export const MenuList = ({ isVertical }: MenuListProps) => {
         flexDirection: isVertical ? "column" : "row",
       }}
     >
-      {links.map((link) => (
+      {links.map((link, index) => (
         <Box
           component="li"
-          key={link.to}
+          key={index}
           sx={isVertical ? { marginBottom: 0.75 } : { marginRight: 2 }}
         >
           <Box
