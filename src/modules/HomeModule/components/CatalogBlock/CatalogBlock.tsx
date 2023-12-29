@@ -10,7 +10,7 @@ const catalogCards = [
     imgSrcSet: "/static/images/home/catalog/img-home-catalog-card-1-2x.webp 2x",
     title: "Квартиры",
     subtitle: "Вторичное жилье",
-    link: "/catalog",
+    link: "/catalog?category=apartment",
     alt: "Квартиры",
   },
   {
@@ -18,7 +18,7 @@ const catalogCards = [
     imgSrcSet: "/static/images/home/catalog/img-home-catalog-card-2-2x.webp 2x",
     title: "Дома",
     subtitle: "Частные дома",
-    link: "/catalog",
+    link: "/catalog?category=house",
     alt: "Дома",
   },
   {
@@ -26,7 +26,7 @@ const catalogCards = [
     imgSrcSet: "/static/images/home/catalog/img-home-catalog-card-3-2x.webp 2x",
     title: "Коммерческая недвижимость",
     subtitle: "Помещения и земельные участки",
-    link: "/catalog",
+    link: "/catalog?category=business",
     alt: "Коммерческая недвижимость",
   },
 ];

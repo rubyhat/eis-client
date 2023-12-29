@@ -42,7 +42,11 @@ export const CatalogCardExtended = () => {
       >
         Перейдите в Каталог, чтобы найти все актуальные объекты недвижимости
       </Typography>
-      <CustomButton fullWidth size="large" onClick={() => navigate("/catalog")}>
+      <CustomButton
+        fullWidth
+        size="large"
+        onClick={() => navigate("/catalog?category=apartment")}
+      >
         Посмотреть все
       </CustomButton>
     </Box>
