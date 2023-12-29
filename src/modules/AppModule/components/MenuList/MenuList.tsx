@@ -8,10 +8,11 @@ interface LinkObject {
 }
 
 const links: LinkObject[] = [
-  { title: "Квартиры", to: "/kvartiry1" },
-  { title: "Дома", to: "/kvartiry2" },
-  { title: "Коммерческая недвижимость", to: "/kvartiry3" },
-  { title: "Каталог", to: "/kvartiry4" },
+  { title: "Квартиры", to: "/catalog?category=apartment" },
+  { title: "Дома", to: "/catalog?category=house" },
+  { title: "Коммерческая недвижимость", to: "/catalog?category=business" },
+  { title: "Каталог", to: "/catalog?category=apartment" },
+  { title: "Контакты", to: "/contacts" },
 ];
 
 interface MenuListProps {
