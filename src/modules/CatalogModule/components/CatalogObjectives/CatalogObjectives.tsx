@@ -1,4 +1,4 @@
-import { Box, Grid, Skeleton } from "@mui/material";
+import { Grid } from "@mui/material";
 
 import { tempObjectData } from "../../store/tempObjectData";
 import { CatalogCard } from "../CatalogCard/CatalogCard";
