@@ -4,9 +4,17 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import { AgentCard } from "../../components/AgentCard/AgentCard";
 import { DetailsList } from "./components/DetailsList/DetailsList";
 import { ImageViewer } from "./components/ImageViewer/ImageViewer";
+import { DetailsSkeleton } from "./components/DetailsSkeleton";
 
 export const EstateDetailsModule = () => {
   useTitle("Детали объекта недвижимости");
+  // todo: upd skelete when data will be received
+  const [isLoading] = React.useState(false);
+
+  if (isLoading) {
+    return <DetailsSkeleton />;
+  }
+
   return (
     <Container>
       <Grid container spacing={2}>
