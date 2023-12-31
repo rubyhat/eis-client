@@ -3,6 +3,7 @@ import React from "react";
 import { Logotype } from "../../../../components/Logotype";
 import { MenuList } from "../MenuList";
 import { ContactsInfo } from "../../../ContactsModule/components/ContactsInfo";
+import { version } from "../../../../../package.json";
 
 export const Footer = () => {
   return (
@@ -36,6 +37,14 @@ export const Footer = () => {
               <MenuList isVertical />
             </Box>
             <Typography
+              component="p"
+              variant="textCalloutRegular"
+              color="customColors.labelsSecondary"
+            >
+              Версия платформы: v{version}
+            </Typography>
+            <Typography
+              component="p"
               variant="textCalloutRegular"
               color="customColors.labelsSecondary"
             >

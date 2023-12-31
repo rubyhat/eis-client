@@ -8,7 +8,7 @@ import { CatalogCardSkeleton } from "../CatalogCardSkeleton";
 
 export const CatalogObjectives = () => {
   // todo: upd skeleton when data will be received
-  const [isLoading] = React.useState(true);
+  const [isLoading] = React.useState(false);
 
   return (
     <Grid container spacing={2}>
