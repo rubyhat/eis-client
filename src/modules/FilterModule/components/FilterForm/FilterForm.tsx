@@ -132,8 +132,8 @@ export const FilterForm = () => {
                 sx={selectStyles}
                 inputProps={{ sx: selectInputProps }}
               >
-                <MenuItem value="sell">Продажа</MenuItem>
-                <MenuItem value="rent">Аренда</MenuItem>
+                <MenuItem value="sell">Купить</MenuItem>
+                <MenuItem value="rent">Арендовать</MenuItem>
               </Select>
             )}
           />
