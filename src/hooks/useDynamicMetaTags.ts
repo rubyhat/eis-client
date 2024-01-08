@@ -6,6 +6,7 @@ interface MetaTagsProps {
   imageUrl?: string;
 }
 
+// todo: need SSR for work
 export const useDynamicMetaTags = ({
   title,
   description,
