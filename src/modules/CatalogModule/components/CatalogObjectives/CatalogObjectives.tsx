@@ -1,42 +1,39 @@
 import { Grid } from "@mui/material";
 
-import { tempObjectData } from "../../store/tempObjectData";
 import { CatalogCard } from "../CatalogCard/CatalogCard";
 import { FilterModule } from "../../../FilterModule";
 import React from "react";
 import { CatalogCardSkeleton } from "../CatalogCardSkeleton";
 import { apiCatalogModule } from "../../api/apiCatalogModule";
+import { useQuery } from "@tanstack/react-query";
 
 export const CatalogObjectives = () => {
-  // todo: upd skeleton when data will be received
-  const [isLoading] = React.useState(false);
-  const [catalogData, setCatalogData] = React.useState<unknown>(null);
-
-  React.useEffect(() => {
-    const fetchCatalogData = async () => {
-      const catalogData = await apiCatalogModule.fetchCatalog();
-      if (catalogData.data) {
-        setCatalogData(catalogData);
-      }
-    };
-    fetchCatalogData();
-  }, []);
-
-  React.useEffect(() => {
-    console.log("catalogData", catalogData);
-  }, [catalogData]);
+  // todo: нужен ли скелетон сейчас? Данные получаем очень быстро и мелькающий скелетон выглядит плохо
+  const {
+    data: catalogData,
+    isLoading,
+    isSuccess,
+  } = useQuery({
+    queryFn: () => apiCatalogModule.fetchCatalog(),
+    queryKey: ["catalogItems"],
+  });
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={8} lg={9}>
         <Grid container spacing={2}>
-          {(isLoading ? Array.from(new Array(9)) : tempObjectData).map(
-            (item, index) => (
+          {isLoading &&
+            Array.from(new Array(9)).map((_, index) => (
               <Grid item xs={12} md={6} lg={4} key={index}>
-                {item ? <CatalogCard item={item} /> : <CatalogCardSkeleton />}
+                <CatalogCardSkeleton />
               </Grid>
-            ),
-          )}
+            ))}
+          {isSuccess &&
+            catalogData.map((item, index) => (
+              <Grid item xs={12} md={6} lg={4} key={index}>
+                <CatalogCard item={item} />
+              </Grid>
+            ))}
         </Grid>
       </Grid>
       <Grid item md={4} lg={3} sx={{ display: { xs: "none", md: "inherit" } }}>

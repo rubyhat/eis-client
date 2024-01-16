@@ -1,13 +1,13 @@
-import { AxiosPromise } from "axios";
 import { axiosBaseWrap } from "../../../axiosConfig";
+import { ObjectItem } from "../store";
 
 export const apiCatalogModule = {
-  fetchCatalog(): AxiosPromise {
+  fetchCatalog(): Promise<ObjectItem[]> {
     return axiosBaseWrap
       .get(`/catalog`)
       .then((response) => {
         console.log(response);
-        return response;
+        return response.data.data;
       })
       .catch((error) => {
         console.log(error);

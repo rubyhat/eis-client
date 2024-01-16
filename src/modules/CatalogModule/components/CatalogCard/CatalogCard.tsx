@@ -16,7 +16,11 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
     >
       <Box
         component="img"
-        src={item.images[0]}
+        src={
+          item.images
+            ? item.images[0]
+            : "/static/images/about/img-about-house.svg"
+        }
         alt="Фото квартиры"
         width="100%"
         display="block"
