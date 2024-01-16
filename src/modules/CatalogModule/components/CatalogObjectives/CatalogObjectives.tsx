@@ -5,10 +5,26 @@ import { CatalogCard } from "../CatalogCard/CatalogCard";
 import { FilterModule } from "../../../FilterModule";
 import React from "react";
 import { CatalogCardSkeleton } from "../CatalogCardSkeleton";
+import { apiCatalogModule } from "../../api/apiCatalogModule";
 
 export const CatalogObjectives = () => {
   // todo: upd skeleton when data will be received
   const [isLoading] = React.useState(false);
+  const [catalogData, setCatalogData] = React.useState<unknown>(null);
+
+  React.useEffect(() => {
+    const fetchCatalogData = async () => {
+      const catalogData = await apiCatalogModule.fetchCatalog();
+      if (catalogData.data) {
+        setCatalogData(catalogData);
+      }
+    };
+    fetchCatalogData();
+  }, []);
+
+  React.useEffect(() => {
+    console.log("catalogData", catalogData);
+  }, [catalogData]);
 
   return (
     <Grid container spacing={2}>

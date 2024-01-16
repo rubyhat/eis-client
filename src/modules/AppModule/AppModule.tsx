@@ -9,22 +9,27 @@ import { ThemeProvider } from "@emotion/react";
 import { appTheme } from "./appTheme";
 import React from "react";
 import { ToasterProvider } from "../../providers/ToasterProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const client = new QueryClient();
 
 export const App = () => {
   return (
     <Router>
-      <ThemeProvider theme={appTheme}>
-        <div className="wrapper">
-          <Header />
-          <main className="content">
-            <Suspense>
-              <RouteList />
-            </Suspense>
-          </main>
-          <Footer />
-        </div>
-        <ToasterProvider />
-      </ThemeProvider>
+      <QueryClientProvider client={client}>
+        <ThemeProvider theme={appTheme}>
+          <div className="wrapper">
+            <Header />
+            <main className="content">
+              <Suspense>
+                <RouteList />
+              </Suspense>
+            </main>
+            <Footer />
+          </div>
+          <ToasterProvider />
+        </ThemeProvider>
+      </QueryClientProvider>
     </Router>
   );
 };
