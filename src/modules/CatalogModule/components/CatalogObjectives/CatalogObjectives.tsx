@@ -6,9 +6,11 @@ import React from "react";
 import { CatalogCardSkeleton } from "../CatalogCardSkeleton";
 import { apiCatalogModule } from "../../api/apiCatalogModule";
 import { useQuery } from "@tanstack/react-query";
+import { useCatalogStore } from "../../store";
 
 export const CatalogObjectives = () => {
   const searchParams = new URLSearchParams(location.search);
+  const { estateObjects, setEstateObjects } = useCatalogStore((state) => state);
   // todo: нужен ли скелетон сейчас? Данные получаем очень быстро и мелькающий скелетон выглядит плохо
   const {
     data: catalogData,
@@ -18,6 +20,12 @@ export const CatalogObjectives = () => {
     queryFn: () => apiCatalogModule.fetchCatalog(searchParams.toString()),
     queryKey: ["catalogItems"],
   });
+
+  React.useEffect(() => {
+    if (isSuccess) {
+      setEstateObjects(catalogData);
+    }
+  }, [catalogData, isSuccess, setEstateObjects]);
 
   return (
     <Grid container spacing={2}>
@@ -30,12 +38,12 @@ export const CatalogObjectives = () => {
               </Grid>
             ))}
           {isSuccess &&
-            catalogData.map((item, index) => (
+            estateObjects.map((item, index) => (
               <Grid item xs={12} md={6} lg={4} key={index}>
                 <CatalogCard item={item} />
               </Grid>
             ))}
-          {isSuccess && Boolean(!catalogData.length) && (
+          {isSuccess && Boolean(!estateObjects.length) && (
             <Grid item xs={12}>
               <Alert severity="info">
                 В данный момент нет подходящих объектов недвижимости, но уже

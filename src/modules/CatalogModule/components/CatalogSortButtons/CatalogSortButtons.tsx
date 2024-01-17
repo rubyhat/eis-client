@@ -59,12 +59,20 @@ const sortOptions = [
 ];
 
 export const CatalogSortButtons = () => {
-  const { activeSortType, setActiveSortType } = useCatalogStore(
-    (state) => state,
-  );
+  const { activeSortType, estateObjects, setActiveSortType, setEstateObjects } =
+    useCatalogStore((state) => state);
 
   const handleButtonClick = (type: ActiveSortType) => {
     setActiveSortType(type);
+    // todo: add filter for date
+    const filteredEstateObject = estateObjects.sort((a, b) => {
+      if (type === "cheap") {
+        return a.price - b.price;
+      } else {
+        return b.price - a.price;
+      }
+    });
+    setEstateObjects(filteredEstateObject);
   };
 
   // todo: сделать гибко, сейчас hardcode на три кнопки, если кнопок будет больше, то уже не будет работать

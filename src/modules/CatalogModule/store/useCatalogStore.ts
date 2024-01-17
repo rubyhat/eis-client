@@ -122,12 +122,14 @@ export interface Land extends ObjectItem {
 }
 export interface CatalogStore {
   activeSortType: ActiveSortType;
-  estateObject: ObjectItem[];
+  estateObjects: ObjectItem[];
   setActiveSortType: (v: ActiveSortType) => void;
+  setEstateObjects: (v: ObjectItem[]) => void;
 }
 
 export const useCatalogStore = create<CatalogStore>((set) => ({
   activeSortType: "new",
-  estateObject: tempObjectData,
+  estateObjects: tempObjectData,
   setActiveSortType: (v) => set({ activeSortType: v }),
+  setEstateObjects: (v) => set({ estateObjects: v }),
 }));
