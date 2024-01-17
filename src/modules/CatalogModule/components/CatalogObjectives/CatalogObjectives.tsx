@@ -7,8 +7,10 @@ import { CatalogCardSkeleton } from "../CatalogCardSkeleton";
 import { apiCatalogModule } from "../../api/apiCatalogModule";
 import { useQuery } from "@tanstack/react-query";
 import { useCatalogStore } from "../../store";
+import { useLocation } from "react-router-dom";
 
 export const CatalogObjectives = () => {
+  const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const { estateObjects, setEstateObjects } = useCatalogStore((state) => state);
   // todo: нужен ли скелетон сейчас? Данные получаем очень быстро и мелькающий скелетон выглядит плохо
@@ -16,16 +18,17 @@ export const CatalogObjectives = () => {
     data: catalogData,
     isLoading,
     isSuccess,
+    isError,
   } = useQuery({
     queryFn: () => apiCatalogModule.fetchCatalog(searchParams.toString()),
     queryKey: ["catalogItems"],
   });
 
   React.useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && !isError) {
       setEstateObjects(catalogData);
     }
-  }, [catalogData, isSuccess, setEstateObjects]);
+  }, [catalogData, isError, isSuccess, setEstateObjects]);
 
   return (
     <Grid container spacing={2}>
@@ -48,6 +51,16 @@ export const CatalogObjectives = () => {
               <Alert severity="info">
                 В данный момент нет подходящих объектов недвижимости, но уже
                 совсем скоро нам будет что Вам показать
+              </Alert>
+            </Grid>
+          )}
+          {isError && (
+            <Grid item xs={12}>
+              <Alert severity="warning">
+                Произошла ошибка во время запроса данных с сервера! В данный
+                момент уже ведутся работы по улучшению платформы, скоро здесь
+                появятся объекты недвижимости, пожалуйста, попробуйте зайти
+                позднее!
               </Alert>
             </Grid>
           )}

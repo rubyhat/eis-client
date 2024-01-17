@@ -16,8 +16,9 @@ import {
 import toast from "react-hot-toast";
 import { CustomButton } from "../../../../components/CustomButton";
 import { CustomInput } from "../../../../components/CustomInput";
-import { useLocation } from "react-router-dom";
 import { FilterState, initialFilterState, useFilterStore } from "../../store";
+import { useQueryClient } from "@tanstack/react-query";
+import { apiCatalogModule } from "../../../CatalogModule/api/apiCatalogModule";
 
 const selectStyles = {
   height: "36px",
@@ -38,10 +39,15 @@ const selectInputProps = {
   fontSize: 16,
 };
 
+// todo: при выборе фильтров - обновляется урл страницы - если обновить страницу - урл остался прежним,
+// а форма в фильтре обнулилась. Нужно либо очищать урл при обновлении страницы, либо обновлять фильтр
+// в зависимости от урла
 export const FilterForm = () => {
+  const queryClient = useQueryClient();
+  const [isLoading, setIsLoading] = React.useState(false);
   const { filterState, setIsMobileFilterModalOpen, setFilterState } =
     useFilterStore((state) => state);
-  const [isLoading, setIsLoading] = React.useState(false);
+
   const {
     control,
     register,
@@ -53,10 +59,9 @@ export const FilterForm = () => {
       ...filterState,
     },
   });
-  const location = useLocation();
 
   React.useEffect(() => {
-    const fetchData = async () => {
+    const updateFilterState = async () => {
       // Получаем параметры из URL
       const searchParams = new URLSearchParams(location.search);
 
@@ -70,39 +75,63 @@ export const FilterForm = () => {
 
     // Проверяем, есть ли параметры в URL
     if (location.search) {
-      fetchData();
+      updateFilterState();
     }
-  }, [location, setFilterState, reset]);
+  }, [setFilterState, reset, queryClient]);
 
-  const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
-    setIsLoading(false);
+  const fetchData = async (queryParams: string = "") => {
+    setIsLoading(true);
+    try {
+      await queryClient.fetchQuery({
+        queryKey: ["catalogItems"],
+        queryFn: () => apiCatalogModule.fetchCatalog(queryParams),
+      });
+      toast.success("Фльтры успешно обновлены!");
+    } catch (error) {
+      toast.error("Извините, произошла ошибка, попробуйте повторить позднее.");
+      // eslint-disable-next-line no-console
+      console.error("fetch data error", error);
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+  const updateUrlParams = (data: FieldValues) => {
+    // Очищаем от пустых значений
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(([, value]) => value !== ""),
     );
 
+    // Сохраняем стейт фильтра
     setFilterState({ ...data } as FilterState);
+
+    // Создаем параметры для ссылки
     const queryParams = new URLSearchParams(filteredData).toString();
+
     // Получение текущего URL
     const currentUrl = new URL(window.location.href);
 
-    // Добавление параметров запроса к текущему URL
+    // Добавляем параметры запроса к текущему URL
     currentUrl.search = queryParams;
 
-    // Обновление URL без перезагрузки страницы
+    // Обновляем URL без перезагрузки страницы
     window.history.pushState({}, "", currentUrl);
 
-    toast.success("Фльтры успешно включены!");
+    // Делаем запрос за данными на сервер
+    fetchData(queryParams);
+  };
 
-    console.log(queryParams); //todo: create request
+  const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
+    updateUrlParams(data);
     setIsMobileFilterModalOpen(false);
   };
 
   const handleFormReset = () => {
-    reset();
+    reset(initialFilterState);
     setFilterState(initialFilterState);
-    toast.success("Фльтры успешно сброшены!");
     setIsMobileFilterModalOpen(false);
+    updateUrlParams(initialFilterState);
   };
 
   return (
@@ -415,8 +444,15 @@ export const FilterForm = () => {
             control={control}
             render={({ field }) => (
               <FormControlLabel
-                {...field}
-                control={<Switch />}
+                control={
+                  <Switch
+                    {...field}
+                    checked={field.value === "true"}
+                    onChange={(e) =>
+                      field.onChange(e.target.checked.toString())
+                    }
+                  />
+                }
                 label="Есть ипотека"
               />
             )}
@@ -426,8 +462,15 @@ export const FilterForm = () => {
             control={control}
             render={({ field }) => (
               <FormControlLabel
-                {...field}
-                control={<Switch />}
+                control={
+                  <Switch
+                    {...field}
+                    checked={field.value === "true"}
+                    onChange={(e) =>
+                      field.onChange(e.target.checked.toString())
+                    }
+                  />
+                }
                 label="Есть обмен"
               />
             )}
@@ -440,6 +483,7 @@ export const FilterForm = () => {
           size="medium"
           fullWidth
           onClick={handleFormReset}
+          disabled={isLoading}
         >
           Сбросить
         </CustomButton>

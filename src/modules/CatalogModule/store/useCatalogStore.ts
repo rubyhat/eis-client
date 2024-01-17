@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { tempObjectData } from "./tempObjectData";
 
 export type ActiveSortType = "new" | "cheap" | "rich";
 
@@ -129,7 +128,7 @@ export interface CatalogStore {
 
 export const useCatalogStore = create<CatalogStore>((set) => ({
   activeSortType: "new",
-  estateObjects: tempObjectData,
+  estateObjects: [],
   setActiveSortType: (v) => set({ activeSortType: v }),
   setEstateObjects: (v) => set({ estateObjects: v }),
 }));

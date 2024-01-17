@@ -6,12 +6,13 @@ export const apiCatalogModule = {
     return axiosBaseWrap
       .get(`/catalog?${params}`)
       .then((response) => {
-        console.log(response);
+        if (response.status >= 500) throw new Error("Ошибка сервера!");
         return response.data.data;
       })
       .catch((error) => {
-        console.log(error);
-        return error;
+        // eslint-disable-next-line no-console
+        console.log("fetchCatalogError", error);
+        throw error;
       });
   },
 };
