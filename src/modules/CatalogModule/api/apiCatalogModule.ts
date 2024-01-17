@@ -2,9 +2,9 @@ import { axiosBaseWrap } from "../../../axiosConfig";
 import { ObjectItem } from "../store";
 
 export const apiCatalogModule = {
-  fetchCatalog(): Promise<ObjectItem[]> {
+  fetchCatalog(params: string): Promise<ObjectItem[]> {
     return axiosBaseWrap
-      .get(`/catalog`)
+      .get(`/catalog?${params}`)
       .then((response) => {
         console.log(response);
         return response.data.data;
