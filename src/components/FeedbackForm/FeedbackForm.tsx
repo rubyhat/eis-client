@@ -4,8 +4,13 @@ import { CustomInput } from "../CustomInput";
 import { CustomButton } from "../CustomButton";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { EstateAgentInfo } from "../../modules/CatalogModule/store";
 
-export const FeedbackForm = () => {
+interface FeedbackFormProps {
+  estateAgent: EstateAgentInfo;
+}
+// todo: add request for feedback form
+export const FeedbackForm = ({ estateAgent }: FeedbackFormProps) => {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const {
@@ -138,14 +143,16 @@ export const FeedbackForm = () => {
             },
           }}
         >
-          <Box component="a" href="tel:87752813783">
+          <Box component="a" href={`tel:${estateAgent.phone}`}>
             <CustomButton size="medium" fullWidth>
               Позвонить
             </CustomButton>
           </Box>
           <Box
             component="a"
-            href="https://api.whatsapp.com/send?phone=77752813783&text=Здравствуйте, меня интересует недвижимость на Вашем сайте."
+            href={`https://api.whatsapp.com/send?phone=${estateAgent.phone.slice(
+              1,
+            )}&text=Здравствуйте, меня интересует недвижимость на Вашем сайте.`}
             target="_blank"
             rel="noreferrer"
           >

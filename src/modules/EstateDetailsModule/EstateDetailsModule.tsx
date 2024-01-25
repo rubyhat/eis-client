@@ -10,6 +10,7 @@ import { DisplayEstateObject } from "../CatalogModule/store";
 import { useLocation, useParams } from "react-router-dom";
 import { apiEstateDetailsModule } from "./api";
 import { useQuery } from "@tanstack/react-query";
+import { FeedbackForm } from "../../components/FeedbackForm";
 
 export const EstateDetailsModule = () => {
   useTitle("Детали объекта недвижимости");
@@ -80,9 +81,7 @@ export const EstateDetailsModule = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} md={5} lg={6}>
-            {estateDetails.estateAgent && (
-              <AgentCard estateAgent={estateDetails.estateAgent} />
-            )}
+            <AgentCard estateAgent={estateDetails.estateAgent} />
             <Box padding="16px 0">
               <DetailsList estateDetails={estateDetails} />
             </Box>
@@ -97,6 +96,7 @@ export const EstateDetailsModule = () => {
           </Grid>
           <Grid item xs={12} md={7} lg={6}>
             <ImageViewer />
+            <FeedbackForm estateAgent={estateDetails.estateAgent} />
           </Grid>
         </Grid>
       </Container>

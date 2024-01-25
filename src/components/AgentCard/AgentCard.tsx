@@ -6,6 +6,7 @@ interface AgentCardProps {
   estateAgent: EstateAgentInfo;
 }
 
+// todo: add real avatar
 export const AgentCard = ({ estateAgent }: AgentCardProps) => {
   const { name } = estateAgent;
   return (
