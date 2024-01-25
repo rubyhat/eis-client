@@ -1,13 +1,21 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { ObjectItem } from "../../store/useCatalogStore";
+import { DisplayEstateObject } from "../../store/useCatalogStore";
 import { Link } from "react-router-dom";
 import { PriceBlock } from "../../../../components/PriceBlock/PriceBlock";
 
 interface CatalogCardProps {
-  item: ObjectItem;
+  item: DisplayEstateObject;
 }
+
 export const CatalogCard = ({ item }: CatalogCardProps) => {
+  const livingCategory = ["apartment", "house", "cottage", "business"];
+  const displaySubtitle = `${item.roomCount}-комн. · ${item.houseSquare} м² ${
+    item.targetFloor && item.totalFloor
+      ? `· ${item.targetFloor}/${item.totalFloor} этаж`
+      : ""
+  }`;
+
   return (
     <Box
       component={Link}
@@ -21,7 +29,7 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
             ? item.images[0]
             : "/static/images/about/img-about-house.svg"
         }
-        alt="Фото квартиры"
+        alt="Фото недвижимости"
         width="100%"
         display="block"
         borderRadius="8px 8px 0 0"
@@ -47,14 +55,14 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
           variant="textFootnoteRegular"
           color="customColors.labelsSecondary"
         >
-          1-комн. кв. · 30 м² · 5/5 этаж
+          {livingCategory.includes(item.category) && displaySubtitle}
         </Typography>
         <Typography
           component="p"
           variant="textFootnoteRegular"
           color="customColors.labelsSecondary"
         >
-          Нуркена Абдирова, 123\4а
+          {item.geoPosition.street}, {item.geoPosition.houseNumber}
         </Typography>
       </Box>
     </Box>

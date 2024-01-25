@@ -36,18 +36,18 @@ export const CatalogObjectives = () => {
         <Grid container spacing={2}>
           {isLoading &&
             Array.from(new Array(9)).map((_, index) => (
-              <Grid item xs={12} md={6} lg={4} key={index}>
+              <Grid item xs={12} md={6} lg={4} key={index} className="fadeIn">
                 <CatalogCardSkeleton />
               </Grid>
             ))}
           {isSuccess &&
             estateObjects.map((item, index) => (
-              <Grid item xs={12} md={6} lg={4} key={index}>
+              <Grid item xs={12} md={6} lg={4} key={index} className="fadeIn">
                 <CatalogCard item={item} />
               </Grid>
             ))}
           {isSuccess && Boolean(!estateObjects.length) && (
-            <Grid item xs={12}>
+            <Grid item xs={12} className="fadeIn">
               <Alert severity="info">
                 В данный момент нет подходящих объектов недвижимости, но уже
                 совсем скоро нам будет что Вам показать
@@ -55,7 +55,7 @@ export const CatalogObjectives = () => {
             </Grid>
           )}
           {isError && (
-            <Grid item xs={12}>
+            <Grid item xs={12} className="fadeIn">
               <Alert severity="warning">
                 Произошла ошибка во время запроса данных с сервера! В данный
                 момент уже ведутся работы по улучшению платформы, скоро здесь
@@ -66,7 +66,13 @@ export const CatalogObjectives = () => {
           )}
         </Grid>
       </Grid>
-      <Grid item md={4} lg={3} sx={{ display: { xs: "none", md: "inherit" } }}>
+      <Grid
+        item
+        md={4}
+        lg={3}
+        sx={{ display: { xs: "none", md: "inherit" } }}
+        className="fadeIn"
+      >
         <FilterModule />
       </Grid>
     </Grid>

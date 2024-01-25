@@ -12,7 +12,7 @@ interface PriceBlockProps {
 }
 
 export const PriceBlock = (props: PriceBlockProps) => {
-  const { price, discount, displayDiscount, displayTag } = props;
+  const { price, discount = 0, displayDiscount, displayTag } = props;
   const { totalPrice } = usePriceNormalize(price, discount);
 
   return (

@@ -1,6 +1,6 @@
-import { ObjectItem } from "./useCatalogStore";
+import { BasicObject } from "./useCatalogStore";
 
-export const tempObjectData: ObjectItem[] = [
+export const tempObjectData: BasicObject[] = [
   {
     description: "Современная квартира в новостройке",
     price: 7000000,
@@ -19,7 +19,7 @@ export const tempObjectData: ObjectItem[] = [
     visibilityStatus: "active",
     category: "apartment",
     estateAgent: {
-      id: "uuid-1234",
+      _id: "uuid-1234",
       name: "Анна Сергеева",
       avatar: "avatar1.png",
       phone: "+71234567890",
@@ -51,7 +51,7 @@ export const tempObjectData: ObjectItem[] = [
     visibilityStatus: "active",
     category: "house",
     estateAgent: {
-      id: "uuid-5678",
+      _id: "uuid-5678",
       name: "Михаил Романов",
       avatar: "avatar2.png",
       phone: "+79876543210",
@@ -84,7 +84,7 @@ export const tempObjectData: ObjectItem[] = [
     visibilityStatus: "sold",
     category: "land",
     estateAgent: {
-      id: "uuid-91011",
+      _id: "uuid-91011",
       name: "Елена Иванова",
       avatar: "avatar3.png",
       phone: "+71231231212",
@@ -117,7 +117,7 @@ export const tempObjectData: ObjectItem[] = [
     visibilityStatus: "checking",
     category: "commercial",
     estateAgent: {
-      id: "uuid-121314",
+      _id: "uuid-121314",
       name: "Дмитрий Кузнецов",
       avatar: "avatar4.png",
       phone: "+70987654321",
@@ -150,7 +150,7 @@ export const tempObjectData: ObjectItem[] = [
     visibilityStatus: "active",
     category: "business",
     estateAgent: {
-      id: "uuid-151617",
+      _id: "uuid-151617",
       name: "Елена Воробьева",
       avatar: "avatar5.png",
       phone: "+71012345678",
