@@ -19,7 +19,8 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
   return (
     <Box
       component={Link}
-      to="/catalog/uuid-1234567890-uiid"
+      to={{ pathname: `/catalog/${item._id}` }}
+      state={{ estateDetails: item }}
       color="customColors.labelsPrimary"
     >
       <Box

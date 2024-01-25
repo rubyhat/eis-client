@@ -3,7 +3,7 @@ import React from "react";
 
 export const DetailsSkeleton = () => {
   return (
-    <Container>
+    <Container className="fadeIn">
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <Skeleton
