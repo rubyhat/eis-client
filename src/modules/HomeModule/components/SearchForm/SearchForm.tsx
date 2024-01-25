@@ -49,7 +49,7 @@ export const SearchForm = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      city: "krg",
+      city: "",
       category: "apartment",
       type: "sell",
       roomCount: "",
