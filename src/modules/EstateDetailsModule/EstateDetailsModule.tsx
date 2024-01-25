@@ -80,7 +80,9 @@ export const EstateDetailsModule = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} md={5} lg={6}>
-            <AgentCard />
+            {estateDetails.estateAgent && (
+              <AgentCard estateAgent={estateDetails.estateAgent} />
+            )}
             <Box padding="16px 0">
               <DetailsList estateDetails={estateDetails} />
             </Box>
