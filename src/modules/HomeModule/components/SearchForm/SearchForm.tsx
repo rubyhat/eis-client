@@ -84,6 +84,7 @@ export const SearchForm = () => {
             render={({ field }) => (
               <Select
                 {...field}
+                displayEmpty
                 sx={{
                   height: "36px",
                   width: "100%",
@@ -99,6 +100,14 @@ export const SearchForm = () => {
                 }}
                 inputProps={{ sx: selectInputProps }}
               >
+                <MenuItem disabled value="">
+                  <Typography
+                    variant="textCalloutRegular"
+                    color="customColors.labelsSecondary"
+                  >
+                    Например: Караганда
+                  </Typography>
+                </MenuItem>
                 <MenuItem value="Караганда">Караганда</MenuItem>
                 <MenuItem value="Темиртау">Темиртау</MenuItem>
                 <MenuItem value="Абай">Абай</MenuItem>
