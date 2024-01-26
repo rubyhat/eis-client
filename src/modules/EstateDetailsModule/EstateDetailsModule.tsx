@@ -71,11 +71,7 @@ export const EstateDetailsModule = () => {
       <Container>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography
-              variant="titleLargeRegular"
-              marginBottom={4}
-              display="block"
-            >
+            <Typography variant="titleLargeRegular" display="block">
               {estateDetails.geoPosition.street},{" "}
               {estateDetails.geoPosition.houseNumber}
             </Typography>

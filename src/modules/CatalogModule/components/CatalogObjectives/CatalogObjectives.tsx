@@ -21,7 +21,7 @@ export const CatalogObjectives = () => {
     isError,
   } = useQuery({
     queryFn: () => apiCatalogModule.fetchCatalog(searchParams.toString()),
-    queryKey: ["catalogItems"],
+    queryKey: ["catalogItems", searchParams.toString()],
   });
 
   React.useEffect(() => {
