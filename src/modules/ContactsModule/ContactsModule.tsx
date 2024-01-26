@@ -8,7 +8,9 @@ export const ContactsModule = () => {
     <Container>
       <Grid container spacing={4}>
         <Grid item xs={12} md={7}>
-          <FeedbackForm />
+          <FeedbackForm
+            estateAgent={{ name: "Артур Розе", phone: "+77752813783" }}
+          />
         </Grid>
         <Grid item xs={12} md={5}>
           <ContactsInfo />
