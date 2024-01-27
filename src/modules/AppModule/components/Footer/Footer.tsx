@@ -19,22 +19,8 @@ export const Footer = () => {
       <Container>
         <Grid container spacing={2}>
           <Grid item xs={12} md={4}>
-            <Box display="flex" alignItems="center">
+            <Box display="flex" alignItems="center" marginBottom={1}>
               <Logotype />
-              <Box
-                component="a"
-                href="tel:+77752813783"
-                sx={{
-                  marginLeft: 2,
-                  color: "customColors.colorsBlue",
-                  textDecoration: "underline",
-                  "&:hover": {
-                    textDecoration: "none",
-                  },
-                }}
-              >
-                +7 775 281 3783
-              </Box>
             </Box>
             <Box marginBottom={isMobile || isTablet ? 0 : 1.5}>
               <MenuList isVertical />

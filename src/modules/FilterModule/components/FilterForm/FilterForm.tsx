@@ -335,7 +335,7 @@ export const FilterForm = () => {
             <Typography
               component="p"
               color="customColors.labelsSecondary"
-              variant="textCalloutRegular"
+              variant="textFootnoteRegular"
               marginBottom={0.5}
             >
               Этаж
@@ -362,7 +362,7 @@ export const FilterForm = () => {
             <Typography
               component="p"
               color="customColors.labelsSecondary"
-              variant="textCalloutRegular"
+              variant="textFootnoteRegular"
               marginBottom={0.5}
             >
               Всего

@@ -13,6 +13,7 @@ const links: LinkObject[] = [
   { title: "Коммерческая недвижимость", to: "/catalog?category=business" },
   { title: "Каталог", to: "/catalog?category=apartment" },
   { title: "Контакты", to: "/contacts" },
+  { title: "Помощь", to: "/help" },
 ];
 
 interface MenuListProps {
