@@ -39,6 +39,7 @@ const selectInputProps = {
   fontSize: 16,
 };
 
+// todo: в полях с числами сделать валидацию на использование только точек, без запятых
 // todo: при выборе фильтров - обновляется урл страницы - если обновить страницу - урл остался прежним,
 // а форма в фильтре обнулилась. Нужно либо очищать урл при обновлении страницы, либо обновлять фильтр
 // в зависимости от урла
@@ -425,6 +426,7 @@ export const FilterForm = () => {
           </Typography>
           <CustomInput
             id="priceStart"
+            type="number"
             register={register}
             errors={errors}
             disabled={isLoading}
@@ -434,6 +436,7 @@ export const FilterForm = () => {
           />
           <CustomInput
             id="priceEnd"
+            type="number"
             register={register}
             errors={errors}
             disabled={isLoading}
@@ -452,6 +455,7 @@ export const FilterForm = () => {
           </Typography>
           <CustomInput
             id="houseSquare"
+            type="number"
             register={register}
             errors={errors}
             disabled={isLoading}
@@ -471,6 +475,7 @@ export const FilterForm = () => {
           </Typography>
           <CustomInput
             id="kitchenSquare"
+            type="number"
             register={register}
             errors={errors}
             disabled={isLoading}
@@ -490,6 +495,7 @@ export const FilterForm = () => {
           </Typography>
           <CustomInput
             id="houseBuildingYear"
+            type="number"
             register={register}
             errors={errors}
             disabled={isLoading}
