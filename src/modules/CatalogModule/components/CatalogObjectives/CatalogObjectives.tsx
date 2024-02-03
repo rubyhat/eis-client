@@ -9,11 +9,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useCatalogStore } from "../../store";
 import { useLocation } from "react-router-dom";
 
+// todo: сделать гриды вместо флексов, карточки должны быть одинакого размера вне зависимости от заполнения карточки
 export const CatalogObjectives = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const { estateObjects, setEstateObjects } = useCatalogStore((state) => state);
-  // todo: нужен ли скелетон сейчас? Данные получаем очень быстро и мелькающий скелетон выглядит плохо
+
   const {
     data: catalogData,
     isLoading,

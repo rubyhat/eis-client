@@ -42,6 +42,12 @@ export type HouseRoofMaterialType =
   | "corrugatedSheetRoof" // Профлист
   | "slate"; // Шифер
 
+export interface ObjectImages {
+  _id: string;
+  imageUrl: string;
+  thumbnailUrl: string;
+}
+
 export interface EstateAgentInfo {
   name: string;
   phone: string;
@@ -84,7 +90,7 @@ export interface BasicObject {
   geoPosition: GeoPositionInfo; // Данные об объекте недвижимости, где она
   estateAgent: EstateAgentInfo; // Данные об агенте недвижимости, который сопровождает этот объект, к нему будут все звонить писать и задавать вопросы
   discount: number; // Размер снижения стоимость(скидки)
-  images?: string[] | []; // Пачка фотографий объекта недвижимости
+  images?: ObjectImages[] | []; // Пачка фотографий объекта недвижимости
   videoLink?: string; // Ссылка на видео обзор
 }
 
