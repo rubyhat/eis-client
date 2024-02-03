@@ -110,19 +110,19 @@ export const DetailsList = ({ estateDetails }: DetailsListProps) => {
           label="Крыша дома"
         />
       )}
-      {estateDetails.houseBuildingYear && (
+      {Boolean(estateDetails.houseBuildingYear) && (
         <DetailsListItem
           title={String(estateDetails.houseBuildingYear)}
           label="Год постройки"
         />
       )}
-      {estateDetails.targetFloor && estateDetails.totalFloor && (
+      {Boolean(estateDetails.targetFloor && estateDetails.totalFloor) && (
         <DetailsListItem
           title={`${estateDetails.targetFloor} из ${estateDetails.totalFloor}`}
           label="Этаж"
         />
       )}
-      {estateDetails.houseSquare && (
+      {Boolean(estateDetails.houseSquare) && (
         <DetailsListItem title={squareText} label="Площадь, м²" />
       )}
       {estateDetails.plotSquare && (

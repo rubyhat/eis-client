@@ -5,6 +5,7 @@ import { useEstateDetailsStore } from "../../store/useEstateDetailsStore";
 import { ImageViewerModal } from "../ImageViewerModal/ImageViewerModal";
 import { useCopySharingLink } from "../../../../hooks/useCopySharingLink";
 
+// todo: сделать скелетон на изображение, пока оно не загрузилось
 export const ImagePreview = () => {
   const { copyLink } = useCopySharingLink();
   const { activeImage, isViewerModalOpen, setIsViewerModalOpen } =
