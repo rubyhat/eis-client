@@ -66,10 +66,17 @@ export const CatalogSortButtons = () => {
     setActiveSortType(type);
     // todo: add filter for date
     const filteredEstateObject = estateObjects.sort((a, b) => {
+      const firstPrice = a.price - a.discount;
+      const secondPrice = b.price - b.discount;
       if (type === "cheap") {
-        return a.price - b.price;
+        return firstPrice - secondPrice;
+      } else if (type === "rich") {
+        return secondPrice - firstPrice;
       } else {
-        return b.price - a.price;
+        // Сначала новые (сравнение дат)
+        const dateA = new Date(a.updatedAt).getTime();
+        const dateB = new Date(b.updatedAt).getTime();
+        return dateB - dateA;
       }
     });
     setEstateObjects(filteredEstateObject);

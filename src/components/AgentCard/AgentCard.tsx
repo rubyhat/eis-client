@@ -6,9 +6,8 @@ interface AgentCardProps {
   estateAgent: EstateAgentInfo;
 }
 
-// todo: add real avatar
 export const AgentCard = ({ estateAgent }: AgentCardProps) => {
-  const { name } = estateAgent;
+  const { name, avatar } = estateAgent;
   return (
     <Box
       sx={{
@@ -28,7 +27,7 @@ export const AgentCard = ({ estateAgent }: AgentCardProps) => {
       <Box>
         <Box
           component="img"
-          src="/static/images/temp-agent-avatar.webp"
+          src={avatar ? avatar : "/static/images/temp-agent-avatar.webp"}
           alt="Риэлтор"
           width="60px"
           borderRadius={2}

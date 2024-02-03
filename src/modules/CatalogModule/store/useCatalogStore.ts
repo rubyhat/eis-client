@@ -90,6 +90,7 @@ export interface BasicObject {
   geoPosition: GeoPositionInfo; // Данные об объекте недвижимости, где она
   estateAgent: EstateAgentInfo; // Данные об агенте недвижимости, который сопровождает этот объект, к нему будут все звонить писать и задавать вопросы
   discount: number; // Размер снижения стоимость(скидки)
+  updatedAt: string;
   images?: ObjectImages[] | []; // Пачка фотографий объекта недвижимости
   videoLink?: string; // Ссылка на видео обзор
 }
