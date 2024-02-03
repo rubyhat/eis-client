@@ -6,18 +6,18 @@ import { DetailsList } from "./components/DetailsList/DetailsList";
 import { ImageViewer } from "./components/ImageViewer/ImageViewer";
 import { DetailsSkeleton } from "./components/DetailsSkeleton";
 import { useDynamicMetaTags } from "../../hooks/useDynamicMetaTags";
-import { DisplayEstateObject } from "../CatalogModule/store";
 import { useLocation, useParams } from "react-router-dom";
 import { apiEstateDetailsModule } from "./api";
 import { useQuery } from "@tanstack/react-query";
 import { FeedbackForm } from "../../components/FeedbackForm";
+import { useEstateDetailsStore } from "./store";
 
 export const EstateDetailsModule = () => {
   useTitle("Детали объекта недвижимости");
   const location = useLocation();
   const { id } = useParams();
-  const [estateDetails, setEstateDetails] =
-    React.useState<DisplayEstateObject | null>(null);
+  const { estateDetails, setEstateDetails, setActiveImage } =
+    useEstateDetailsStore((state) => state);
 
   const {
     data: estateDetailsData,
@@ -37,8 +37,17 @@ export const EstateDetailsModule = () => {
     if (location.state?.estateDetails)
       setEstateDetails(location.state.estateDetails);
 
-    if (isSuccess) setEstateDetails(estateDetailsData);
-  }, [estateDetailsData, isSuccess, location.state]);
+    if (isSuccess) {
+      setEstateDetails(estateDetailsData);
+    }
+  }, [estateDetailsData, isSuccess, location.state, setEstateDetails]);
+
+  React.useEffect(() => {
+    const images = estateDetails?.images;
+    const activeImage = images ? images[0].imageUrl : null;
+    const activeImageId = images ? images[0]._id : null;
+    setActiveImage(activeImage, activeImageId);
+  }, [estateDetails?.images, setActiveImage]);
 
   // todo: add dynamic data
   useDynamicMetaTags({
