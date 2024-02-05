@@ -12,6 +12,8 @@ export const DetailsList = ({ estateDetails }: DetailsListProps) => {
   const squareText = estateDetails.kitchenSquare
     ? `Общая ${estateDetails.houseSquare} м², кухня — ${estateDetails.kitchenSquare} м²`
     : `Общая ${estateDetails.houseSquare} м²`;
+  const priceForSquare = estateDetails.price / estateDetails.houseSquare;
+
   return (
     <Box
       component="ul"
@@ -47,6 +49,9 @@ export const DetailsList = ({ estateDetails }: DetailsListProps) => {
           price={estateDetails.price}
           discount={estateDetails.discount}
         />
+      )}
+      {priceForSquare && priceForSquare > 0 && (
+        <DetailsListItem label="Цена за м²" price={priceForSquare} />
       )}
       <DetailsListItem title={estateDetails.geoPosition.city} label="Город" />
       <DetailsListItem
