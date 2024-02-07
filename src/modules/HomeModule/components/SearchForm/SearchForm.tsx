@@ -109,12 +109,15 @@ export const SearchForm = () => {
                   </Typography>
                 </MenuItem>
                 <MenuItem value="Караганда">Караганда</MenuItem>
-                <MenuItem value="Темиртау">Темиртау</MenuItem>
+                <MenuItem value="Пришахтинск">Пришахтинск</MenuItem>
+                <MenuItem value="Абай">Абай</MenuItem>
+                <MenuItem value="Сарань">Сарань</MenuItem>
+                {/* <MenuItem value="Темиртау">Темиртау</MenuItem>
                 <MenuItem value="Абай">Абай</MenuItem>
                 <MenuItem value="Шахтинск">Шахтинск</MenuItem>
                 <MenuItem value="Пришахтинск">Пришахтинск</MenuItem>
                 <MenuItem value="Астана">Астана</MenuItem>
-                <MenuItem value="Алмата">Алмата</MenuItem>
+                <MenuItem value="Алмата">Алмата</MenuItem> */}
               </Select>
             )}
           />
