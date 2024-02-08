@@ -34,7 +34,7 @@ export const FaqAccordion = ({ faqItems }: FaqAccordionProps) => {
             aria-controls={title}
             id={title}
           >
-            <Typography sx={{ width: "33%", flexShrink: 0 }}>
+            <Typography sx={{ width: { xs: 1, md: "50%" }, flexShrink: 0 }}>
               {title}
             </Typography>
             {subtitle && (
