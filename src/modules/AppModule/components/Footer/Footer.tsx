@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Container, Grid } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Container,
+  Grid,
+} from "@mui/material";
+import { MdExpandMore } from "react-icons/md";
 
 import { Logotype } from "../../../../components/Logotype";
 import { MenuList } from "../MenuList";
@@ -9,6 +17,13 @@ import { useScreenSize } from "../../../../hooks/useScreenSize";
 
 export const Footer = () => {
   const { isMobile, isTablet } = useScreenSize();
+  const [expanded, setExpanded] = React.useState<string | false>(false);
+
+  const handleAccordionChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
+
   return (
     <Box
       component="footer"
@@ -23,7 +38,25 @@ export const Footer = () => {
               <Logotype />
             </Box>
             <Box marginBottom={isMobile || isTablet ? 0 : 1.5}>
-              <MenuList isVertical />
+              {isMobile ? (
+                <Accordion
+                  expanded={expanded === "map"}
+                  onChange={handleAccordionChange("map")}
+                >
+                  <AccordionSummary
+                    expandIcon={<MdExpandMore />}
+                    aria-controls="map"
+                    id="map"
+                  >
+                    Карта сайта
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <MenuList isVertical />
+                  </AccordionDetails>
+                </Accordion>
+              ) : (
+                <MenuList isVertical />
+              )}
             </Box>
             {!isMobile && !isTablet && <Copyright />}
           </Grid>
