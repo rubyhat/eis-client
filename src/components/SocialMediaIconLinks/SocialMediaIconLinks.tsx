@@ -19,12 +19,24 @@ export const SocialMediaIconLinks = (props: SocialMediaIconLinksProps) => {
           Мы в социальных сетях
         </Typography>
       )}
-      <IconButton>
-        <FaInstagram color="#007aff" />
-      </IconButton>
-      <IconButton>
-        <FaWhatsapp color="#34c759" />
-      </IconButton>
+      <Box
+        component="a"
+        href="https://www.instagram.com/roze.nedvizhimost.krg"
+        target="_blank"
+      >
+        <IconButton>
+          <FaInstagram color="#007aff" />
+        </IconButton>
+      </Box>
+      <Box
+        component="a"
+        href="https://api.whatsapp.com/send?phone=77752813783&text=Здравствуйте, я пишу вам с сайта roze.kz."
+        target="_blank"
+      >
+        <IconButton>
+          <FaWhatsapp color="#34c759" />
+        </IconButton>
+      </Box>
     </Box>
   );
 };

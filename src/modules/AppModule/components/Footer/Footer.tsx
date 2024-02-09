@@ -14,6 +14,7 @@ import { MenuList } from "../MenuList";
 import { ContactsInfo } from "../../../ContactsModule/components/ContactsInfo";
 import { Copyright } from "../Copyright";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
+import { SocialMediaIconLinks } from "../../../../components/SocialMediaIconLinks";
 
 export const Footer = () => {
   const { isMobile, isTablet } = useScreenSize();
@@ -64,10 +65,16 @@ export const Footer = () => {
             <ContactsInfo hiddenTitle />
             {(isMobile || isTablet) && (
               <Box marginTop={1.5}>
+                <SocialMediaIconLinks />
                 <Copyright />
               </Box>
             )}
           </Grid>
+          {!isMobile && (
+            <Grid item xs={12} md={4}>
+              <SocialMediaIconLinks />
+            </Grid>
+          )}
         </Grid>
       </Container>
     </Box>

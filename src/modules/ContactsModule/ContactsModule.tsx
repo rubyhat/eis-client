@@ -1,7 +1,8 @@
-import { Container, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import React from "react";
 import { FeedbackForm } from "../../components/FeedbackForm";
 import { ContactsInfo } from "./components/ContactsInfo";
+import { SocialMediaIconLinks } from "../../components/SocialMediaIconLinks";
 
 export const ContactsModule = () => {
   return (
@@ -14,6 +15,9 @@ export const ContactsModule = () => {
         </Grid>
         <Grid item xs={12} md={5}>
           <ContactsInfo />
+          <Box sx={{ marginTop: 1 }}>
+            <SocialMediaIconLinks />
+          </Box>
         </Grid>
       </Grid>
     </Container>
