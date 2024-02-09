@@ -15,10 +15,12 @@ import { ContactsInfo } from "../../../ContactsModule/components/ContactsInfo";
 import { Copyright } from "../Copyright";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
 import { SocialMediaIconLinks } from "../../../../components/SocialMediaIconLinks";
+import { useLocation } from "react-router-dom";
 
 export const Footer = () => {
   const { isMobile, isTablet } = useScreenSize();
   const [expanded, setExpanded] = React.useState<string | false>(false);
+  const location = useLocation();
 
   const handleAccordionChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -62,15 +64,15 @@ export const Footer = () => {
             {!isMobile && !isTablet && <Copyright />}
           </Grid>
           <Grid item xs={12} md={4}>
-            <ContactsInfo hiddenTitle />
+            {location.pathname !== "/contacts" && <ContactsInfo hiddenTitle />}
             {(isMobile || isTablet) && (
               <Box marginTop={1.5}>
-                <SocialMediaIconLinks />
+                {location.pathname !== "/contacts" && <SocialMediaIconLinks />}
                 <Copyright />
               </Box>
             )}
           </Grid>
-          {!isMobile && (
+          {!isMobile && location.pathname !== "/contacts" && (
             <Grid item xs={12} md={4}>
               <SocialMediaIconLinks />
             </Grid>

@@ -63,15 +63,19 @@ export const DrawerMenu = ({
           </IconButton>
         </Box>
         <Box padding={1.5}>
-          <MenuList isVertical />
-          <CustomButton
-            variant="contained"
-            size="large"
-            fullWidth
-            sx={{ marginTop: 2 }}
-          >
-            Позвоните нам
-          </CustomButton>
+          <Box onClick={handleCloseBurgerMenu}>
+            <MenuList showIcon isVertical />
+          </Box>
+          <Box component="a" href="tel:+77752813783">
+            <CustomButton
+              variant="contained"
+              size="large"
+              fullWidth
+              sx={{ marginTop: 2 }}
+            >
+              Позвоните нам
+            </CustomButton>
+          </Box>
         </Box>
       </Box>
     </SwipeableDrawer>
