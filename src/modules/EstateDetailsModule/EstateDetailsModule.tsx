@@ -11,10 +11,12 @@ import { apiEstateDetailsModule } from "./api";
 import { useQuery } from "@tanstack/react-query";
 import { FeedbackForm } from "../../components/FeedbackForm";
 import { useEstateDetailsStore } from "./store";
+import { useScreenSize } from "../../hooks/useScreenSize";
 
 export const EstateDetailsModule = () => {
   useTitle("Детали объекта недвижимости");
   const location = useLocation();
+  const { isMobile } = useScreenSize();
   const { id } = useParams();
   const { estateDetails, setEstateDetails, setActiveImage } =
     useEstateDetailsStore((state) => state);
@@ -85,6 +87,11 @@ export const EstateDetailsModule = () => {
               {estateDetails.geoPosition.houseNumber}
             </Typography>
           </Grid>
+          {isMobile && (
+            <Grid item xs={12}>
+              <ImageViewer />
+            </Grid>
+          )}
           <Grid item xs={12} md={5} lg={6}>
             <AgentCard estateAgent={estateDetails.estateAgent} />
             <Box padding="16px 0">
@@ -100,7 +107,18 @@ export const EstateDetailsModule = () => {
             </Box>
           </Grid>
           <Grid item xs={12} md={7} lg={6}>
-            <ImageViewer />
+            {!isMobile && <ImageViewer />}
+            {isMobile && (
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "1px",
+                  borderRadius: 2,
+                  backgroundColor: "customColors.labelsQuaternary",
+                  margin: "16px 0",
+                }}
+              />
+            )}
             <FeedbackForm estateAgent={estateDetails.estateAgent} />
           </Grid>
         </Grid>
