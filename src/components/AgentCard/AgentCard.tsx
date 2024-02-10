@@ -1,5 +1,6 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
+import { Box, Typography } from "@mui/material";
+import { AiFillStar } from "react-icons/ai";
 import { EstateAgentInfo } from "../../modules/CatalogModule/store";
 
 interface AgentCardProps {
@@ -46,7 +47,10 @@ export const AgentCard = ({ estateAgent }: AgentCardProps) => {
           <Typography
             variant="captionFirstRegular"
             color="customColors.labelsSecondary"
+            display="flex"
+            alignItems="center"
           >
+            <AiFillStar color="#ffcc00" />
             5.0
           </Typography>
         </Typography>

@@ -1,4 +1,4 @@
-import { Box, IconButton, Skeleton, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import React from "react";
 import { FiShare } from "react-icons/fi";
 import { useEstateDetailsStore } from "../../store/useEstateDetailsStore";
@@ -89,7 +89,14 @@ export const ImagePreview = () => {
             }}
           />
         ) : (
-          <Skeleton
+          <Box
+            sx={{ width: 1, padding: 2, opacity: 0.5 }}
+            component="img"
+            src="/static/images/about/img-about-house.svg"
+            alt="photo not found"
+          />
+        )}
+        {/* <Skeleton
             variant="rectangular"
             component="div"
             sx={{
@@ -98,8 +105,7 @@ export const ImagePreview = () => {
               borderRadius: 2,
               margin: 1,
             }}
-          />
-        )}
+          /> */}
       </Box>
     </Box>
   );
