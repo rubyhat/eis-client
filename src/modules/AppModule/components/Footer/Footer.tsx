@@ -16,6 +16,7 @@ import { Copyright } from "../Copyright";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
 import { SocialMediaIconLinks } from "../../../../components/SocialMediaIconLinks";
 import { useLocation } from "react-router-dom";
+import { DocumentListLinks } from "../../../../components/DocumentsListLink";
 
 export const Footer = () => {
   const { isMobile, isTablet } = useScreenSize();
@@ -41,7 +42,7 @@ export const Footer = () => {
               <Logotype />
             </Box>
             <Box marginBottom={isMobile || isTablet ? 0 : 1.5}>
-              {isMobile ? (
+              {isMobile || isTablet ? (
                 <Accordion
                   expanded={expanded === "map"}
                   onChange={handleAccordionChange("map")}
@@ -64,17 +65,25 @@ export const Footer = () => {
             {!isMobile && !isTablet && <Copyright />}
           </Grid>
           <Grid item xs={12} md={4}>
+            {location.pathname !== "/contacts" && (
+              <Box padding="16px 0">
+                <SocialMediaIconLinks />
+              </Box>
+            )}
             {location.pathname !== "/contacts" && <ContactsInfo hiddenTitle />}
             {(isMobile || isTablet) && (
-              <Box marginTop={1.5}>
-                {location.pathname !== "/contacts" && <SocialMediaIconLinks />}
-                <Copyright />
+              <Box marginTop={0.5}>
+                <DocumentListLinks />
+                <Box marginTop={1.5}>
+                  <Copyright />
+                </Box>
               </Box>
             )}
           </Grid>
-          {!isMobile && location.pathname !== "/contacts" && (
+          {!isMobile && !isTablet && location.pathname !== "/contacts" && (
             <Grid item xs={12} md={4}>
               <SocialMediaIconLinks />
+              <DocumentListLinks />
             </Grid>
           )}
         </Grid>
