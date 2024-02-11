@@ -22,6 +22,7 @@ export const Footer = () => {
   const { isMobile, isTablet } = useScreenSize();
   const [expanded, setExpanded] = React.useState<string | false>(false);
   const location = useLocation();
+  const isContactsPage = location.pathname === "/contacts";
 
   const handleAccordionChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -65,22 +66,22 @@ export const Footer = () => {
             {!isMobile && !isTablet && <Copyright />}
           </Grid>
           <Grid item xs={12} md={4}>
-            {location.pathname !== "/contacts" && (
-              <Box padding="16px 0">
+            {(isMobile || isTablet) && !isContactsPage && (
+              <Box paddingBottom={1.5}>
                 <SocialMediaIconLinks />
               </Box>
             )}
-            {location.pathname !== "/contacts" && <ContactsInfo hiddenTitle />}
+            {!isContactsPage && <ContactsInfo hiddenTitle />}
             {(isMobile || isTablet) && (
               <Box marginTop={0.5}>
-                <DocumentListLinks />
+                {!isContactsPage && <DocumentListLinks />}
                 <Box marginTop={1.5}>
                   <Copyright />
                 </Box>
               </Box>
             )}
           </Grid>
-          {!isMobile && !isTablet && location.pathname !== "/contacts" && (
+          {!isMobile && !isTablet && !isContactsPage && (
             <Grid item xs={12} md={4}>
               <SocialMediaIconLinks />
               <DocumentListLinks />
