@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 const ProtectedRoute = React.lazy(() => import("./ProtectedRoute"));
 const Home = React.lazy(() => import("../pages/Home"));
 const Help = React.lazy(() => import("../pages/Help"));
+const About = React.lazy(() => import("../pages/About"));
 const Catalog = React.lazy(() => import("../pages/Catalog"));
 const Contacts = React.lazy(() => import("../pages/Contacts"));
 const EstateDetails = React.lazy(() => import("../pages/EstateDetails"));
@@ -22,6 +23,7 @@ export const RouteList = () => {
 
       <Route path="/contacts" element={<Contacts />} />
       <Route path="/help" element={<Help />} />
+      <Route path="/about" element={<About />} />
 
       <Route
         path="/access-denied"
