@@ -4,10 +4,11 @@ import { FaWhatsapp } from "react-icons/fa6";
 
 interface SocialMediaIconLinksProps {
   showTitle?: boolean;
+  size?: number | string;
 }
 
 export const SocialMediaIconLinks = (props: SocialMediaIconLinksProps) => {
-  const { showTitle = true } = props;
+  const { showTitle = true, size } = props;
   return (
     <Box>
       {showTitle && (
@@ -25,7 +26,7 @@ export const SocialMediaIconLinks = (props: SocialMediaIconLinksProps) => {
         target="_blank"
       >
         <IconButton>
-          <FaInstagram color="#007aff" />
+          <FaInstagram color="#007aff" size={size ? size : "1em"} />
         </IconButton>
       </Box>
       <Box
@@ -34,7 +35,7 @@ export const SocialMediaIconLinks = (props: SocialMediaIconLinksProps) => {
         target="_blank"
       >
         <IconButton>
-          <FaWhatsapp color="#34c759" />
+          <FaWhatsapp color="#34c759" size={size ? size : "1em"} />
         </IconButton>
       </Box>
     </Box>
