@@ -62,13 +62,19 @@ export const MenuList = ({ isVertical, showIcon = false }: MenuListProps) => {
         <Box
           component="li"
           key={index}
-          sx={isVertical ? { marginBottom: 0.75 } : { marginRight: 2 }}
+          sx={
+            isVertical
+              ? { marginBottom: 0.75, width: 1 }
+              : { marginRight: 2, width: 1 }
+          }
         >
           <Box
             component={Link}
             to={link.to}
             className="text-callout-regular"
             sx={{
+              width: 1,
+              display: "inline-block",
               color: "customColors.labelsPrimary",
               "&:hover": {
                 color: "customColors.colorsBlue",
