@@ -97,14 +97,12 @@ export const EstateDetailsModule = () => {
             <Box padding="16px 0">
               <DetailsList estateDetails={estateDetails} />
             </Box>
-            <Box>
-              <Typography
-                variant="textBodyRegular"
-                dangerouslySetInnerHTML={{
-                  __html: estateDetails.description,
-                }} // add styles for data
-              ></Typography>
-            </Box>
+            <Box
+              className="description-text-block"
+              dangerouslySetInnerHTML={{
+                __html: estateDetails.description,
+              }} // add styles for data
+            ></Box>
           </Grid>
           <Grid item xs={12} md={7} lg={6}>
             {!isMobile && <ImageViewer />}

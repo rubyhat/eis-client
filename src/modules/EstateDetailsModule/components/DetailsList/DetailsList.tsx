@@ -177,7 +177,7 @@ export const DetailsList = ({ estateDetails }: DetailsListProps) => {
       {estateDetails.ethernet && (
         <DetailsListItem
           title={estateObjectDictionary.ethernet[estateDetails.ethernet]}
-          label="Сан. узел"
+          label="Интернет"
         />
       )}
       <DetailsListItem
