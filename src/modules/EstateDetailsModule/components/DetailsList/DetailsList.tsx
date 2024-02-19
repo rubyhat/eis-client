@@ -12,7 +12,9 @@ export const DetailsList = ({ estateDetails }: DetailsListProps) => {
   const squareText = estateDetails.kitchenSquare
     ? `Общая ${estateDetails.houseSquare} м², кухня — ${estateDetails.kitchenSquare} м²`
     : `Общая ${estateDetails.houseSquare} м²`;
-  const priceForSquare = estateDetails.price / estateDetails.houseSquare;
+  const priceForSquare = Math.round(
+    estateDetails.price / estateDetails.houseSquare,
+  );
 
   return (
     <Box
