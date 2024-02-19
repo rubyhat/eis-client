@@ -65,7 +65,7 @@ export const MenuList = ({ isVertical, showIcon = false }: MenuListProps) => {
           sx={
             isVertical
               ? { marginBottom: 0.75, width: 1 }
-              : { marginRight: 2, width: 1 }
+              : { marginRight: 2, width: "fit-content" }
           }
         >
           <Box

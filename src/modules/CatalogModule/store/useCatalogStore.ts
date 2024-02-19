@@ -64,6 +64,7 @@ export interface GeoPositionInfo {
   houseNumber: number; // Номер дома
   isInfoHidden: boolean; // Свитчер для сокрытия адреса
   mapLink: string; // Ссылка на 2гис
+  cityRegion?: string;
 }
 
 export interface DisplayEstateObject
