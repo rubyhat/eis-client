@@ -11,7 +11,7 @@ import { CatalogBlock } from "./components/CatalogBlock";
 import { AboutBlock } from "./components/AboutBlock/AboutBlock";
 
 export const HomeModule = () => {
-  useTitle("Главная страница");
+  useTitle("Главная страница - Roze Agency");
   return (
     <React.Fragment>
       <Container>

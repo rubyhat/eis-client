@@ -4,8 +4,10 @@ import { FeedbackForm } from "../../components/FeedbackForm";
 import { ContactsInfo } from "./components/ContactsInfo";
 import { SocialMediaIconLinks } from "../../components/SocialMediaIconLinks";
 import { DocumentListLinks } from "../../components/DocumentsListLink";
+import useTitle from "../../hooks/useTitle";
 
 export const ContactsModule = () => {
+  useTitle("Контакты - Roze Agency");
   return (
     <Container>
       <Grid container spacing={4}>

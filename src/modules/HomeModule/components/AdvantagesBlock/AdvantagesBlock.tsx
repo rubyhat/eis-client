@@ -4,10 +4,10 @@ import { AdvantageItem } from "./AdvantageItem";
 import { Container, Grid } from "@mui/material";
 
 const advantages = [
-  { title: "5+", subtitle: "лет на рынке недвижимости" },
+  { title: "3+", subtitle: "лет на рынке недвижимости" },
   { title: "150+", subtitle: "реализованных объектов недвижимости" },
-  { title: "3+", subtitle: "месяца в среднем на реализацию 1 объекта" },
-  { title: "1%", subtitle: "вознаграждение агента недвижимости" },
+  { title: "2+", subtitle: "месяца в среднем на реализацию 1 объекта" },
+  { title: "от 1.2%", subtitle: "вознаграждение агента недвижимости" },
 ];
 
 export const AdvantagesBlock = () => {

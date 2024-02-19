@@ -4,8 +4,10 @@ import { SocialMediaIconLinks } from "../../components/SocialMediaIconLinks";
 import { CustomButton } from "../../components/CustomButton";
 import { useScreenSize } from "../../hooks/useScreenSize";
 import { useNavigate } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 export const AboutModule = () => {
+  useTitle("О нас - Roze Agency");
   const { isMobile } = useScreenSize();
   const navigate = useNavigate();
   return (

@@ -7,6 +7,7 @@ import { BsTelephone } from "react-icons/bs";
 import { IoHomeOutline } from "react-icons/io5";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { AiOutlineDollar } from "react-icons/ai";
+import { FaRegHeart } from "react-icons/fa";
 
 interface LinkObject {
   title: string;
@@ -36,6 +37,7 @@ const links: LinkObject[] = [
     icon: <IoIosSearch color="#007aff" />,
   },
   { title: "Контакты", to: "/contacts", icon: <BsTelephone color="#007aff" /> },
+  { title: "О нас", to: "/about", icon: <FaRegHeart color="#007aff" /> },
   {
     title: "Помощь",
     to: "/help",

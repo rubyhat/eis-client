@@ -3,8 +3,10 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import { FaqAccordion } from "./components";
 import { useHelpStore } from "./store";
 import { Link } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 export const HelpModule = () => {
+  useTitle("Вопрос/Ответ - Roze Agency");
   const { faqItems } = useHelpStore((state) => state);
 
   return (
