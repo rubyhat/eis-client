@@ -103,6 +103,15 @@ export const EstateDetailsModule = () => {
                 __html: estateDetails.description,
               }} // add styles for data
             ></Box>
+            <Typography
+              component="p"
+              variant="textFootnoteRegular"
+              color="customColors.labelsSecondary"
+              marginTop={2}
+              textAlign="right"
+            >
+              Обновлено: {estateDetails.updatedAt.split("T")[0]}
+            </Typography>
           </Grid>
           <Grid item xs={12} md={7} lg={6}>
             {!isMobile && <ImageViewer />}

@@ -32,7 +32,7 @@ export const CatalogObjectives = () => {
   }, [catalogData, isError, isSuccess, setEstateObjects]);
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} minHeight={500}>
       <Grid item xs={12} md={8} lg={9}>
         <Grid container spacing={2}>
           {isLoading &&
