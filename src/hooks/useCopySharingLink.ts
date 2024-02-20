@@ -8,7 +8,10 @@ export const useCopySharingLink = () => {
     navigator.clipboard
       .writeText(url)
       .then(() => {
-        toast.success("Ссылка успешно скопирована!");
+        toast.success(
+          "Ссылка успешно скопирована! Теперь вы можете поделиться ею в WhatsApp или любом другом приложении",
+          { duration: 10000 },
+        );
       })
       .catch((err) => {
         toast.error(

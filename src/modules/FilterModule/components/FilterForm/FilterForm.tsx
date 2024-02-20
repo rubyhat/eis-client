@@ -19,6 +19,7 @@ import { CustomInput } from "../../../../components/CustomInput";
 import { FilterState, initialFilterState, useFilterStore } from "../../store";
 import { useQueryClient } from "@tanstack/react-query";
 import { apiCatalogModule } from "../../../CatalogModule/api/apiCatalogModule";
+import { useCatalogStore } from "../../../CatalogModule/store";
 
 const selectStyles = {
   height: "36px",
@@ -46,6 +47,7 @@ const selectInputProps = {
 export const FilterForm = () => {
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = React.useState(false);
+  const { setEstateObjects } = useCatalogStore((state) => state);
   const { filterState, setIsMobileFilterModalOpen, setFilterState } =
     useFilterStore((state) => state);
 
@@ -82,13 +84,16 @@ export const FilterForm = () => {
   const fetchData = async (queryParams: string = "") => {
     setIsLoading(true);
     try {
-      await queryClient.fetchQuery({
-        queryKey: ["catalogItems"],
+      const response = await queryClient.fetchQuery({
         queryFn: () => apiCatalogModule.fetchCatalog(queryParams),
+        queryKey: ["catalogItems", queryParams],
       });
-      toast.success("Фльтры успешно обновлены!");
+      setEstateObjects(response);
+      toast.success("Фльтры успешно обновлены!", { duration: 3000 });
     } catch (error) {
-      toast.error("Извините, произошла ошибка, попробуйте повторить позднее.");
+      toast.error("Извините, произошла ошибка, попробуйте повторить позднее.", {
+        duration: 5000,
+      });
       // eslint-disable-next-line no-console
       console.error("fetch data error", error);
       throw error;
