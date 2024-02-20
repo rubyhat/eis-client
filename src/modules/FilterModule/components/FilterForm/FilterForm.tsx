@@ -20,6 +20,7 @@ import { FilterState, initialFilterState, useFilterStore } from "../../store";
 import { useQueryClient } from "@tanstack/react-query";
 import { apiCatalogModule } from "../../../CatalogModule/api/apiCatalogModule";
 import { useCatalogStore } from "../../../CatalogModule/store";
+import { useNavigate } from "react-router-dom";
 
 const selectStyles = {
   height: "36px",
@@ -41,11 +42,9 @@ const selectInputProps = {
 };
 
 // todo: в полях с числами сделать валидацию на использование только точек, без запятых
-// todo: при выборе фильтров - обновляется урл страницы - если обновить страницу - урл остался прежним,
-// а форма в фильтре обнулилась. Нужно либо очищать урл при обновлении страницы, либо обновлять фильтр
-// в зависимости от урла
 export const FilterForm = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = React.useState(false);
   const { setEstateObjects } = useCatalogStore((state) => state);
   const { filterState, setIsMobileFilterModalOpen, setFilterState } =
@@ -127,6 +126,9 @@ export const FilterForm = () => {
 
     // Делаем запрос за данными на сервер
     fetchData(queryParams);
+
+    // Обновляем стейт react-router-dom для получения актуального урл, для заголовков в компоненте CatalogModule
+    navigate(`?${queryParams}`);
   };
 
   const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -244,9 +246,10 @@ export const FilterForm = () => {
                 </MenuItem>
                 <MenuItem value="apartment">Квартира</MenuItem>
                 <MenuItem value="house">Дом</MenuItem>
-                {/* <MenuItem value="cottage">Дача</MenuItem> */}
+                <MenuItem value="townhouse">Таунхаус</MenuItem>
                 <MenuItem value="land">Земельный участок</MenuItem>
                 <MenuItem value="business">Коммерческая недвижимость</MenuItem>
+                {/* <MenuItem value="cottage">Дача</MenuItem> */}
                 {/* <MenuItem value="factory">Заводы, фабрики</MenuItem> */}
                 {/* <MenuItem value="other">Другое</MenuItem> */}
               </Select>

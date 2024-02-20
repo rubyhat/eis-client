@@ -188,6 +188,18 @@ export const DetailsList = ({ estateDetails }: DetailsListProps) => {
           label="Интернет"
         />
       )}
+      {estateDetails.garage && (
+        <DetailsListItem
+          title={estateObjectDictionary.garage[estateDetails.garage]}
+          label="Гараж"
+        />
+      )}
+      {estateDetails.parkingSeat && (
+        <DetailsListItem
+          title={String(estateDetails.parkingSeat)}
+          label="Парковачных мест"
+        />
+      )}
       <DetailsListItem
         title={
           estateDetails.isDocumentsGood ? "В порядке" : "Требуется проверка"

@@ -7,6 +7,7 @@ export type CategoryType =
   | "house"
   | "land"
   | "cottage"
+  | "townhouse"
   | "business"
   | "factory"
   | "other"; // Категория: квартира, дом, земельный участок, коммерческая недвижимость, бизнес, завод, другое
@@ -41,7 +42,7 @@ export type HouseRoofMaterialType =
   | "metalTile" // Металлочерепица
   | "corrugatedSheetRoof" // Профлист
   | "slate"; // Шифер
-
+export type GarageType = "oneCar" | "twoCar" | "other"; // Гараж: На одну машину, На две машины, Есть
 export interface ObjectImages {
   _id: string;
   imageUrl: string;
@@ -64,7 +65,7 @@ export interface GeoPositionInfo {
   houseNumber: number; // Номер дома
   isInfoHidden: boolean; // Свитчер для сокрытия адреса
   mapLink: string; // Ссылка на 2гис
-  cityRegion?: string;
+  cityRegion?: string; // Район города
 }
 
 export interface DisplayEstateObject
@@ -91,9 +92,11 @@ export interface BasicObject {
   geoPosition: GeoPositionInfo; // Данные об объекте недвижимости, где она
   estateAgent: EstateAgentInfo; // Данные об агенте недвижимости, который сопровождает этот объект, к нему будут все звонить писать и задавать вопросы
   discount: number; // Размер снижения стоимость(скидки)
-  updatedAt: string;
+  updatedAt: string; // Дата обновления
   images?: ObjectImages[] | []; // Пачка фотографий объекта недвижимости
   videoLink?: string; // Ссылка на видео обзор
+  garage?: GarageType; // Гараж
+  parkingSeat?: number; // Количество парковачных мест
 }
 
 // Общие характеристики, которые могут быть в квартире/доме
@@ -135,6 +138,7 @@ export interface Land extends BasicObject {
   landSquare: string; // Площадь земли
 }
 
+export interface Townhouse extends BasicObject {}
 export interface Commercial extends BasicObject {}
 export interface Business extends BasicObject {}
 export interface Factory extends BasicObject {}

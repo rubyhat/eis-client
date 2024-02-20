@@ -28,7 +28,7 @@ export const Copyright = () => {
         variant="textCalloutRegular"
         color="customColors.labelsSecondary"
       >
-        Версия платформы: v{version}
+        Версия платформы: Beta v{version}
       </Typography>
       <Typography
         component="p"

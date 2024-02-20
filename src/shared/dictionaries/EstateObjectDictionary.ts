@@ -10,6 +10,7 @@ export const estateObjectDictionary = {
     cottage: "Дача",
     business: "Бизнес",
     factory: "Заводы и фабрики",
+    townhouse: "Таунхаус",
     other: "Другое",
   },
   houseCondition: {
@@ -89,5 +90,10 @@ export const estateObjectDictionary = {
     connected: "Подключен",
     toConnect: "Можно подключить",
     none: "Нет",
+  },
+  garage: {
+    oneCar: "На 1 машину",
+    twoCar: "На 2 машины",
+    other: "Есть",
   },
 };

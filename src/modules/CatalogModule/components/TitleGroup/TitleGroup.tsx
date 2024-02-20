@@ -4,17 +4,18 @@ import { CatalogSortGroup } from "../CatalogSortGroup";
 
 interface TitleGroupProps {
   type: string;
+  category: string;
   city: string;
 }
 
-export const TitleGroup = ({ type, city }: TitleGroupProps) => {
+export const TitleGroup = ({ type, category, city }: TitleGroupProps) => {
   return (
     <Box width={1}>
       <Typography
         component="h1"
         variant="titleLargeRegular"
         marginBottom={1.5}
-      >{`Продажа ${type} в ${city}`}</Typography>
+      >{`${type} ${category} ${city ? "в " + city : ""}`}</Typography>
       <CatalogSortGroup />
     </Box>
   );
