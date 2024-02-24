@@ -15,6 +15,7 @@ interface CustomInputProps {
   required?: boolean;
   placeholder?: string;
   sx?: SxProps;
+  min?: string;
 }
 
 export const CustomInput = (props: CustomInputProps) => {
@@ -29,6 +30,7 @@ export const CustomInput = (props: CustomInputProps) => {
     required,
     placeholder,
     sx,
+    min,
   } = props;
   const theme = useTheme();
 
@@ -49,11 +51,12 @@ export const CustomInput = (props: CustomInputProps) => {
       <Box
         component="input"
         id={id}
+        min={min}
         type={type}
         disabled={disabled}
         required={required}
-        {...register(id, { required })}
         placeholder={placeholder}
+        {...register(id, { required })}
         sx={{
           width: "100%",
           border: `1px solid`,

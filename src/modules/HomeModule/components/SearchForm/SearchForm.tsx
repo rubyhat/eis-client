@@ -231,6 +231,7 @@ export const SearchForm = () => {
               formatPrice={false}
               placeholder={isMobile || isTablet ? "цена от" : "от"}
               type="number"
+              min="0"
             />
           }
           EndPrice={
@@ -242,6 +243,7 @@ export const SearchForm = () => {
               formatPrice={false}
               placeholder={isMobile || isTablet ? "цена до" : "до"}
               type="number"
+              min="0"
             />
           }
         />

@@ -11,6 +11,7 @@ import { useHeaderStore } from "../../store/useHeaderStore";
 import { CustomButton } from "../../../../components/CustomButton";
 import { DrawerMenu } from "../DrawerMenu";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const { isTablet, isMobile } = useScreenSize();
@@ -41,9 +42,11 @@ export const Header = () => {
             ) : (
               <React.Fragment>
                 <MenuList />
-                <CustomButton variant="contained" size="medium">
-                  Позвоните нам
-                </CustomButton>
+                <Box component={Link} to="/contacts">
+                  <CustomButton variant="contained" size="medium">
+                    Позвоните нам
+                  </CustomButton>
+                </Box>
               </React.Fragment>
             )}
           </Grid>

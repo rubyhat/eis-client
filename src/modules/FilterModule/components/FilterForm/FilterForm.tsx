@@ -360,6 +360,7 @@ export const FilterForm = () => {
               formatPrice={false}
               placeholder="2"
               type="number"
+              min="0"
             />
           </Box>
           <Typography
@@ -387,6 +388,7 @@ export const FilterForm = () => {
               formatPrice={false}
               placeholder="5"
               type="number"
+              min="0"
             />
           </Box>
         </Box>
@@ -438,6 +440,7 @@ export const FilterForm = () => {
           <CustomInput
             id="priceStart"
             type="number"
+            min="0"
             register={register}
             errors={errors}
             disabled={isLoading}
@@ -448,6 +451,7 @@ export const FilterForm = () => {
           <CustomInput
             id="priceEnd"
             type="number"
+            min="0"
             register={register}
             errors={errors}
             disabled={isLoading}
@@ -467,6 +471,7 @@ export const FilterForm = () => {
           <CustomInput
             id="houseSquare"
             type="number"
+            min="0"
             register={register}
             errors={errors}
             disabled={isLoading}
@@ -487,6 +492,7 @@ export const FilterForm = () => {
           <CustomInput
             id="kitchenSquare"
             type="number"
+            min="0"
             register={register}
             errors={errors}
             disabled={isLoading}
@@ -507,6 +513,7 @@ export const FilterForm = () => {
           <CustomInput
             id="houseBuildingYear"
             type="number"
+            min="1900"
             register={register}
             errors={errors}
             disabled={isLoading}

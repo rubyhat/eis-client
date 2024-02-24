@@ -51,6 +51,7 @@ export const ContactsInfo = ({ hiddenTitle }: ContactsInfoProps) => {
             <Typography
               component="a"
               href="mailto:support@roze.kz"
+              target="_blank"
               color="customColors.colorsBlue"
             >
               support@roze.kz
@@ -80,6 +81,7 @@ export const ContactsInfo = ({ hiddenTitle }: ContactsInfoProps) => {
             <Typography
               component="a"
               href="mailto:support@roze.kz"
+              target="_blank"
               color="customColors.colorsBlue"
             >
               b2b@roze.kz

@@ -7,6 +7,7 @@ import { CustomButton } from "../../../../components/CustomButton";
 import { MenuList } from "../MenuList";
 import { useHeaderStore } from "../../store/useHeaderStore";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
+import { Link } from "react-router-dom";
 
 interface DrawerMenuProps {
   onClick: () => void;
@@ -66,16 +67,29 @@ export const DrawerMenu = ({
           <Box onClick={handleCloseBurgerMenu}>
             <MenuList showIcon isVertical />
           </Box>
-          <Box component="a" href="tel:+77752813783">
-            <CustomButton
-              variant="contained"
-              size="large"
-              fullWidth
-              sx={{ marginTop: 2 }}
-            >
-              Позвоните нам
-            </CustomButton>
-          </Box>
+          {isMobile ? (
+            <Box component="a" href="tel:+77752813783">
+              <CustomButton
+                variant="contained"
+                size="large"
+                fullWidth
+                sx={{ marginTop: 2 }}
+              >
+                Позвоните нам
+              </CustomButton>
+            </Box>
+          ) : (
+            <Box component={Link} to="/contacts">
+              <CustomButton
+                variant="contained"
+                size="large"
+                fullWidth
+                sx={{ marginTop: 2 }}
+              >
+                Позвоните нам
+              </CustomButton>
+            </Box>
+          )}
         </Box>
       </Box>
     </SwipeableDrawer>

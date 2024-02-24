@@ -72,6 +72,7 @@ export const PageNotFound = () => {
                 <Typography
                   component="a"
                   href="mailto:support@roze.kz"
+                  target="_blank"
                   variant="textBodyRegular"
                   color="customColors.colorsBlue"
                   sx={{ textDecoration: "underline" }}
