@@ -30,8 +30,12 @@ export const AgentCard = ({ estateAgent }: AgentCardProps) => {
           component="img"
           src={avatar ? avatar : "/static/images/temp-agent-avatar.webp"}
           alt="Риэлтор"
-          width="60px"
-          borderRadius={2}
+          sx={{
+            borderRadius: 2,
+            objectFit: "cover",
+            width: "60px",
+            height: "60px",
+          }}
         />
       </Box>
       <Box>
