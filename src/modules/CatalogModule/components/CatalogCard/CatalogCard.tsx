@@ -65,6 +65,13 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
         >
           {item.geoPosition.street}, {item.geoPosition.houseNumber}
         </Typography>
+        <Typography
+          component="p"
+          variant="textFootnoteRegular"
+          color="customColors.labelsSecondary"
+        >
+          {item.updatedAt.split("T")[0]}
+        </Typography>
       </Box>
     </Box>
   );
