@@ -12,6 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import { FeedbackForm } from "../../components/FeedbackForm";
 import { useEstateDetailsStore } from "./store";
 import { useScreenSize } from "../../hooks/useScreenSize";
+import { useFormatDate } from "../../shared/hooks/useFormatDate";
 
 export const EstateDetailsModule = () => {
   useTitle("Детали объекта недвижимости");
@@ -20,6 +21,9 @@ export const EstateDetailsModule = () => {
   const { id } = useParams();
   const { estateDetails, setEstateDetails, setActiveImage } =
     useEstateDetailsStore((state) => state);
+  const { dayAndMonth, time } = useFormatDate(
+    estateDetails ? estateDetails.updatedAt : "",
+  );
 
   const {
     data: estateDetailsData,
@@ -110,7 +114,7 @@ export const EstateDetailsModule = () => {
               marginTop={2}
               textAlign="right"
             >
-              Обновлено: {estateDetails.updatedAt.split("T")[0]}
+              Обновлено: {dayAndMonth} в {time}
             </Typography>
           </Grid>
           <Grid item xs={12} md={7} lg={6}>

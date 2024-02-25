@@ -1,8 +1,10 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
-import { DisplayEstateObject } from "../../store/useCatalogStore";
 import { Link } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
+
+import { DisplayEstateObject } from "../../store/useCatalogStore";
 import { PriceBlock } from "../../../../components/PriceBlock/PriceBlock";
+import { useFormatDate } from "../../../../shared/hooks/useFormatDate";
 
 interface CatalogCardProps {
   item: DisplayEstateObject;
@@ -15,6 +17,7 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
       ? `· ${item.targetFloor}/${item.totalFloor} этаж`
       : ""
   }`;
+  const { dayAndMonth, time } = useFormatDate(item.updatedAt);
 
   return (
     <Box
@@ -54,7 +57,7 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
         <Typography
           component="p"
           variant="textFootnoteRegular"
-          color="customColors.labelsSecondary"
+          color="customColors.colorsBlue"
         >
           {livingCategory.includes(item.category) && displaySubtitle}
         </Typography>
@@ -65,12 +68,21 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
         >
           {item.geoPosition.street}, {item.geoPosition.houseNumber}
         </Typography>
+        <Box
+          sx={{
+            width: "100%",
+            height: "1px",
+            borderRadius: 2,
+            backgroundColor: "customColors.labelsQuaternary",
+            margin: "8px 0",
+          }}
+        />
         <Typography
           component="p"
           variant="textFootnoteRegular"
           color="customColors.labelsSecondary"
         >
-          {item.updatedAt.split("T")[0]}
+          Обновлено: {dayAndMonth} в {time}
         </Typography>
       </Box>
     </Box>
