@@ -28,6 +28,7 @@ export const CatalogObjectives = () => {
   React.useEffect(() => {
     if (isSuccess && !isError) {
       setEstateObjects(catalogData);
+      window.scrollTo(0, 0);
     }
   }, [catalogData, isError, isSuccess, setEstateObjects]);
 
