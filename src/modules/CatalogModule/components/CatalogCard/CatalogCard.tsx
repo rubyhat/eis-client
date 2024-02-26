@@ -18,6 +18,7 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
       : ""
   }`;
   const { dayAndMonth, time } = useFormatDate(item.updatedAt);
+  const hideAddressInfo = item.geoPosition.isInfoHidden;
 
   return (
     <Box
@@ -66,7 +67,9 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
           variant="textFootnoteRegular"
           color="customColors.labelsSecondary"
         >
-          {item.geoPosition.street}, {item.geoPosition.houseNumber}
+          {hideAddressInfo
+            ? `${item.geoPosition.street}`
+            : `${item.geoPosition.street}, ${item.geoPosition.houseNumber}`}
         </Typography>
         <Box
           sx={{
