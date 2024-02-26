@@ -5,6 +5,7 @@ import { CustomButton } from "../CustomButton";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { EstateAgentInfo } from "../../modules/CatalogModule/store";
+import { useScreenSize } from "../../hooks/useScreenSize";
 
 interface FeedbackFormProps {
   estateAgent: EstateAgentInfo;
@@ -12,6 +13,7 @@ interface FeedbackFormProps {
 // todo: add request for feedback form
 export const FeedbackForm = ({ estateAgent }: FeedbackFormProps) => {
   const [isLoading, setIsLoading] = React.useState(false);
+  const { isMobile } = useScreenSize();
 
   const {
     register,
@@ -122,25 +124,39 @@ export const FeedbackForm = ({ estateAgent }: FeedbackFormProps) => {
             height: "1px",
             backgroundColor: "customColors.labelsQuaternary",
             margin: "16px 0",
+            display: {
+              xs: "none",
+              md: "inherit",
+            },
           }}
         />
         <Typography
           component="p"
           variant="textBodyRegular"
-          sx={{ marginBottom: 1.5 }}
+          sx={{
+            marginBottom: 1.5,
+            display: {
+              xs: "none",
+              md: "inherit",
+            },
+          }}
         >
           или позвоните/напишите нам
         </Typography>
         <Box
           sx={{
-            display: {
-              xs: "grid",
-              gap: 8,
+            width: 1,
+            gap: 1,
+            display: "grid",
+            position: {
+              xs: "fixed",
+              md: "inherit",
             },
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "1fr 1fr",
-            },
+            bottom: 0,
+            left: 0,
+            padding: { xs: 2, md: 0 },
+            zIndex: 2,
+            gridTemplateColumns: "1fr 1fr",
           }}
         >
           <Box component="a" href={`tel:${estateAgent.phone}`}>
@@ -157,7 +173,7 @@ export const FeedbackForm = ({ estateAgent }: FeedbackFormProps) => {
             rel="noreferrer"
           >
             <CustomButton fullWidth size="medium" isGreenButton>
-              Написать в WhatsApp
+              {isMobile ? "Написать" : "Написать в WhatsApp"}
             </CustomButton>
           </Box>
         </Box>
