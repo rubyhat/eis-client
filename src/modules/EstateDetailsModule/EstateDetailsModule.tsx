@@ -13,6 +13,7 @@ import { FeedbackForm } from "../../components/FeedbackForm";
 import { useEstateDetailsStore } from "./store";
 import { useScreenSize } from "../../hooks/useScreenSize";
 import { useFormatDate } from "../../shared/hooks/useFormatDate";
+import { CustomHr } from "../../components/CustomHr";
 
 export const EstateDetailsModule = () => {
   useTitle("Детали объекта недвижимости");
@@ -119,17 +120,7 @@ export const EstateDetailsModule = () => {
           </Grid>
           <Grid item xs={12} md={7} lg={6}>
             {!isMobile && <ImageViewer />}
-            {isMobile && (
-              <Box
-                sx={{
-                  width: "100%",
-                  height: "1px",
-                  borderRadius: 2,
-                  backgroundColor: "customColors.labelsQuaternary",
-                  margin: "16px 0",
-                }}
-              />
-            )}
+            {isMobile && <CustomHr />}
             <FeedbackForm estateAgent={estateDetails.estateAgent} />
           </Grid>
         </Grid>

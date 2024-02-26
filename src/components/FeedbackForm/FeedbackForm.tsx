@@ -74,6 +74,7 @@ export const FeedbackForm = ({ estateAgent }: FeedbackFormProps) => {
             disabled={isLoading}
             placeholder="Введите имя"
             sx={{ "& input": { height: 42.25 } }}
+            required
           />
         </Box>
         <Box>
@@ -92,6 +93,7 @@ export const FeedbackForm = ({ estateAgent }: FeedbackFormProps) => {
             disabled={isLoading}
             placeholder="Введите телефон"
             sx={{ "& input": { height: 42.25 } }}
+            required
           />
         </Box>
         <CustomButton size="medium" sx={{ alignSelf: "flex-end" }}>
