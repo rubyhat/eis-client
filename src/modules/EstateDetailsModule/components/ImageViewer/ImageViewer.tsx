@@ -11,7 +11,7 @@ export const ImageViewer = () => {
       <Box marginTop={1.5}>
         <ImageThumbs />
       </Box>
-      <CustomHr sx={{ margin: "12px 0 0" }} />
+      <CustomHr sx={{ margin: { xs: "12px 0 0", md: "12px 0" } }} />
     </Box>
   );
 };
