@@ -1,5 +1,6 @@
-import { Box } from "@mui/material";
 import React from "react";
+import { Box } from "@mui/material";
+
 import { CustomButton } from "../../../../components/CustomButton";
 import { useFilterStore } from "../../store/useFilterStore";
 import { FilterMobile } from "../FilterMobile/FilterMobile";
@@ -33,13 +34,12 @@ export const FilterMobileWrapper = () => {
       <CustomButton
         onClick={handleFilterButtonClick}
         fullWidth
-        size="small"
+        size="medium"
         sx={{
           maxWidth: {
             xs: 1,
             sm: 120,
           },
-          height: 34,
         }}
       >
         Фильтры

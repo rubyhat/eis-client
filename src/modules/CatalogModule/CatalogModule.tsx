@@ -1,12 +1,14 @@
 import React from "react";
-import useTitle from "../../hooks/useTitle";
+import { useLocation } from "react-router-dom";
 import { Box, Container, Grid } from "@mui/material";
+
 import { TitleGroup } from "./components/TitleGroup";
 import { CatalogObjectives } from "./components/CatalogObjectives";
+
+import useTitle from "../../hooks/useTitle";
 import { FilterMobileWrapper } from "../FilterModule/components/FilterMobileWrapper/FilterMobileWrapper";
 import { CustomButton } from "../../components/CustomButton";
 import { useCopySharingLink } from "../../hooks/useCopySharingLink";
-import { useLocation } from "react-router-dom";
 
 export const CatalogModule = () => {
   useTitle("Каталог - Квартиры в Караганде");
@@ -78,7 +80,7 @@ export const CatalogModule = () => {
             <CustomButton
               onClick={copyLink}
               fullWidth
-              size="small"
+              size="medium"
               isGreenButton
               sx={{
                 marginTop: 1,
@@ -91,7 +93,6 @@ export const CatalogModule = () => {
                   sm: 2,
                   md: 0,
                 },
-                height: 34,
               }}
             >
               Поделиться подборкой
