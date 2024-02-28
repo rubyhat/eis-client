@@ -12,7 +12,7 @@ import { useCopySharingLink } from "../../hooks/useCopySharingLink";
 
 export const CatalogModule = () => {
   useTitle("Каталог - Квартиры в Караганде");
-  const { copyLink } = useCopySharingLink(); // todo: remove temp button
+  const { deviceShareLink } = useCopySharingLink();
   const location = useLocation();
 
   const [params, setParams] = React.useState<{ [k: string]: string }>({});
@@ -40,6 +40,10 @@ export const CatalogModule = () => {
     Сарань: "Сарани",
   };
   const cityFromParams = params.city as keyof typeof cityTitles;
+
+  const handleShareButtonClick = () => {
+    deviceShareLink();
+  };
 
   return (
     <Container>
@@ -78,7 +82,7 @@ export const CatalogModule = () => {
             />
             <FilterMobileWrapper />
             <CustomButton
-              onClick={copyLink}
+              onClick={handleShareButtonClick}
               fullWidth
               size="medium"
               isGreenButton
