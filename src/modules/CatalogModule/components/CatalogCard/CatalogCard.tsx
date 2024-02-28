@@ -27,6 +27,12 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
       to={{ pathname: `/catalog/${item._id}` }}
       state={{ estateDetails: item }}
       color="customColors.labelsPrimary"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        flexGrow: 1,
+        height: "100%",
+      }}
     >
       <Box
         component="img"
@@ -39,9 +45,21 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
         width="100%"
         display="block"
         borderRadius="8px 8px 0 0"
+        sx={{
+          objectFit: "cover",
+          maxHeight: {
+            xs: 270,
+            sm: 612,
+            md: 280,
+            lg: 207,
+          },
+        }}
       />
       <Box
         sx={{
+          display: "flex",
+          flexDirection: "column",
+          flexGrow: 1,
           padding: 1.5,
           borderLeft: "1px solid",
           borderBottom: "1px solid",
@@ -72,14 +90,16 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
             ? `${item.geoPosition.street}`
             : `${item.geoPosition.street}, ${item.geoPosition.houseNumber}`}
         </Typography>
-        <CustomHr sx={{ margin: "8px 0" }} />
-        <Typography
-          component="p"
-          variant="textFootnoteRegular"
-          color="customColors.labelsSecondary"
-        >
-          Обновлено: {dayAndMonth} в {time}
-        </Typography>
+        <Box sx={{ marginTop: "auto" }}>
+          <CustomHr sx={{ margin: "8px 0" }} />
+          <Typography
+            component="p"
+            variant="textFootnoteRegular"
+            color="customColors.labelsSecondary"
+          >
+            Обновлено: {dayAndMonth} в {time}
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );

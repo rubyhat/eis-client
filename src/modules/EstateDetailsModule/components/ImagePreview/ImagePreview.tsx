@@ -1,15 +1,18 @@
-import { Box, IconButton, Typography } from "@mui/material";
 import React from "react";
 import { FiShare } from "react-icons/fi";
+import { Box, CircularProgress, IconButton, Typography } from "@mui/material";
+
 import { useEstateDetailsStore } from "../../store/useEstateDetailsStore";
 import { ImageViewerModal } from "../ImageViewerModal/ImageViewerModal";
 import { useCopySharingLink } from "../../../../hooks/useCopySharingLink";
 
-// todo: сделать скелетон на изображение, пока оно не загрузилось
 export const ImagePreview = () => {
   const { copyLink } = useCopySharingLink();
   const { activeImage, isViewerModalOpen, setIsViewerModalOpen } =
     useEstateDetailsStore((state) => state);
+  const [imgLoading, setImgLoading] = React.useState(true);
+
+  const handleImageLoad = () => setImgLoading(false);
   const handleOpenViewer = () => setIsViewerModalOpen(true);
   const handleSharePage = () => {
     copyLink();
@@ -75,21 +78,36 @@ export const ImagePreview = () => {
       </Box>
       <Box padding="0 4px 4px" display="flex">
         {activeImage ? (
-          <Box
-            onClick={handleOpenViewer}
-            component="img"
-            src={activeImage}
-            alt="Фото объекта"
-            sx={{
-              border: "1px solid",
-              borderColor: "customColors.labelsQuaternary",
-              cursor: "pointer",
-              borderRadius: 2,
-              width: "100%",
-              height: "420px",
-              objectFit: "cover",
-            }}
-          />
+          <>
+            <Box
+              sx={{
+                display: imgLoading ? "flex" : "none",
+                width: "100%",
+                height: "420px",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+            <Box
+              onClick={handleOpenViewer}
+              component="img"
+              src={activeImage}
+              alt="Фото объекта"
+              onLoad={handleImageLoad}
+              sx={{
+                display: imgLoading ? "none" : "inherit",
+                border: "1px solid",
+                borderColor: "customColors.labelsQuaternary",
+                cursor: "pointer",
+                borderRadius: 2,
+                width: "100%",
+                height: "420px",
+                objectFit: "cover",
+              }}
+            />
+          </>
         ) : (
           <Box
             sx={{ width: 1, padding: 2, opacity: 0.5 }}
@@ -98,16 +116,6 @@ export const ImagePreview = () => {
             alt="photo not found"
           />
         )}
-        {/* <Skeleton
-            variant="rectangular"
-            component="div"
-            sx={{
-              width: 1,
-              height: 304,
-              borderRadius: 2,
-              margin: 1,
-            }}
-          /> */}
       </Box>
     </Box>
   );
