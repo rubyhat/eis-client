@@ -10,6 +10,11 @@ export const AboutModule = () => {
   useTitle("О нас - Roze Agency");
   const { isMobile } = useScreenSize();
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Container>
       <Grid container spacing={2}>
@@ -164,16 +169,37 @@ export const AboutModule = () => {
                 </Typography>
               </Box>
             </Box>
-
-            <SocialMediaIconLinks size="1.25em" />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
+            >
+              <SocialMediaIconLinks size="1.25em" />
+            </Box>
           </Box>
-          <CustomButton
-            size="large"
-            fullWidth={isMobile}
-            onClick={() => navigate("/catalog")}
+          <Box
+            sx={{
+              display: "grid",
+              gap: 2,
+              gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+            }}
           >
-            Перейти в каталог недвижимости
-          </CustomButton>
+            <CustomButton
+              size="large"
+              fullWidth={isMobile}
+              onClick={() => navigate("/roadmap")}
+            >
+              План разработки
+            </CustomButton>
+            <CustomButton
+              size="large"
+              fullWidth={isMobile}
+              onClick={() => navigate("/catalog")}
+            >
+              Каталог недвижимости
+            </CustomButton>
+          </Box>
         </Grid>
       </Grid>
     </Container>

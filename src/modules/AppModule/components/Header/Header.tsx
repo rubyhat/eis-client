@@ -14,7 +14,7 @@ import { useScreenSize } from "../../../../hooks/useScreenSize";
 import { Link } from "react-router-dom";
 
 export const Header = () => {
-  const { isTablet, isMobile } = useScreenSize();
+  const { isTablet, isMobile, isLaptop } = useScreenSize();
 
   const { setIsHeaderBurgerOpen } = useHeaderStore((state) => state);
 
@@ -35,7 +35,7 @@ export const Header = () => {
             <Logotype />
           </Grid>
           <Grid item xs={6} md={10} display="flex" justifyContent="end">
-            {isTablet || isMobile ? (
+            {isTablet || isMobile || isLaptop ? (
               <IconButton color="primary" onClick={handleBurgerIconClick}>
                 <RxHamburgerMenu />
               </IconButton>

@@ -70,6 +70,10 @@ const ivQuarter = [
 ];
 
 export const RoadmapModule = () => {
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Container>
       <Grid container spacing={2}>
