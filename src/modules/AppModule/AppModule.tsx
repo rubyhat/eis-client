@@ -10,6 +10,7 @@ import { appTheme } from "./appTheme";
 import React from "react";
 import { ToasterProvider } from "../../providers/ToasterProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { TestHostAlert } from "../../components/TestHostAlert";
 
 const client = new QueryClient();
 
@@ -19,6 +20,7 @@ export const App = () => {
       <QueryClientProvider client={client}>
         <ThemeProvider theme={appTheme}>
           <div className="wrapper">
+            <TestHostAlert />
             <Header />
             <main className="content">
               <Suspense>
