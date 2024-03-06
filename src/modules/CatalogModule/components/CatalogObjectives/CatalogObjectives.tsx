@@ -9,7 +9,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useCatalogStore } from "../../store";
 import { useLocation } from "react-router-dom";
 
-// todo: сделать гриды вместо флексов, карточки должны быть одинакого размера вне зависимости от заполнения карточки
 export const CatalogObjectives = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);

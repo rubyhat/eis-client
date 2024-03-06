@@ -8,7 +8,6 @@ export const useCopySharingLink = () => {
   const copyLink = () => {
     const url = window.location.href;
 
-    // Копирование URL в буфер обмена, todo: create beatify modal for this
     navigator.clipboard
       .writeText(url)
       .then(() => {

@@ -88,7 +88,7 @@ export const FilterForm = () => {
         queryKey: ["catalogItems", queryParams],
       });
       setEstateObjects(response);
-      toast.success("Фльтры успешно обновлены!", { duration: 3000 });
+      toast.success("Фильтры успешно обновлены!", { duration: 3000 });
     } catch (error) {
       toast.error("Извините, произошла ошибка, попробуйте повторить позднее.", {
         duration: 5000,

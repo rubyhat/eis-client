@@ -64,7 +64,7 @@ export const CatalogSortButtons = () => {
 
   const handleButtonClick = (type: ActiveSortType) => {
     setActiveSortType(type);
-    // todo: add filter for date
+
     const filteredEstateObject = estateObjects.sort((a, b) => {
       const firstPrice = a.price - a.discount;
       const secondPrice = b.price - b.discount;
