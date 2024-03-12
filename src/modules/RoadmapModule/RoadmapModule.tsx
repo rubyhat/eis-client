@@ -110,7 +110,7 @@ export const RoadmapModule = () => {
               Roze
               <Typography
                 variant="titleFirstRegular"
-                color="customColors.colorsBlue"
+                color="customColors.colorsOrange"
                 marginLeft={0.5}
               >
                 Agency
@@ -193,7 +193,7 @@ export const RoadmapModule = () => {
             Кроме улучшения платформы{" "}
             <Typography
               component="span"
-              color="customColors.colorsBlue"
+              color="customColors.colorsOrange"
               fontWeight={700}
             >
               Roze.kz

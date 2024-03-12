@@ -109,7 +109,7 @@ export const FeedbackForm = ({ estateAgent }: FeedbackFormProps) => {
               Я согласен с{" "}
               <Box
                 sx={{
-                  color: "customColors.colorsBlue",
+                  color: "customColors.colorsOrange",
                   textDecoration: "underline",
                 }}
                 component={Link}

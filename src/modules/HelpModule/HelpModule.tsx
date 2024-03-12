@@ -25,7 +25,7 @@ export const HelpModule = () => {
             Не нашли свой вопрос?{" "}
             <Box
               sx={{
-                color: "customColors.colorsBlue",
+                color: "customColors.colorsOrange",
                 textDecoration: "underline",
               }}
               component={Link}

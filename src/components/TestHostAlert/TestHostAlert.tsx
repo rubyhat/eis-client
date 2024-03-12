@@ -14,7 +14,7 @@ export const TestHostAlert = () => {
           sx={{
             textDecoration: "underline",
             fontWeight: 700,
-            color: "customColors.colorsBlue",
+            color: "customColors.colorsOrange",
           }}
         >
           Roze.kz

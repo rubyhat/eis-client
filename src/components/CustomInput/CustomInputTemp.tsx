@@ -114,7 +114,7 @@ export const CustomInputTemp = (props: CustomInputProps) => {
           borderRadius: "5px",
           fontSize: "16px",
           padding: "8px",
-          outlineColor: "customColors.colorsBlue",
+          outlineColor: "customColors.colorsOrange",
           "&::placeholder": {
             fontSize: 16,
             color: theme.palette.customColors?.labelsTertiary,

@@ -79,7 +79,7 @@ export const MenuList = ({ isVertical, showIcon = false }: MenuListProps) => {
               display: "inline-block",
               color: "customColors.labelsPrimary",
               "&:hover": {
-                color: "customColors.colorsBlue",
+                color: "customColors.colorsOrange",
                 transition: "all 333ms ease",
               },
             }}

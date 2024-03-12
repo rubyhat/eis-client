@@ -3,6 +3,8 @@ import React from "react";
 import { ActiveSortType, useCatalogStore } from "../../store/useCatalogStore";
 import { IoIosArrowDown } from "react-icons/io";
 
+const iconColor = "hsla(29, 100%, 50%, 1)";
+
 const sortWrapperStyles = {
   width: "100%",
   display: "flex",
@@ -42,7 +44,7 @@ const sortOptions = [
     type: "cheap",
     label: "Стоимость",
     icon: (
-      <IoIosArrowDown color="#007bff" size={16} style={{ marginLeft: 2 }} />
+      <IoIosArrowDown color={iconColor} size={16} style={{ marginLeft: 2 }} />
     ),
   },
   {
@@ -50,7 +52,7 @@ const sortOptions = [
     label: "Стоимость",
     icon: (
       <IoIosArrowDown
-        color="#007bff"
+        color={iconColor}
         size={16}
         style={{ rotate: "180deg", marginLeft: 2 }}
       />

@@ -77,7 +77,7 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
         <Typography
           component="p"
           variant="textFootnoteRegular"
-          color="customColors.colorsBlue"
+          color="customColors.colorsOrange"
         >
           {livingCategory.includes(item.category) && displaySubtitle}
         </Typography>

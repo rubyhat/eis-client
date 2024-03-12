@@ -7,6 +7,8 @@ interface ContactsInfoProps {
   hiddenTitle?: boolean;
 }
 
+const iconColor = "hsla(29, 100%, 50%, 1)";
+
 export const ContactsInfo = ({ hiddenTitle }: ContactsInfoProps) => {
   const handleCopyClipboard = (value: string) => {
     navigator.clipboard
@@ -52,7 +54,7 @@ export const ContactsInfo = ({ hiddenTitle }: ContactsInfoProps) => {
               component="a"
               href="mailto:support@roze.kz"
               target="_blank"
-              color="customColors.colorsBlue"
+              color="customColors.colorsOrange"
             >
               support@roze.kz
             </Typography>
@@ -60,7 +62,7 @@ export const ContactsInfo = ({ hiddenTitle }: ContactsInfoProps) => {
               sx={{ marginLeft: 0.5 }}
               onClick={() => handleCopyClipboard("support@roze.kz")}
             >
-              <FaCopy size="14" color="hsla(213, 100%, 53%, 1)" />
+              <FaCopy size="14" color={iconColor} />
             </IconButton>
           </Box>
         </Box>
@@ -82,7 +84,7 @@ export const ContactsInfo = ({ hiddenTitle }: ContactsInfoProps) => {
               component="a"
               href="mailto:support@roze.kz"
               target="_blank"
-              color="customColors.colorsBlue"
+              color="customColors.colorsOrange"
             >
               b2b@roze.kz
             </Typography>
@@ -90,7 +92,7 @@ export const ContactsInfo = ({ hiddenTitle }: ContactsInfoProps) => {
               sx={{ marginLeft: 0.5 }}
               onClick={() => handleCopyClipboard("b2b@roze.kz")}
             >
-              <FaCopy size="14" color="hsla(213, 100%, 53%, 1)" />
+              <FaCopy size="14" color={iconColor} />
             </IconButton>
           </Box>
         </Box>
@@ -111,7 +113,7 @@ export const ContactsInfo = ({ hiddenTitle }: ContactsInfoProps) => {
             <Typography
               component="a"
               href="tel:+77752813783"
-              color="customColors.colorsBlue"
+              color="customColors.colorsOrange"
             >
               +7 775 281 3783
             </Typography>
@@ -119,7 +121,7 @@ export const ContactsInfo = ({ hiddenTitle }: ContactsInfoProps) => {
               sx={{ marginLeft: 0.5 }}
               onClick={() => handleCopyClipboard("+77752813783")}
             >
-              <FaCopy size="14" color="hsla(213, 100%, 53%, 1)" />
+              <FaCopy size="14" color={iconColor} />
             </IconButton>
           </Box>
         </Box>
@@ -141,7 +143,7 @@ export const ContactsInfo = ({ hiddenTitle }: ContactsInfoProps) => {
               component="a"
               href="https://go.2gis.com/ayfrx9"
               target="_blank"
-              color="customColors.colorsBlue"
+              color="customColors.colorsOrange"
             >
               Казахстан, город Караганда, улица Нуркена Абдирова 5, офис 401
             </Typography>

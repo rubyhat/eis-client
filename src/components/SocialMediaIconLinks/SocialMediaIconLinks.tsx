@@ -7,6 +7,8 @@ interface SocialMediaIconLinksProps {
   size?: number | string;
 }
 
+const iconColor = "hsla(29, 100%, 50%, 1)";
+
 export const SocialMediaIconLinks = (props: SocialMediaIconLinksProps) => {
   const { showTitle = true, size } = props;
   return (
@@ -26,7 +28,7 @@ export const SocialMediaIconLinks = (props: SocialMediaIconLinksProps) => {
         target="_blank"
       >
         <IconButton>
-          <FaInstagram color="#007aff" size={size ? size : "1em"} />
+          <FaInstagram color={iconColor} size={size ? size : "1em"} />
         </IconButton>
       </Box>
       <Box

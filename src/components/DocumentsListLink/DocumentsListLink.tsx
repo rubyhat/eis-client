@@ -21,7 +21,7 @@ export const DocumentListLinks = () => {
           <Typography
             component={Link}
             to="/docs/agreement"
-            color="customColors.colorsBlue"
+            color="customColors.colorsOrange"
           >
             Пользовательское соглашение
           </Typography>
@@ -37,7 +37,7 @@ export const DocumentListLinks = () => {
           <Typography
             component={Link}
             to="/docs/policy"
-            color="customColors.colorsBlue"
+            color="customColors.colorsOrange"
           >
             Политика конфиденциальности
           </Typography>

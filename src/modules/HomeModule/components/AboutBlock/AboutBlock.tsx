@@ -53,7 +53,7 @@ export const AboutBlock = () => {
                 href="https://www.instagram.com/roze.nedvizhimost.krg"
                 target="_blank"
                 sx={{
-                  color: "customColors.colorsBlue",
+                  color: "customColors.colorsOrange",
                   textDecoration: "underline",
                 }}
               >
@@ -113,7 +113,7 @@ export const AboutBlock = () => {
                 component={Link}
                 to="/catalog"
                 sx={{
-                  color: "customColors.colorsBlue",
+                  color: "customColors.colorsOrange",
                   textDecoration: "underline",
                 }}
               >
@@ -126,7 +126,7 @@ export const AboutBlock = () => {
             <Typography variant="textBodyRegular" component="p">
               Просто выберите необходимые параметры в фильтрах и нажмите на
               кнопку{" "}
-              <Box component="span" color="customColors.colorsBlue">
+              <Box component="span" color="customColors.colorsOrange">
                 Поделиться подборкой
               </Box>
               , ссылка на страницу с выбранными насройками автоматически
@@ -177,7 +177,7 @@ export const AboutBlock = () => {
               Агентство Недвижимости Розе предоставляет современный подход к
               поиску и продаже Вашей недвижимости, используя современные
               инструменты и технологии, а также{" "}
-              <Box component="span" color="customColors.colorsBlue">
+              <Box component="span" color="customColors.colorsOrange">
                 действительно индивидуальный подход к каждому клиенту
               </Box>
             </Typography>
@@ -192,7 +192,7 @@ export const AboutBlock = () => {
                 component={Link}
                 to="/about"
                 sx={{
-                  color: "customColors.colorsBlue",
+                  color: "customColors.colorsOrange",
                   textDecoration: "underline",
                 }}
               >
