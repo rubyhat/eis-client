@@ -19,29 +19,37 @@ const links: LinkObject[] = [
   {
     title: "Квартиры",
     to: "/catalog?category=apartment",
-    icon: <LuLampFloor color="#007aff" />,
+    icon: <LuLampFloor color="hsla(29, 100%, 50%, 1)" />,
   },
   {
     title: "Дома",
     to: "/catalog?category=house",
-    icon: <IoHomeOutline color="#007aff" />,
+    icon: <IoHomeOutline color="hsla(29, 100%, 50%, 1)" />,
   },
   {
     title: "Коммерческая недвижимость",
     to: "/catalog?category=business",
-    icon: <AiOutlineDollar color="#007aff" />,
+    icon: <AiOutlineDollar color="hsla(29, 100%, 50%, 1)" />,
   },
   {
     title: "Каталог",
     to: "/catalog?category=apartment",
-    icon: <IoIosSearch color="#007aff" />,
+    icon: <IoIosSearch color="hsla(29, 100%, 50%, 1)" />,
   },
-  { title: "Контакты", to: "/contacts", icon: <BsTelephone color="#007aff" /> },
-  { title: "О нас", to: "/about", icon: <FaRegHeart color="#007aff" /> },
+  {
+    title: "Контакты",
+    to: "/contacts",
+    icon: <BsTelephone color="hsla(29, 100%, 50%, 1)" />,
+  },
+  {
+    title: "О нас",
+    to: "/about",
+    icon: <FaRegHeart color="hsla(29, 100%, 50%, 1)" />,
+  },
   {
     title: "Помощь",
     to: "/help",
-    icon: <IoIosHelpCircleOutline color="#007aff" />,
+    icon: <IoIosHelpCircleOutline color="hsla(29, 100%, 50%, 1)" />,
   },
 ];
 
