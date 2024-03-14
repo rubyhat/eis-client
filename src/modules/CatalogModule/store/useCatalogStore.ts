@@ -42,7 +42,7 @@ export type HouseRoofMaterialType =
   | "metalTile" // Металлочерепица
   | "corrugatedSheetRoof" // Профлист
   | "slate"; // Шифер
-export type GarageType = "oneCar" | "twoCar" | "other"; // Гараж: На одну машину, На две машины, Есть
+export type GarageType = "full" | "part" | "none"; // Гараж: На одну машину, На две машины, Есть
 export interface ObjectImages {
   _id: string;
   imageUrl: string;
