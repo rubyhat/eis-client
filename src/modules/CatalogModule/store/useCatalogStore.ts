@@ -43,6 +43,7 @@ export type HouseRoofMaterialType =
   | "corrugatedSheetRoof" // Профлист
   | "slate"; // Шифер
 export type GarageType = "full" | "part" | "none"; // Гараж: На одну машину, На две машины, Есть
+export type PledgeType = "none" | "bank" | "police"; // Залог: нет, да у банка, да арест
 export interface ObjectImages {
   _id: string;
   imageUrl: string;
@@ -87,7 +88,7 @@ export interface BasicObject {
   mortgage: boolean; // Имеется ли ипотека по данному объекту
   hasSwap: boolean; // Есть обмен да/нет
   isCommercial: boolean; // Коммерческая недвижимости или нет
-  isPledge: boolean; // В залоге да или нет
+  pledge: PledgeType; // В залоге да или нет
   isDocumentsGood: boolean; // Документы в порядке или нет
   geoPosition: GeoPositionInfo; // Данные об объекте недвижимости, где она
   estateAgent: EstateAgentInfo; // Данные об агенте недвижимости, который сопровождает этот объект, к нему будут все звонить писать и задавать вопросы

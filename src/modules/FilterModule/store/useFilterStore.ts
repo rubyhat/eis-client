@@ -3,6 +3,7 @@ import {
   CategoryType,
   HouseConditionType,
   HouseWallMaterialType,
+  PledgeType,
   ServiceType,
 } from "../../CatalogModule/store";
 
@@ -22,6 +23,7 @@ export interface FilterState {
   category: CategoryType | "";
   houseWallMaterial: HouseWallMaterialType | "";
   houseCondition: HouseConditionType | "";
+  pledge: PledgeType | "";
 }
 
 export const initialFilterState: FilterState = {
@@ -35,6 +37,7 @@ export const initialFilterState: FilterState = {
   houseSquare: "",
   kitchenSquare: "",
   houseBuildingYear: "",
+  pledge: "",
   mortgage: false,
   hasSwap: false,
   type: "sell",
