@@ -15,6 +15,11 @@ export const DetailsList = ({ estateDetails }: DetailsListProps) => {
   const priceForSquare = Math.round(
     estateDetails.price / estateDetails.houseSquare,
   );
+  const addressTitle = `${estateDetails.geoPosition.street}${
+    estateDetails.geoPosition.houseNumber
+      ? ", " + estateDetails.geoPosition.houseNumber
+      : ""
+  }`;
 
   const hideAddressInfo = estateDetails.geoPosition.isInfoHidden;
 
@@ -66,9 +71,7 @@ export const DetailsList = ({ estateDetails }: DetailsListProps) => {
       )}
       <DetailsListItem
         title={
-          hideAddressInfo
-            ? `${estateDetails.geoPosition.street}`
-            : `${estateDetails.geoPosition.street}, ${estateDetails.geoPosition.houseNumber}`
+          hideAddressInfo ? `${estateDetails.geoPosition.street}` : addressTitle
         }
         label="Адрес"
         link={hideAddressInfo ? "" : estateDetails.geoPosition.mapLink}
@@ -206,12 +209,12 @@ export const DetailsList = ({ estateDetails }: DetailsListProps) => {
           label="Парковачных мест"
         />
       )}
-      <DetailsListItem
-        title={
-          estateDetails.isDocumentsGood ? "В порядке" : "Требуется проверка"
-        }
-        label="Документы"
-      />
+      {estateDetails.documents && (
+        <DetailsListItem
+          title={estateObjectDictionary.documents[estateDetails.documents]}
+          label="Документы"
+        />
+      )}
       {estateDetails.pledge && (
         <DetailsListItem
           title={estateObjectDictionary.pledge[estateDetails.pledge]}
