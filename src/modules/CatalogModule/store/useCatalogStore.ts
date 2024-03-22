@@ -45,6 +45,8 @@ export type HouseRoofMaterialType =
 export type GarageType = "full" | "part" | "none"; // Гараж: На одну машину, На две машины, Есть
 export type PledgeType = "none" | "bank" | "police"; // Залог: нет, да у банка, да арест
 export type DocumentsType = "good" | "needUpdate" | "bad"; // Документы: В порядке, нужна корректировка, Есть проблемы
+export type MortgageType = "accepted" | "declined" | "possibly"; // Ипотека: Есть, нет, под вопросом
+export type ExchangeType = "yes" | "no"; // Обмен: Есть, Нет
 export interface ObjectImages {
   _id: string;
   imageUrl: string;
@@ -86,8 +88,8 @@ export interface BasicObject {
   type: ServiceType; // Купить или сдать в аренду
   price: number; // Стоимость
   description: string; // Текстовое описание объекта недвижимости
-  mortgage: boolean; // Имеется ли ипотека по данному объекту
-  hasSwap: boolean; // Есть обмен да/нет
+  mortgage: MortgageType; // Имеется ли ипотека по данному объекту
+  exchange: ExchangeType; // Есть обмен да/нет
   isCommercial: boolean; // Коммерческая недвижимости или нет
   pledge: PledgeType; // В залоге да или нет
   documents: DocumentsType; // Документы в порядке или нет

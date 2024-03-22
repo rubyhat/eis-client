@@ -2,8 +2,10 @@ import { create } from "zustand";
 import {
   CategoryType,
   DocumentsType,
+  ExchangeType,
   HouseConditionType,
   HouseWallMaterialType,
+  MortgageType,
   PledgeType,
   ServiceType,
 } from "../../CatalogModule/store";
@@ -18,9 +20,9 @@ export interface FilterState {
   houseBuildingYear: string;
   targetFloor: number | null;
   totalFloor: number | null;
-  mortgage: boolean;
-  hasSwap: boolean;
   type: ServiceType;
+  mortgage: MortgageType | "";
+  exchange: ExchangeType | "";
   category: CategoryType | "";
   houseWallMaterial: HouseWallMaterialType | "";
   houseCondition: HouseConditionType | "";
@@ -41,8 +43,8 @@ export const initialFilterState: FilterState = {
   houseBuildingYear: "",
   pledge: "",
   documents: "",
-  mortgage: false,
-  hasSwap: false,
+  mortgage: "",
+  exchange: "",
   type: "sell",
   targetFloor: null,
   totalFloor: null,

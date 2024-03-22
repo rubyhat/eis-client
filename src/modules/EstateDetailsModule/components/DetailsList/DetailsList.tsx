@@ -221,18 +221,18 @@ export const DetailsList = ({ estateDetails }: DetailsListProps) => {
           label="Залог"
         />
       )}
-      <DetailsListItem
-        title={
-          estateDetails.mortgage
-            ? "Подходит под ипотеку"
-            : "Не подходит под ипотеку"
-        }
-        label="Ипотека"
-      />
-      <DetailsListItem
-        title={estateDetails.hasSwap ? "Есть обмен" : "Нет обмена"}
-        label="Обмен"
-      />
+      {estateDetails.mortgage && (
+        <DetailsListItem
+          title={estateObjectDictionary.mortgage[estateDetails.mortgage]}
+          label="Ипотека"
+        />
+      )}
+      {estateDetails.exchange && (
+        <DetailsListItem
+          title={estateObjectDictionary.exchange[estateDetails.exchange]}
+          label="Обмен"
+        />
+      )}
       {estateDetails.garage && (
         <DetailsListItem
           title={estateObjectDictionary.garage[estateDetails.garage]}
