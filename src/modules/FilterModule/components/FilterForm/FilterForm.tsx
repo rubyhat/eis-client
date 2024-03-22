@@ -321,6 +321,7 @@ export const FilterForm = () => {
                 </MenuItem>
                 <MenuItem value="perfect">Евроремонт</MenuItem>
                 <MenuItem value="good">Косметический ремонт</MenuItem>
+                <MenuItem value="medium">Средний ремонт</MenuItem>
                 <MenuItem value="bad">Без ремонта</MenuItem>
                 <MenuItem value="free">Свободная планировка</MenuItem>
                 <MenuItem value="build">Черновая отделка</MenuItem>
@@ -350,6 +351,7 @@ export const FilterForm = () => {
                 <MenuItem value="">Не указывать</MenuItem>
                 <MenuItem value="good">В порядке</MenuItem>
                 <MenuItem value="needUpdate">Нужна корректировка</MenuItem>
+                <MenuItem value="needCheck">Нужна проверка</MenuItem>
                 <MenuItem value="bad">Есть проблемы</MenuItem>
               </Select>
             )}

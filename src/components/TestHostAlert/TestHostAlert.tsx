@@ -7,7 +7,7 @@ export const TestHostAlert = () => {
     return (
       <Alert severity="error">
         <strong>Это тестовый сайт.</strong> Все, что Вы здесь видите{" "}
-        <strong>не существует</strong>. Перейдите на оффициальный сайт{" "}
+        <strong>не существует</strong>. Перейдите на официальный сайт{" "}
         <Box
           component="a"
           href="https://roze.kz"

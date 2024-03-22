@@ -44,7 +44,7 @@ export type HouseRoofMaterialType =
   | "slate"; // Шифер
 export type GarageType = "full" | "part" | "none"; // Гараж: На одну машину, На две машины, Есть
 export type PledgeType = "none" | "bank" | "police"; // Залог: нет, да у банка, да арест
-export type DocumentsType = "good" | "needUpdate" | "bad"; // Документы: В порядке, нужна корректировка, Есть проблемы
+export type DocumentsType = "good" | "needUpdate" | "needCheck" | "bad"; // Документы: В порядке, нужна корректировка, Есть проблемы
 export type MortgageType = "accepted" | "declined" | "possibly"; // Ипотека: Есть, нет, под вопросом
 export type ExchangeType = "yes" | "no"; // Обмен: Есть, Нет
 export interface ObjectImages {
