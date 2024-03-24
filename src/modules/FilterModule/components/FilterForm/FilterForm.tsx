@@ -196,6 +196,7 @@ export const FilterForm = () => {
                     Например: Караганда
                   </Typography>
                 </MenuItem>
+                <MenuItem value="">Не указывать</MenuItem>
                 <MenuItem value="Караганда">Караганда</MenuItem>
                 <MenuItem value="Пришахтинск">Пришахтинск</MenuItem>
                 <MenuItem value="Абай">Абай</MenuItem>
@@ -306,6 +307,7 @@ export const FilterForm = () => {
                     Например: Кирпич
                   </Typography>
                 </MenuItem>
+                <MenuItem value="">Не указывать</MenuItem>
                 <MenuItem value="brick">Кирпич</MenuItem>
                 <MenuItem value="wood">Дерево</MenuItem>
                 <MenuItem value="gasSilicateBlock">
@@ -349,6 +351,7 @@ export const FilterForm = () => {
                     Например: Евроремонт
                   </Typography>
                 </MenuItem>
+                <MenuItem value="">Не указывать</MenuItem>
                 <MenuItem value="perfect">Евроремонт</MenuItem>
                 <MenuItem value="good">Косметический ремонт</MenuItem>
                 <MenuItem value="medium">Средний ремонт</MenuItem>
@@ -551,6 +554,7 @@ export const FilterForm = () => {
                     Например: 1 ком.
                   </Typography>
                 </MenuItem>
+                <MenuItem value="">Не указывать</MenuItem>
                 <MenuItem value="1">1 ком.</MenuItem>
                 <MenuItem value="2">2-х ком.</MenuItem>
                 <MenuItem value="3">3-х ком.</MenuItem>
