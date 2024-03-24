@@ -12,6 +12,7 @@ import {
 
 export interface FilterState {
   city: string;
+  cityRegion: string;
   roomCount: string;
   priceStart: string;
   priceEnd: string;
@@ -32,6 +33,7 @@ export interface FilterState {
 
 export const initialFilterState: FilterState = {
   city: "",
+  cityRegion: "",
   category: "",
   houseWallMaterial: "",
   houseCondition: "",
