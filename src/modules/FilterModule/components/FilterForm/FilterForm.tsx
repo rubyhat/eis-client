@@ -176,6 +176,76 @@ export const FilterForm = () => {
             variant="textCalloutRegular"
             marginBottom={0.5}
           >
+            Категория
+          </Typography>
+          <Controller
+            name="category"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                displayEmpty
+                sx={selectStyles}
+                inputProps={{ sx: selectInputProps }}
+              >
+                <MenuItem disabled value="">
+                  <Typography
+                    variant="textCalloutRegular"
+                    color="customColors.labelsSecondary"
+                  >
+                    Например: Квартира
+                  </Typography>
+                </MenuItem>
+                <MenuItem value="apartment">Квартира</MenuItem>
+                <MenuItem value="house">Дом</MenuItem>
+                <MenuItem value="townhouse">Таунхаус</MenuItem>
+                <MenuItem value="land">Земельный участок</MenuItem>
+                <MenuItem value="business">Коммерческая недвижимость</MenuItem>
+                {/* <MenuItem value="cottage">Дача</MenuItem> */}
+                {/* <MenuItem value="factory">Заводы, фабрики</MenuItem> */}
+                {/* <MenuItem value="other">Другое</MenuItem> */}
+              </Select>
+            )}
+          />
+        </Box>
+        <Box marginBottom={1.5}>
+          <Typography
+            component="p"
+            color="customColors.labelsSecondary"
+            variant="textCalloutRegular"
+            marginBottom={0.5}
+          >
+            Стоимость
+          </Typography>
+          <CustomInput
+            id="priceStart"
+            type="number"
+            min="0"
+            register={register}
+            errors={errors}
+            disabled={isLoading}
+            formatPrice={false}
+            placeholder="цена от"
+            sx={{ marginBottom: 1.5 }}
+          />
+          <CustomInput
+            id="priceEnd"
+            type="number"
+            min="0"
+            register={register}
+            errors={errors}
+            disabled={isLoading}
+            formatPrice={false}
+            placeholder="цена до"
+          />
+        </Box>
+        <Box marginBottom={1.5}>
+          <Typography
+            component="p"
+            color="customColors.labelsSecondary"
+            variant="textCalloutRegular"
+            marginBottom={0.5}
+          >
             Город
           </Typography>
           <Controller
@@ -237,45 +307,6 @@ export const FilterForm = () => {
                 <MenuItem value="Майкудук">Майкудук</MenuItem>
                 <MenuItem value="Федоровка">Федоровка</MenuItem>
                 <MenuItem value="Кунгей">Кунгей</MenuItem>
-              </Select>
-            )}
-          />
-        </Box>
-        <Box marginBottom={1.5}>
-          <Typography
-            component="p"
-            color="customColors.labelsSecondary"
-            variant="textCalloutRegular"
-            marginBottom={0.5}
-          >
-            Категория
-          </Typography>
-          <Controller
-            name="category"
-            control={control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                displayEmpty
-                sx={selectStyles}
-                inputProps={{ sx: selectInputProps }}
-              >
-                <MenuItem disabled value="">
-                  <Typography
-                    variant="textCalloutRegular"
-                    color="customColors.labelsSecondary"
-                  >
-                    Например: Квартира
-                  </Typography>
-                </MenuItem>
-                <MenuItem value="apartment">Квартира</MenuItem>
-                <MenuItem value="house">Дом</MenuItem>
-                <MenuItem value="townhouse">Таунхаус</MenuItem>
-                <MenuItem value="land">Земельный участок</MenuItem>
-                <MenuItem value="business">Коммерческая недвижимость</MenuItem>
-                {/* <MenuItem value="cottage">Дача</MenuItem> */}
-                {/* <MenuItem value="factory">Заводы, фабрики</MenuItem> */}
-                {/* <MenuItem value="other">Другое</MenuItem> */}
               </Select>
             )}
           />
@@ -470,6 +501,43 @@ export const FilterForm = () => {
             )}
           />
         </Box>
+        <Box marginBottom={1.5}>
+          <Typography
+            component="p"
+            color="customColors.labelsSecondary"
+            variant="textCalloutRegular"
+            marginBottom={0.5}
+          >
+            Количество комнат
+          </Typography>
+          <Controller
+            name="roomCount"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                displayEmpty
+                sx={selectStyles}
+                inputProps={{ sx: selectInputProps }}
+              >
+                <MenuItem disabled value="">
+                  <Typography
+                    variant="textCalloutRegular"
+                    color="customColors.labelsSecondary"
+                  >
+                    Например: 1 ком.
+                  </Typography>
+                </MenuItem>
+                <MenuItem value="">Не указывать</MenuItem>
+                <MenuItem value="1">1 ком.</MenuItem>
+                <MenuItem value="2">2-х ком.</MenuItem>
+                <MenuItem value="3">3-х ком.</MenuItem>
+                <MenuItem value="4">4-х ком.</MenuItem>
+                <MenuItem value="5">5 и более</MenuItem>
+              </Select>
+            )}
+          />
+        </Box>
         <Box
           sx={{
             display: "flex",
@@ -527,94 +595,51 @@ export const FilterForm = () => {
             />
           </Box>
         </Box>
-        <Box marginBottom={1.5}>
-          <Typography
-            component="p"
-            color="customColors.labelsSecondary"
-            variant="textCalloutRegular"
-            marginBottom={0.5}
-          >
-            Количество комнат
-          </Typography>
-          <Controller
-            name="roomCount"
-            control={control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                displayEmpty
-                sx={selectStyles}
-                inputProps={{ sx: selectInputProps }}
-              >
-                <MenuItem disabled value="">
-                  <Typography
-                    variant="textCalloutRegular"
-                    color="customColors.labelsSecondary"
-                  >
-                    Например: 1 ком.
-                  </Typography>
-                </MenuItem>
-                <MenuItem value="">Не указывать</MenuItem>
-                <MenuItem value="1">1 ком.</MenuItem>
-                <MenuItem value="2">2-х ком.</MenuItem>
-                <MenuItem value="3">3-х ком.</MenuItem>
-                <MenuItem value="4">4-х ком.</MenuItem>
-                <MenuItem value="5">5 и более</MenuItem>
-              </Select>
-            )}
-          />
-        </Box>
-        <Box marginBottom={1.5}>
-          <Typography
-            component="p"
-            color="customColors.labelsSecondary"
-            variant="textCalloutRegular"
-            marginBottom={0.5}
-          >
-            Стоимость
-          </Typography>
-          <CustomInput
-            id="priceStart"
-            type="number"
-            min="0"
-            register={register}
-            errors={errors}
-            disabled={isLoading}
-            formatPrice={false}
-            placeholder="цена от"
-            sx={{ marginBottom: 1.5 }}
-          />
-          <CustomInput
-            id="priceEnd"
-            type="number"
-            min="0"
-            register={register}
-            errors={errors}
-            disabled={isLoading}
-            formatPrice={false}
-            placeholder="цена до"
-          />
-        </Box>
-        <Box marginBottom={1.5}>
-          <Typography
-            component="p"
-            color="customColors.labelsSecondary"
-            variant="textCalloutRegular"
-            marginBottom={0.5}
-          >
-            Площадь общая, от м²
-          </Typography>
-          <CustomInput
-            id="houseSquare"
-            type="number"
-            min="0"
-            register={register}
-            errors={errors}
-            disabled={isLoading}
-            formatPrice={false}
-            placeholder="Например: 42"
-            sx={{ marginBottom: 1.5 }}
-          />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 1.5,
+          }}
+        >
+          <Box>
+            <Typography
+              component="p"
+              color="customColors.labelsSecondary"
+              variant="textCalloutRegular"
+              marginBottom={0.5}
+            >
+              Площадь, от м²
+            </Typography>
+            <CustomInput
+              id="houseSquare"
+              register={register}
+              errors={errors}
+              disabled={isLoading}
+              formatPrice={false}
+              placeholder="42"
+              sx={{ marginBottom: 1.5 }}
+            />
+          </Box>
+          <Box>
+            <Typography
+              component="p"
+              color="customColors.labelsSecondary"
+              variant="textCalloutRegular"
+              marginBottom={0.5}
+            >
+              Площадь, до м²
+            </Typography>
+            <CustomInput
+              id="houseSquareEnd"
+              register={register}
+              errors={errors}
+              disabled={isLoading}
+              formatPrice={false}
+              placeholder="142"
+              sx={{ marginBottom: 1.5 }}
+            />
+          </Box>
         </Box>
         <Box marginBottom={1.5}>
           <Typography
