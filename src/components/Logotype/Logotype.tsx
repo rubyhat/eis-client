@@ -12,10 +12,10 @@ export const Logotype = () => {
       display="flex"
       alignItems="center"
     >
-      Roze
-      <Typography color="customColors.colorsOrange" marginLeft={0.5}>
-        Agency
+      <Typography color="customColors.colorsOrange" marginRight={0.5}>
+        Roze
       </Typography>
+      Agency
     </Typography>
   );
 };

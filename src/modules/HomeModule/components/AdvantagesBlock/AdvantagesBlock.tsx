@@ -17,7 +17,7 @@ export const AdvantagesBlock = () => {
         padding: "32px 0",
         borderTop: "1px solid var(--labels-quaternary)",
         borderBottom: "1px solid var(--labels-quaternary)",
-        backgroundColor: "hsla(29, 100%, 50%, 0.05)",
+        backgroundColor: "hsla(32, 100%, 55%, 0.05)",
       }}
     >
       <Container>

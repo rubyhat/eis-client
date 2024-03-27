@@ -15,41 +15,42 @@ interface LinkObject {
   icon?: React.ReactNode;
 }
 
+const iconColor = "hsla(32, 100%, 55%, 1)";
 const links: LinkObject[] = [
   {
     title: "Квартиры",
     to: "/catalog?category=apartment",
-    icon: <LuLampFloor color="hsla(29, 100%, 50%, 1)" />,
+    icon: <LuLampFloor color={iconColor} />,
   },
   {
     title: "Дома",
     to: "/catalog?category=house",
-    icon: <IoHomeOutline color="hsla(29, 100%, 50%, 1)" />,
+    icon: <IoHomeOutline color={iconColor} />,
   },
   {
     title: "Коммерческая недвижимость",
     to: "/catalog?category=business",
-    icon: <AiOutlineDollar color="hsla(29, 100%, 50%, 1)" />,
+    icon: <AiOutlineDollar color={iconColor} />,
   },
   {
     title: "Каталог",
     to: "/catalog?category=apartment",
-    icon: <IoIosSearch color="hsla(29, 100%, 50%, 1)" />,
+    icon: <IoIosSearch color={iconColor} />,
   },
   {
     title: "Контакты",
     to: "/contacts",
-    icon: <BsTelephone color="hsla(29, 100%, 50%, 1)" />,
+    icon: <BsTelephone color={iconColor} />,
   },
   {
     title: "О нас",
     to: "/about",
-    icon: <FaRegHeart color="hsla(29, 100%, 50%, 1)" />,
+    icon: <FaRegHeart color={iconColor} />,
   },
   {
     title: "Помощь",
     to: "/help",
-    icon: <IoIosHelpCircleOutline color="hsla(29, 100%, 50%, 1)" />,
+    icon: <IoIosHelpCircleOutline color={iconColor} />,
   },
 ];
 

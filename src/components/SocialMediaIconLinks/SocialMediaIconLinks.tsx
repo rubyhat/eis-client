@@ -7,7 +7,7 @@ interface SocialMediaIconLinksProps {
   size?: number | string;
 }
 
-const iconColor = "hsla(29, 100%, 50%, 1)";
+const iconColor = "hsla(32, 100%, 55%, 1)";
 
 export const SocialMediaIconLinks = (props: SocialMediaIconLinksProps) => {
   const { showTitle = true, size } = props;

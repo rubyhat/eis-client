@@ -7,7 +7,7 @@ interface ContactsInfoProps {
   hiddenTitle?: boolean;
 }
 
-const iconColor = "hsla(29, 100%, 50%, 1)";
+const iconColor = "hsla(32, 100%, 55%, 1)";
 
 export const ContactsInfo = ({ hiddenTitle }: ContactsInfoProps) => {
   const handleCopyClipboard = (value: string) => {

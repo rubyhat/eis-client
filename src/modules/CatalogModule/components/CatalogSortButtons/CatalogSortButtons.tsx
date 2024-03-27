@@ -3,7 +3,7 @@ import React from "react";
 import { ActiveSortType, useCatalogStore } from "../../store/useCatalogStore";
 import { IoIosArrowDown } from "react-icons/io";
 
-const iconColor = "hsla(29, 100%, 50%, 1)";
+const iconColor = "hsla(32, 100%, 55%, 1)";
 
 const sortWrapperStyles = {
   width: "100%",
