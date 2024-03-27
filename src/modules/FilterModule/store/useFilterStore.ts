@@ -20,6 +20,8 @@ export interface FilterState {
   houseSquareEnd: string;
   kitchenSquare: string;
   houseBuildingYear: string;
+  notFirstFloor: boolean;
+  notLastFloor: boolean;
   targetFloor: number | null;
   totalFloor: number | null;
   type: ServiceType;
@@ -52,6 +54,8 @@ export const initialFilterState: FilterState = {
   type: "sell",
   targetFloor: null,
   totalFloor: null,
+  notFirstFloor: false,
+  notLastFloor: false,
 };
 
 export interface FilterStore {
