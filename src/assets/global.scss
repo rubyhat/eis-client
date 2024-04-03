@@ -332,3 +332,17 @@ h6 {
     padding-inline-start: 40px;
   }
 }
+
+.policy-module {
+  ul {
+    padding-left: 32px;
+    li {
+      @include text-body;
+      font-weight: 400;
+      list-style: inherit;
+    }
+    li::marker {
+      color: var(--colors-orange);
+    }
+  }
+}

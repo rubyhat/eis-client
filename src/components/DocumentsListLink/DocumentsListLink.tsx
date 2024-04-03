@@ -12,7 +12,7 @@ export const DocumentListLinks = () => {
         >
           Документы
         </Typography>
-        <Box
+        {/* <Box
           sx={{
             display: "flex",
             alignItems: "center",
@@ -25,7 +25,7 @@ export const DocumentListLinks = () => {
           >
             Пользовательское соглашение
           </Typography>
-        </Box>
+        </Box> */}
       </Box>
       <Box component="li">
         <Box
