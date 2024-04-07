@@ -9,11 +9,11 @@ import { useDynamicMetaTags } from "../../hooks/useDynamicMetaTags";
 import { useLocation, useParams } from "react-router-dom";
 import { apiEstateDetailsModule } from "./api";
 import { useQuery } from "@tanstack/react-query";
-import { FeedbackForm } from "../../components/FeedbackForm";
 import { useEstateDetailsStore } from "./store";
 import { useScreenSize } from "../../hooks/useScreenSize";
 import { useFormatDate } from "../../shared/hooks/useFormatDate";
 import { CustomHr } from "../../components/CustomHr";
+import { FeedbackModule } from "../FeedbackModule";
 
 export const EstateDetailsModule = () => {
   useTitle("Детали объекта недвижимости");
@@ -121,7 +121,10 @@ export const EstateDetailsModule = () => {
           <Grid item xs={12} md={7} lg={6}>
             {!isMobile && <ImageViewer />}
             {isMobile && <CustomHr />}
-            <FeedbackForm estateAgent={estateDetails.estateAgent} />
+            <FeedbackModule
+              estateAgent={estateDetails.estateAgent}
+              estateId={estateDetails._id}
+            />
           </Grid>
         </Grid>
       </Container>
