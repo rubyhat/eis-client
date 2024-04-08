@@ -9,11 +9,12 @@ export const Copyright = () => {
     const styles = [
       "color: white",
       "font-size: 12px",
-      "background-color: hsla(211, 100%, 50%, 1)",
+      "background-color: hsla(32, 100%, 55%, 1)",
       "padding: 4px",
       "border-radius: 4px",
       "font-weight: bold",
     ].join(";");
+    console.log(`%c${import.meta.env.MODE}`, styles, "Mode");
     console.log(`%cv${version}`, styles, "Platform Version");
     console.log(
       `%csupport@roze.kz`,
