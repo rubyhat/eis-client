@@ -42,7 +42,7 @@ export type HouseRoofMaterialType =
   | "metalTile" // Металлочерепица
   | "corrugatedSheetRoof" // Профлист
   | "slate"; // Шифер
-export type GarageType = "full" | "part" | "none"; // Гараж: На одну машину, На две машины, Есть
+export type GarageType = "has" | "full" | "part" | "none"; // Гараж: Есть, входит в стоимость, не входит в стоимость, нет
 export type PledgeType = "none" | "bank" | "police"; // Залог: нет, да у банка, да арест
 export type DocumentsType = "good" | "needUpdate" | "needCheck" | "bad"; // Документы: В порядке, нужна корректировка, Есть проблемы
 export type MortgageType = "accepted" | "declined" | "possibly"; // Ипотека: Есть, нет, под вопросом
