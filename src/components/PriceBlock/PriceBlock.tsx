@@ -13,7 +13,7 @@ interface PriceBlockProps {
 
 export const PriceBlock = (props: PriceBlockProps) => {
   const { price, discount = 0, displayDiscount, displayTag } = props;
-  const { totalPrice } = usePriceNormalize(price, discount);
+  const { totalPrice, discountPercentage } = usePriceNormalize(price, discount);
 
   return (
     <Box display="flex" alignItems="flex-start" flexDirection="column">
@@ -49,7 +49,9 @@ export const PriceBlock = (props: PriceBlockProps) => {
             marginBottom: 0.5,
           }}
         >
-          <Typography variant="textFootnoteRegular">снижение цены</Typography>
+          <Typography variant="textFootnoteRegular">
+            снижение на {discountPercentage}%
+          </Typography>
         </Box>
       )}
     </Box>
