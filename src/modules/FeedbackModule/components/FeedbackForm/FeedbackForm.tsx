@@ -79,6 +79,8 @@ export const FeedbackForm = ({ estateAgent, estateId }: FeedbackFormProps) => {
     setValue("phone", formattedValue, { shouldValidate: true });
   };
 
+  const msgText = `Здравствуйте, меня интересует недвижимость на Вашем сайте!%0A%0AСсылка на недвижимость: https://roze.kz/catalog/${estateId}`;
+
   return (
     <Box>
       <Box>
@@ -239,7 +241,11 @@ export const FeedbackForm = ({ estateAgent, estateId }: FeedbackFormProps) => {
                 component="a"
                 href={`https://api.whatsapp.com/send?phone=${estateAgent.phone.slice(
                   1,
-                )}&text=Здравствуйте, меня интересует недвижимость на Вашем сайте.`}
+                )}&text=${
+                  estateId
+                    ? msgText
+                    : "Здравствуйте, у меня есть вопрос по сайту Roze.kz"
+                }`}
                 target="_blank"
                 rel="noreferrer"
               >

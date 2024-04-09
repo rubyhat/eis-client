@@ -7,9 +7,10 @@ export const useCopySharingLink = () => {
 
   const copyLink = () => {
     const url = window.location.href;
+    const msg = `Здравствуйте! Подборка недвижимости по Вашему запросу от Roze Agency:\n\n${url}`;
 
     navigator.clipboard
-      .writeText(url)
+      .writeText(msg)
       .then(() => {
         toast.success(
           "Ссылка успешно скопирована! Теперь вы можете поделиться ею в WhatsApp или любом другом приложении",
