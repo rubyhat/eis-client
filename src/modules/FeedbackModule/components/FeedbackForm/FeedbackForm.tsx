@@ -30,6 +30,7 @@ export const FeedbackForm = ({ estateAgent, estateId }: FeedbackFormProps) => {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<FieldValues>({
     defaultValues: {
       name: "",
@@ -47,7 +48,7 @@ export const FeedbackForm = ({ estateAgent, estateId }: FeedbackFormProps) => {
     try {
       await apiFeedbackModule.create({
         name: data.name,
-        phone: data.phone,
+        phone: data.phone.split(" ").join(""),
         estateId,
       });
       setIsSuccess(true);
@@ -58,6 +59,24 @@ export const FeedbackForm = ({ estateAgent, estateId }: FeedbackFormProps) => {
       reset();
       setIsLoading(false);
     }
+  };
+
+  const handlePhoneInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let { value } = event.target;
+    if (!value.startsWith("+7")) {
+      value = "+7" + value.replace(/[^\d]/g, ""); // Убедимся, что номер начинается с +7
+    }
+    const cleanValue = value.replace(/[^\d+]/g, ""); // Удаляем все, кроме цифр и знака +
+    // Форматируем номер, убираем лишние символы, если они есть
+    let formattedValue = cleanValue
+      .replace(/(\+\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3 $4 $5")
+      .trim(); // Убираем лишние пробелы
+
+    if (formattedValue.length > 16) {
+      formattedValue = formattedValue.substring(0, 16);
+    }
+
+    setValue("phone", formattedValue, { shouldValidate: true });
   };
 
   return (
@@ -129,7 +148,9 @@ export const FeedbackForm = ({ estateAgent, estateId }: FeedbackFormProps) => {
           </Typography>
           <CustomInput
             id="phone"
+            type="tel"
             register={register}
+            onInput={handlePhoneInput}
             errors={errors}
             disabled={isLoading}
             placeholder="Введите телефон"

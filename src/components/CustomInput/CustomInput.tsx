@@ -16,6 +16,7 @@ interface CustomInputProps {
   placeholder?: string;
   sx?: SxProps;
   min?: string;
+  onInput?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 export const CustomInput = (props: CustomInputProps) => {
@@ -31,6 +32,7 @@ export const CustomInput = (props: CustomInputProps) => {
     placeholder,
     sx,
     min,
+    onInput,
   } = props;
   const theme = useTheme();
 
@@ -72,6 +74,7 @@ export const CustomInput = (props: CustomInputProps) => {
             color: theme.palette.customColors?.labelsTertiary,
           },
         }}
+        onInput={onInput}
       />
     </Box>
   );
