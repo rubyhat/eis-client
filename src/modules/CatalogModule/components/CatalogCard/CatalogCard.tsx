@@ -12,7 +12,13 @@ interface CatalogCardProps {
 }
 
 export const CatalogCard = ({ item }: CatalogCardProps) => {
-  const livingCategory = ["apartment", "house", "cottage", "business"];
+  const livingCategory = [
+    "apartment",
+    "house",
+    "cottage",
+    "business",
+    "townhouse",
+  ];
   const displaySubtitle = `${item.roomCount}-комн. · ${item.houseSquare} м² ${
     item.targetFloor && item.totalFloor
       ? `· ${item.targetFloor}/${item.totalFloor} этаж`
