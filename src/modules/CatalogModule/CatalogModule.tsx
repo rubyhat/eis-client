@@ -9,11 +9,13 @@ import useTitle from "../../hooks/useTitle";
 import { FilterMobileWrapper } from "../FilterModule/components/FilterMobileWrapper/FilterMobileWrapper";
 import { CustomButton } from "../../components/CustomButton";
 import { useCopySharingLink } from "../../hooks/useCopySharingLink";
+import { useAnalytics } from "../../hooks/useAnalytics";
 
 export const CatalogModule = () => {
   useTitle("Каталог - Квартиры в Караганде");
   const { deviceShareLink } = useCopySharingLink();
   const location = useLocation();
+  const { trackEvent } = useAnalytics();
 
   const [params, setParams] = React.useState<{ [k: string]: string }>({});
   React.useLayoutEffect(() => {
@@ -42,6 +44,10 @@ export const CatalogModule = () => {
   const cityFromParams = params.city as keyof typeof cityTitles;
 
   const handleShareButtonClick = () => {
+    trackEvent({
+      category: "CatalogPage",
+      action: "Click On Share Objects",
+    });
     deviceShareLink();
   };
 

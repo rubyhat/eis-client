@@ -32,7 +32,7 @@ export const CatalogCardExtended = () => {
   const handleClickButton = () => {
     trackEvent({
       category: "HomePage",
-      action: "ClickOnCategoryCard",
+      action: "Click On Category Card",
       label: `Click on Show All`,
     });
     navigate("/catalog");

@@ -6,12 +6,14 @@ import { DisplayEstateObject } from "../../store/useCatalogStore";
 import { PriceBlock } from "../../../../components/PriceBlock/PriceBlock";
 import { useFormatDate } from "../../../../shared/hooks/useFormatDate";
 import { CustomHr } from "../../../../components/CustomHr";
+import { useAnalytics } from "../../../../hooks/useAnalytics";
 
 interface CatalogCardProps {
   item: DisplayEstateObject;
 }
 
 export const CatalogCard = ({ item }: CatalogCardProps) => {
+  const { trackEvent } = useAnalytics();
   const livingCategory = [
     "apartment",
     "house",
@@ -27,6 +29,12 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
   const { dayAndMonth, time } = useFormatDate(item.updatedAt);
   const hideAddressInfo = item.geoPosition.isInfoHidden;
 
+  const handleCardClick = () =>
+    trackEvent({
+      category: "CatalogPage",
+      action: "Click On Card",
+    });
+
   return (
     <Box
       component={Link}
@@ -39,6 +47,7 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
         flexGrow: 1,
         height: "100%",
       }}
+      onClick={handleCardClick}
     >
       <Box
         component="img"

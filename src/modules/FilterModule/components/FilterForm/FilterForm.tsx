@@ -21,6 +21,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { apiCatalogModule } from "../../../CatalogModule/api/apiCatalogModule";
 import { useCatalogStore } from "../../../CatalogModule/store";
 import { useNavigate } from "react-router-dom";
+import { useAnalytics } from "../../../../hooks/useAnalytics";
 
 const selectStyles = {
   height: "36px",
@@ -43,8 +44,10 @@ const selectInputProps = {
 
 // todo: в полях с числами сделать валидацию на использование только точек, без запятых
 export const FilterForm = () => {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { trackEvent } = useAnalytics();
+
   const [isLoading, setIsLoading] = React.useState(false);
   const { setEstateObjects } = useCatalogStore((state) => state);
   const { filterState, setIsMobileFilterModalOpen, setFilterState } =
@@ -132,6 +135,10 @@ export const FilterForm = () => {
   };
 
   const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
+    trackEvent({
+      category: "FilterForm",
+      action: "Click on Search Button (send request)",
+    });
     updateUrlParams(data);
     setIsMobileFilterModalOpen(false);
   };
