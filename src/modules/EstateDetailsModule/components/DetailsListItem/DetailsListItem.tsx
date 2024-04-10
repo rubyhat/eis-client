@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import { TbCurrencyTenge } from "react-icons/tb";
 import { usePriceNormalize } from "../../../../hooks/usePriceNormalize";
+import { useAnalytics } from "../../../../hooks/useAnalytics";
 
 interface DetailsListItemProps {
   label: string;
@@ -13,8 +14,22 @@ interface DetailsListItemProps {
 }
 
 export const DetailsListItem = (props: DetailsListItemProps) => {
+  const { trackEvent } = useAnalytics();
   const { label, title, link, videoLink, price = 0, discount = 0 } = props;
   const { totalPrice, discountPercentage } = usePriceNormalize(price, discount);
+
+  const handleClickShowOnMap = () =>
+    trackEvent({
+      category: "DetailsPage",
+      action: "Click On show on map",
+    });
+
+  const handleClickShowInstagramVideo = () =>
+    trackEvent({
+      category: "DetailsPage",
+      action: "Click On show instagram video",
+    });
+
   return (
     <Box
       component="li"
@@ -87,6 +102,7 @@ export const DetailsListItem = (props: DetailsListItemProps) => {
                 textDecoration: "none",
               },
             }}
+            onClick={handleClickShowOnMap}
           >
             Показать на карте
           </Typography>
@@ -104,6 +120,7 @@ export const DetailsListItem = (props: DetailsListItemProps) => {
                 textDecoration: "none",
               },
             }}
+            onClick={handleClickShowInstagramVideo}
           >
             Открыть видео обзор в Instagram
           </Typography>

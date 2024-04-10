@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import {
   Alert,
@@ -14,6 +14,7 @@ import { CustomButton } from "../../../../components/CustomButton";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
 import { EstateAgentInfo } from "../../../CatalogModule/store";
 import { apiFeedbackModule } from "../../api/apiFeedbackModule";
+import { useAnalytics } from "../../../../hooks/useAnalytics";
 
 interface FeedbackFormProps {
   estateId?: string;
@@ -21,9 +22,12 @@ interface FeedbackFormProps {
 }
 
 export const FeedbackForm = ({ estateAgent, estateId }: FeedbackFormProps) => {
+  const { trackEvent } = useAnalytics();
+  const { isMobile } = useScreenSize();
+  const location = useLocation();
+
   const [isLoading, setIsLoading] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState<boolean | null>(null);
-  const { isMobile } = useScreenSize();
 
   const {
     register,
@@ -52,9 +56,19 @@ export const FeedbackForm = ({ estateAgent, estateId }: FeedbackFormProps) => {
         estateId,
       });
       setIsSuccess(true);
+      trackEvent({
+        category: "FeedbackForm",
+        action: "Send message success",
+        label: `url: ${location.pathname}`,
+      });
     } catch (error) {
       console.log("feedback error", error);
       setIsSuccess(false);
+      trackEvent({
+        category: "FeedbackForm",
+        action: "Send message failed",
+        label: `url: ${location.pathname}`,
+      });
     } finally {
       reset();
       setIsLoading(false);
@@ -80,6 +94,26 @@ export const FeedbackForm = ({ estateAgent, estateId }: FeedbackFormProps) => {
   };
 
   const msgText = `Здравствуйте, меня интересует недвижимость на Вашем сайте!%0A%0AСсылка на недвижимость: https://roze.kz/catalog/${estateId}`;
+
+  const handleClickPhoneButton = () =>
+    trackEvent({
+      category: "FeedbackForm",
+      action: "Click On phone button",
+      label: `Agent name: ${estateAgent?.name}`,
+    });
+
+  const handleClickWhatsappButton = () =>
+    trackEvent({
+      category: "FeedbackForm",
+      action: "Click On whatsapp button",
+      label: `Agent name: ${estateAgent?.name}`,
+    });
+
+  const handleClickPolicyInfo = () =>
+    trackEvent({
+      category: "FeedbackForm",
+      action: "Click on policy info",
+    });
 
   return (
     <Box>
@@ -183,6 +217,7 @@ export const FeedbackForm = ({ estateAgent, estateId }: FeedbackFormProps) => {
                 component={Link}
                 target="_blank"
                 to="/docs/policy" // todo: может вместо открытия новой страницы, показаывать модалку с условиями, чтобы пользователя не уводить с целевой страницы?
+                onClick={handleClickPolicyInfo}
               >
                 политикой обработки данных
               </Box>
@@ -232,7 +267,11 @@ export const FeedbackForm = ({ estateAgent, estateId }: FeedbackFormProps) => {
                 gridTemplateColumns: "1fr 1fr",
               }}
             >
-              <Box component="a" href={`tel:${estateAgent.phone}`}>
+              <Box
+                component="a"
+                href={`tel:${estateAgent.phone}`}
+                onClick={handleClickPhoneButton}
+              >
                 <CustomButton size="medium" fullWidth>
                   Позвонить
                 </CustomButton>
@@ -249,7 +288,12 @@ export const FeedbackForm = ({ estateAgent, estateId }: FeedbackFormProps) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <CustomButton fullWidth size="medium" isGreenButton>
+                <CustomButton
+                  fullWidth
+                  size="medium"
+                  isGreenButton
+                  onClick={handleClickWhatsappButton}
+                >
                   {isMobile ? "Написать" : "Написать в WhatsApp"}
                 </CustomButton>
               </Box>
