@@ -1,6 +1,7 @@
 import axios from "axios";
+import { VITE_API_BASE_PATH } from "../constants/envs";
 
-const API_BASE_PATH = import.meta.env.VITE_API_BASE_PATH;
+const API_BASE_PATH = VITE_API_BASE_PATH;
 
 export const axiosBaseWrap = axios.create({
   baseURL: API_BASE_PATH,

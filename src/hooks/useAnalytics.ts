@@ -1,7 +1,8 @@
 import React from "react";
 import ReactGA from "react-ga4";
+import { VITE_GA_MESUREMENT_ID } from "../constants/envs";
 
-const GA_MESUREMENT_ID = import.meta.env.VITE_GA_MESUREMENT_ID;
+const GA_MESUREMENT_ID = VITE_GA_MESUREMENT_ID;
 
 interface TrackEventProps {
   category: string;

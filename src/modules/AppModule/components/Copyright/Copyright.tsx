@@ -3,6 +3,7 @@ import React from "react";
 import { Typography } from "@mui/material";
 
 import { version } from "../../../../../package.json";
+import { ENVIRONMENT } from "../../../../constants/envs";
 
 export const Copyright = () => {
   React.useEffect(() => {
@@ -14,7 +15,7 @@ export const Copyright = () => {
       "border-radius: 4px",
       "font-weight: bold",
     ].join(";");
-    console.log(`%c${import.meta.env.MODE}`, styles, "Mode");
+    console.log(`%c${ENVIRONMENT}`, styles, "Mode");
     console.log(`%cv${version}`, styles, "Platform Version");
     console.log(
       `%csupport@roze.kz`,
