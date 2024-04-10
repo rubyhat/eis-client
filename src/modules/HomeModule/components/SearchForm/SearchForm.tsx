@@ -13,6 +13,7 @@ import { MenuItem, Select, Typography } from "@mui/material";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
 import { useNavigate } from "react-router-dom";
 import { useFilterStore } from "../../../FilterModule/store";
+import { useAnalytics } from "../../../../hooks/useAnalytics";
 
 const selectInputProps = {
   padding: 1,
@@ -33,6 +34,7 @@ const formWrapperDesktopStyles = {
 };
 
 export const SearchForm = () => {
+  const { trackEvent } = useAnalytics();
   const { setFilterState, filterState } = useFilterStore((state) => state);
   const { isMobile, isTablet } = useScreenSize();
   const formWrapperTotalStyles =
@@ -67,6 +69,11 @@ export const SearchForm = () => {
 
     setFilterState({ ...filterState, ...filteredData });
     const queryParams = new URLSearchParams(filteredData).toString();
+    trackEvent({
+      category: "SearchForm",
+      action: "Click Search Button",
+      label: "Search form on Home Page",
+    });
     navigate(`/catalog?${queryParams}`);
   };
 

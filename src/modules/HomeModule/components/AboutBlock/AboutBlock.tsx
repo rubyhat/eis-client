@@ -3,10 +3,29 @@ import React from "react";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
 import { Link, useNavigate } from "react-router-dom";
 import { CustomButton } from "../../../../components/CustomButton";
+import { useAnalytics } from "../../../../hooks/useAnalytics";
 
 export const AboutBlock = () => {
+  const { trackEvent } = useAnalytics();
   const { isMobile } = useScreenSize();
   const navigate = useNavigate();
+
+  const handleClickAbout = () => {
+    trackEvent({
+      category: "HomePage",
+      action: "Click on About Button",
+    });
+    navigate("/about");
+  };
+
+  const handleClickFaq = () => {
+    trackEvent({
+      category: "HomePage",
+      action: "Click on Faq Button",
+    });
+    navigate("/help");
+  };
+
   return (
     <Container>
       <Grid container spacing={2}>
@@ -201,10 +220,10 @@ export const AboutBlock = () => {
               :)
             </Typography>
             <Box sx={{ display: "flex", gap: 2 }}>
-              <CustomButton fullWidth onClick={() => navigate("/about")}>
+              <CustomButton fullWidth onClick={handleClickAbout}>
                 О нас
               </CustomButton>
-              <CustomButton fullWidth onClick={() => navigate("/help")}>
+              <CustomButton fullWidth onClick={handleClickFaq}>
                 Вопрос/Ответ
               </CustomButton>
             </Box>

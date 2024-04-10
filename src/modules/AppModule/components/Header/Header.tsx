@@ -1,24 +1,34 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import { RxHamburgerMenu } from "react-icons/rx";
 import { IconButton } from "@mui/material";
+import { RxHamburgerMenu } from "react-icons/rx";
+
+import { MenuList } from "../MenuList";
+import { DrawerMenu } from "../DrawerMenu";
 
 import { Logotype } from "../../../../components/Logotype";
-import { MenuList } from "../MenuList";
 import { useHeaderStore } from "../../store/useHeaderStore";
 import { CustomButton } from "../../../../components/CustomButton";
-import { DrawerMenu } from "../DrawerMenu";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
-import { Link } from "react-router-dom";
+import { useAnalytics } from "../../../../hooks/useAnalytics";
 
 export const Header = () => {
+  const { trackEvent } = useAnalytics();
   const { isTablet, isMobile, isLaptop } = useScreenSize();
 
   const { setIsHeaderBurgerOpen } = useHeaderStore((state) => state);
 
   const handleBurgerIconClick = () => setIsHeaderBurgerOpen(true);
+
+  const handlePhoneButtonClick = () =>
+    trackEvent({
+      category: "HomePage",
+      action: "Click on Header",
+      label: `Click on Phone Button (redirect to Contacts page)`,
+    });
 
   return (
     <Box
@@ -42,7 +52,11 @@ export const Header = () => {
             ) : (
               <React.Fragment>
                 <MenuList />
-                <Box component={Link} to="/contacts">
+                <Box
+                  component={Link}
+                  to="/contacts"
+                  onClick={handlePhoneButtonClick}
+                >
                   <CustomButton variant="contained" size="medium">
                     Позвоните нам
                   </CustomButton>

@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { CustomButton } from "../../../../components/CustomButton";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
 import { useNavigate } from "react-router-dom";
+import { useAnalytics } from "../../../../hooks/useAnalytics";
 
 const catalogList = [
   {
@@ -24,8 +25,19 @@ const catalogList = [
 ];
 
 export const CatalogCardExtended = () => {
+  const { trackEvent } = useAnalytics();
   const { isMobile } = useScreenSize();
   const navigate = useNavigate();
+
+  const handleClickButton = () => {
+    trackEvent({
+      category: "HomePage",
+      action: "ClickOnCategoryCard",
+      label: `Click on Show All`,
+    });
+    navigate("/catalog");
+  };
+
   return (
     <Box
       display="flex"
@@ -42,7 +54,7 @@ export const CatalogCardExtended = () => {
       >
         Перейдите в Каталог, чтобы найти все актуальные объекты недвижимости
       </Typography>
-      <CustomButton fullWidth size="large" onClick={() => navigate("/catalog")}>
+      <CustomButton fullWidth size="large" onClick={handleClickButton}>
         Посмотреть все
       </CustomButton>
     </Box>
