@@ -7,6 +7,7 @@ import { PriceBlock } from "../../../../components/PriceBlock/PriceBlock";
 import { useFormatDate } from "../../../../shared/hooks/useFormatDate";
 import { CustomHr } from "../../../../components/CustomHr";
 import { useAnalytics } from "../../../../hooks/useAnalytics";
+import { estateObjectDictionary } from "../../../../shared/dictionaries/EstateObjectDictionary";
 
 interface CatalogCardProps {
   item: DisplayEstateObject;
@@ -21,7 +22,11 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
     "business",
     "townhouse",
   ];
-  const displaySubtitle = `${item.roomCount}-комн. · ${item.houseSquare} м² ${
+  const displaySubtitle = `${
+    item.roomCount
+  }-комн. ${estateObjectDictionary.category[item.category].toLowerCase()} · ${
+    item.houseSquare
+  } м² ${
     item.targetFloor && item.totalFloor
       ? `· ${item.targetFloor}/${item.totalFloor} этаж`
       : ""
@@ -91,8 +96,9 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
         />
         <Typography
           component="p"
-          variant="textFootnoteRegular"
+          variant="textSubheadlineRegular"
           color="customColors.colorsOrange"
+          fontWeight={500}
         >
           {livingCategory.includes(item.category) && displaySubtitle}
         </Typography>
