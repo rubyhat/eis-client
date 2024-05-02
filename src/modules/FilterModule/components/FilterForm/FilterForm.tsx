@@ -137,7 +137,7 @@ export const FilterForm = () => {
   const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
     trackEvent({
       category: "FilterForm",
-      action: "Click on Search Button (send request)",
+      action: "Click on Search Button (FilterForm)",
     });
     updateUrlParams(data);
     setIsMobileFilterModalOpen(false);

@@ -23,12 +23,18 @@ export const CatalogCard = (props: CatalogCardProps) => {
   const { trackEvent } = useAnalytics();
   const { isMobile } = useScreenSize();
 
-  const handleCardClick = () =>
+  const handleCardClick = () => {
     trackEvent({
       category: "HomePage",
       action: "Click on Category Card",
       label: `Click on ${title}`,
     });
+    trackEvent({
+      category: "HomePage",
+      action: `Click on Category Card (${title})`,
+      label: `Click on ${title}`,
+    });
+  };
 
   return (
     <Box component={Link} to={link} display="block" onClick={handleCardClick}>

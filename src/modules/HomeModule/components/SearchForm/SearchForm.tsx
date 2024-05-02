@@ -154,6 +154,7 @@ export const SearchForm = () => {
                 },
               }}
               inputProps={{ sx: selectInputProps }}
+              displayEmpty
             >
               <MenuItem value="apartment">Квартира</MenuItem>
               <MenuItem value="house">Дом</MenuItem>
@@ -161,6 +162,7 @@ export const SearchForm = () => {
               <MenuItem value="cottage">Дача</MenuItem>
               <MenuItem value="land">Земельный участок</MenuItem>
               <MenuItem value="business">Коммерческая недвижимость</MenuItem>
+              <MenuItem value="">Показать все</MenuItem>
               {/* <MenuItem value="factory">Заводы, фабрики</MenuItem>
               <MenuItem value="other">Другое</MenuItem> */}
             </Select>
