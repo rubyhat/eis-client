@@ -14,6 +14,7 @@ import { useScreenSize } from "../../hooks/useScreenSize";
 import { useFormatDate } from "../../shared/hooks/useFormatDate";
 import { CustomHr } from "../../components/CustomHr";
 import { FeedbackModule } from "../FeedbackModule";
+import { SimilarEstate } from "./components/SimilarEstate";
 
 export const EstateDetailsModule = () => {
   useTitle("Детали объекта недвижимости");
@@ -126,6 +127,11 @@ export const EstateDetailsModule = () => {
               estateId={estateDetails._id}
             />
           </Grid>
+          {estateDetails && (
+            <Grid item xs={12}>
+              <SimilarEstate params={`roomCount=${estateDetails.roomCount}`} />
+            </Grid>
+          )}
         </Grid>
       </Container>
     );

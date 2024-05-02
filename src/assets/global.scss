@@ -105,7 +105,8 @@ h6 {
   white-space: pre-line;
 }
 
-.estate-details__swiper-wrapper {
+.estate-details__swiper-wrapper,
+.similars-estate__swiper-wrapper {
   .swiper-pagination-bullet {
     background-color: var(--colors-orange);
   }

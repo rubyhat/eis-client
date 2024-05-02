@@ -229,6 +229,43 @@ export const FilterForm = () => {
             variant="textCalloutRegular"
             marginBottom={0.5}
           >
+            Количество комнат
+          </Typography>
+          <Controller
+            name="roomCount"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                displayEmpty
+                sx={selectStyles}
+                inputProps={{ sx: selectInputProps }}
+              >
+                <MenuItem disabled value="">
+                  <Typography
+                    variant="textCalloutRegular"
+                    color="customColors.labelsSecondary"
+                  >
+                    Например: 1 ком.
+                  </Typography>
+                </MenuItem>
+                <MenuItem value="">Не указывать</MenuItem>
+                <MenuItem value="1">1 ком.</MenuItem>
+                <MenuItem value="2">2-х ком.</MenuItem>
+                <MenuItem value="3">3-х ком.</MenuItem>
+                <MenuItem value="4">4-х ком.</MenuItem>
+                <MenuItem value="5">5 и более</MenuItem>
+              </Select>
+            )}
+          />
+        </Box>
+        <Box marginBottom={1.5}>
+          <Typography
+            component="p"
+            color="customColors.labelsSecondary"
+            variant="textCalloutRegular"
+            marginBottom={0.5}
+          >
             Стоимость
           </Typography>
           <CustomInput
@@ -511,43 +548,6 @@ export const FilterForm = () => {
                 <MenuItem value="">Не указывать</MenuItem>
                 <MenuItem value="yes">Есть</MenuItem>
                 <MenuItem value="no">Нет</MenuItem>
-              </Select>
-            )}
-          />
-        </Box>
-        <Box marginBottom={1.5}>
-          <Typography
-            component="p"
-            color="customColors.labelsSecondary"
-            variant="textCalloutRegular"
-            marginBottom={0.5}
-          >
-            Количество комнат
-          </Typography>
-          <Controller
-            name="roomCount"
-            control={control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                displayEmpty
-                sx={selectStyles}
-                inputProps={{ sx: selectInputProps }}
-              >
-                <MenuItem disabled value="">
-                  <Typography
-                    variant="textCalloutRegular"
-                    color="customColors.labelsSecondary"
-                  >
-                    Например: 1 ком.
-                  </Typography>
-                </MenuItem>
-                <MenuItem value="">Не указывать</MenuItem>
-                <MenuItem value="1">1 ком.</MenuItem>
-                <MenuItem value="2">2-х ком.</MenuItem>
-                <MenuItem value="3">3-х ком.</MenuItem>
-                <MenuItem value="4">4-х ком.</MenuItem>
-                <MenuItem value="5">5 и более</MenuItem>
               </Select>
             )}
           />

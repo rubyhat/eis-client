@@ -12,6 +12,10 @@ import { useScreenSize } from "../../../../hooks/useScreenSize";
 import { useEstateDetailsStore } from "../../store/useEstateDetailsStore";
 import { CustomButton } from "../../../../components/CustomButton";
 
+const SWIPER_SPEED = 666;
+const SWIPER_SPACE_BETWEEN = 0;
+const SWIPER_SLIDES_PER_VIEW = 1;
+
 export const ImageViewerModal = () => {
   const {
     isViewerModalOpen,
@@ -20,6 +24,9 @@ export const ImageViewerModal = () => {
     estateDetails,
   } = useEstateDetailsStore((state) => state);
   const { isMobile } = useScreenSize();
+
+  const swiperModules = isMobile ? [Pagination] : [Navigation, Pagination];
+  const enableNavigation = !isMobile;
 
   const images = estateDetails?.images;
   const initialSlide =
@@ -104,12 +111,12 @@ export const ImageViewerModal = () => {
           }}
         >
           <Swiper
-            modules={isMobile ? [Pagination] : [Navigation, Pagination]}
-            slidesPerView={1}
-            spaceBetween={0}
+            modules={swiperModules}
+            slidesPerView={SWIPER_SLIDES_PER_VIEW}
+            spaceBetween={SWIPER_SPACE_BETWEEN}
             initialSlide={initialSlide || 0}
-            speed={666}
-            navigation={!isMobile}
+            speed={SWIPER_SPEED}
+            navigation={enableNavigation}
             pagination={{
               clickable: true,
               dynamicBullets: true,
