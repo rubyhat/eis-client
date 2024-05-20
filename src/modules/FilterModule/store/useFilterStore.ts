@@ -24,7 +24,7 @@ export interface FilterState {
   notLastFloor: boolean;
   targetFloor: number | null;
   totalFloor: number | null;
-  type: ServiceType;
+  type: ServiceType | "";
   mortgage: MortgageType | "";
   exchange: ExchangeType | "";
   category: CategoryType | "";
@@ -51,7 +51,7 @@ export const initialFilterState: FilterState = {
   documents: "",
   mortgage: "",
   exchange: "",
-  type: "sell",
+  type: "",
   targetFloor: null,
   totalFloor: null,
   notFirstFloor: false,

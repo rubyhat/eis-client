@@ -177,6 +177,15 @@ export const FilterForm = () => {
                 sx={selectStyles}
                 inputProps={{ sx: selectInputProps }}
               >
+                <MenuItem disabled value="">
+                  <Typography
+                    variant="textCalloutRegular"
+                    color="customColors.labelsSecondary"
+                  >
+                    Например: Купить
+                  </Typography>
+                </MenuItem>
+                <MenuItem value="">Не указывать</MenuItem>
                 <MenuItem value="sell">Купить</MenuItem>
                 <MenuItem value="rent">Арендовать</MenuItem>
               </Select>
@@ -210,6 +219,7 @@ export const FilterForm = () => {
                     Например: Квартира
                   </Typography>
                 </MenuItem>
+                <MenuItem value="">Не указывать</MenuItem>
                 <MenuItem value="apartment">Квартира</MenuItem>
                 <MenuItem value="house">Дом</MenuItem>
                 <MenuItem value="townhouse">Таунхаус</MenuItem>
