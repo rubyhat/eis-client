@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 import { DisplayEstateObject } from "../../store/useCatalogStore";
 import { PriceBlock } from "../../../../components/PriceBlock/PriceBlock";
@@ -14,6 +14,7 @@ interface CatalogCardProps {
 }
 
 export const CatalogCard = ({ item }: CatalogCardProps) => {
+  const theme = useTheme();
   const { trackEvent } = useAnalytics();
   const livingCategory = [
     "apartment",
@@ -51,9 +52,31 @@ export const CatalogCard = ({ item }: CatalogCardProps) => {
         flexDirection: "column",
         flexGrow: 1,
         height: "100%",
+        position: "relative",
       }}
       onClick={handleCardClick}
     >
+      <Box
+        sx={{
+          paddingY: 0.5,
+          paddingX: 1.5,
+          background: theme.palette.customColors?.gradientPrimary,
+          borderRadius: 1.5,
+          maxWidth: "fit-content",
+          position: "absolute",
+          top: "2%",
+          left: "2%",
+          boxShadow:
+            "0px 0px 0px 0.5px rgba(0, 0, 0, 0.05), 0px 0.5px 2.5px 0px rgba(0, 0, 0, 0.30)",
+        }}
+      >
+        <Typography
+          variant="textFootnoteEmphasized"
+          color="customColors.colorsWhite"
+        >
+          {item.type === "sell" ? "Продажа" : "Аренда"}
+        </Typography>
+      </Box>
       <Box
         component="img"
         src={

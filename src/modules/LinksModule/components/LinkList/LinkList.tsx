@@ -10,7 +10,7 @@ export const LinkList = () => {
     <Box component="ul" paddingBottom={6}>
       <Box component="li" marginBottom={2} onClick={() => navigate("/catalog")}>
         <CustomButton size="large" fullWidth>
-          Каталог недвижимости
+          Посмотреть недвижимость
         </CustomButton>
       </Box>
       <Box component="li" marginBottom={2}>
@@ -19,7 +19,7 @@ export const LinkList = () => {
           href="https://api.whatsapp.com/send?phone=77752813783&amp;text=Здравствуйте, я хочу подать заявку на размещение моей недвижимости на сайте Roze.kz"
         >
           <CustomButton variant="outlined" size="large" fullWidth>
-            Продать недвижимость
+            Оставить заявку
           </CustomButton>
         </Box>
       </Box>
@@ -29,7 +29,7 @@ export const LinkList = () => {
           href="https://api.whatsapp.com/send?phone=77752813783&amp;text=Здравствуйте, мне нужна консультация специалиста по недвижимости"
         >
           <CustomButton size="large" fullWidth>
-            Консультация
+            Написать менеджеру
           </CustomButton>
         </Box>
       </Box>
