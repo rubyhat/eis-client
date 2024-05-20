@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 const Home = React.lazy(() => import("../pages/Home"));
 const Help = React.lazy(() => import("../pages/Help"));
 const About = React.lazy(() => import("../pages/About"));
+const Links = React.lazy(() => import("../pages/Links"));
 const Catalog = React.lazy(() => import("../pages/Catalog"));
 const Roadmap = React.lazy(() => import("../pages/Roadmap"));
 const Contacts = React.lazy(() => import("../pages/Contacts"));
@@ -27,6 +28,7 @@ export const RouteList = () => {
 
       <Route path="/help" element={<Help />} />
       <Route path="/about" element={<About />} />
+      <Route path="/links" element={<Links />} />
       <Route path="/roadmap" element={<Roadmap />} />
       <Route path="/contacts" element={<Contacts />} />
 
