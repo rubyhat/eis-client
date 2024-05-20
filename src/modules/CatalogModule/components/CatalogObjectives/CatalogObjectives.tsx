@@ -37,7 +37,7 @@ export const CatalogObjectives = () => {
         <Grid container spacing={2}>
           {isLoading &&
             Array.from(new Array(9)).map((_, index) => (
-              <Grid item xs={12} md={6} lg={4} key={index} className="fadeIn">
+              <Grid item xs={12} sm={6} lg={4} key={index} className="fadeIn">
                 <CatalogCardSkeleton />
               </Grid>
             ))}
