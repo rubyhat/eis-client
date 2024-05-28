@@ -9,6 +9,7 @@ const Catalog = React.lazy(() => import("../pages/Catalog"));
 const Roadmap = React.lazy(() => import("../pages/Roadmap"));
 const Contacts = React.lazy(() => import("../pages/Contacts"));
 const EstateDetails = React.lazy(() => import("../pages/EstateDetails"));
+const Sell = React.lazy(() => import("../pages/Orders/Sell"));
 
 const Policy = React.lazy(() => import("../pages/Documents/Policy"));
 const Agreement = React.lazy(() => import("../pages/Documents/Agreement"));
@@ -25,6 +26,8 @@ export const RouteList = () => {
       <Route path="/" element={<Home />} />
       <Route path="/catalog" element={<Catalog />} />
       <Route path="/catalog/:id" element={<EstateDetails />} />
+
+      <Route path="/orders/sell" element={<Sell />} />
 
       <Route path="/help" element={<Help />} />
       <Route path="/about" element={<About />} />
