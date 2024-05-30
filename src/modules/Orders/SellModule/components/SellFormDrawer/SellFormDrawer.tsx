@@ -32,8 +32,8 @@ const schema = yup.object().shape({
     .required("Введите Ваш номер телефона")
     .min(16, "Проверьте корректность введенного номера телефона")
     .max(16, "Проверьте корректность введенного номера телефона"),
-  type: yup.string().required(),
-  category: yup.string().required(),
+  type: yup.string().required("Пожалуйста, выберите тип услуги"),
+  category: yup.string().required("Пожалуйста, выберите тип недвижимости"),
 });
 
 export type FormValues = {
@@ -60,6 +60,7 @@ export const SellFormDrawer = () => {
   };
 
   const methods = useForm<FormValues>({
+    mode: "onChange",
     resolver: yupResolver(schema),
     defaultValues: initialFormState,
   });
@@ -86,7 +87,7 @@ export const SellFormDrawer = () => {
               </Grid>
               <Grid item xs={12} md={6}>
                 {step === 1 && <UserInfo isLoading={isLoading} />}
-                {step === 2 && <EstateCategory />}
+                {step === 2 && <EstateCategory isLoading={isLoading} />}
               </Grid>
             </Grid>
           </Container>
