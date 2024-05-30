@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Grid, SwipeableDrawer } from "@mui/material";
 import { useSellModuleStore } from "../../store/useSellModuleStore";
+import { DrawerHeader } from "../DrawerHeader";
 
 export const SellFormDrawer = () => {
   const { isDrawerOpen, setIsDrawerOpen } = useSellModuleStore();
@@ -32,6 +33,9 @@ export const SellFormDrawer = () => {
     >
       <Container>
         <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <DrawerHeader />
+          </Grid>
           <Grid item xs={12} md={6}></Grid>
         </Grid>
       </Container>
