@@ -44,7 +44,8 @@ export type FormValues = {
 };
 
 export const SellFormDrawer = () => {
-  const { isDrawerOpen, setIsDrawerOpen, step } = useSellModuleStore();
+  const { isDrawerOpen, setIsDrawerOpen, step, loadStateFromLocalStorage } =
+    useSellModuleStore();
   const [isLoading, setIsLoading] = React.useState(false);
 
   const handleCloseDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -65,9 +66,40 @@ export const SellFormDrawer = () => {
     defaultValues: initialFormState,
   });
 
+  const { watch, setValue } = methods;
+
+  // Сохранение введенных данных в LS
+  React.useEffect(() => {
+    const subscription = watch((value) => {
+      localStorage.setItem("sellFormData", JSON.stringify(value));
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
+  // Получение введенных данных из LS
+  React.useEffect(() => {
+    const savedData = localStorage.getItem("sellFormData");
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      console.log(parsedData);
+      (Object.keys(parsedData) as (keyof FormValues)[]).forEach((key) => {
+        setValue(key, parsedData[key]);
+      });
+    }
+    loadStateFromLocalStorage();
+  }, [setValue, loadStateFromLocalStorage]);
+
+  const clearLocalStorage = () => {
+    // Очистка данных после успешной отправки
+    localStorage.removeItem("formData");
+    localStorage.removeItem("serviceTypes");
+    localStorage.removeItem("estateTypes");
+  };
+
   const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
     setIsLoading(false);
+    clearLocalStorage();
   };
 
   return (

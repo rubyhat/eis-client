@@ -30,6 +30,7 @@ interface SellModuleStore {
   setActiveServiceType: (value: ServiceType) => void;
   estateTypes: EstateButtonChip[];
   setActiveEstateType: (value: CategoryType) => void;
+  loadStateFromLocalStorage: () => void;
 }
 
 const serviceTypes: ServiceButtonChip[] = [
@@ -55,18 +56,32 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
   setStep: (v) => set({ step: v }),
   serviceTypes: serviceTypes,
   setActiveServiceType: (value) =>
-    set((state) => ({
-      serviceTypes: state.serviceTypes.map((service) => ({
+    set((state) => {
+      const updatedServiceTypes = state.serviceTypes.map((service) => ({
         ...service,
         isActive: service.value === value,
-      })),
-    })),
+      }));
+      localStorage.setItem("serviceTypes", JSON.stringify(updatedServiceTypes));
+      return { serviceTypes: updatedServiceTypes };
+    }),
   estateTypes: estateTypes,
   setActiveEstateType: (value) =>
-    set((state) => ({
-      estateTypes: state.estateTypes.map((estate) => ({
+    set((state) => {
+      const updatedEstateTypes = state.estateTypes.map((estate) => ({
         ...estate,
         isActive: estate.value === value,
-      })),
-    })),
+      }));
+      localStorage.setItem("estateTypes", JSON.stringify(updatedEstateTypes));
+      return { estateTypes: updatedEstateTypes };
+    }),
+  loadStateFromLocalStorage: () => {
+    const savedServiceTypes = localStorage.getItem("serviceTypes");
+    const savedEstateTypes = localStorage.getItem("estateTypes");
+    if (savedServiceTypes) {
+      set({ serviceTypes: JSON.parse(savedServiceTypes) });
+    }
+    if (savedEstateTypes) {
+      set({ estateTypes: JSON.parse(savedEstateTypes) });
+    }
+  },
 }));
