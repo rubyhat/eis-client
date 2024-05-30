@@ -1,5 +1,12 @@
 import { create } from "zustand";
 
+export const initialFormState = {
+  ownerName: "",
+  ownerPhone: "",
+  type: "",
+  category: "",
+};
+
 interface SellModuleStore {
   isDrawerOpen: boolean;
   setIsDrawerOpen: (v: boolean) => void;

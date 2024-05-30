@@ -1,4 +1,5 @@
 import React from "react";
+import { useFormContext } from "react-hook-form";
 
 import { Box, IconButton, Typography, LinearProgress } from "@mui/material";
 import { IoIosArrowForward } from "react-icons/io";
@@ -6,6 +7,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useSellModuleStore } from "../../store/useSellModuleStore";
 
 export const DrawerHeader = () => {
+  const { formState } = useFormContext();
   const { step, setStep } = useSellModuleStore();
 
   const totalSteps = 12;
@@ -33,7 +35,7 @@ export const DrawerHeader = () => {
           Подача заявки
         </Typography>
         <IconButton
-          disabled={step === totalSteps}
+          disabled={step === totalSteps || !formState.isValid}
           color="primary"
           onClick={() => setStep(step + 1)}
         >
