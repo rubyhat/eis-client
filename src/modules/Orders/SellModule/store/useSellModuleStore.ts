@@ -26,6 +26,8 @@ export type FormValues = {
   houseBuildingYear: string;
   pledge: string;
   documents: string;
+  houseCondition: string;
+  houseWallMaterial: string;
   ownerComment?: string;
 };
 
@@ -75,6 +77,8 @@ interface SellModuleStore {
   roomCount: string;
   pledge: string;
   documents: string;
+  houseCondition: string;
+  houseWallMaterial: string;
   customRoomCount: string;
   setCustomRoomCount: (v: string) => void;
 }
@@ -135,6 +139,8 @@ export const initialFormState = {
   houseBuildingYear: "",
   pledge: "",
   documents: "",
+  houseCondition: "",
+  houseWallMaterial: "",
 };
 
 export const useSellModuleStore = create<SellModuleStore>((set) => ({
@@ -151,10 +157,12 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
   houseBuildingYear: "",
   pledge: "",
   documents: "",
+  houseCondition: "",
+  houseWallMaterial: "",
   setCustomRoomCount: (v) => set({ customRoomCount: v }),
   isDrawerOpen: true,
   setIsDrawerOpen: (v) => set({ isDrawerOpen: v }),
-  step: 2,
+  step: 6,
   setStep: (v) => set({ step: v }),
   serviceTypes: serviceTypes,
   setActiveServiceType: (value) =>

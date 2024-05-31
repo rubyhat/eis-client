@@ -1,8 +1,7 @@
 import React from "react";
-import toast from "react-hot-toast";
 import { Controller, useFormContext } from "react-hook-form";
 
-import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
+import { Box, MenuItem, Select, Typography } from "@mui/material";
 
 import { FormInputLabel } from "../../../FormInputLabel";
 import {
@@ -19,54 +18,27 @@ import {
 interface LivingSpaceFieldsProps {
   isLoading: boolean;
   livingSpaces: string[];
+  requiredKitchenSquareField: boolean;
+  showTargetFloor: boolean;
+  requiredTotalFloor: boolean;
 }
 
 export const LivingSpaceFields = ({
   isLoading,
   livingSpaces,
+  requiredKitchenSquareField,
+  showTargetFloor,
+  requiredTotalFloor,
 }: LivingSpaceFieldsProps) => {
-  const { step, setStep, roomTypes, setActiveRoomType } = useSellModuleStore();
-  const { formState, control, setValue, trigger, register, getValues } =
+  const { roomTypes, setActiveRoomType } = useSellModuleStore();
+  const { formState, control, setValue, register, getValues } =
     useFormContext();
 
   const showKitchenSquareField = livingSpaces.includes(getValues().category);
-  const requiredKitchenSquareField = [
-    "apartment",
-    "house",
-    "townhouse",
-  ].includes(getValues().category);
-  const showTargetFloor = getValues().category === "apartment";
-  const requiredTotalFloor = ["apartment", "house", "townhouse"].includes(
-    getValues().category,
-  );
 
   const handleRoomTypeClick = (room: RoomButtonChip) => {
     setValue("roomCount", room.value);
     setActiveRoomType(room.value);
-  };
-
-  const handleClickSubmitButton = async () => {
-    const triggerList = [
-      "roomCount",
-      "houseSquare",
-      "ceilingHeight",
-      "houseBuildingYear",
-      "documents",
-      "pledge",
-    ];
-
-    if (getValues().roomCount === "custom") triggerList.push("customRoomCount");
-    if (requiredKitchenSquareField) triggerList.push("kitchenSquare");
-    if (showTargetFloor) triggerList.push("targetFloor");
-    if (requiredTotalFloor) triggerList.push("totalFloor");
-
-    const isValid = await trigger(triggerList);
-    if (isValid) {
-      setStep(step + 1);
-    } else {
-      toast.error("Пожалуйста, заполните все поля, чтобы продолжить!");
-      console.log("Форма невалидна:", formState.errors);
-    }
   };
 
   return (
@@ -327,21 +299,6 @@ export const LivingSpaceFields = ({
             {formState.errors.documents.message as string}
           </Typography>
         )}
-      </Box>
-      <Box>
-        <Button
-          variant="contained"
-          fullWidth
-          size="large"
-          disabled={isLoading}
-          sx={{
-            textTransform: "none",
-            marginTop: "auto",
-          }}
-          onClick={handleClickSubmitButton}
-        >
-          Продолжить
-        </Button>
       </Box>
     </React.Fragment>
   );

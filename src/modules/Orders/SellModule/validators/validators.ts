@@ -32,6 +32,10 @@ export const schema = yup.object().shape({
     .required("Пожалуйста, укажите рассматриваете ли обмен"),
   pledge: yup.string().required("Пожалуйста, укажите состояние залога/ареста"),
   documents: yup.string().required("Пожалуйста, укажите состояние документов"),
+  houseCondition: yup
+    .string()
+    .required("Пожалуйста, укажите состояние объекта недвижимости"),
+  houseWallMaterial: yup.string().required("Пожалуйста, укажите материал стен"),
   roomCount: yup.string().required("Пожалуйста, укажите количество комнат"),
   customRoomCount: yup
     .string()
