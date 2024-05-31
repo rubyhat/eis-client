@@ -14,6 +14,8 @@ export const initialFormState = {
   street: "",
   houseNumber: "",
   apartmentNumber: "",
+  price: "",
+  exchange: "",
 };
 
 export interface ButtonChip {
@@ -44,6 +46,8 @@ interface SellModuleStore {
   cityTypes: CityButtonChip[];
   setActiveCityType: (value: CityType) => void;
   loadStateFromLocalStorage: () => void;
+  price: string;
+  exchange: string;
 }
 
 const serviceTypes: ServiceButtonChip[] = [
@@ -76,6 +80,8 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
   setIsDrawerOpen: (v) => set({ isDrawerOpen: v }),
   step: 2,
   setStep: (v) => set({ step: v }),
+  price: "",
+  exchange: "",
   serviceTypes: serviceTypes,
   setActiveServiceType: (value) =>
     set((state) => {
@@ -109,11 +115,15 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
   loadStateFromLocalStorage: () => {
     const savedServiceTypes = localStorage.getItem("serviceTypes");
     const savedEstateTypes = localStorage.getItem("estateTypes");
+    const savedCityTypes = localStorage.getItem("cityTypes");
     if (savedServiceTypes) {
       set({ serviceTypes: JSON.parse(savedServiceTypes) });
     }
     if (savedEstateTypes) {
       set({ estateTypes: JSON.parse(savedEstateTypes) });
+    }
+    if (savedCityTypes) {
+      set({ cityTypes: JSON.parse(savedCityTypes) });
     }
   },
 }));

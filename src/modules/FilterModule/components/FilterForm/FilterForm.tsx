@@ -1,11 +1,3 @@
-import {
-  Box,
-  FormControlLabel,
-  MenuItem,
-  Select,
-  Switch,
-  Typography,
-} from "@mui/material";
 import React from "react";
 import {
   Controller,
@@ -14,33 +6,28 @@ import {
   useForm,
 } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+
+import {
+  Box,
+  FormControlLabel,
+  MenuItem,
+  Select,
+  Switch,
+  Typography,
+} from "@mui/material";
+
 import { CustomButton } from "../../../../components/CustomButton";
 import { CustomInput } from "../../../../components/CustomInput";
 import { FilterState, initialFilterState, useFilterStore } from "../../store";
-import { useQueryClient } from "@tanstack/react-query";
 import { apiCatalogModule } from "../../../CatalogModule/api/apiCatalogModule";
 import { useCatalogStore } from "../../../CatalogModule/store";
-import { useNavigate } from "react-router-dom";
 import { useAnalytics } from "../../../../hooks/useAnalytics";
-
-const selectStyles = {
-  height: "36px",
-  width: "100%",
-  fontSize: "15px",
-  "&:hover": {
-    "& fieldset": {
-      borderColor: "hsla(213, 100%, 53%, 1) !important",
-    },
-  },
-  "& fieldset": {
-    borderColor: "customColors.labelsQuaternary",
-  },
-};
-
-const selectInputProps = {
-  padding: 1,
-  fontSize: 16,
-};
+import {
+  selectInputProps,
+  selectStyles,
+} from "../../../../shared/styles/select";
 
 // todo: в полях с числами сделать валидацию на использование только точек, без запятых
 export const FilterForm = () => {

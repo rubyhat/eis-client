@@ -18,6 +18,7 @@ import { UserInfo } from "../FormFileds/UserInfo";
 import { EstateCategory } from "../FormFileds/EstateCategory";
 import { Geoposition } from "../FormFileds/Geoposition";
 import { schema } from "../../validators";
+import { PriceField } from "../FormFileds/PriceField";
 
 const drawerPaperProps = {
   sx: {
@@ -35,6 +36,8 @@ export type FormValues = {
   street: string;
   houseNumber: string;
   apartmentNumber: string;
+  price: string;
+  exchange: string;
 };
 
 export const SellFormDrawer = () => {
@@ -115,6 +118,7 @@ export const SellFormDrawer = () => {
                 {step === 1 && <UserInfo isLoading={isLoading} />}
                 {step === 2 && <EstateCategory isLoading={isLoading} />}
                 {step === 3 && <Geoposition isLoading={isLoading} />}
+                {step === 4 && <PriceField isLoading={isLoading} />}
               </Grid>
             </Grid>
           </Container>
