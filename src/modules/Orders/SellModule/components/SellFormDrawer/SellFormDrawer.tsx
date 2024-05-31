@@ -8,7 +8,6 @@ import {
   useForm,
 } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 import {
   initialFormState,
@@ -17,6 +16,8 @@ import {
 import { DrawerHeader } from "../DrawerHeader";
 import { UserInfo } from "../FormFileds/UserInfo";
 import { EstateCategory } from "../FormFileds/EstateCategory";
+import { Geoposition } from "../FormFileds/Geoposition";
+import { schema } from "../../validators";
 
 const drawerPaperProps = {
   sx: {
@@ -24,17 +25,6 @@ const drawerPaperProps = {
     height: "100vh",
   },
 };
-
-const schema = yup.object().shape({
-  ownerName: yup.string().required("Введите Ваше Имя"),
-  ownerPhone: yup
-    .string()
-    .required("Введите Ваш номер телефона")
-    .min(16, "Проверьте корректность введенного номера телефона")
-    .max(16, "Проверьте корректность введенного номера телефона"),
-  type: yup.string().required("Пожалуйста, выберите тип услуги"),
-  category: yup.string().required("Пожалуйста, выберите тип недвижимости"),
-});
 
 export type FormValues = {
   ownerName: string;
@@ -120,6 +110,7 @@ export const SellFormDrawer = () => {
               <Grid item xs={12} md={6}>
                 {step === 1 && <UserInfo isLoading={isLoading} />}
                 {step === 2 && <EstateCategory isLoading={isLoading} />}
+                {step === 3 && <Geoposition isLoading={isLoading} />}
               </Grid>
             </Grid>
           </Container>

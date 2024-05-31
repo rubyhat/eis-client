@@ -47,6 +47,13 @@ export type PledgeType = "none" | "bank" | "police"; // Залог: нет, да
 export type DocumentsType = "good" | "needUpdate" | "needCheck" | "bad"; // Документы: В порядке, нужна корректировка, Есть проблемы
 export type MortgageType = "accepted" | "declined" | "possibly"; // Ипотека: Есть, нет, под вопросом
 export type ExchangeType = "yes" | "no"; // Обмен: Есть, Нет
+export type CityType =
+  | "Караганда"
+  | "Темиртау"
+  | "Пришахтинск"
+  | "Абай"
+  | "Сарань"
+  | "Другой";
 export interface ObjectImages {
   _id: string;
   imageUrl: string;

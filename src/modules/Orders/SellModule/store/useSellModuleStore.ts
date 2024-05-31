@@ -1,5 +1,9 @@
 import { create } from "zustand";
-import { CategoryType, ServiceType } from "../../../CatalogModule/store";
+import {
+  CategoryType,
+  CityType,
+  ServiceType,
+} from "../../../CatalogModule/store";
 
 export const initialFormState = {
   ownerName: "",
@@ -20,6 +24,9 @@ export interface ServiceButtonChip extends ButtonChip {
 export interface EstateButtonChip extends ButtonChip {
   value: CategoryType;
 }
+export interface CityButtonChip extends ButtonChip {
+  value: CityType;
+}
 
 interface SellModuleStore {
   isDrawerOpen: boolean;
@@ -30,6 +37,8 @@ interface SellModuleStore {
   setActiveServiceType: (value: ServiceType) => void;
   estateTypes: EstateButtonChip[];
   setActiveEstateType: (value: CategoryType) => void;
+  cityTypes: CityButtonChip[];
+  setActiveCityType: (value: CityType) => void;
   loadStateFromLocalStorage: () => void;
 }
 
@@ -47,6 +56,15 @@ const estateTypes: EstateButtonChip[] = [
   { value: "business", label: "Коммерческая недвижимость", isActive: false },
   { value: "factory", label: "Производственное предприятие", isActive: false },
   { value: "other", label: "Другое", isActive: false },
+];
+
+const cityTypes: CityButtonChip[] = [
+  { value: "Караганда", label: "Караганда", isActive: false },
+  { value: "Темиртау", label: "Темиртау", isActive: false },
+  { value: "Абай", label: "Абай", isActive: false },
+  { value: "Пришахтинск", label: "Пришахтинск", isActive: false },
+  { value: "Сарань", label: "Сарань", isActive: false },
+  { value: "Другой", label: "Другой", isActive: false },
 ];
 
 export const useSellModuleStore = create<SellModuleStore>((set) => ({
@@ -73,6 +91,16 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
       }));
       localStorage.setItem("estateTypes", JSON.stringify(updatedEstateTypes));
       return { estateTypes: updatedEstateTypes };
+    }),
+  cityTypes: cityTypes,
+  setActiveCityType: (value) =>
+    set((state) => {
+      const updatedCityTypes = state.cityTypes.map((city) => ({
+        ...city,
+        isActive: city.value === value,
+      }));
+      localStorage.setItem("cityTypes", JSON.stringify(updatedCityTypes));
+      return { cityTypes: updatedCityTypes };
     }),
   loadStateFromLocalStorage: () => {
     const savedServiceTypes = localStorage.getItem("serviceTypes");
