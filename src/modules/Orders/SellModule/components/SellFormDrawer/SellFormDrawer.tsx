@@ -21,6 +21,7 @@ import { Geoposition } from "../FormFileds/Geoposition";
 import { schema } from "../../validators";
 import { PriceField } from "../FormFileds/PriceField";
 import { CommentField } from "../FormFileds/CommentField";
+import { CategoryFields } from "../FormFileds/CategoryFields";
 
 const drawerPaperProps = {
   sx: {
@@ -80,6 +81,7 @@ export const SellFormDrawer = () => {
     localStorage.removeItem("serviceTypes");
     localStorage.removeItem("estateTypes");
     localStorage.removeItem("cityTypes");
+    localStorage.removeItem("roomTypes");
   };
 
   const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -109,6 +111,7 @@ export const SellFormDrawer = () => {
                 {step === 3 && <Geoposition isLoading={isLoading} />}
                 {step === 4 && <PriceField isLoading={isLoading} />}
                 {step === 5 && <CommentField isLoading={isLoading} />}
+                {step === 6 && <CategoryFields isLoading={isLoading} />}
               </Grid>
             </Grid>
           </Container>

@@ -15,7 +15,10 @@ interface GeopositionProps {
 }
 export const Geoposition = ({ isLoading }: GeopositionProps) => {
   const { step, setStep, cityTypes, setActiveCityType } = useSellModuleStore();
-  const { formState, setValue, trigger, register } = useFormContext();
+  const { formState, setValue, trigger, register, getValues } =
+    useFormContext();
+
+  const showApartmentNumberField = getValues().category === "apartment";
 
   const handleCityTypeClick = (service: CityButtonChip) => {
     setValue("city", service.value);
@@ -88,9 +91,9 @@ export const Geoposition = ({ isLoading }: GeopositionProps) => {
           formatPrice={false}
           placeholder="Например: ул. Гоголя"
         />
-        {formState.errors.ownerName && (
+        {formState.errors.street && (
           <Typography variant="textFootnoteRegular" color="error">
-            {formState.errors.ownerName.message as string}
+            {formState.errors.street.message as string}
           </Typography>
         )}
       </Box>
@@ -107,30 +110,32 @@ export const Geoposition = ({ isLoading }: GeopositionProps) => {
             placeholder="Например: 42"
             type="number"
           />
-          {formState.errors.ownerName && (
+          {formState.errors.houseNumber && (
             <Typography variant="textFootnoteRegular" color="error">
-              {formState.errors.ownerName.message as string}
+              {formState.errors.houseNumber.message as string}
             </Typography>
           )}
         </Box>
-        <Box>
-          <FormInputLabel label="Номер квартиры" required />
-          <CustomInput
-            required
-            id="apartmentNumber"
-            register={register}
-            errors={formState.errors}
-            disabled={isLoading}
-            formatPrice={false}
-            placeholder="Например: 24"
-            type="number"
-          />
-          {formState.errors.ownerName && (
-            <Typography variant="textFootnoteRegular" color="error">
-              {formState.errors.ownerName.message as string}
-            </Typography>
-          )}
-        </Box>
+        {showApartmentNumberField && (
+          <Box>
+            <FormInputLabel label="Номер квартиры" required />
+            <CustomInput
+              required
+              id="apartmentNumber"
+              register={register}
+              errors={formState.errors}
+              disabled={isLoading}
+              formatPrice={false}
+              placeholder="Например: 24"
+              type="number"
+            />
+            {formState.errors.apartmentNumber && (
+              <Typography variant="textFootnoteRegular" color="error">
+                {formState.errors.apartmentNumber.message as string}
+              </Typography>
+            )}
+          </Box>
+        )}
       </Box>
       <Box>
         <Button

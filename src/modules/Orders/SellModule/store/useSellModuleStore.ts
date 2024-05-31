@@ -16,6 +16,8 @@ export type FormValues = {
   apartmentNumber: string;
   price: string;
   exchange: string;
+  roomCount: string;
+  customRoomCount: string;
   ownerComment?: string;
 };
 
@@ -35,6 +37,10 @@ export interface CityButtonChip extends ButtonChip {
   value: CityType;
 }
 
+export interface RoomButtonChip extends ButtonChip {
+  value: string;
+}
+
 interface SellModuleStore {
   isDrawerOpen: boolean;
   setIsDrawerOpen: (v: boolean) => void;
@@ -46,10 +52,15 @@ interface SellModuleStore {
   setActiveEstateType: (value: CategoryType) => void;
   cityTypes: CityButtonChip[];
   setActiveCityType: (value: CityType) => void;
+  roomTypes: RoomButtonChip[];
+  setActiveRoomType: (value: string) => void;
   loadStateFromLocalStorage: () => void;
   price: string;
   exchange: string;
-  ownerComment?: string;
+  ownerComment: string;
+  roomCount: string;
+  customRoomCount: string;
+  setCustomRoomCount: (v: string) => void;
 }
 
 const serviceTypes: ServiceButtonChip[] = [
@@ -77,6 +88,15 @@ const cityTypes: CityButtonChip[] = [
   { value: "Другой", label: "Другой", isActive: false },
 ];
 
+const roomTypes: RoomButtonChip[] = [
+  { value: "1", label: "1", isActive: false },
+  { value: "2", label: "2", isActive: false },
+  { value: "3", label: "3", isActive: false },
+  { value: "4", label: "4", isActive: false },
+  { value: "5", label: "5", isActive: false },
+  { value: "custom", label: "Другое", isActive: false },
+];
+
 export const initialFormState = {
   ownerName: "",
   ownerPhone: "",
@@ -89,12 +109,17 @@ export const initialFormState = {
   apartmentNumber: "",
   price: "",
   exchange: "",
+  roomCount: "",
+  customRoomCount: "",
 };
 
 export const useSellModuleStore = create<SellModuleStore>((set) => ({
   price: "",
   exchange: "",
   ownerComment: "",
+  roomCount: "",
+  customRoomCount: "",
+  setCustomRoomCount: (v) => set({ customRoomCount: v }),
   isDrawerOpen: true,
   setIsDrawerOpen: (v) => set({ isDrawerOpen: v }),
   step: 2,
@@ -129,10 +154,21 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
       localStorage.setItem("cityTypes", JSON.stringify(updatedCityTypes));
       return { cityTypes: updatedCityTypes };
     }),
+  roomTypes: roomTypes,
+  setActiveRoomType: (value) =>
+    set((state) => {
+      const updatedRoomTypes = state.roomTypes.map((room) => ({
+        ...room,
+        isActive: room.value === value,
+      }));
+      localStorage.setItem("roomTypes", JSON.stringify(updatedRoomTypes));
+      return { roomTypes: updatedRoomTypes };
+    }),
   loadStateFromLocalStorage: () => {
     const savedServiceTypes = localStorage.getItem("serviceTypes");
     const savedEstateTypes = localStorage.getItem("estateTypes");
     const savedCityTypes = localStorage.getItem("cityTypes");
+    const savedRoomTypes = localStorage.getItem("roomTypes");
     if (savedServiceTypes) {
       set({ serviceTypes: JSON.parse(savedServiceTypes) });
     }
@@ -141,6 +177,9 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
     }
     if (savedCityTypes) {
       set({ cityTypes: JSON.parse(savedCityTypes) });
+    }
+    if (savedRoomTypes) {
+      set({ roomTypes: JSON.parse(savedRoomTypes) });
     }
   },
 }));

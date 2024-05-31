@@ -42,12 +42,8 @@ export const CommentField = ({ isLoading }: CommentFieldProps) => {
           disabled={isLoading}
           formatPrice={false}
           placeholder="Например: ул. Гоголя"
+          maxLength={300}
         />
-        {formState.errors.ownerName && (
-          <Typography variant="textFootnoteRegular" color="error">
-            {formState.errors.ownerName.message as string}
-          </Typography>
-        )}
       </Box>
       <Box>
         <Button

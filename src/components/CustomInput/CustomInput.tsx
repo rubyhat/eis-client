@@ -17,6 +17,8 @@ interface CustomInputProps {
   sx?: SxProps;
   min?: string;
   onInput?: React.ChangeEventHandler<HTMLInputElement>;
+  maxLength?: number;
+  minLength?: number;
 }
 
 export const CustomInput = (props: CustomInputProps) => {
@@ -33,6 +35,8 @@ export const CustomInput = (props: CustomInputProps) => {
     sx,
     min,
     onInput,
+    maxLength,
+    minLength,
   } = props;
   const theme = useTheme();
 
@@ -75,6 +79,8 @@ export const CustomInput = (props: CustomInputProps) => {
           },
         }}
         onInput={onInput}
+        maxLength={maxLength}
+        minLength={minLength}
       />
     </Box>
   );

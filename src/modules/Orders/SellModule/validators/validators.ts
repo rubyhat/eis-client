@@ -18,4 +18,8 @@ export const schema = yup.object().shape({
   exchange: yup
     .string()
     .required("Пожалуйста, укажите рассматриваете ли обмен"),
+  roomCount: yup.string().required("Пожалуйста, укажите количество комнат"),
+  customRoomCount: yup
+    .string()
+    .required("Пожалуйста, укажите количество комнат"),
 });
