@@ -33,6 +33,7 @@ export type FormValues = {
   ethernet: string;
   garage: string;
   toiletCount: string;
+  plotSquare: string;
   apartmentComplexTitle?: string;
   parkingSeat?: string;
   ownerComment?: string;
@@ -93,6 +94,7 @@ interface SellModuleStore {
   toiletCount: string;
   parkingSeat: string;
   apartmentComplexTitle: string;
+  plotSquare: string;
   customRoomCount: string;
   setCustomRoomCount: (v: string) => void;
 }
@@ -162,6 +164,7 @@ export const initialFormState = {
   toiletCount: "",
   parkingSeat: "",
   apartmentComplexTitle: "",
+  plotSquare: "",
 };
 
 export const useSellModuleStore = create<SellModuleStore>((set) => ({
@@ -187,6 +190,7 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
   toiletCount: "",
   parkingSeat: "",
   apartmentComplexTitle: "",
+  plotSquare: "",
   setCustomRoomCount: (v) => set({ customRoomCount: v }),
   isDrawerOpen: true,
   setIsDrawerOpen: (v) => set({ isDrawerOpen: v }),

@@ -48,6 +48,7 @@ export const schema = yup.object().shape({
     .string()
     .required("Пожалуйста, укажите количество сан.узлов"),
   roomCount: yup.string().required("Пожалуйста, укажите количество комнат"),
+  plotSquare: yup.string().required("Пожалуйста, укажите количество соток"),
   customRoomCount: yup
     .string()
     .required("Пожалуйста, укажите количество комнат"),

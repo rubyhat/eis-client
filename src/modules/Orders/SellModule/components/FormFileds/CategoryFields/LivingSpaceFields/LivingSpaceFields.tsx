@@ -133,7 +133,7 @@ export const LivingSpaceFields = ({
               required={requiredKitchenSquareField}
             />
             <CustomInput
-              required
+              required={requiredKitchenSquareField}
               id="kitchenSquare"
               register={register}
               errors={formState.errors}
@@ -162,39 +162,41 @@ export const LivingSpaceFields = ({
         }}
       >
         {showTargetFloor && (
-          <Box>
-            <FormInputLabel label="Этаж" required />
-            <CustomInput
-              required
-              id="targetFloor"
-              register={register}
-              errors={formState.errors}
-              disabled={isLoading}
-              formatPrice={false}
-              placeholder="Например: 2"
-              type="number"
-              min="0"
-              max="100"
-            />
-            {formState.errors.targetFloor && (
-              <Typography variant="textFootnoteRegular" color="error">
-                {formState.errors.targetFloor.message as string}
-              </Typography>
-            )}
-          </Box>
+          <React.Fragment>
+            <Box>
+              <FormInputLabel label="Этаж" required />
+              <CustomInput
+                required
+                id="targetFloor"
+                register={register}
+                errors={formState.errors}
+                disabled={isLoading}
+                formatPrice={false}
+                placeholder="Например: 2"
+                type="number"
+                min="0"
+                max="100"
+              />
+              {formState.errors.targetFloor && (
+                <Typography variant="textFootnoteRegular" color="error">
+                  {formState.errors.targetFloor.message as string}
+                </Typography>
+              )}
+            </Box>
+            <Box
+              textAlign="center"
+              marginTop={2.75}
+              color="customColors.labelsSecondary"
+            >
+              {" "}
+              /{" "}
+            </Box>
+          </React.Fragment>
         )}
-        <Box
-          textAlign="center"
-          marginTop={2.75}
-          color="customColors.labelsSecondary"
-        >
-          {" "}
-          /{" "}
-        </Box>
         <Box>
           <FormInputLabel label="Этажей в доме" required={requiredTotalFloor} />
           <CustomInput
-            required
+            required={requiredTotalFloor}
             id="totalFloor"
             register={register}
             errors={formState.errors}
@@ -312,7 +314,7 @@ export const LivingSpaceFields = ({
         </Box>
       </Box>
       {showApartmentComplexTitle && (
-        <Box mb={1.5} width={1}>
+        <Box mb={1.5}>
           <FormInputLabel label="Название ЖК" />
           <CustomInput
             id="apartmentComplexTitle"
