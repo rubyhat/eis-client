@@ -37,7 +37,7 @@ export const Copyright = () => {
         variant="textCalloutRegular"
         color="customColors.labelsSecondary"
       >
-        © 2019–2024 Все права защищены
+        © 2019–{new Date().getFullYear()} Все права защищены
       </Typography>
     </>
   );

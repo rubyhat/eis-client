@@ -42,7 +42,12 @@ export const LivingSpaceFields = ({
   };
 
   const handleClickSubmitButton = async () => {
-    const triggerList = ["roomCount", "houseSquare"];
+    const triggerList = [
+      "roomCount",
+      "houseSquare",
+      "ceilingHeight",
+      "houseBuildingYear",
+    ];
 
     if (getValues().roomCount === "custom") triggerList.push("customRoomCount");
     if (requiredKitchenSquareField) triggerList.push("kitchenSquare");
@@ -210,6 +215,54 @@ export const LivingSpaceFields = ({
           {formState.errors.totalFloor && (
             <Typography variant="textFootnoteRegular" color="error">
               {formState.errors.totalFloor.message as string}
+            </Typography>
+          )}
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 2,
+          marginBottom: 1.5,
+        }}
+      >
+        <Box>
+          <FormInputLabel label="Высота потолков" required />
+          <CustomInput
+            required
+            id="ceilingHeight"
+            register={register}
+            errors={formState.errors}
+            disabled={isLoading}
+            formatPrice={false}
+            placeholder="Например: 2.5"
+            type="number"
+          />
+          {formState.errors.ceilingHeight && (
+            <Typography variant="textFootnoteRegular" color="error">
+              {formState.errors.ceilingHeight.message as string}
+            </Typography>
+          )}
+        </Box>
+
+        <Box>
+          <FormInputLabel label="Год постройки" required />
+          <CustomInput
+            required
+            id="houseBuildingYear"
+            register={register}
+            errors={formState.errors}
+            disabled={isLoading}
+            formatPrice={false}
+            placeholder="Например: 2020"
+            type="number"
+            min="1900"
+            max={new Date().getFullYear().toString()}
+          />
+          {formState.errors.houseBuildingYear && (
+            <Typography variant="textFootnoteRegular" color="error">
+              {formState.errors.houseBuildingYear.message as string}
             </Typography>
           )}
         </Box>

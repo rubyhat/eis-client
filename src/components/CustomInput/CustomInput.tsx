@@ -16,6 +16,7 @@ interface CustomInputProps {
   placeholder?: string;
   sx?: SxProps;
   min?: string;
+  max?: string;
   onInput?: React.ChangeEventHandler<HTMLInputElement>;
   maxLength?: number;
   minLength?: number;
@@ -34,6 +35,7 @@ export const CustomInput = (props: CustomInputProps) => {
     placeholder,
     sx,
     min,
+    max,
     onInput,
     maxLength,
     minLength,
@@ -58,6 +60,7 @@ export const CustomInput = (props: CustomInputProps) => {
         component="input"
         id={id}
         min={min}
+        max={max}
         type={type}
         disabled={disabled}
         required={required}

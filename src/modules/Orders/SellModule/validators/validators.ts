@@ -20,6 +20,12 @@ export const schema = yup.object().shape({
     .required("Пожалуйста, укажите площадь. Если кухни нет, то укажите 0"),
   targetFloor: yup.string().required("Пожалуйста, укажите этаж"),
   totalFloor: yup.string().required("Пожалуйста, укажите количество этажей"),
+  ceilingHeight: yup.string().required("Пожалуйста, укажите высоту потолков"),
+  houseBuildingYear: yup
+    .string()
+    .required("Пожалуйста, укажите год постройки дома")
+    .min(4, "Введите полный год из 4 цифр")
+    .max(4, "Введите полный год из 4 цифр"),
   ownerComment: yup.string(),
   exchange: yup
     .string()

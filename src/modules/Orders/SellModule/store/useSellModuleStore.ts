@@ -22,6 +22,8 @@ export type FormValues = {
   kitchenSquare: string;
   targetFloor: string;
   totalFloor: string;
+  ceilingHeight: string;
+  houseBuildingYear: string;
   ownerComment?: string;
 };
 
@@ -66,6 +68,8 @@ interface SellModuleStore {
   kitchenSquare: string;
   targetFloor: string;
   totalFloor: string;
+  ceilingHeight: string;
+  houseBuildingYear: string;
   roomCount: string;
   customRoomCount: string;
   setCustomRoomCount: (v: string) => void;
@@ -123,6 +127,8 @@ export const initialFormState = {
   kitchenSquare: "",
   targetFloor: "",
   totalFloor: "",
+  ceilingHeight: "",
+  houseBuildingYear: "",
 };
 
 export const useSellModuleStore = create<SellModuleStore>((set) => ({
@@ -135,6 +141,8 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
   customRoomCount: "",
   targetFloor: "",
   totalFloor: "",
+  ceilingHeight: "",
+  houseBuildingYear: "",
   setCustomRoomCount: (v) => set({ customRoomCount: v }),
   isDrawerOpen: true,
   setIsDrawerOpen: (v) => set({ isDrawerOpen: v }),
