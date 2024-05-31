@@ -19,7 +19,7 @@ export const FormInputLabel = ({ label, required }: FormInputLabelProps) => {
         {required && (
           <Typography
             component="span"
-            color="customColors.colorsRed"
+            color="customColors.colorsOrange"
             variant="textCalloutRegular"
             marginLeft={0.5}
           >

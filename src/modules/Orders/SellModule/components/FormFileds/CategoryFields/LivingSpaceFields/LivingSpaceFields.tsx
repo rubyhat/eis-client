@@ -24,12 +24,17 @@ export const LivingSpaceFields = ({
   const { step, setStep, roomTypes, setActiveRoomType } = useSellModuleStore();
   const { formState, setValue, trigger, register, getValues } =
     useFormContext();
+
   const showKitchenSquareField = livingSpaces.includes(getValues().category);
   const requiredKitchenSquareField = [
     "apartment",
     "house",
     "townhouse",
   ].includes(getValues().category);
+  const showTargetFloor = getValues().category === "apartment";
+  const requiredTotalFloor = ["apartment", "house", "townhouse"].includes(
+    getValues().category,
+  );
 
   const handleRoomTypeClick = (room: RoomButtonChip) => {
     setValue("roomCount", room.value);
@@ -41,10 +46,9 @@ export const LivingSpaceFields = ({
 
     if (getValues().roomCount === "custom") triggerList.push("customRoomCount");
     if (requiredKitchenSquareField) triggerList.push("kitchenSquare");
-    // const triggerList =
-    //   getValues().roomCount === "custom"
-    //     ? ["roomCount", "customRoomCount"]
-    //     : ["roomCount"];
+    if (showTargetFloor) triggerList.push("targetFloor");
+    if (requiredTotalFloor) triggerList.push("totalFloor");
+
     const isValid = await trigger(triggerList);
     if (isValid) {
       setStep(step + 1);
@@ -161,6 +165,54 @@ export const LivingSpaceFields = ({
             )}
           </Box>
         )}
+      </Box>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 2,
+          marginBottom: 1.5,
+        }}
+      >
+        {showTargetFloor && (
+          <Box>
+            <FormInputLabel label="Этаж" required />
+            <CustomInput
+              required
+              id="targetFloor"
+              register={register}
+              errors={formState.errors}
+              disabled={isLoading}
+              formatPrice={false}
+              placeholder="Например: 2"
+              type="number"
+            />
+            {formState.errors.targetFloor && (
+              <Typography variant="textFootnoteRegular" color="error">
+                {formState.errors.targetFloor.message as string}
+              </Typography>
+            )}
+          </Box>
+        )}
+
+        <Box>
+          <FormInputLabel label="Этажей в доме" required={requiredTotalFloor} />
+          <CustomInput
+            required
+            id="totalFloor"
+            register={register}
+            errors={formState.errors}
+            disabled={isLoading}
+            formatPrice={false}
+            placeholder="Например: 9"
+            type="number"
+          />
+          {formState.errors.totalFloor && (
+            <Typography variant="textFootnoteRegular" color="error">
+              {formState.errors.totalFloor.message as string}
+            </Typography>
+          )}
+        </Box>
       </Box>
       <Box>
         <Button

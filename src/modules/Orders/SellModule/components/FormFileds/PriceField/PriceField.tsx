@@ -46,9 +46,9 @@ export const PriceField = ({ isLoading }: PriceFieldProps) => {
           placeholder="Введите сумму"
           type="number"
         />
-        {formState.errors.ownerName && (
+        {formState.errors.price && (
           <Typography variant="textFootnoteRegular" color="error">
-            {formState.errors.ownerName.message as string}
+            {formState.errors.price.message as string}
           </Typography>
         )}
       </Box>
@@ -72,6 +72,11 @@ export const PriceField = ({ isLoading }: PriceFieldProps) => {
             </Select>
           )}
         />
+        {formState.errors.exchange && (
+          <Typography variant="textFootnoteRegular" color="error">
+            {formState.errors.exchange.message as string}
+          </Typography>
+        )}
       </Box>
       <Box>
         <Button

@@ -18,6 +18,8 @@ export const schema = yup.object().shape({
   kitchenSquare: yup
     .string()
     .required("Пожалуйста, укажите площадь. Если кухни нет, то укажите 0"),
+  targetFloor: yup.string().required("Пожалуйста, укажите этаж"),
+  totalFloor: yup.string().required("Пожалуйста, укажите количество этажей"),
   ownerComment: yup.string(),
   exchange: yup
     .string()
