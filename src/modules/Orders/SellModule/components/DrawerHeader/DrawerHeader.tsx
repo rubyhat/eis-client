@@ -1,14 +1,13 @@
 import React from "react";
-import { useFormContext } from "react-hook-form";
 
 import { Box, IconButton, Typography, LinearProgress } from "@mui/material";
 import { IoIosArrowForward } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
 
 import { useSellModuleStore } from "../../store/useSellModuleStore";
 
 export const DrawerHeader = () => {
-  const { formState } = useFormContext();
-  const { step, setStep } = useSellModuleStore();
+  const { step, setStep, setIsDrawerOpen } = useSellModuleStore();
 
   const totalSteps = 12;
   const progressValue = (step / totalSteps) * 100;
@@ -34,12 +33,8 @@ export const DrawerHeader = () => {
         <Typography component="h6" variant="titleThirdRegular">
           Подача заявки
         </Typography>
-        <IconButton
-          disabled={step === totalSteps || !formState.isValid}
-          color="primary"
-          onClick={() => setStep(step + 1)}
-        >
-          <IoIosArrowForward />
+        <IconButton color="primary" onClick={() => setIsDrawerOpen(false)}>
+          <IoClose />
         </IconButton>
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
