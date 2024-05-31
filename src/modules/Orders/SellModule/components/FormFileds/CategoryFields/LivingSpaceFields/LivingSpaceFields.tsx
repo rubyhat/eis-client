@@ -14,12 +14,22 @@ import { CustomInput } from "../../../../../../../components/CustomInput";
 
 interface LivingSpaceFieldsProps {
   isLoading: boolean;
+  livingSpaces: string[];
 }
 
-export const LivingSpaceFields = ({ isLoading }: LivingSpaceFieldsProps) => {
+export const LivingSpaceFields = ({
+  isLoading,
+  livingSpaces,
+}: LivingSpaceFieldsProps) => {
   const { step, setStep, roomTypes, setActiveRoomType } = useSellModuleStore();
   const { formState, setValue, trigger, register, getValues } =
     useFormContext();
+  const showKitchenSquareField = livingSpaces.includes(getValues().category);
+  const requiredKitchenSquareField = [
+    "apartment",
+    "house",
+    "townhouse",
+  ].includes(getValues().category);
 
   const handleRoomTypeClick = (room: RoomButtonChip) => {
     setValue("roomCount", room.value);
@@ -27,10 +37,14 @@ export const LivingSpaceFields = ({ isLoading }: LivingSpaceFieldsProps) => {
   };
 
   const handleClickSubmitButton = async () => {
-    const triggerList =
-      getValues().roomCount === "custom"
-        ? ["roomCount", "customRoomCount"]
-        : ["roomCount"];
+    const triggerList = ["roomCount", "houseSquare"];
+
+    if (getValues().roomCount === "custom") triggerList.push("customRoomCount");
+    if (requiredKitchenSquareField) triggerList.push("kitchenSquare");
+    // const triggerList =
+    //   getValues().roomCount === "custom"
+    //     ? ["roomCount", "customRoomCount"]
+    //     : ["roomCount"];
     const isValid = await trigger(triggerList);
     if (isValid) {
       setStep(step + 1);
@@ -39,8 +53,6 @@ export const LivingSpaceFields = ({ isLoading }: LivingSpaceFieldsProps) => {
       console.log("Форма невалидна:", formState.errors);
     }
   };
-
-  console.log(roomTypes);
 
   return (
     <React.Fragment>
@@ -99,6 +111,57 @@ export const LivingSpaceFields = ({ isLoading }: LivingSpaceFieldsProps) => {
           )}
         </Box>
       )}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 2,
+          marginBottom: 1.5,
+        }}
+      >
+        <Box>
+          <FormInputLabel label="Общая площадь, м²" required />
+          <CustomInput
+            required
+            id="houseSquare"
+            register={register}
+            errors={formState.errors}
+            disabled={isLoading}
+            formatPrice={false}
+            placeholder="Например: 42.5"
+            type="number"
+          />
+          {formState.errors.houseSquare && (
+            <Typography variant="textFootnoteRegular" color="error">
+              {formState.errors.houseSquare.message as string}
+            </Typography>
+          )}
+        </Box>
+
+        {showKitchenSquareField && (
+          <Box>
+            <FormInputLabel
+              label="Площадь кухни, м²"
+              required={requiredKitchenSquareField}
+            />
+            <CustomInput
+              required
+              id="kitchenSquare"
+              register={register}
+              errors={formState.errors}
+              disabled={isLoading}
+              formatPrice={false}
+              placeholder="Например: 9.5"
+              type="number"
+            />
+            {formState.errors.kitchenSquare && (
+              <Typography variant="textFootnoteRegular" color="error">
+                {formState.errors.kitchenSquare.message as string}
+              </Typography>
+            )}
+          </Box>
+        )}
+      </Box>
       <Box>
         <Button
           variant="contained"

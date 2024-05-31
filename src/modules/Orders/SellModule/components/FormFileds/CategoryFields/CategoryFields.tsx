@@ -18,7 +18,7 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
         Описание
       </Typography>
       {livingSpaces.includes(getValues().category) && (
-        <LivingSpaceFields isLoading={isLoading} />
+        <LivingSpaceFields isLoading={isLoading} livingSpaces={livingSpaces} />
       )}
     </Box>
   );

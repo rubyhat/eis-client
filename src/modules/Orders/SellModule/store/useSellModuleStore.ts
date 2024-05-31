@@ -18,6 +18,8 @@ export type FormValues = {
   exchange: string;
   roomCount: string;
   customRoomCount: string;
+  houseSquare: string;
+  kitchenSquare: string;
   ownerComment?: string;
 };
 
@@ -58,6 +60,8 @@ interface SellModuleStore {
   price: string;
   exchange: string;
   ownerComment: string;
+  houseSquare: string;
+  kitchenSquare: string;
   roomCount: string;
   customRoomCount: string;
   setCustomRoomCount: (v: string) => void;
@@ -111,12 +115,16 @@ export const initialFormState = {
   exchange: "",
   roomCount: "",
   customRoomCount: "",
+  houseSquare: "",
+  kitchenSquare: "",
 };
 
 export const useSellModuleStore = create<SellModuleStore>((set) => ({
   price: "",
   exchange: "",
   ownerComment: "",
+  houseSquare: "",
+  kitchenSquare: "",
   roomCount: "",
   customRoomCount: "",
   setCustomRoomCount: (v) => set({ customRoomCount: v }),
