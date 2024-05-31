@@ -36,6 +36,17 @@ export const schema = yup.object().shape({
     .string()
     .required("Пожалуйста, укажите состояние объекта недвижимости"),
   houseWallMaterial: yup.string().required("Пожалуйста, укажите материал стен"),
+  houseRoofMaterial: yup
+    .string()
+    .required("Пожалуйста, укажите материал крыши"),
+  furniture: yup
+    .string()
+    .required("Пожалуйста, укажите имеется/остаётся ли мебель"),
+  ethernet: yup.string().required("Пожалуйста, укажите подключен ли интернет"),
+  garage: yup.string().required("Пожалуйста, укажите подключен ли интернет"),
+  toiletCount: yup
+    .string()
+    .required("Пожалуйста, укажите количество сан.узлов"),
   roomCount: yup.string().required("Пожалуйста, укажите количество комнат"),
   customRoomCount: yup
     .string()

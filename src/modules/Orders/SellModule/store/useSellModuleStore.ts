@@ -28,6 +28,13 @@ export type FormValues = {
   documents: string;
   houseCondition: string;
   houseWallMaterial: string;
+  houseRoofMaterial: string;
+  furniture: string;
+  ethernet: string;
+  garage: string;
+  toiletCount: string;
+  apartmentComplexTitle?: string;
+  parkingSeat?: string;
   ownerComment?: string;
 };
 
@@ -79,6 +86,13 @@ interface SellModuleStore {
   documents: string;
   houseCondition: string;
   houseWallMaterial: string;
+  houseRoofMaterial: string;
+  furniture: string;
+  ethernet: string;
+  garage: string;
+  toiletCount: string;
+  parkingSeat: string;
+  apartmentComplexTitle: string;
   customRoomCount: string;
   setCustomRoomCount: (v: string) => void;
 }
@@ -141,6 +155,13 @@ export const initialFormState = {
   documents: "",
   houseCondition: "",
   houseWallMaterial: "",
+  houseRoofMaterial: "",
+  furniture: "",
+  ethernet: "",
+  garage: "",
+  toiletCount: "",
+  parkingSeat: "",
+  apartmentComplexTitle: "",
 };
 
 export const useSellModuleStore = create<SellModuleStore>((set) => ({
@@ -159,6 +180,13 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
   documents: "",
   houseCondition: "",
   houseWallMaterial: "",
+  houseRoofMaterial: "",
+  furniture: "",
+  ethernet: "",
+  garage: "",
+  toiletCount: "",
+  parkingSeat: "",
+  apartmentComplexTitle: "",
   setCustomRoomCount: (v) => set({ customRoomCount: v }),
   isDrawerOpen: true,
   setIsDrawerOpen: (v) => set({ isDrawerOpen: v }),

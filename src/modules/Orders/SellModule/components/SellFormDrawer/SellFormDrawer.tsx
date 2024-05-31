@@ -99,7 +99,11 @@ export const SellFormDrawer = () => {
       PaperProps={drawerPaperProps}
     >
       <FormProvider {...methods}>
-        <Box component="form" onSubmit={methods.handleSubmit(handleFormSubmit)}>
+        <Box
+          component="form"
+          onSubmit={methods.handleSubmit(handleFormSubmit)}
+          paddingBottom={2}
+        >
           <Container>
             <Grid container spacing={2}>
               <Grid item xs={12}>

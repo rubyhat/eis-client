@@ -3,7 +3,7 @@ import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { LivingSpaceFields } from "./LivingSpaceFields";
-import { InfoSelects } from "./InfoSelects";
+import { InfoSelects } from "./HomeFields";
 import toast from "react-hot-toast";
 import { useSellModuleStore } from "../../../store/useSellModuleStore";
 
@@ -17,15 +17,17 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
   const { step, setStep } = useSellModuleStore();
   const { formState, getValues, trigger } = useFormContext();
 
+  const isApartment = getValues().category === "apartment";
   const requiredKitchenSquareField = [
     "apartment",
     "house",
     "townhouse",
   ].includes(getValues().category);
-  const showTargetFloor = getValues().category === "apartment";
+  const showTargetFloor = isApartment;
   const requiredTotalFloor = ["apartment", "house", "townhouse"].includes(
     getValues().category,
   );
+  const showApartmentComplexTitle = isApartment;
 
   const handleClickSubmitButton = async () => {
     const triggerList = [
@@ -37,6 +39,11 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
       "pledge",
       "houseCondition",
       "houseWallMaterial",
+      "houseRoofMaterial",
+      "furniture",
+      "ethernet",
+      "garage",
+      "toiletCount",
     ];
 
     if (getValues().roomCount === "custom") triggerList.push("customRoomCount");
@@ -65,6 +72,7 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
           requiredKitchenSquareField={requiredKitchenSquareField}
           showTargetFloor={showTargetFloor}
           requiredTotalFloor={requiredTotalFloor}
+          showApartmentComplexTitle={showApartmentComplexTitle}
         />
       )}
       <InfoSelects isLoading={isLoading} />
