@@ -31,6 +31,10 @@ export type FormValues = {
   ownerPhone: string;
   type: string;
   category: string;
+  city: string;
+  street: string;
+  houseNumber: string;
+  apartmentNumber: string;
 };
 
 export const SellFormDrawer = () => {

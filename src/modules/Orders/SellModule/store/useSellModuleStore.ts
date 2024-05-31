@@ -10,6 +10,10 @@ export const initialFormState = {
   ownerPhone: "",
   type: "",
   category: "",
+  city: "",
+  street: "",
+  houseNumber: "",
+  apartmentNumber: "",
 };
 
 export interface ButtonChip {
