@@ -15,9 +15,9 @@ import {
   useSellModuleStore,
 } from "../../store/useSellModuleStore";
 import { DrawerHeader } from "../DrawerHeader";
-import { UserInfo } from "../FormFileds/UserInfo";
+import { UserInfoFields } from "../FormFileds/UserInfoFields";
 import { EstateCategory } from "../FormFileds/EstateCategory";
-import { Geoposition } from "../FormFileds/Geoposition";
+import { GeopositionFields } from "../FormFileds/GeopositionFields";
 import { schema } from "../../validators";
 import { PriceField } from "../FormFileds/PriceField";
 import { CommentField } from "../FormFileds/CommentField";
@@ -105,14 +105,14 @@ export const SellFormDrawer = () => {
           paddingBottom={2}
         >
           <Container>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <DrawerHeader />
-              </Grid>
+            <Grid container spacing={2} justifyContent="center">
               <Grid item xs={12} md={6}>
-                {step === 1 && <UserInfo isLoading={isLoading} />}
+                <Box mb={1.5}>
+                  <DrawerHeader />
+                </Box>
+                {step === 1 && <UserInfoFields isLoading={isLoading} />}
                 {step === 2 && <EstateCategory isLoading={isLoading} />}
-                {step === 3 && <Geoposition isLoading={isLoading} />}
+                {step === 3 && <GeopositionFields isLoading={isLoading} />}
                 {step === 4 && <PriceField isLoading={isLoading} />}
                 {step === 5 && <CommentField isLoading={isLoading} />}
                 {step === 6 && <CategoryFields isLoading={isLoading} />}

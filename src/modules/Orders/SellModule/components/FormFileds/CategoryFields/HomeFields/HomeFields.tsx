@@ -11,7 +11,7 @@ interface InfoSelectsProps {
   isLoading: boolean;
 }
 
-export const InfoSelects = ({ isLoading }: InfoSelectsProps) => {
+export const HomeFields = ({ isLoading }: InfoSelectsProps) => {
   const { formState, control } = useFormContext();
 
   return (

@@ -87,6 +87,8 @@ export const LivingSpaceFields = ({
             formatPrice={false}
             placeholder="Например: 7"
             type="number"
+            min="1"
+            max="1000"
           />
           {formState.errors.customRoomCount && (
             <Typography variant="textFootnoteRegular" color="error">
@@ -114,6 +116,8 @@ export const LivingSpaceFields = ({
             formatPrice={false}
             placeholder="Например: 42.5"
             type="number"
+            min="0"
+            max="100000"
           />
           {formState.errors.houseSquare && (
             <Typography variant="textFootnoteRegular" color="error">
@@ -137,6 +141,8 @@ export const LivingSpaceFields = ({
               formatPrice={false}
               placeholder="Например: 9.5"
               type="number"
+              min="0"
+              max="1000"
             />
             {formState.errors.kitchenSquare && (
               <Typography variant="textFootnoteRegular" color="error">
@@ -166,6 +172,8 @@ export const LivingSpaceFields = ({
               formatPrice={false}
               placeholder="Например: 2"
               type="number"
+              min="0"
+              max="100"
             />
             {formState.errors.targetFloor && (
               <Typography variant="textFootnoteRegular" color="error">
@@ -186,6 +194,8 @@ export const LivingSpaceFields = ({
             formatPrice={false}
             placeholder="Например: 9"
             type="number"
+            min="1"
+            max="100"
           />
           {formState.errors.totalFloor && (
             <Typography variant="textFootnoteRegular" color="error">
@@ -213,6 +223,8 @@ export const LivingSpaceFields = ({
             formatPrice={false}
             placeholder="Например: 2.5"
             type="number"
+            min="0"
+            max="100"
           />
           {formState.errors.ceilingHeight && (
             <Typography variant="textFootnoteRegular" color="error">
@@ -233,7 +245,7 @@ export const LivingSpaceFields = ({
             placeholder="Например: 2020"
             type="number"
             min="1900"
-            max={new Date().getFullYear().toString()}
+            max={new Date().getFullYear().toString() + 1}
           />
           {formState.errors.houseBuildingYear && (
             <Typography variant="textFootnoteRegular" color="error">
@@ -261,6 +273,8 @@ export const LivingSpaceFields = ({
             formatPrice={false}
             placeholder="Например: 1"
             type="number"
+            min="0"
+            max="100"
           />
           {formState.errors.toiletCount && (
             <Typography variant="textFootnoteRegular" color="error">
@@ -279,6 +293,8 @@ export const LivingSpaceFields = ({
             formatPrice={false}
             placeholder="Например: 1"
             type="number"
+            min="0"
+            max="100"
           />
           {formState.errors.parkingSeat && (
             <Typography variant="textFootnoteRegular" color="error">

@@ -15,11 +15,11 @@ import { useAnalytics } from "../../../../../../hooks/useAnalytics";
 import { useSellModuleStore } from "../../../store/useSellModuleStore";
 import { FormInputLabel } from "../../FormInputLabel";
 
-interface UserInfoProps {
+interface UserInfoFieldsProps {
   isLoading: boolean;
 }
 
-export const UserInfo = ({ isLoading }: UserInfoProps) => {
+export const UserInfoFields = ({ isLoading }: UserInfoFieldsProps) => {
   const { register, formState, setValue, trigger } = useFormContext();
   const { trackEvent } = useAnalytics();
   const [isChecked, setIsChecked] = React.useState(true);

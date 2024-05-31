@@ -3,7 +3,7 @@ import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { LivingSpaceFields } from "./LivingSpaceFields";
-import { InfoSelects } from "./HomeFields";
+import { HomeFields } from "./HomeFields";
 import toast from "react-hot-toast";
 import { useSellModuleStore } from "../../../store/useSellModuleStore";
 
@@ -75,7 +75,7 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
           showApartmentComplexTitle={showApartmentComplexTitle}
         />
       )}
-      <InfoSelects isLoading={isLoading} />
+      <HomeFields isLoading={isLoading} />
       <Box>
         <Button
           variant="contained"

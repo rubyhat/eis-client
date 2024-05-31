@@ -10,10 +10,10 @@ import { buttonStyles } from "../assets";
 import toast from "react-hot-toast";
 import { CustomInput } from "../../../../../../components/CustomInput";
 
-interface GeopositionProps {
+interface GeopositionFieldsProps {
   isLoading: boolean;
 }
-export const Geoposition = ({ isLoading }: GeopositionProps) => {
+export const GeopositionFields = ({ isLoading }: GeopositionFieldsProps) => {
   const { step, setStep, cityTypes, setActiveCityType } = useSellModuleStore();
   const { formState, setValue, trigger, register, getValues } =
     useFormContext();
