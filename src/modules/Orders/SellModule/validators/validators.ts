@@ -14,6 +14,7 @@ export const schema = yup.object().shape({
   houseNumber: yup.string().required("Пожалуйста, укажите номер дома"),
   apartmentNumber: yup.string().required("Пожалуйста, укажите номер квартиры"),
   price: yup.string().required("Пожалуйста, укажите вашу стоимость"),
+  ownerComment: yup.string(),
   exchange: yup
     .string()
     .required("Пожалуйста, укажите рассматриваете ли обмен"),

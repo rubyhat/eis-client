@@ -5,17 +5,18 @@ import {
   ServiceType,
 } from "../../../CatalogModule/store";
 
-export const initialFormState = {
-  ownerName: "",
-  ownerPhone: "",
-  type: "",
-  category: "",
-  city: "",
-  street: "",
-  houseNumber: "",
-  apartmentNumber: "",
-  price: "",
-  exchange: "",
+export type FormValues = {
+  ownerName: string;
+  ownerPhone: string;
+  type: string;
+  category: string;
+  city: string;
+  street: string;
+  houseNumber: string;
+  apartmentNumber: string;
+  price: string;
+  exchange: string;
+  ownerComment?: string;
 };
 
 export interface ButtonChip {
@@ -48,6 +49,7 @@ interface SellModuleStore {
   loadStateFromLocalStorage: () => void;
   price: string;
   exchange: string;
+  ownerComment?: string;
 }
 
 const serviceTypes: ServiceButtonChip[] = [
@@ -75,13 +77,28 @@ const cityTypes: CityButtonChip[] = [
   { value: "Другой", label: "Другой", isActive: false },
 ];
 
+export const initialFormState = {
+  ownerName: "",
+  ownerPhone: "",
+  ownerComment: "",
+  type: "",
+  category: "",
+  city: "",
+  street: "",
+  houseNumber: "",
+  apartmentNumber: "",
+  price: "",
+  exchange: "",
+};
+
 export const useSellModuleStore = create<SellModuleStore>((set) => ({
+  price: "",
+  exchange: "",
+  ownerComment: "",
   isDrawerOpen: true,
   setIsDrawerOpen: (v) => set({ isDrawerOpen: v }),
   step: 2,
   setStep: (v) => set({ step: v }),
-  price: "",
-  exchange: "",
   serviceTypes: serviceTypes,
   setActiveServiceType: (value) =>
     set((state) => {

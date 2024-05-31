@@ -10,6 +10,7 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import {
+  FormValues,
   initialFormState,
   useSellModuleStore,
 } from "../../store/useSellModuleStore";
@@ -19,25 +20,13 @@ import { EstateCategory } from "../FormFileds/EstateCategory";
 import { Geoposition } from "../FormFileds/Geoposition";
 import { schema } from "../../validators";
 import { PriceField } from "../FormFileds/PriceField";
+import { CommentField } from "../FormFileds/CommentField";
 
 const drawerPaperProps = {
   sx: {
     width: 1,
     height: "100vh",
   },
-};
-
-export type FormValues = {
-  ownerName: string;
-  ownerPhone: string;
-  type: string;
-  category: string;
-  city: string;
-  street: string;
-  houseNumber: string;
-  apartmentNumber: string;
-  price: string;
-  exchange: string;
 };
 
 export const SellFormDrawer = () => {
@@ -78,7 +67,6 @@ export const SellFormDrawer = () => {
     const savedData = localStorage.getItem("sellFormData");
     if (savedData) {
       const parsedData = JSON.parse(savedData);
-      console.log(parsedData);
       (Object.keys(parsedData) as (keyof FormValues)[]).forEach((key) => {
         setValue(key, parsedData[key]);
       });
@@ -91,6 +79,7 @@ export const SellFormDrawer = () => {
     localStorage.removeItem("formData");
     localStorage.removeItem("serviceTypes");
     localStorage.removeItem("estateTypes");
+    localStorage.removeItem("cityTypes");
   };
 
   const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -119,6 +108,7 @@ export const SellFormDrawer = () => {
                 {step === 2 && <EstateCategory isLoading={isLoading} />}
                 {step === 3 && <Geoposition isLoading={isLoading} />}
                 {step === 4 && <PriceField isLoading={isLoading} />}
+                {step === 5 && <CommentField isLoading={isLoading} />}
               </Grid>
             </Grid>
           </Container>
