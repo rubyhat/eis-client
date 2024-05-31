@@ -6,6 +6,7 @@ import { LivingSpaceFields } from "./LivingSpaceFields";
 import { HomeFields } from "./HomeFields";
 import toast from "react-hot-toast";
 import { useSellModuleStore } from "../../../store/useSellModuleStore";
+import { BasicFields } from "./BasicFields";
 
 interface CategoryFieldsProps {
   isLoading: boolean;
@@ -66,16 +67,19 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
         Описание
       </Typography>
       {livingSpaces.includes(getValues().category) && (
-        <LivingSpaceFields
-          isLoading={isLoading}
-          livingSpaces={livingSpaces}
-          requiredKitchenSquareField={requiredKitchenSquareField}
-          showTargetFloor={showTargetFloor}
-          requiredTotalFloor={requiredTotalFloor}
-          showApartmentComplexTitle={showApartmentComplexTitle}
-        />
+        <React.Fragment>
+          <LivingSpaceFields
+            isLoading={isLoading}
+            livingSpaces={livingSpaces}
+            requiredKitchenSquareField={requiredKitchenSquareField}
+            showTargetFloor={showTargetFloor}
+            requiredTotalFloor={requiredTotalFloor}
+            showApartmentComplexTitle={showApartmentComplexTitle}
+          />
+          <HomeFields isLoading={isLoading} />
+        </React.Fragment>
       )}
-      <HomeFields isLoading={isLoading} />
+      <BasicFields isLoading={isLoading} />
       <Box>
         <Button
           variant="contained"

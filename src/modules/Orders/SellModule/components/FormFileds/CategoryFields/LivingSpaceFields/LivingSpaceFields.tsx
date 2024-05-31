@@ -155,8 +155,9 @@ export const LivingSpaceFields = ({
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 2,
+          gridTemplateColumns: "1fr 10px 1fr",
+          alignItems: "center",
+          gap: 1,
           marginBottom: 1.5,
         }}
       >
@@ -182,7 +183,14 @@ export const LivingSpaceFields = ({
             )}
           </Box>
         )}
-
+        <Box
+          textAlign="center"
+          marginTop={2.75}
+          color="customColors.labelsSecondary"
+        >
+          {" "}
+          /{" "}
+        </Box>
         <Box>
           <FormInputLabel label="Этажей в доме" required={requiredTotalFloor} />
           <CustomInput
