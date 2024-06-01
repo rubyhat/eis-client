@@ -9,7 +9,7 @@ import { useSellModuleStore } from "../../store/useSellModuleStore";
 export const DrawerHeader = () => {
   const { step, setStep, setIsDrawerOpen } = useSellModuleStore();
 
-  const totalSteps = 12;
+  const totalSteps = 8;
   const progressValue = (step / totalSteps) * 100;
 
   return (

@@ -17,6 +17,7 @@ import { schema } from "../../validators";
 import { PriceField } from "../FormFileds/PriceField";
 import { CommentField } from "../FormFileds/CommentField";
 import { CategoryFields } from "../FormFileds/CategoryFields";
+import { FinalField } from "../FormFileds/FinalField";
 
 const drawerPaperProps = {
   sx: {
@@ -29,6 +30,7 @@ export const SellFormDrawer = () => {
   const { isDrawerOpen, setIsDrawerOpen, step, loadStateFromLocalStorage } =
     useSellModuleStore();
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isPolicyChecked, setIsPolicyChecked] = React.useState(false);
 
   const handleCloseDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -123,15 +125,28 @@ export const SellFormDrawer = () => {
                 {step === 4 && <PriceField isLoading={isLoading} />}
                 {step === 5 && <CommentField isLoading={isLoading} />}
                 {step === 6 && <CategoryFields isLoading={isLoading} />}
-                <Button
-                  type="submit"
-                  onClick={() => {
-                    console.log("123");
-                    handleSubmit(handleFormSubmit);
-                  }}
-                >
-                  Отправить форму
-                </Button>
+                {step === 7 && (
+                  <FinalField
+                    isChecked={isPolicyChecked}
+                    setIsChecked={setIsPolicyChecked}
+                  />
+                )}
+                {step === 7 && (
+                  <Box>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      fullWidth
+                      size="large"
+                      disabled={isLoading || !isPolicyChecked}
+                      sx={{
+                        textTransform: "none",
+                      }}
+                    >
+                      Отправить заявку
+                    </Button>
+                  </Box>
+                )}
               </Grid>
             </Grid>
           </Container>
