@@ -5,7 +5,6 @@ import { useFormContext } from "react-hook-form";
 import { Box, Button, Typography } from "@mui/material";
 
 import { FormInputLabel } from "../../FormInputLabel";
-import { CustomInput } from "../../../../../../components/CustomInput";
 import { useSellModuleStore } from "../../../store/useSellModuleStore";
 
 interface CommentFieldProps {
@@ -35,14 +34,28 @@ export const CommentField = ({ isLoading }: CommentFieldProps) => {
       </Typography>
       <Box mb={1.5}>
         <FormInputLabel label="Комментарий" />
-        <CustomInput
+        <Box
+          component="textarea"
           id="ownerComment"
-          register={register}
-          errors={formState.errors}
+          {...register("ownerComment", { required: false })}
           disabled={isLoading}
-          formatPrice={false}
-          placeholder="Например: ул. Гоголя"
+          placeholder="Здесь Вы можете указать дополнительную информацию"
           maxLength={300}
+          sx={{
+            width: 1,
+            minHeight: { xs: 250, sm: 110 },
+            padding: 1,
+            borderColor: formState.errors["ownerInfo.description"]
+              ? "customColors.colorsRed"
+              : "customColors.labelsQuaternary",
+            borderRadius: "5px",
+            fontSize: "16px",
+            outlineColor: "customColors.colorsOrange",
+            "&::placeholder": {
+              fontSize: 14,
+              color: "customColors.labelsTertiary",
+            },
+          }}
         />
       </Box>
       <Box>

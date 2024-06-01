@@ -129,9 +129,9 @@ export const SellFormDrawer = () => {
                     showApartmentNumberField={showApartmentNumberField}
                   />
                 )}
-                {step === 4 && <PriceField isLoading={isLoading} />}
-                {step === 5 && <CommentField isLoading={isLoading} />}
-                {step === 6 && <CategoryFields isLoading={isLoading} />}
+                {step === 4 && <CategoryFields isLoading={isLoading} />}
+                {step === 5 && <PriceField isLoading={isLoading} />}
+                {step === 6 && <CommentField isLoading={isLoading} />}
                 {step === 7 && (
                   <FinalField
                     isChecked={isPolicyChecked}
