@@ -5,6 +5,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 
 import { useSellModuleStore } from "../../store/useSellModuleStore";
+import { Logotype } from "../../../../../components/Logotype";
 
 export const DrawerHeader = () => {
   const { step, setStep, setIsDrawerOpen } = useSellModuleStore();
@@ -22,17 +23,24 @@ export const DrawerHeader = () => {
           paddingY: 1,
         }}
       >
-        <IconButton
-          disabled={step === 1}
-          color="primary"
-          sx={{ rotate: "180deg" }}
-          onClick={() => setStep(step - 1)}
-        >
-          <IoIosArrowForward />
-        </IconButton>
-        <Typography component="h6" variant="titleThirdRegular">
-          Подача заявки
-        </Typography>
+        {step !== 8 && (
+          <IconButton
+            disabled={step === 1}
+            color="primary"
+            sx={{ rotate: "180deg" }}
+            onClick={() => setStep(step - 1)}
+          >
+            <IoIosArrowForward />
+          </IconButton>
+        )}
+        {step === 8 ? (
+          <Logotype />
+        ) : (
+          <Typography component="h6" variant="titleThirdRegular">
+            Подача заявки
+          </Typography>
+        )}
+
         <IconButton color="primary" onClick={() => setIsDrawerOpen(false)}>
           <IoClose />
         </IconButton>

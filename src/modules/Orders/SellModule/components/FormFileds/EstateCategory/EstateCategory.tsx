@@ -129,8 +129,13 @@ export const EstateCategory = ({ isLoading }: EstateCategoryProps) => {
           size="large"
           disabled={isLoading}
           sx={{
+            bottom: 16,
             textTransform: "none",
-            marginTop: "auto",
+            position: "absolute",
+            width: {
+              xs: "calc(100% - 32px)",
+              sm: 568,
+            },
           }}
           onClick={handleClickSubmitButton}
         >

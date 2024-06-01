@@ -136,8 +136,13 @@ export const UserInfoFields = ({ isLoading }: UserInfoFieldsProps) => {
           size="large"
           disabled={!isChecked || isLoading}
           sx={{
+            bottom: 16,
             textTransform: "none",
-            marginTop: "auto",
+            position: "absolute",
+            width: {
+              xs: "calc(100% - 32px)",
+              sm: 568,
+            },
           }}
           onClick={handleClickSubmitButton}
         >

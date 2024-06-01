@@ -18,6 +18,7 @@ import { PriceField } from "../FormFileds/PriceField";
 import { CommentField } from "../FormFileds/CommentField";
 import { CategoryFields } from "../FormFileds/CategoryFields";
 import { FinalField } from "../FormFileds/FinalField";
+import { SuccessForm } from "../SuccessForm";
 
 const drawerPaperProps = {
   sx: {
@@ -27,8 +28,13 @@ const drawerPaperProps = {
 };
 
 export const SellFormDrawer = () => {
-  const { isDrawerOpen, setIsDrawerOpen, step, loadStateFromLocalStorage } =
-    useSellModuleStore();
+  const {
+    isDrawerOpen,
+    setIsDrawerOpen,
+    step,
+    setStep,
+    loadStateFromLocalStorage,
+  } = useSellModuleStore();
   const [isLoading, setIsLoading] = React.useState(false);
   const [isPolicyChecked, setIsPolicyChecked] = React.useState(false);
 
@@ -84,6 +90,7 @@ export const SellFormDrawer = () => {
 
   const handleFormSubmit: SubmitHandler<FormValues> = (data) => {
     try {
+      setStep(8);
       console.log("success data", data);
       setIsLoading(false);
       clearLocalStorage(); // очищать форму после успешной отправки
@@ -132,21 +139,29 @@ export const SellFormDrawer = () => {
                   />
                 )}
                 {step === 7 && (
-                  <Box>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      fullWidth
-                      size="large"
-                      disabled={isLoading || !isPolicyChecked}
-                      sx={{
-                        textTransform: "none",
-                      }}
-                    >
-                      Отправить заявку
-                    </Button>
-                  </Box>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    fullWidth
+                    size="large"
+                    disabled={isLoading || !isPolicyChecked}
+                    sx={{
+                      bottom: 16,
+                      textTransform: "none",
+                      position: {
+                        xs: "absolute",
+                        sm: "inherit",
+                      },
+                      width: {
+                        xs: "calc(100% - 32px)",
+                        sm: 568,
+                      },
+                    }}
+                  >
+                    Отправить заявку
+                  </Button>
                 )}
+                {step === 8 && <SuccessForm />}
               </Grid>
             </Grid>
           </Container>
