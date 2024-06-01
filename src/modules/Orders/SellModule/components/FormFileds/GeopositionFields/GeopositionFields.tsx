@@ -72,16 +72,16 @@ export const GeopositionFields = ({
             </Box>
           ))}
         </Box>
-        {formState.errors.type && (
+        {formState.errors.city && !cityTypes.find((city) => city.isActive) && (
           <Typography variant="textFootnoteRegular" color="error">
-            {formState.errors.type.message as string}
+            {formState.errors.city.message as string}
           </Typography>
         )}
       </Box>
       <Box mb={1.5}>
         <FormInputLabel label="Улица" required />
         <CustomInput
-          required
+          // required
           id="street"
           register={register}
           errors={formState.errors}

@@ -9,13 +9,20 @@ import { useSellModuleStore } from "../../../store/useSellModuleStore";
 import { BasicFields } from "./BasicFields";
 import { LandFields } from "./LandFields";
 import { HouseFields } from "./HouseFields";
+import {
+  arrsForHouseProperties,
+  arrsForKitchen,
+  arrsForLand,
+  arrsForTotalFloor,
+  basicTriggerList,
+  housePropertiesTriggerList,
+  livingSpaces,
+  spacesWithLand,
+} from "../../../constants/SellModuleConstants";
 
 interface CategoryFieldsProps {
   isLoading: boolean;
 }
-
-const livingSpaces = ["apartment", "house", "townhouse", "cottage", "business"];
-const spacesWithLand = ["house", "townhouse", "cottage", "business"];
 
 export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
   const { step, setStep } = useSellModuleStore();
@@ -23,37 +30,15 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
 
   const currentCategory = getValues().category;
   const isApartment = currentCategory === "apartment";
-  const requiredKitchenSquareField = [
-    "apartment",
-    "house",
-    "townhouse",
-  ].includes(currentCategory);
+  const requiredKitchenSquareField = arrsForKitchen.includes(currentCategory);
   const showTargetFloor = isApartment;
-  const requiredTotalFloor = ["apartment", "house", "townhouse"].includes(
-    currentCategory,
-  );
+  const requiredTotalFloor = arrsForTotalFloor.includes(currentCategory);
   const showApartmentComplexTitle = isApartment;
-  const requiredLand = ["house", "cottage"].includes(currentCategory);
-  const showHouseProperties = ["house", "cottage", "townhouse"].includes(
-    currentCategory,
-  );
+  const requiredLand = arrsForLand.includes(currentCategory);
+  const showHouseProperties = arrsForHouseProperties.includes(currentCategory);
 
   const handleClickSubmitButton = async () => {
-    let triggerList = [
-      "roomCount",
-      "houseSquare",
-      "ceilingHeight",
-      "houseBuildingYear",
-      "documents",
-      "pledge",
-      "houseCondition",
-      "houseWallMaterial",
-      "houseRoofMaterial",
-      "furniture",
-      "ethernet",
-      "garage",
-      "toiletCount",
-    ];
+    let triggerList = basicTriggerList;
 
     if (getValues().roomCount === "custom") triggerList.push("customRoomCount");
     if (requiredKitchenSquareField) triggerList.push("kitchenSquare");
@@ -61,16 +46,7 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
     if (requiredTotalFloor) triggerList.push("totalFloor");
     if (requiredLand) triggerList.push("plotSquare");
     if (showHouseProperties)
-      triggerList = [
-        ...triggerList,
-        "houseType",
-        "electricType",
-        "heatingType",
-        "gasType",
-        "sewerType",
-        "toiletType",
-        "waterType",
-      ];
+      triggerList = [...triggerList, ...housePropertiesTriggerList];
 
     console.log(triggerList);
 

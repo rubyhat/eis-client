@@ -82,9 +82,9 @@ export const SellFormDrawer = () => {
 
   const handleFormSubmit: SubmitHandler<FormValues> = (data) => {
     try {
-      console.log("data", data);
+      console.log("success data", data);
       setIsLoading(false);
-      // clearLocalStorage();
+      clearLocalStorage(); // очищать форму после успешной отправки
     } catch (error) {
       console.error("Form submission error", error);
     }
@@ -102,7 +102,7 @@ export const SellFormDrawer = () => {
         <Box
           component="form"
           onSubmit={handleSubmit(handleFormSubmit, (error) =>
-            console.log("handleSubmitForm", error),
+            console.log("error data", error),
           )}
           paddingBottom={2}
         >

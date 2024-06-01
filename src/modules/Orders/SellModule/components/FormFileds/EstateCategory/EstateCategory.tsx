@@ -79,11 +79,12 @@ export const EstateCategory = ({ isLoading }: EstateCategoryProps) => {
             </Box>
           ))}
         </Box>
-        {formState.errors.type && (
-          <Typography variant="textFootnoteRegular" color="error">
-            {formState.errors.type.message as string}
-          </Typography>
-        )}
+        {formState.errors.type &&
+          !serviceTypes.find((service) => service.isActive) && (
+            <Typography variant="textFootnoteRegular" color="error">
+              {formState.errors.type.message as string}
+            </Typography>
+          )}
       </Box>
       <Box mb={1.5}>
         <FormInputLabel label="Тип недвижимости" required />
@@ -114,11 +115,12 @@ export const EstateCategory = ({ isLoading }: EstateCategoryProps) => {
             </Box>
           ))}
         </Box>
-        {formState.errors.category && (
-          <Typography variant="textFootnoteRegular" color="error">
-            {formState.errors.category.message as string}
-          </Typography>
-        )}
+        {formState.errors.category &&
+          !estateTypes.find((estate) => estate.isActive) && (
+            <Typography variant="textFootnoteRegular" color="error">
+              {formState.errors.category.message as string}
+            </Typography>
+          )}
       </Box>
       <Box>
         <Button

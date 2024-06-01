@@ -12,35 +12,35 @@ export type FormValues = {
   category: string;
   city: string;
   street: string;
-  houseNumber: string;
-  apartmentNumber: string;
   price: string;
   exchange: string;
-  roomCount: string;
-  customRoomCount: string;
-  houseSquare: string;
-  kitchenSquare: string;
-  targetFloor: string;
-  totalFloor: string;
-  ceilingHeight: string;
-  houseBuildingYear: string;
   pledge: string;
   documents: string;
-  houseCondition: string;
-  houseWallMaterial: string;
-  houseRoofMaterial: string;
-  furniture: string;
-  ethernet: string;
-  garage: string;
-  toiletCount: string;
-  plotSquare: string;
-  houseType: string;
-  electricType: string;
-  heatingType: string;
-  gasType: string;
-  sewerType: string;
-  toiletType: string;
-  waterType: string;
+  houseNumber?: string;
+  apartmentNumber?: string;
+  roomCount?: string;
+  customRoomCount?: string;
+  houseSquare?: string;
+  kitchenSquare?: string;
+  targetFloor?: string;
+  totalFloor?: string;
+  ceilingHeight?: string;
+  houseBuildingYear?: string;
+  houseCondition?: string;
+  houseWallMaterial?: string;
+  houseRoofMaterial?: string;
+  furniture?: string;
+  ethernet?: string;
+  garage?: string;
+  toiletCount?: string;
+  plotSquare?: string;
+  houseType?: string;
+  electricType?: string;
+  heatingType?: string;
+  gasType?: string;
+  sewerType?: string;
+  toiletType?: string;
+  waterType?: string;
   hasBasement?: boolean;
   hasMansard?: boolean;
   apartmentComplexTitle?: string;
@@ -230,7 +230,7 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
   setCustomRoomCount: (v) => set({ customRoomCount: v }),
   isDrawerOpen: true,
   setIsDrawerOpen: (v) => set({ isDrawerOpen: v }),
-  step: 6,
+  step: 1,
   setStep: (v) => set({ step: v }),
   serviceTypes: serviceTypes,
   setActiveServiceType: (value) =>

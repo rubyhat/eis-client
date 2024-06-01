@@ -28,7 +28,7 @@ export const LivingSpaceFields = ({
   requiredTotalFloor,
   showApartmentComplexTitle,
 }: LivingSpaceFieldsProps) => {
-  const { roomTypes, setActiveRoomType, roomCount } = useSellModuleStore();
+  const { roomTypes, setActiveRoomType } = useSellModuleStore();
   const { formState, setValue, register, getValues } = useFormContext();
 
   const showKitchenSquareField = livingSpaces.includes(getValues().category);
@@ -69,11 +69,12 @@ export const LivingSpaceFields = ({
             </Box>
           ))}
         </Box>
-        {formState.errors.roomCount && roomCount !== "" && (
-          <Typography variant="textFootnoteRegular" color="error">
-            {formState.errors.roomCount.message as string}
-          </Typography>
-        )}
+        {formState.errors.roomCount &&
+          !roomTypes.find((room) => room.isActive) && (
+            <Typography variant="textFootnoteRegular" color="error">
+              {formState.errors.roomCount.message as string}
+            </Typography>
+          )}
       </Box>
       {getValues().roomCount === "custom" && (
         <Box mb={1.5}>
