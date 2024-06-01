@@ -31,7 +31,12 @@ export const BasicFields = ({ isLoading }: BasicFieldsProps) => {
               disabled={isLoading}
             >
               <MenuItem value="" disabled>
-                Есть залог или арест?
+                <Typography
+                  variant="textCalloutRegular"
+                  color="customColors.labelsSecondary"
+                >
+                  Есть залог или арест?
+                </Typography>
               </MenuItem>
               <MenuItem value="none">Нет</MenuItem>
               <MenuItem value="bank">Да, у банка</MenuItem>
@@ -59,7 +64,12 @@ export const BasicFields = ({ isLoading }: BasicFieldsProps) => {
               disabled={isLoading}
             >
               <MenuItem value="" disabled>
-                Укажите состояние документов
+                <Typography
+                  variant="textCalloutRegular"
+                  color="customColors.labelsSecondary"
+                >
+                  Укажите состояние документов
+                </Typography>
               </MenuItem>
               <MenuItem value="good">В порядке</MenuItem>
               <MenuItem value="needUpdate">Нужна корректировка</MenuItem>

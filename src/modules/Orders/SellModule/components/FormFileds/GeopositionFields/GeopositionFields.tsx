@@ -12,13 +12,14 @@ import { CustomInput } from "../../../../../../components/CustomInput";
 
 interface GeopositionFieldsProps {
   isLoading: boolean;
+  showApartmentNumberField: boolean;
 }
-export const GeopositionFields = ({ isLoading }: GeopositionFieldsProps) => {
+export const GeopositionFields = ({
+  isLoading,
+  showApartmentNumberField,
+}: GeopositionFieldsProps) => {
   const { step, setStep, cityTypes, setActiveCityType } = useSellModuleStore();
-  const { formState, setValue, trigger, register, getValues } =
-    useFormContext();
-
-  const showApartmentNumberField = getValues().category === "apartment";
+  const { formState, setValue, trigger, register } = useFormContext();
 
   const handleCityTypeClick = (service: CityButtonChip) => {
     setValue("city", service.value);
@@ -26,12 +27,9 @@ export const GeopositionFields = ({ isLoading }: GeopositionFieldsProps) => {
   };
 
   const handleClickSubmitButton = async () => {
-    const isValid = await trigger([
-      "city",
-      "street",
-      "houseNumber",
-      "apartmentNumber",
-    ]);
+    const triggerList = ["city", "street", "houseNumber"];
+    if (showApartmentNumberField) triggerList.push("apartmentNumber");
+    const isValid = await trigger(triggerList);
     if (isValid) {
       setStep(step + 1);
     } else {
@@ -118,7 +116,10 @@ export const GeopositionFields = ({ isLoading }: GeopositionFieldsProps) => {
         </Box>
         {showApartmentNumberField && (
           <Box>
-            <FormInputLabel label="Номер квартиры" required />
+            <FormInputLabel
+              label="Номер квартиры"
+              required={showApartmentNumberField}
+            />
             <CustomInput
               required
               id="apartmentNumber"

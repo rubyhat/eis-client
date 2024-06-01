@@ -34,6 +34,15 @@ export type FormValues = {
   garage: string;
   toiletCount: string;
   plotSquare: string;
+  houseType: string;
+  electricType: string;
+  heatingType: string;
+  gasType: string;
+  sewerType: string;
+  toiletType: string;
+  waterType: string;
+  hasBasement?: boolean;
+  hasMansard?: boolean;
   apartmentComplexTitle?: string;
   parkingSeat?: string;
   ownerComment?: string;
@@ -95,6 +104,15 @@ interface SellModuleStore {
   parkingSeat: string;
   apartmentComplexTitle: string;
   plotSquare: string;
+  houseType: string;
+  electricType: string;
+  heatingType: string;
+  gasType: string;
+  sewerType: string;
+  toiletType: string;
+  waterType: string;
+  hasBasement: boolean;
+  hasMansard: boolean;
   customRoomCount: string;
   setCustomRoomCount: (v: string) => void;
 }
@@ -165,6 +183,15 @@ export const initialFormState = {
   parkingSeat: "",
   apartmentComplexTitle: "",
   plotSquare: "",
+  houseType: "",
+  electricType: "",
+  heatingType: "",
+  gasType: "",
+  sewerType: "",
+  toiletType: "",
+  waterType: "",
+  hasBasement: false,
+  hasMansard: false,
 };
 
 export const useSellModuleStore = create<SellModuleStore>((set) => ({
@@ -174,7 +201,6 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
   houseSquare: "",
   kitchenSquare: "",
   roomCount: "",
-  customRoomCount: "",
   targetFloor: "",
   totalFloor: "",
   ceilingHeight: "",
@@ -191,6 +217,16 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
   parkingSeat: "",
   apartmentComplexTitle: "",
   plotSquare: "",
+  houseType: "",
+  electricType: "",
+  heatingType: "",
+  gasType: "",
+  sewerType: "",
+  toiletType: "",
+  waterType: "",
+  hasBasement: false,
+  hasMansard: false,
+  customRoomCount: "",
   setCustomRoomCount: (v) => set({ customRoomCount: v }),
   isDrawerOpen: true,
   setIsDrawerOpen: (v) => set({ isDrawerOpen: v }),

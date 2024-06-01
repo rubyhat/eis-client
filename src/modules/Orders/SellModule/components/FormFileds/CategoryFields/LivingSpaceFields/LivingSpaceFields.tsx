@@ -28,7 +28,7 @@ export const LivingSpaceFields = ({
   requiredTotalFloor,
   showApartmentComplexTitle,
 }: LivingSpaceFieldsProps) => {
-  const { roomTypes, setActiveRoomType } = useSellModuleStore();
+  const { roomTypes, setActiveRoomType, roomCount } = useSellModuleStore();
   const { formState, setValue, register, getValues } = useFormContext();
 
   const showKitchenSquareField = livingSpaces.includes(getValues().category);
@@ -69,9 +69,9 @@ export const LivingSpaceFields = ({
             </Box>
           ))}
         </Box>
-        {formState.errors.type && (
+        {formState.errors.roomCount && roomCount !== "" && (
           <Typography variant="textFootnoteRegular" color="error">
-            {formState.errors.type.message as string}
+            {formState.errors.roomCount.message as string}
           </Typography>
         )}
       </Box>
@@ -155,7 +155,7 @@ export const LivingSpaceFields = ({
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "1fr 10px 1fr",
+          gridTemplateColumns: showTargetFloor ? "1fr 10px 1fr" : "1fr",
           alignItems: "center",
           gap: 1,
           marginBottom: 1.5,

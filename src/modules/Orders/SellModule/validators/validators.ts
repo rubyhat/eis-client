@@ -49,6 +49,17 @@ export const schema = yup.object().shape({
     .required("Пожалуйста, укажите количество сан.узлов"),
   roomCount: yup.string().required("Пожалуйста, укажите количество комнат"),
   plotSquare: yup.string().required("Пожалуйста, укажите количество соток"),
+  houseType: yup.string().required("Пожалуйста, укажите тип дома"),
+  electricType: yup
+    .string()
+    .required("Пожалуйста, укажите есть ли электричество"),
+  heatingType: yup.string().required("Пожалуйста, укажите есть ли отопление"),
+  gasType: yup.string().required("Пожалуйста, укажите есть ли газ"),
+  sewerType: yup.string().required("Пожалуйста, укажите есть ли канализация"),
+  toiletType: yup.string().required("Пожалуйста, укажите есть ли туалет"),
+  waterType: yup.string().required("Пожалуйста, укажите есть ли туалет"),
+  hasBasement: yup.boolean(),
+  hasMansard: yup.boolean(),
   customRoomCount: yup
     .string()
     .required("Пожалуйста, укажите количество комнат"),

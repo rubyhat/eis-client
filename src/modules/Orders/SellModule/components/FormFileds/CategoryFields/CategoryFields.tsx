@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { useSellModuleStore } from "../../../store/useSellModuleStore";
 import { BasicFields } from "./BasicFields";
 import { LandFields } from "./LandFields";
+import { HouseFields } from "./HouseFields";
 
 interface CategoryFieldsProps {
   isLoading: boolean;
@@ -33,9 +34,12 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
   );
   const showApartmentComplexTitle = isApartment;
   const requiredLand = ["house", "cottage"].includes(currentCategory);
+  const showHouseProperties = ["house", "cottage", "townhouse"].includes(
+    currentCategory,
+  );
 
   const handleClickSubmitButton = async () => {
-    const triggerList = [
+    let triggerList = [
       "roomCount",
       "houseSquare",
       "ceilingHeight",
@@ -56,6 +60,19 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
     if (showTargetFloor) triggerList.push("targetFloor");
     if (requiredTotalFloor) triggerList.push("totalFloor");
     if (requiredLand) triggerList.push("plotSquare");
+    if (showHouseProperties)
+      triggerList = [
+        ...triggerList,
+        "houseType",
+        "electricType",
+        "heatingType",
+        "gasType",
+        "sewerType",
+        "toiletType",
+        "waterType",
+      ];
+
+    console.log(triggerList);
 
     const isValid = await trigger(triggerList);
     if (isValid) {
@@ -89,6 +106,7 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
           <LandFields isLoading={isLoading} requiredLand={requiredLand} />
         </React.Fragment>
       )}
+      {showHouseProperties && <HouseFields isLoading={isLoading} />}
       <BasicFields isLoading={isLoading} />
       <Box>
         <Button

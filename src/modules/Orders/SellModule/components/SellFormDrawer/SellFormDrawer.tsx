@@ -1,12 +1,7 @@
 import React from "react";
-import { Box, Container, Grid, SwipeableDrawer } from "@mui/material";
+import { Box, Button, Container, Grid, SwipeableDrawer } from "@mui/material";
 
-import {
-  FieldValues,
-  FormProvider,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import {
@@ -53,7 +48,8 @@ export const SellFormDrawer = () => {
     defaultValues: initialFormState,
   });
 
-  const { watch, setValue } = methods;
+  const { watch, setValue, getValues, handleSubmit } = methods;
+  const showApartmentNumberField = getValues().category === "apartment";
 
   // Сохранение введенных данных в LS
   React.useEffect(() => {
@@ -84,10 +80,14 @@ export const SellFormDrawer = () => {
     localStorage.removeItem("roomTypes");
   };
 
-  const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-    setIsLoading(false);
-    clearLocalStorage();
+  const handleFormSubmit: SubmitHandler<FormValues> = (data) => {
+    try {
+      console.log("data", data);
+      setIsLoading(false);
+      // clearLocalStorage();
+    } catch (error) {
+      console.error("Form submission error", error);
+    }
   };
 
   return (
@@ -101,7 +101,9 @@ export const SellFormDrawer = () => {
       <FormProvider {...methods}>
         <Box
           component="form"
-          onSubmit={methods.handleSubmit(handleFormSubmit)}
+          onSubmit={handleSubmit(handleFormSubmit, (error) =>
+            console.log("handleSubmitForm", error),
+          )}
           paddingBottom={2}
         >
           <Container>
@@ -112,10 +114,24 @@ export const SellFormDrawer = () => {
                 </Box>
                 {step === 1 && <UserInfoFields isLoading={isLoading} />}
                 {step === 2 && <EstateCategory isLoading={isLoading} />}
-                {step === 3 && <GeopositionFields isLoading={isLoading} />}
+                {step === 3 && (
+                  <GeopositionFields
+                    isLoading={isLoading}
+                    showApartmentNumberField={showApartmentNumberField}
+                  />
+                )}
                 {step === 4 && <PriceField isLoading={isLoading} />}
                 {step === 5 && <CommentField isLoading={isLoading} />}
                 {step === 6 && <CategoryFields isLoading={isLoading} />}
+                <Button
+                  type="submit"
+                  onClick={() => {
+                    console.log("123");
+                    handleSubmit(handleFormSubmit);
+                  }}
+                >
+                  Отправить форму
+                </Button>
               </Grid>
             </Grid>
           </Container>
