@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   FormValues,
   initialFormState,
+  keysToRemove,
   useSellModuleStore,
 } from "../../store/useSellModuleStore";
 import { DrawerHeader } from "../DrawerHeader";
@@ -19,6 +20,8 @@ import { CommentField } from "../FormFileds/CommentField";
 import { CategoryFields } from "../FormFileds/CategoryFields";
 import { FinalField } from "../FormFileds/FinalField";
 import { SuccessForm } from "../SuccessForm";
+import { apiSellModule } from "../../api/apiSellModule";
+import toast from "react-hot-toast";
 
 const drawerPaperProps = {
   sx: {
@@ -81,22 +84,70 @@ export const SellFormDrawer = () => {
 
   const clearLocalStorage = () => {
     // Очистка данных после успешной отправки
-    localStorage.removeItem("formData");
-    localStorage.removeItem("serviceTypes");
-    localStorage.removeItem("estateTypes");
-    localStorage.removeItem("cityTypes");
-    localStorage.removeItem("roomTypes");
+    // localStorage.removeItem("formData");
+    // localStorage.removeItem("serviceTypes");
+    // localStorage.removeItem("estateTypes");
+    // localStorage.removeItem("cityTypes");
+    // localStorage.removeItem("roomTypes");
   };
 
   const handleFormSubmit: SubmitHandler<FormValues> = (data) => {
-    try {
-      setStep(8);
-      console.log("success data", data);
-      setIsLoading(false);
-      clearLocalStorage(); // очищать форму после успешной отправки
-    } catch (error) {
-      console.error("Form submission error", error);
-    }
+    console.log("success data", data);
+    const formData = new FormData();
+
+    const clearData = {
+      ...data,
+      ownerInfo: {
+        ownerName: data.ownerName,
+        ownerPhone: data.ownerPhone,
+        ownerComment: data.ownerComment,
+        apartmentNumber: data.apartmentNumber,
+        entranceNumber: data.entranceNumber,
+        intercomNumber: data.intercomNumber,
+      },
+      apartmentComplex: {
+        title: data.apartmentComplexTitle,
+      },
+      geoPosition: {
+        city: data.city,
+        street: data.street,
+        houseNumber: data.houseNumber,
+      },
+    };
+
+    // Очищаем от пустых значений
+    const filteredData = Object.fromEntries(
+      Object.entries(clearData).filter(
+        ([key, value]) =>
+          value !== "" && value !== null && !keysToRemove.includes(key),
+      ),
+    );
+
+    Object.entries(filteredData).forEach(([key, value]) => {
+      if (
+        key === "geoPosition" ||
+        key === "ownerInfo" ||
+        key === "apartmentComplex" ||
+        typeof value === "boolean"
+      ) {
+        formData.append(key, JSON.stringify(value));
+      } else {
+        formData.append(key, value as string);
+      }
+    });
+
+    apiSellModule
+      .create(formData)
+      .then(() => {
+        toast.success("Заявка создана!");
+        setStep(8);
+        clearLocalStorage(); // очищать форму после успешной отправки
+      })
+      .catch((error) => {
+        toast.error("Произошла ошибка!");
+        console.log(error);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (

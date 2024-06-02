@@ -138,6 +138,46 @@ export const GeopositionFields = ({
           </Box>
         )}
       </Box>
+      {showApartmentNumberField && (
+        <Box sx={{ display: "flex", gap: 2, marginBottom: 1.5 }}>
+          <Box>
+            <FormInputLabel label="Номер подъезда" required />
+            <CustomInput
+              required
+              id="entranceNumber"
+              register={register}
+              errors={formState.errors}
+              disabled={isLoading}
+              formatPrice={false}
+              placeholder="Например: 42"
+              type="number"
+            />
+            {formState.errors.houseNumber && (
+              <Typography variant="textFootnoteRegular" color="error">
+                {formState.errors.houseNumber.message as string}
+              </Typography>
+            )}
+          </Box>
+
+          <Box>
+            <FormInputLabel label="Номер домофона" />
+            <CustomInput
+              id="intercomNumber"
+              register={register}
+              errors={formState.errors}
+              disabled={isLoading}
+              formatPrice={false}
+              placeholder="Например: 24"
+              type="number"
+            />
+            {formState.errors.apartmentNumber && (
+              <Typography variant="textFootnoteRegular" color="error">
+                {formState.errors.apartmentNumber.message as string}
+              </Typography>
+            )}
+          </Box>
+        </Box>
+      )}
       <Box>
         <Button
           variant="contained"

@@ -27,6 +27,7 @@ export const schema = yup.object().shape({
   documents: yup.string().required("Пожалуйста, укажите состояние документов"),
   hasBasement: yup.boolean(),
   hasMansard: yup.boolean(),
+  intercomNumber: yup.string(),
   houseNumber: yup.string().when("category", {
     is: (v: string) => livingSpaces.includes(v),
     then: (schema) => schema.required("Пожалуйста, укажите номер дома"),
@@ -35,6 +36,11 @@ export const schema = yup.object().shape({
   apartmentNumber: yup.string().when("category", {
     is: (val: string) => val === "apartment",
     then: (schema) => schema.required("Пожалуйста, укажите номер квартиры"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+  entranceNumber: yup.string().when("category", {
+    is: (val: string) => val === "apartment",
+    then: (schema) => schema.required("Пожалуйста, укажите номер подъезда"),
     otherwise: (schema) => schema.notRequired(),
   }),
   houseSquare: yup.string().when("category", {

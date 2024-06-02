@@ -5,6 +5,31 @@ import {
   ServiceType,
 } from "../../../CatalogModule/store";
 
+export interface OwnerInfo {
+  ownerName: string;
+  ownerPhone: string;
+  ownerComment?: string;
+}
+
+export interface ApartmentComplex {
+  title?: string;
+}
+
+export const keysToRemove = [
+  "ownerName",
+  "ownerPhone",
+  "ownerComment",
+  "apartmentComplexTitle",
+  "apartmentNumber",
+];
+
+type KeysToRemove = (typeof keysToRemove)[number];
+
+export type SellOrder = Omit<FormValues, KeysToRemove> & {
+  ownerInfo: OwnerInfo;
+  apartmentComplex: ApartmentComplex;
+};
+
 export type FormValues = {
   ownerName: string;
   ownerPhone: string;
@@ -46,6 +71,8 @@ export type FormValues = {
   apartmentComplexTitle?: string;
   parkingSeat?: string;
   ownerComment?: string;
+  entranceNumber?: string;
+  intercomNumber?: string;
 };
 
 export interface ButtonChip {
@@ -113,6 +140,8 @@ interface SellModuleStore {
   waterType: string;
   hasBasement: boolean;
   hasMansard: boolean;
+  entranceNumber: string;
+  intercomNumber: string;
   customRoomCount: string;
   setCustomRoomCount: (v: string) => void;
 }
@@ -190,6 +219,8 @@ export const initialFormState = {
   sewerType: "",
   toiletType: "",
   waterType: "",
+  entranceNumber: "",
+  intercomNumber: "",
   hasBasement: false,
   hasMansard: false,
 };
@@ -224,13 +255,15 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
   sewerType: "",
   toiletType: "",
   waterType: "",
+  entranceNumber: "",
+  intercomNumber: "",
   hasBasement: false,
   hasMansard: false,
   customRoomCount: "",
   setCustomRoomCount: (v) => set({ customRoomCount: v }),
   isDrawerOpen: true,
   setIsDrawerOpen: (v) => set({ isDrawerOpen: v }),
-  step: 1,
+  step: 7,
   setStep: (v) => set({ step: v }),
   serviceTypes: serviceTypes,
   setActiveServiceType: (value) =>

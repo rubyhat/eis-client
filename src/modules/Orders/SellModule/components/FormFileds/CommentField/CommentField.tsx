@@ -45,7 +45,7 @@ export const CommentField = ({ isLoading }: CommentFieldProps) => {
             width: 1,
             minHeight: { xs: 250, sm: 110 },
             padding: 1,
-            borderColor: formState.errors["ownerInfo.description"]
+            borderColor: formState.errors["ownerComment"]
               ? "customColors.colorsRed"
               : "customColors.labelsQuaternary",
             borderRadius: "5px",
