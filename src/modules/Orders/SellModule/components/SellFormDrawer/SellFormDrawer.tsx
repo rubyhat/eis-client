@@ -4,12 +4,7 @@ import { Box, Button, Container, Grid, SwipeableDrawer } from "@mui/material";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import {
-  FormValues,
-  initialFormState,
-  keysToRemove,
-  useSellModuleStore,
-} from "../../store/useSellModuleStore";
+import { FormValues, useSellModuleStore } from "../../store/useSellModuleStore";
 import { DrawerHeader } from "../DrawerHeader";
 import { UserInfoFields } from "../FormFileds/UserInfoFields";
 import { EstateCategory } from "../FormFileds/EstateCategory";
@@ -22,6 +17,8 @@ import { FinalField } from "../FormFileds/FinalField";
 import { SuccessForm } from "../SuccessForm";
 import { apiSellModule } from "../../api/apiSellModule";
 import toast from "react-hot-toast";
+import { ImagesField } from "../ImagesField";
+import { initialFormState, keysToRemove } from "../../store/initValues";
 
 const drawerPaperProps = {
   sx: {
@@ -180,16 +177,17 @@ export const SellFormDrawer = () => {
                     showApartmentNumberField={showApartmentNumberField}
                   />
                 )}
-                {step === 4 && <CategoryFields isLoading={isLoading} />}
-                {step === 5 && <PriceField isLoading={isLoading} />}
-                {step === 6 && <CommentField isLoading={isLoading} />}
-                {step === 7 && (
+                {step === 4 && <ImagesField isLoading={isLoading} />}
+                {step === 5 && <CategoryFields isLoading={isLoading} />}
+                {step === 6 && <PriceField isLoading={isLoading} />}
+                {step === 7 && <CommentField isLoading={isLoading} />}
+                {step === 8 && (
                   <FinalField
                     isChecked={isPolicyChecked}
                     setIsChecked={setIsPolicyChecked}
                   />
                 )}
-                {step === 7 && (
+                {step === 8 && (
                   <Button
                     type="submit"
                     variant="contained"
