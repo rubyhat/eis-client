@@ -210,7 +210,7 @@ export const SellFormDrawer = () => {
                     Отправить заявку
                   </Button>
                 )}
-                {step === 8 && <SuccessForm />}
+                {step === 9 && <SuccessForm />}
               </Grid>
             </Grid>
           </Container>

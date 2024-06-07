@@ -172,4 +172,8 @@ export const schema = yup.object().shape({
     then: (schema) => schema.required("Пожалуйста, укажите количество комнат"),
     otherwise: (schema) => schema.notRequired(),
   }),
+  photos: yup
+    .array()
+    .of(yup.mixed())
+    .min(1, "Пожалуйста, загрузите фотографии"),
 });
