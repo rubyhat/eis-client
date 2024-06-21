@@ -142,9 +142,9 @@ interface SellModuleStore {
   hasMansard: boolean;
   entranceNumber: string;
   intercomNumber: string;
+  photos: File[];
   customRoomCount: string;
   setCustomRoomCount: (v: string) => void;
-  photos: File[];
   addPhotos: (newPhotos: File[]) => void;
   removePhoto: (index: number) => void;
   clearPhotos: () => void;
