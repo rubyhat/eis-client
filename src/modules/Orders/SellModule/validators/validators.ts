@@ -17,6 +17,11 @@ export const schema = yup.object().shape({
   type: yup.string().required("Пожалуйста, выберите тип услуги"),
   category: yup.string().required("Пожалуйста, выберите тип недвижимости"),
   city: yup.string().required("Пожалуйста, укажите город"),
+  cityRegion: yup.string().when("city", {
+    is: (v: string) => v === "Караганда",
+    then: (schema) => schema.required("Пожалуйста, укажите район города"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
   street: yup.string().required("Пожалуйста, укажите улицу"),
   price: yup.string().required("Пожалуйста, укажите вашу стоимость"),
   ownerComment: yup.string(),

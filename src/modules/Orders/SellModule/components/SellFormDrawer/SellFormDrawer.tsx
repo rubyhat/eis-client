@@ -107,6 +107,7 @@ export const SellFormDrawer = () => {
       },
       geoPosition: {
         city: data.city,
+        cityRegion: data.cityRegion,
         street: data.street,
         houseNumber: data.houseNumber,
       },

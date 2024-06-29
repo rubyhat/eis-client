@@ -16,7 +16,6 @@ import { useAnalytics } from "../../../../../hooks/useAnalytics";
 export const Greeting = () => {
   const { trackEvent } = useAnalytics();
   const { setIsDrawerOpen } = useSellModuleStore();
-  const [isPolicyChecked, setIsPolicyChecked] = React.useState(true);
   const [isDealChecked, setIsDealChecked] = React.useState(true);
 
   const handleDealInfoClick = () => {};
@@ -162,33 +161,6 @@ export const Greeting = () => {
             control={
               <Checkbox
                 defaultChecked
-                value={isPolicyChecked}
-                onChange={(e) => setIsPolicyChecked(e.target.checked)}
-              />
-            }
-            label={
-              <Typography component="p" variant="textCalloutRegular">
-                Я согласен с{" "}
-                <Box
-                  sx={{
-                    color: "customColors.colorsOrange",
-                    textDecoration: "underline",
-                  }}
-                  component={Link}
-                  target="_blank"
-                  to="/docs/policy" // todo: может вместо открытия новой страницы, показаывать модалку с условиями, чтобы пользователя не уводить с целевой страницы?
-                  onClick={handleClickPolicyInfo}
-                >
-                  политикой обработки данных
-                </Box>
-              </Typography>
-            }
-          />
-          <FormControlLabel
-            sx={{ marginRight: 0 }}
-            control={
-              <Checkbox
-                defaultChecked
                 value={isDealChecked}
                 onChange={(e) => setIsDealChecked(e.target.checked)}
               />
@@ -219,7 +191,7 @@ export const Greeting = () => {
         size="large"
         onClick={() => setIsDrawerOpen(true)}
         sx={{ mt: 2, textTransform: "none" }}
-        disabled={!isDealChecked || !isPolicyChecked}
+        disabled={!isDealChecked}
         variant="contained"
       >
         Приступить

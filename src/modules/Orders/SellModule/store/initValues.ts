@@ -40,6 +40,7 @@ export const roomTypes: RoomButtonChip[] = [
 ];
 
 export const initialFormState = {
+  cityRegion: "",
   ownerName: "",
   ownerPhone: "",
   ownerComment: "",

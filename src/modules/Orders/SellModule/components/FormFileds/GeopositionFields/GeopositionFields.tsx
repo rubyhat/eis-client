@@ -1,14 +1,21 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import toast from "react-hot-toast";
+
+import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
+
 import {
   CityButtonChip,
   useSellModuleStore,
 } from "../../../store/useSellModuleStore";
 import { FormInputLabel } from "../../FormInputLabel";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { buttonStyles } from "../assets";
-import toast from "react-hot-toast";
 import { CustomInput } from "../../../../../../components/CustomInput";
+import {
+  selectInputProps,
+  selectStyles,
+} from "../../../../../../shared/styles/select";
+import { livingSpaces } from "../../../constants/SellModuleConstants";
 
 interface GeopositionFieldsProps {
   isLoading: boolean;
@@ -19,7 +26,11 @@ export const GeopositionFields = ({
   showApartmentNumberField,
 }: GeopositionFieldsProps) => {
   const { step, setStep, cityTypes, setActiveCityType } = useSellModuleStore();
-  const { formState, setValue, trigger, register } = useFormContext();
+  const { formState, control, setValue, getValues, trigger, register } =
+    useFormContext();
+
+  const currentCity = getValues().city;
+  const showCityRegion = currentCity === "Караганда";
 
   const handleCityTypeClick = (service: CityButtonChip) => {
     setValue("city", service.value);
@@ -29,6 +40,7 @@ export const GeopositionFields = ({
   const handleClickSubmitButton = async () => {
     const triggerList = ["city", "street", "houseNumber"];
     if (showApartmentNumberField) triggerList.push("apartmentNumber");
+    if (showCityRegion) triggerList.push("cityRegion");
     const isValid = await trigger(triggerList);
     if (isValid) {
       setStep(step + 1);
@@ -78,6 +90,45 @@ export const GeopositionFields = ({
           </Typography>
         )}
       </Box>
+      {getValues().city === "Караганда" && (
+        <Box marginBottom={1.5}>
+          <FormInputLabel label="Район города" required />
+          <Controller
+            name="cityRegion"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                displayEmpty
+                sx={selectStyles}
+                inputProps={{ sx: selectInputProps }}
+                disabled={isLoading}
+              >
+                <MenuItem value="" disabled>
+                  <Typography
+                    variant="textCalloutRegular"
+                    color="customColors.labelsSecondary"
+                  >
+                    Выберите район
+                  </Typography>
+                </MenuItem>
+                <MenuItem value="Город">Город</MenuItem>
+                <MenuItem value="Юго-Восток">Юго-Восток</MenuItem>
+                <MenuItem value="Михайловка">Михайловка</MenuItem>
+                <MenuItem value="Майкудук">Майкудук</MenuItem>
+                <MenuItem value="Федоровка">Федоровка</MenuItem>
+                <MenuItem value="Кунгей">Кунгей</MenuItem>
+                <MenuItem value="other">Другой</MenuItem>
+              </Select>
+            )}
+          />
+          {formState.errors.cityRegion && (
+            <Typography variant="textFootnoteRegular" color="error">
+              {formState.errors.cityRegion.message as string}
+            </Typography>
+          )}
+        </Box>
+      )}
       <Box mb={1.5}>
         <FormInputLabel label="Улица" required />
         <CustomInput
@@ -97,7 +148,10 @@ export const GeopositionFields = ({
       </Box>
       <Box sx={{ display: "flex", gap: 2, marginBottom: 1.5 }}>
         <Box>
-          <FormInputLabel label="Номер дома" required />
+          <FormInputLabel
+            label="Номер дома"
+            required={livingSpaces.includes(getValues().city)}
+          />
           <CustomInput
             required
             id="houseNumber"

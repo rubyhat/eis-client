@@ -29,6 +29,7 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
   const { formState, getValues, trigger } = useFormContext();
 
   const currentCategory = getValues().category;
+
   const isApartment = currentCategory === "apartment";
   const requiredKitchenSquareField = arrsForKitchen.includes(currentCategory);
   const showTargetFloor = isApartment;
@@ -47,8 +48,6 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
     if (requiredLand) triggerList.push("plotSquare");
     if (showHouseProperties)
       triggerList = [...triggerList, ...housePropertiesTriggerList];
-
-    console.log(triggerList);
 
     const isValid = await trigger(triggerList);
     if (isValid) {

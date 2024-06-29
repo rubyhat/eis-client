@@ -36,6 +36,7 @@ export type FormValues = {
   type: string;
   category: string;
   city: string;
+  cityRegion?: string;
   street: string;
   price: string;
   exchange: string;
@@ -109,6 +110,7 @@ interface SellModuleStore {
   roomTypes: RoomButtonChip[];
   setActiveRoomType: (value: string) => void;
   loadStateFromLocalStorage: () => void;
+  cityRegion: string;
   price: string;
   exchange: string;
   ownerComment: string;
