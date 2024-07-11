@@ -30,7 +30,11 @@ export const CommentField = ({ isLoading }: CommentFieldProps) => {
         Ваше сообщение
       </Typography>
       <Typography component="p" variant="textBodyRegular" mb={1.5}>
-        Это сообщение увидит только сотрудник Roze Agency
+        Это сообщение увидит только сотрудник <br />
+        <Typography component="span" color="customColors.colorsOrange">
+          Roze
+        </Typography>{" "}
+        Agency
       </Typography>
       <Box mb={1.5}>
         <FormInputLabel label="Комментарий" />

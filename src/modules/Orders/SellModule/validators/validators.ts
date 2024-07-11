@@ -7,6 +7,9 @@ import {
   livingSpaces,
 } from "../constants/SellModuleConstants";
 
+const currentYear = new Date().getFullYear();
+const maxYear = currentYear + 5;
+
 export const schema = yup.object().shape({
   ownerName: yup.string().required("Введите Ваше Имя"),
   ownerPhone: yup
@@ -81,8 +84,15 @@ export const schema = yup.object().shape({
     then: (schema) =>
       schema
         .required("Пожалуйста, укажите год постройки дома")
-        .min(4, "Введите полный год из 4 цифр")
-        .max(4, "Введите полный год из 4 цифр"),
+        .length(4, "Введите полный год из 4 цифр")
+        .test(
+          "is-valid-year",
+          `Год постройки должен быть не меньше 1900 и не больше ${maxYear}`,
+          (value) => {
+            const year = parseInt(value, 10);
+            return year >= 1900 && year <= maxYear;
+          },
+        ),
     otherwise: (schema) => schema.notRequired(),
   }),
   houseCondition: yup.string().when("category", {

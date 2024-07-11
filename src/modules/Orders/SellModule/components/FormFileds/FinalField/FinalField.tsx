@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useAnalytics } from "../../../../../../hooks/useAnalytics";
+import { useFormContext } from "react-hook-form";
 
 interface FinalFieldProps {
   isChecked: boolean;
@@ -16,10 +17,28 @@ interface FinalFieldProps {
 
 export const FinalField = ({ isChecked, setIsChecked }: FinalFieldProps) => {
   const { trackEvent } = useAnalytics();
-  const handleClickPolicyInfo = () => {
+  const { getValues } = useFormContext();
+
+  const category = getValues().category;
+  const type = getValues().type;
+  const city = getValues().city;
+  let agrementLink =
+    city === "Караганда"
+      ? "/static/docs/Продажа_недвижимости.pdf"
+      : "/static/docs/Продажа_недвижимости_районы.pdf";
+
+  if (["business", "factory"].includes(category)) {
+    agrementLink = "/static/docs/Продажа_коммерческой_недвижимости.pdf";
+  }
+
+  if (type === "rent") {
+    agrementLink = "/static/docs/Сдача_недвижимости_в_аренду.pdf";
+  }
+
+  const handleClickAgreementInfo = () => {
     trackEvent({
-      category: "FeedbackForm",
-      action: "Click on policy info",
+      category: "Order/Sekk",
+      action: "Открыли условия сотрудничества",
     });
   };
 
@@ -74,7 +93,7 @@ export const FinalField = ({ isChecked, setIsChecked }: FinalFieldProps) => {
           </Typography>
           <Typography component="p" variant="textBodyRegular" lineHeight={1.35}>
             Обговариваем детали сотрудничества и заключаем договор, назначаем
-            дату выезда специалиста на ваш объект
+            дату выезда специалиста на Ваш объект
           </Typography>
         </Box>
         <Box component="li" sx={{ display: "flex", gap: 1 }}>
@@ -116,10 +135,10 @@ export const FinalField = ({ isChecked, setIsChecked }: FinalFieldProps) => {
                 }}
                 component={Link}
                 target="_blank"
-                to="/docs/policy" // todo: может вместо открытия новой страницы, показаывать модалку с условиями, чтобы пользователя не уводить с целевой страницы?
-                onClick={handleClickPolicyInfo}
+                to={agrementLink} // todo: может вместо открытия новой страницы, показаывать модалку с условиями, чтобы пользователя не уводить с целевой страницы?
+                onClick={handleClickAgreementInfo}
               >
-                политикой обработки данных
+                условиями сотрудничества
               </Box>
             </Typography>
           }

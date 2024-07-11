@@ -2,6 +2,7 @@ import React from "react";
 
 import { Box, Button, Typography } from "@mui/material";
 import { useSellModuleStore } from "../../store/useSellModuleStore";
+import toast from "react-hot-toast";
 
 interface ImagesToolBarProps {
   photosLength: number;
@@ -9,6 +10,12 @@ interface ImagesToolBarProps {
 
 export const ImagesToolBar = ({ photosLength }: ImagesToolBarProps) => {
   const clearPhotos = useSellModuleStore((store) => store.clearPhotos);
+
+  const handleDeleteAllClick = () => {
+    clearPhotos();
+    toast.success("Фото были успешно удалены!");
+  };
+
   return (
     <Box
       sx={{
@@ -18,10 +25,10 @@ export const ImagesToolBar = ({ photosLength }: ImagesToolBarProps) => {
       }}
     >
       <Typography component="p" variant="textBodyRegular">
-        Выбрано: {photosLength} фотографий
+        Выбрано фотографий: {photosLength}
       </Typography>
       <Button
-        onClick={clearPhotos}
+        onClick={handleDeleteAllClick}
         variant="outlined"
         color="error"
         sx={{ textTransform: "none" }}

@@ -138,7 +138,7 @@ export const SellFormDrawer = () => {
       .create(formData)
       .then(() => {
         toast.success("Заявка создана!");
-        setStep(8);
+        setStep(9);
         clearLocalStorage(); // очищать форму после успешной отправки
       })
       .catch((error) => {

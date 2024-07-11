@@ -10,7 +10,7 @@ import { Logotype } from "../../../../../components/Logotype";
 export const DrawerHeader = () => {
   const { step, setStep, setIsDrawerOpen } = useSellModuleStore();
 
-  const totalSteps = 8;
+  const totalSteps = 9;
   const progressValue = (step / totalSteps) * 100;
 
   return (
@@ -23,7 +23,7 @@ export const DrawerHeader = () => {
           paddingY: 1,
         }}
       >
-        {step !== 8 && (
+        {step !== 9 && (
           <IconButton
             disabled={step === 1}
             color="primary"
@@ -33,7 +33,7 @@ export const DrawerHeader = () => {
             <IoIosArrowForward />
           </IconButton>
         )}
-        {step === 8 ? (
+        {step === 9 ? (
           <Logotype />
         ) : (
           <Typography component="h6" variant="titleThirdRegular">

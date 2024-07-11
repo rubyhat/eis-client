@@ -1,13 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 import { SellFormDrawer } from "../SellFormDrawer";
 import { useSellModuleStore } from "../../store/useSellModuleStore";
@@ -16,15 +9,16 @@ import { useAnalytics } from "../../../../../hooks/useAnalytics";
 export const Greeting = () => {
   const { trackEvent } = useAnalytics();
   const { setIsDrawerOpen } = useSellModuleStore();
-  const [isDealChecked, setIsDealChecked] = React.useState(true);
 
   const handleDealInfoClick = () => {};
 
-  const handleClickPolicyInfo = () =>
+  const handleStartButtonClick = () => {
+    setIsDrawerOpen(true);
     trackEvent({
-      category: "FeedbackForm",
+      category: "Order/Sell",
       action: "Click on policy info",
     });
+  };
 
   return (
     <Box>
@@ -142,7 +136,7 @@ export const Greeting = () => {
               variant="textBodyEmphasized"
               color="primary"
             >
-              от 6.000тг
+              от 5.000тг
             </Typography>
             , размещение на сайте Roze.kz, создание видеообзора, размещение в
             социальных сетях -{" "}
@@ -155,7 +149,7 @@ export const Greeting = () => {
             </Typography>
           </Typography>
         </Box>
-        <Box component="li" mb={1}>
+        {/* <Box component="li" mb={1}>
           <FormControlLabel
             sx={{ marginRight: 0 }}
             control={
@@ -184,14 +178,13 @@ export const Greeting = () => {
               </Typography>
             }
           />
-        </Box>
+        </Box> */}
       </Box>
       <Button
         fullWidth
         size="large"
-        onClick={() => setIsDrawerOpen(true)}
+        onClick={handleStartButtonClick}
         sx={{ mt: 2, textTransform: "none" }}
-        disabled={!isDealChecked}
         variant="contained"
       >
         Приступить

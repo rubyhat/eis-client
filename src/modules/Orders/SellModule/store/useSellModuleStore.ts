@@ -163,9 +163,9 @@ export const useSellModuleStore = create<SellModuleStore>((set) => ({
   clearPhotos: () => set({ photos: [] }),
   customRoomCount: "",
   setCustomRoomCount: (v) => set({ customRoomCount: v }),
-  isDrawerOpen: true,
+  isDrawerOpen: false,
   setIsDrawerOpen: (v) => set({ isDrawerOpen: v }),
-  step: 4,
+  step: 1,
   setStep: (v) => set({ step: v }),
   serviceTypes: serviceTypes,
   setActiveServiceType: (value) =>

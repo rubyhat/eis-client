@@ -90,8 +90,13 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
           size="large"
           disabled={isLoading}
           sx={{
+            bottom: 16,
             textTransform: "none",
-            marginTop: "auto",
+            position: "fixed",
+            width: {
+              xs: "calc(100% - 32px)",
+              sm: 568,
+            },
           }}
           onClick={handleClickSubmitButton}
         >
