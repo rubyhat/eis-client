@@ -8,7 +8,7 @@ export const estateObjectDictionary = {
     house: "Дом",
     land: "Земельный участок",
     cottage: "Дача",
-    business: "Бизнес",
+    business: "Коммерческая недвижимость",
     factory: "Заводы и фабрики",
     townhouse: "Таунхаус",
     other: "Другое",

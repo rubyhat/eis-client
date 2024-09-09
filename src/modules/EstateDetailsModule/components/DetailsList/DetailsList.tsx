@@ -38,7 +38,7 @@ export const DetailsList = ({ estateDetails }: DetailsListProps) => {
         label="Категория"
       />
       {estateDetails.isCommercial && (
-        <DetailsListItem title="Да" label="Коммерческий объект?" />
+        <DetailsListItem title="Да" label="Коммерческий объект" />
       )}
       <DetailsListItem
         title={estateObjectDictionary.type[estateDetails.type]}
