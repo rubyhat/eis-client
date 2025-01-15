@@ -206,9 +206,9 @@ export const GeopositionFields = ({
               placeholder="Например: 42"
               type="number"
             />
-            {formState.errors.houseNumber && (
+            {formState.errors.entranceNumber && (
               <Typography variant="textFootnoteRegular" color="error">
-                {formState.errors.houseNumber.message as string}
+                {formState.errors.entranceNumber.message as string}
               </Typography>
             )}
           </Box>
@@ -224,9 +224,9 @@ export const GeopositionFields = ({
               placeholder="Например: 24"
               type="number"
             />
-            {formState.errors.apartmentNumber && (
+            {formState.errors.intercomNumber && (
               <Typography variant="textFootnoteRegular" color="error">
-                {formState.errors.apartmentNumber.message as string}
+                {formState.errors.intercomNumber.message as string}
               </Typography>
             )}
           </Box>
