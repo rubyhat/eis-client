@@ -144,23 +144,23 @@ interface SellModuleStore {
   hasMansard: boolean;
   entranceNumber: string;
   intercomNumber: string;
-  photos: File[];
+  images: File[];
   customRoomCount: string;
   setCustomRoomCount: (v: string) => void;
-  addPhotos: (newPhotos: File[]) => void;
+  addImages: (newImages: File[]) => void;
   removePhoto: (index: number) => void;
   clearPhotos: () => void;
 }
 
 export const useSellModuleStore = create<SellModuleStore>((set) => ({
   ...initialFormState,
-  addPhotos: (newPhotos) =>
-    set((state) => ({ photos: [...state.photos, ...newPhotos] })),
+  addImages: (newImages) =>
+    set((state) => ({ images: [...state.images, ...newImages] })),
   removePhoto: (index) =>
     set((state) => ({
-      photos: state.photos.filter((_, i) => i !== index),
+      images: state.images.filter((_, i) => i !== index),
     })),
-  clearPhotos: () => set({ photos: [] }),
+  clearPhotos: () => set({ images: [] }),
   customRoomCount: "",
   setCustomRoomCount: (v) => set({ customRoomCount: v }),
   isDrawerOpen: false,

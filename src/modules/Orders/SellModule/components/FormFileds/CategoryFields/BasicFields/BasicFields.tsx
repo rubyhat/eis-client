@@ -50,7 +50,7 @@ export const BasicFields = ({ isLoading }: BasicFieldsProps) => {
           </Typography>
         )}
       </Box>
-      <Box marginBottom={1.5}>
+      <Box marginBottom={1.5} pb={8}>
         <FormInputLabel label="Документы" required />
         <Controller
           name="documents"

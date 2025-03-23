@@ -1,10 +1,10 @@
 import React from "react";
-
-import { Box, Button, Typography } from "@mui/material";
+import toast from "react-hot-toast";
 import { useFormContext } from "react-hook-form";
+import { Box, Button, Typography } from "@mui/material";
+
 import { LivingSpaceFields } from "./LivingSpaceFields";
 import { HomeFields } from "./HomeFields";
-import toast from "react-hot-toast";
 import { useSellModuleStore } from "../../../store/useSellModuleStore";
 import { BasicFields } from "./BasicFields";
 import { LandFields } from "./LandFields";
@@ -93,10 +93,7 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
             bottom: 16,
             textTransform: "none",
             position: "fixed",
-            width: {
-              xs: "calc(100% - 32px)",
-              sm: 568,
-            },
+            width: { xs: "calc(100% - 32px)", md: 568 },
           }}
           onClick={handleClickSubmitButton}
         >

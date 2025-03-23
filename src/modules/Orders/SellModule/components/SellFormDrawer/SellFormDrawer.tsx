@@ -1,8 +1,9 @@
 import React from "react";
 import { Box, Button, Container, Grid, SwipeableDrawer } from "@mui/material";
 
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
 import { FormValues, useSellModuleStore } from "../../store/useSellModuleStore";
 import { DrawerHeader } from "../DrawerHeader";
@@ -16,7 +17,6 @@ import { CategoryFields } from "../FormFileds/CategoryFields";
 import { FinalField } from "../FormFileds/FinalField";
 import { SuccessForm } from "../SuccessForm";
 import { apiSellModule } from "../../api/apiSellModule";
-import toast from "react-hot-toast";
 import { ImagesField } from "../ImagesField";
 import { initialFormState, keysToRemove } from "../../store/initValues";
 
@@ -52,7 +52,7 @@ export const SellFormDrawer = () => {
 
   const methods = useForm<FormValues>({
     mode: "onChange",
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema), // todo: switch yup on zod
     defaultValues: initialFormState,
   });
 
@@ -81,22 +81,21 @@ export const SellFormDrawer = () => {
 
   const clearLocalStorage = () => {
     // Очистка данных после успешной отправки
-    // localStorage.removeItem("formData");
-    // localStorage.removeItem("serviceTypes");
-    // localStorage.removeItem("estateTypes");
-    // localStorage.removeItem("cityTypes");
-    // localStorage.removeItem("roomTypes");
+    localStorage.removeItem("formData");
+    localStorage.removeItem("serviceTypes");
+    localStorage.removeItem("estateTypes");
+    localStorage.removeItem("cityTypes");
+    localStorage.removeItem("roomTypes");
   };
 
   const handleFormSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log("success data", data);
     const formData = new FormData();
 
     const clearData = {
       ...data,
       ownerInfo: {
         ownerName: data.ownerName,
-        ownerPhone: data.ownerPhone,
+        ownerPhone: data.ownerPhone.replace(/ /g, ""),
         ownerComment: data.ownerComment,
         apartmentNumber: data.apartmentNumber,
         entranceNumber: data.entranceNumber,
@@ -129,11 +128,16 @@ export const SellFormDrawer = () => {
         typeof value === "boolean"
       ) {
         formData.append(key, JSON.stringify(value));
+      } else if (key === "images") {
+        for (const file of value as string) {
+          formData.append("images", file);
+        }
       } else {
         formData.append(key, value as string);
       }
     });
 
+    // todo: add query mutation
     apiSellModule
       .create(formData)
       .then(() => {

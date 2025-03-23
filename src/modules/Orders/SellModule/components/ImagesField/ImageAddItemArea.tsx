@@ -3,6 +3,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { DropzoneInputProps, DropzoneRootProps } from "react-dropzone";
+import { imageAddItemAreaStyles } from "./styles";
 
 interface ImageAddItemAreaProps {
   isLoading: boolean;
@@ -16,22 +17,7 @@ export const ImageAddItemArea = ({
   getRootProps,
 }: ImageAddItemAreaProps) => {
   return (
-    <Box
-      {...getRootProps()}
-      sx={{
-        display: {
-          xs: "none",
-          sm: "block",
-        },
-        border: "2px solid",
-        borderColor: "customColors.colorsOrange",
-        borderRadius: 2,
-        paddingX: 2,
-        paddingY: 8,
-        textAlign: "center",
-        cursor: "pointer",
-      }}
-    >
+    <Box {...getRootProps()} sx={imageAddItemAreaStyles}>
       <input {...getInputProps()} disabled={isLoading} />
       <MdOutlineAddPhotoAlternate
         size={48}

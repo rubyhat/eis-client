@@ -3,6 +3,7 @@ import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { DropzoneRootProps } from "react-dropzone";
+import { imageAddItemButtonStyles } from "./styles";
 
 interface ImageAddItemButtonProps {
   getRootProps: <T extends DropzoneRootProps>(props?: T | undefined) => T;
@@ -13,21 +14,7 @@ export const ImageAddItemButton = ({
 }: ImageAddItemButtonProps) => {
   return (
     <Grid item xs={6}>
-      <Box
-        {...getRootProps()}
-        sx={{
-          border: "2px solid",
-          borderColor: "customColors.colorsOrange",
-          borderRadius: 2,
-          width: 1,
-          height: 150,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          cursor: "pointer",
-        }}
-      >
+      <Box {...getRootProps()} sx={imageAddItemButtonStyles}>
         <MdOutlineAddPhotoAlternate
           size={24}
           color="hsla(32, 100%, 55%, 1)"

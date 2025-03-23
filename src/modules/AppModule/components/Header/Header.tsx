@@ -27,7 +27,7 @@ export const Header = () => {
     trackEvent({
       category: "HomePage",
       action: "Click on Header",
-      label: `Click on Phone Button (redirect to Contacts page)`,
+      label: `Click on Sell Order Button (redirect to sell order page)`,
     });
 
   return (
@@ -54,11 +54,11 @@ export const Header = () => {
                 <MenuList />
                 <Box
                   component={Link}
-                  to="/contacts"
+                  to="/orders/sell"
                   onClick={handlePhoneButtonClick}
                 >
                   <CustomButton variant="contained" size="medium">
-                    Позвоните нам
+                    Подать заявку
                   </CustomButton>
                 </Box>
               </React.Fragment>

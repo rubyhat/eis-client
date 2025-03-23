@@ -83,7 +83,7 @@ export const initialFormState = {
   intercomNumber: "",
   hasBasement: false,
   hasMansard: false,
-  photos: [],
+  images: [],
 };
 
 export const keysToRemove = [

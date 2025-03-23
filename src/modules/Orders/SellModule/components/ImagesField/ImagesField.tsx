@@ -24,28 +24,28 @@ interface ImagesFieldProps {
 
 export const ImagesField = ({ isLoading }: ImagesFieldProps) => {
   const { register, setValue, formState, trigger } = useFormContext();
-  const { photos, addPhotos, setStep, step } = useSellModuleStore();
+  const { images, addImages, setStep, step } = useSellModuleStore();
 
   const theme = useTheme();
   const showImageAddItemButton = useMediaQuery(theme.breakpoints.down("sm"))
     ? true
-    : photos.length > 0 && photos.length < 10;
+    : images.length > 0 && images.length < 10;
 
-  // Зарегистрируйте поле photos
+  // Зарегистрируйте поле images
   React.useEffect(() => {
-    register("photos");
+    register("images");
   }, [register]);
 
-  // Обновите значение поля photos при изменении состояния photos в Zustand
+  // Обновите значение поля images при изменении состояния images в Zustand
   React.useEffect(() => {
-    setValue("photos", photos);
-  }, [photos, setValue]);
+    setValue("images", images);
+  }, [images, setValue]);
 
   const onDrop = (acceptedFiles: File[]) => {
     const photoFiles = acceptedFiles.filter((file) =>
       file.type.startsWith("image/"),
     );
-    addPhotos(photoFiles);
+    addImages(photoFiles);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -57,7 +57,7 @@ export const ImagesField = ({ isLoading }: ImagesFieldProps) => {
   });
 
   const handleClickSubmitButton = async () => {
-    const triggerList = ["photos"];
+    const triggerList = ["images"];
     const isValid = await trigger(triggerList);
     if (isValid) {
       setStep(step + 1);
@@ -73,27 +73,27 @@ export const ImagesField = ({ isLoading }: ImagesFieldProps) => {
         Загрузка фотографий
       </Typography>
       <ImagesInfo />
-      {photos.length === 0 && (
+      {images.length === 0 && (
         <ImageAddItemArea
           isLoading={isLoading}
           getInputProps={getInputProps}
           getRootProps={getRootProps}
         />
       )}
-      <ImagesToolBar photosLength={photos.length} />
+      <ImagesToolBar photosLength={images.length} />
       <Box sx={{ marginY: 2 }}>
         <Grid container spacing={2}>
-          {photos.map((photo, index) => (
-            <ImageItem key={index} photo={photo} index={index} />
+          {images.map((image, index) => (
+            <ImageItem key={index} photo={image} index={index} />
           ))}
           {showImageAddItemButton && (
             <ImageAddItemButton getRootProps={getRootProps} />
           )}
         </Grid>
       </Box>
-      {formState.errors.photos && (
+      {formState.errors.images && (
         <Typography variant="textFootnoteRegular" color="error">
-          {formState.errors.photos.message as string}
+          {formState.errors.images.message as string}
         </Typography>
       )}
       <Box paddingTop="72px">
@@ -101,7 +101,7 @@ export const ImagesField = ({ isLoading }: ImagesFieldProps) => {
           variant="contained"
           fullWidth
           size="large"
-          disabled={isLoading || photos.length === 0}
+          disabled={isLoading || images.length === 0}
           sx={{
             bottom: 16,
             textTransform: "none",

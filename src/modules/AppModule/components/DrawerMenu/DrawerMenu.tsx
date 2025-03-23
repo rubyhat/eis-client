@@ -1,5 +1,6 @@
-import { Box, IconButton, SwipeableDrawer } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
+import { Box, IconButton, SwipeableDrawer } from "@mui/material";
 import { IoClose } from "react-icons/io5";
 
 import { Logotype } from "../../../../components/Logotype";
@@ -7,8 +8,8 @@ import { CustomButton } from "../../../../components/CustomButton";
 import { MenuList } from "../MenuList";
 import { useHeaderStore } from "../../store/useHeaderStore";
 import { useScreenSize } from "../../../../hooks/useScreenSize";
-import { Link } from "react-router-dom";
 import { useAnalytics } from "../../../../hooks/useAnalytics";
+import { logotypeWrapperStyles, paperPropsStyles } from "./styles";
 
 interface DrawerMenuProps {
   onClick: () => void;
@@ -37,19 +38,14 @@ export const DrawerMenu = ({
     setIsHeaderBurgerOpen(false);
   };
 
-  const handleMobilePhoneButtonClick = () =>
+  const handlePhoneButtonClick = () => {
     trackEvent({
       category: "HomePage",
       action: "Click on Header",
-      label: `Click on Mobile Phone Button`,
+      label: `Click on Sell Order Button (redirect to sell order page)`,
     });
-
-  const handlePhoneButtonClick = () =>
-    trackEvent({
-      category: "HomePage",
-      action: "Click on Header",
-      label: `Click on Phone Button (redirect to Contacts page)`,
-    });
+    setIsHeaderBurgerOpen(false);
+  };
 
   return (
     <SwipeableDrawer
@@ -58,23 +54,11 @@ export const DrawerMenu = ({
       onClose={handleCloseBurgerMenu}
       onOpen={handleBurgerIconClick}
       PaperProps={{
-        sx: {
-          width: isMobile ? "100%" : "300px",
-          borderRadius: isMobile ? "8px 8px 0 0" : "inherit",
-        },
+        sx: paperPropsStyles(isMobile),
       }}
     >
       <Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: 1.5,
-            borderBottom: "1px solid",
-            borderColor: "customColors.labelsQuaternary",
-          }}
-        >
+        <Box sx={logotypeWrapperStyles}>
           <Logotype />
           <IconButton onClick={handleCloseBurgerMenu}>
             <IoClose />
@@ -84,37 +68,21 @@ export const DrawerMenu = ({
           <Box onClick={handleCloseBurgerMenu}>
             <MenuList showIcon isVertical />
           </Box>
-          {isMobile ? (
-            <Box
-              component="a"
-              href="tel:+77752813783"
-              onClick={handleMobilePhoneButtonClick}
+
+          <Box
+            component={Link}
+            to="/orders/sell"
+            onClick={handlePhoneButtonClick}
+          >
+            <CustomButton
+              variant="contained"
+              size="large"
+              fullWidth
+              sx={{ marginTop: 2 }}
             >
-              <CustomButton
-                variant="contained"
-                size="large"
-                fullWidth
-                sx={{ marginTop: 2 }}
-              >
-                Позвоните нам
-              </CustomButton>
-            </Box>
-          ) : (
-            <Box
-              component={Link}
-              to="/contacts"
-              onClick={handlePhoneButtonClick}
-            >
-              <CustomButton
-                variant="contained"
-                size="large"
-                fullWidth
-                sx={{ marginTop: 2 }}
-              >
-                Позвоните нам
-              </CustomButton>
-            </Box>
-          )}
+              Подать заявку
+            </CustomButton>
+          </Box>
         </Box>
       </Box>
     </SwipeableDrawer>
