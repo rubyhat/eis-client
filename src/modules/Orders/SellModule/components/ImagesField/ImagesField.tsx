@@ -2,14 +2,7 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
 import toast from "react-hot-toast";
-import {
-  Box,
-  Button,
-  Grid,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 import { useSellModuleStore } from "../../store/useSellModuleStore";
 import { ImagesToolBar } from "./ImagesToolBar";
@@ -17,6 +10,8 @@ import { ImagesInfo } from "./ImagesInfo";
 import { ImageItem } from "./ImageItem";
 import { ImageAddItemButton } from "./ImageAddItemButton";
 import { ImageAddItemArea } from "./ImageAddItemArea";
+import { SubmitButton } from "../FormFileds/SubmitButton";
+import { containerWrapperStyles } from "../FormFileds/assets";
 
 interface ImagesFieldProps {
   isLoading: boolean;
@@ -28,8 +23,8 @@ export const ImagesField = ({ isLoading }: ImagesFieldProps) => {
 
   const theme = useTheme();
   const showImageAddItemButton = useMediaQuery(theme.breakpoints.down("sm"))
-    ? true
-    : images.length > 0 && images.length < 10;
+    ? images.length < 6
+    : images.length > 0 && images.length < 6;
 
   // Зарегистрируйте поле images
   React.useEffect(() => {
@@ -50,10 +45,15 @@ export const ImagesField = ({ isLoading }: ImagesFieldProps) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
+    onDropRejected: (fileRejections) => {
+      if (fileRejections.length > 0) {
+        toast.error("Максимум можно загрузить 6 фотографий");
+      }
+    },
     accept: {
       "image/*": [".jpeg", ".jpg", ".png"],
     },
-    maxFiles: 10,
+    maxFiles: 6,
   });
 
   const handleClickSubmitButton = async () => {
@@ -68,53 +68,41 @@ export const ImagesField = ({ isLoading }: ImagesFieldProps) => {
   };
 
   return (
-    <Box>
-      <Typography component="h6" variant="titleSecondRegular" mb={1.5}>
-        Загрузка фотографий
-      </Typography>
-      <ImagesInfo />
-      {images.length === 0 && (
-        <ImageAddItemArea
-          isLoading={isLoading}
-          getInputProps={getInputProps}
-          getRootProps={getRootProps}
-        />
-      )}
-      <ImagesToolBar photosLength={images.length} />
-      <Box sx={{ marginY: 2 }}>
-        <Grid container spacing={2}>
-          {images.map((image, index) => (
-            <ImageItem key={index} photo={image} index={index} />
-          ))}
-          {showImageAddItemButton && (
-            <ImageAddItemButton getRootProps={getRootProps} />
-          )}
-        </Grid>
-      </Box>
-      {formState.errors.images && (
-        <Typography variant="textFootnoteRegular" color="error">
-          {formState.errors.images.message as string}
+    <Box sx={containerWrapperStyles}>
+      <Box flexGrow={1}>
+        <Typography component="h6" variant="titleSecondRegular" mb={1.5}>
+          Загрузка фотографий
         </Typography>
-      )}
-      <Box paddingTop="72px">
-        <Button
-          variant="contained"
-          fullWidth
-          size="large"
-          disabled={isLoading || images.length === 0}
-          sx={{
-            bottom: 16,
-            textTransform: "none",
-            position: "fixed",
-            width: {
-              xs: "calc(100% - 32px)",
-              sm: 568,
-            },
-          }}
-          onClick={handleClickSubmitButton}
-        >
-          Продолжить
-        </Button>
+        <ImagesInfo />
+        {images.length === 0 && (
+          <ImageAddItemArea
+            isLoading={isLoading}
+            getInputProps={getInputProps}
+            getRootProps={getRootProps}
+          />
+        )}
+        <ImagesToolBar photosLength={images.length} />
+        <Box sx={{ marginY: 2 }}>
+          <Grid container spacing={2}>
+            {images.map((image, index) => (
+              <ImageItem key={index} photo={image} index={index} />
+            ))}
+            {showImageAddItemButton && (
+              <ImageAddItemButton getRootProps={getRootProps} />
+            )}
+          </Grid>
+        </Box>
+        {formState.errors.images && (
+          <Typography variant="textFootnoteRegular" color="error">
+            {formState.errors.images.message as string}
+          </Typography>
+        )}
+      </Box>
+      <Box pt={2}>
+        <SubmitButton
+          isLoading={isLoading}
+          handleClickSubmitButton={handleClickSubmitButton}
+        />
       </Box>
     </Box>
   );

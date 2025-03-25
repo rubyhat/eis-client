@@ -2,18 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useFormContext } from "react-hook-form";
 
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Typography,
-} from "@mui/material";
+import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material";
 
 import { CustomInput } from "../../../../../../components/CustomInput";
 import { useAnalytics } from "../../../../../../hooks/useAnalytics";
 import { useSellModuleStore } from "../../../store/useSellModuleStore";
 import { FormInputLabel } from "../../FormInputLabel";
+import { SubmitButton } from "../SubmitButton";
+import { containerWrapperStyles } from "../assets";
 
 interface UserInfoFieldsProps {
   isLoading: boolean;
@@ -60,94 +56,82 @@ export const UserInfoFields = ({ isLoading }: UserInfoFieldsProps) => {
   };
 
   return (
-    <Box>
-      <Typography component="h6" variant="titleSecondRegular" mb={1.5}>
-        Давайте познакомимся!
-      </Typography>
-      <Box mb={1.5}>
-        <FormInputLabel label="Ваше имя" required />
-        <CustomInput
-          required
-          id="ownerName"
-          register={register}
-          errors={formState.errors}
-          disabled={isLoading}
-          formatPrice={false}
-          placeholder="Введите Ваше Имя"
-        />
-        {formState.errors.ownerName && (
-          <Typography variant="textFootnoteRegular" color="error">
-            {formState.errors.ownerName.message as string}
-          </Typography>
-        )}
+    <Box sx={containerWrapperStyles}>
+      <Box sx={{ flexGrow: 1 }}>
+        <Typography component="h6" variant="titleSecondRegular" mb={1.5}>
+          Давайте познакомимся!
+        </Typography>
+        <Box mb={1.5}>
+          <FormInputLabel label="Ваше имя" required />
+          <CustomInput
+            required
+            id="ownerName"
+            register={register}
+            errors={formState.errors}
+            disabled={isLoading}
+            formatPrice={false}
+            placeholder="Введите Ваше Имя"
+          />
+          {formState.errors.ownerName && (
+            <Typography variant="textFootnoteRegular" color="error">
+              {formState.errors.ownerName.message as string}
+            </Typography>
+          )}
+        </Box>
+        <Box>
+          <FormInputLabel label="Ваш телефон" required />
+          <CustomInput
+            required
+            id="ownerPhone"
+            type="tel"
+            onInput={handlePhoneInput}
+            register={register}
+            errors={formState.errors}
+            disabled={isLoading}
+            formatPrice={false}
+            placeholder="Введите Ваш номер телефона"
+          />
+          {formState.errors.ownerPhone && (
+            <Typography variant="textFootnoteRegular" color="error">
+              {formState.errors.ownerPhone.message as string}
+            </Typography>
+          )}
+        </Box>
+        <Box mb={1.5}>
+          <FormControlLabel
+            sx={{ marginRight: 0 }}
+            control={
+              <Checkbox
+                defaultChecked
+                value={isChecked}
+                onChange={(e) => setIsChecked(e.target.checked)}
+              />
+            }
+            label={
+              <Typography component="p" variant="textCalloutRegular">
+                Я согласен с{" "}
+                <Box
+                  sx={{
+                    color: "customColors.colorsOrange",
+                    textDecoration: "underline",
+                  }}
+                  component={Link}
+                  target="_blank"
+                  to="/docs/policy" // todo: может вместо открытия новой страницы, показаывать модалку с условиями, чтобы пользователя не уводить с целевой страницы?
+                  onClick={handleClickPolicyInfo}
+                >
+                  политикой обработки данных
+                </Box>
+              </Typography>
+            }
+          />
+        </Box>
       </Box>
       <Box>
-        <FormInputLabel label="Ваш телефон" required />
-        <CustomInput
-          required
-          id="ownerPhone"
-          type="tel"
-          onInput={handlePhoneInput}
-          register={register}
-          errors={formState.errors}
-          disabled={isLoading}
-          formatPrice={false}
-          placeholder="Введите Ваш номер телефона"
+        <SubmitButton
+          isLoading={!isChecked || isLoading}
+          handleClickSubmitButton={handleClickSubmitButton}
         />
-        {formState.errors.ownerPhone && (
-          <Typography variant="textFootnoteRegular" color="error">
-            {formState.errors.ownerPhone.message as string}
-          </Typography>
-        )}
-      </Box>
-      <Box mb={1.5}>
-        <FormControlLabel
-          sx={{ marginRight: 0 }}
-          control={
-            <Checkbox
-              defaultChecked
-              value={isChecked}
-              onChange={(e) => setIsChecked(e.target.checked)}
-            />
-          }
-          label={
-            <Typography component="p" variant="textCalloutRegular">
-              Я согласен с{" "}
-              <Box
-                sx={{
-                  color: "customColors.colorsOrange",
-                  textDecoration: "underline",
-                }}
-                component={Link}
-                target="_blank"
-                to="/docs/policy" // todo: может вместо открытия новой страницы, показаывать модалку с условиями, чтобы пользователя не уводить с целевой страницы?
-                onClick={handleClickPolicyInfo}
-              >
-                политикой обработки данных
-              </Box>
-            </Typography>
-          }
-        />
-      </Box>
-      <Box sx={{ flexGrow: 1 }}>
-        <Button
-          variant="contained"
-          fullWidth
-          size="large"
-          disabled={!isChecked || isLoading}
-          sx={{
-            bottom: 16,
-            textTransform: "none",
-            position: "absolute",
-            width: {
-              xs: "calc(100% - 32px)",
-              sm: 568,
-            },
-          }}
-          onClick={handleClickSubmitButton}
-        >
-          Продолжить
-        </Button>
       </Box>
     </Box>
   );

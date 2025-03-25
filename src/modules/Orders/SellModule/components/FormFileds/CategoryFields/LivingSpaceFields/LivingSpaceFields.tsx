@@ -8,7 +8,7 @@ import {
   RoomButtonChip,
   useSellModuleStore,
 } from "../../../../store/useSellModuleStore";
-import { buttonStyles } from "../../assets";
+import { buttonStyles, buttonWrapperStyles } from "../../assets";
 import { CustomInput } from "../../../../../../../components/CustomInput";
 
 interface LivingSpaceFieldsProps {
@@ -42,26 +42,12 @@ export const LivingSpaceFields = ({
     <React.Fragment>
       <Box mb={1.5}>
         <FormInputLabel label="Количество комнат" required />
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 1.25,
-          }}
-        >
+        <Box sx={buttonWrapperStyles}>
           {roomTypes.map((room, index) => (
             <Box
               key={index}
               onClick={() => handleRoomTypeClick(room)}
-              sx={{
-                ...buttonStyles,
-                backgroundColor: room.isActive
-                  ? "hsla(32,100%,55%,0.25)"
-                  : "#fff",
-                borderColor: room.isActive
-                  ? "customColors.colorsOrange"
-                  : "customColors.labelsQuaternary",
-              }}
+              sx={buttonStyles(room.isActive)}
             >
               <Typography component="p" variant="textCalloutRegular">
                 {room.label}

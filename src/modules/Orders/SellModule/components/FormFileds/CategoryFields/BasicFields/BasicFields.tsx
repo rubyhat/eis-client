@@ -1,6 +1,5 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-
 import { Box, MenuItem, Select, Typography } from "@mui/material";
 
 import { FormInputLabel } from "../../../FormInputLabel";
@@ -50,7 +49,7 @@ export const BasicFields = ({ isLoading }: BasicFieldsProps) => {
           </Typography>
         )}
       </Box>
-      <Box marginBottom={1.5} pb={8}>
+      <Box marginBottom={1.5} pb={2}>
         <FormInputLabel label="Документы" required />
         <Controller
           name="documents"

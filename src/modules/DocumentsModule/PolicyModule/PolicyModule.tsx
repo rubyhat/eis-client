@@ -17,12 +17,13 @@ export const PolicyModule = () => {
             variant="textBodyRegular"
             sx={{ width: 1, textAlign: "end", margin: "24px 0" }}
           >
-            ИП «Агентство Недвижимости Артура Розе»
+            ИП «Агентство Недвижимости Розе»
             <br />
             Республика Казахстан, г. Караганда
             <br />
-            ул. Нуркена Абдирова, д. 5<br />
-            ИИН: 990517351288
+            ул. Алалыкина, д. 12
+            <br />
+            БИН: 990517351288
             <br />
           </Typography>
           <Typography component="p" variant="textBodyRegular" marginTop={1}>
@@ -328,12 +329,13 @@ export const PolicyModule = () => {
             <strong>11. </strong>Сведения о Компании:
           </Typography>
           <Typography component="p" variant="textBodyRegular" marginTop={1}>
-            ИП «Агентство Недвижимости Артура Розе»
+            ИП «Агентство Недвижимости Розе»
             <br />
             Республика Казахстан, г. Караганда
             <br />
-            ул. Нуркена Абдирова, д. 5<br />
-            ИИН: 990517351288
+            ул. Алалыкина, д. 12
+            <br />
+            БИН: 990517351288
             <br />
           </Typography>
         </Grid>
@@ -425,6 +427,29 @@ export const PolicyModule = () => {
           </Box>
           <Typography component="p" variant="textBodyRegular" marginTop={1}>
             Перечень персональных данных, обрабатываемых в Компании, с целью
+            подачи заявки на продажу/аренду недвижимости, сотрудничество с
+            Компанией:
+          </Typography>
+          <Box component="ul" sx={{ listStyle: "inherit" }}>
+            <Box component="li" marginTop={1}>
+              <Typography component="p" variant="textBodyRegular">
+                фамилия, имя, отчество;
+              </Typography>
+            </Box>
+            <Box component="li" marginTop={1}>
+              <Typography component="p" variant="textBodyRegular">
+                номер телефона;
+              </Typography>
+            </Box>
+            <Box component="li" marginTop={1}>
+              <Typography component="p" variant="textBodyRegular">
+                технические характеристики, адрес, описание, фотографии
+                недвижимости;
+              </Typography>
+            </Box>
+          </Box>
+          <Typography component="p" variant="textBodyRegular" marginTop={1}>
+            Перечень персональных данных, обрабатываемых в Компании, с целью
             регистрации Пользователя на Сайте{" "}
             <Box
               component="a"
@@ -451,7 +476,7 @@ export const PolicyModule = () => {
             variant="textBodyEmphasized"
             sx={{ width: 1, textAlign: "end", margin: "24px 0" }}
           >
-            Дата обновления: 03.04.2024
+            Дата обновления: 25.03.2025
           </Typography>
         </Grid>
       </Grid>

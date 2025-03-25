@@ -1,7 +1,7 @@
 import React from "react";
 import toast from "react-hot-toast";
 import { useFormContext } from "react-hook-form";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import { LivingSpaceFields } from "./LivingSpaceFields";
 import { HomeFields } from "./HomeFields";
@@ -19,6 +19,8 @@ import {
   livingSpaces,
   spacesWithLand,
 } from "../../../constants/SellModuleConstants";
+import { SubmitButton } from "../SubmitButton";
+import { containerWrapperStyles } from "../assets";
 
 interface CategoryFieldsProps {
   isLoading: boolean;
@@ -59,46 +61,37 @@ export const CategoryFields = ({ isLoading }: CategoryFieldsProps) => {
   };
 
   return (
-    <Box>
-      <Typography component="h6" variant="titleSecondRegular" mb={1.5}>
-        Описание
-      </Typography>
-      {livingSpaces.includes(currentCategory) && (
-        <React.Fragment>
-          <LivingSpaceFields
-            isLoading={isLoading}
-            livingSpaces={livingSpaces}
-            requiredKitchenSquareField={requiredKitchenSquareField}
-            showTargetFloor={showTargetFloor}
-            requiredTotalFloor={requiredTotalFloor}
-            showApartmentComplexTitle={showApartmentComplexTitle}
-          />
-          <HomeFields isLoading={isLoading} />
-        </React.Fragment>
-      )}
-      {spacesWithLand.includes(currentCategory) && (
-        <React.Fragment>
-          <LandFields isLoading={isLoading} requiredLand={requiredLand} />
-        </React.Fragment>
-      )}
-      {showHouseProperties && <HouseFields isLoading={isLoading} />}
-      <BasicFields isLoading={isLoading} />
+    <Box sx={containerWrapperStyles}>
+      <Box flexGrow={1}>
+        <Typography component="h6" variant="titleSecondRegular" mb={1.5}>
+          Описание
+        </Typography>
+        {livingSpaces.includes(currentCategory) && (
+          <React.Fragment>
+            <LivingSpaceFields
+              isLoading={isLoading}
+              livingSpaces={livingSpaces}
+              requiredKitchenSquareField={requiredKitchenSquareField}
+              showTargetFloor={showTargetFloor}
+              requiredTotalFloor={requiredTotalFloor}
+              showApartmentComplexTitle={showApartmentComplexTitle}
+            />
+            <HomeFields isLoading={isLoading} />
+          </React.Fragment>
+        )}
+        {spacesWithLand.includes(currentCategory) && (
+          <React.Fragment>
+            <LandFields isLoading={isLoading} requiredLand={requiredLand} />
+          </React.Fragment>
+        )}
+        {showHouseProperties && <HouseFields isLoading={isLoading} />}
+        <BasicFields isLoading={isLoading} />
+      </Box>
       <Box>
-        <Button
-          variant="contained"
-          fullWidth
-          size="large"
-          disabled={isLoading}
-          sx={{
-            bottom: 16,
-            textTransform: "none",
-            position: "fixed",
-            width: { xs: "calc(100% - 32px)", md: 568 },
-          }}
-          onClick={handleClickSubmitButton}
-        >
-          Продолжить
-        </Button>
+        <SubmitButton
+          isLoading={isLoading}
+          handleClickSubmitButton={handleClickSubmitButton}
+        />
       </Box>
     </Box>
   );

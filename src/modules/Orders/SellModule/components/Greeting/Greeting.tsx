@@ -1,22 +1,40 @@
 import React from "react";
-
-import { Box, Button, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
 
 import { SellFormDrawer } from "../SellFormDrawer";
 import { useSellModuleStore } from "../../store/useSellModuleStore";
 import { useAnalytics } from "../../../../../hooks/useAnalytics";
+import { linkStyles } from "./styles";
+import { agreementLinks } from "../../constants/SellModuleConstants";
 
 export const Greeting = () => {
   const { trackEvent } = useAnalytics();
   const { setIsDrawerOpen } = useSellModuleStore();
 
-  const handleDealInfoClick = () => {};
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleClickPolicyInfo = (label: string) => {
+    trackEvent({
+      category: "Order/Sell",
+      action: "Открыли условия сотрудничества - " + label,
+    });
+    handleClose();
+  };
 
   const handleStartButtonClick = () => {
     setIsDrawerOpen(true);
     trackEvent({
       category: "Order/Sell",
-      action: "Click on policy info",
+      action: "Открыли форму заявки на продажу",
     });
   };
 
@@ -29,20 +47,45 @@ export const Greeting = () => {
         Для того, чтобы начать сотрудничество, необходимо заполнить заявку с
         описанием Вашей недвижимости, а также принять{" "}
         <Typography
+          id="agreementInfo"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
           component="span"
           variant="textBodyEmphasized"
           color="primary"
           sx={{ textDecoration: "underline", cursor: "pointer" }}
-          onClick={handleDealInfoClick}
+          onClick={handleClick}
         >
           условия сотрудничества
         </Typography>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "agreementInfo",
+          }}
+        >
+          {agreementLinks.map(({ link, label }, index) => (
+            <MenuItem
+              onClick={() => handleClickPolicyInfo(label)}
+              sx={{ p: 0 }}
+              key={index}
+            >
+              <Box component={Link} sx={linkStyles} to={link} target="_blank">
+                {label}
+              </Box>
+            </MenuItem>
+          ))}
+        </Menu>
       </Typography>
       <Typography component="p" variant="titleSecondRegular" mb={1} mt={2}>
         Основные пункты сотрудничества:
       </Typography>
       <Box component="ul">
-        <Box component="li" mb={1}>
+        <Box component="li" mb={2}>
           <Typography component="p" variant="textBodyRegular">
             <Typography
               component="span"
@@ -52,17 +95,29 @@ export const Greeting = () => {
             >
               1.
             </Typography>
-            Оплата за нашу работу производится после полного завершения сделки,{" "}
+            Наша услуга оплачивается только после продажи вашей недвижимости и
+            полного расчёта между продавцом и покупателем.
+            <br />
+            <br />
+            Комиссия составляет{" "}
             <Typography
               component="span"
               variant="textBodyEmphasized"
               color="primary"
             >
-              мы не берем предоплату
+              1.3%
+            </Typography>{" "}
+            от итоговой стоимости, но не менее 400 000 тенге,{" "}
+            <Typography
+              component="span"
+              variant="textBodyEmphasized"
+              color="primary"
+            >
+              мы не берем предоплату.
             </Typography>
           </Typography>
         </Box>
-        <Box component="li" mb={1}>
+        <Box component="li" mb={2}>
           <Typography component="p" variant="textBodyRegular">
             <Typography
               component="span"
@@ -86,12 +141,12 @@ export const Greeting = () => {
               variant="textBodyEmphasized"
               color="primary"
             >
-              Вы не можете работать с другими агентами и продавать
-              самостоятельно
+              Вы не можете самостоятельно выставлять объявления или работать с
+              другими специалистами
             </Typography>
           </Typography>
         </Box>
-        <Box component="li" mb={1}>
+        <Box component="li" mb={2}>
           <Typography component="p" variant="textBodyRegular">
             <Typography
               component="span"
@@ -101,25 +156,17 @@ export const Greeting = () => {
             >
               3.
             </Typography>
-            Первый выезд нашего агента на Ваш объект недвижимости{" "}
+            Выезд нашего специалиста на фото и видеосъемку платный -{" "}
             <Typography
               component="span"
               variant="textBodyEmphasized"
               color="primary"
             >
-              платный - от 15.000тг
-            </Typography>
-            , а стоимость полной нашей услуги -{" "}
-            <Typography
-              component="span"
-              variant="textBodyEmphasized"
-              color="primary"
-            >
-              от 1.3%
+              10.000 тенге
             </Typography>
           </Typography>
         </Box>
-        <Box component="li" mb={1}>
+        <Box component="li" mb={2}>
           <Typography component="p" variant="textBodyRegular">
             <Typography
               component="span"
@@ -129,23 +176,28 @@ export const Greeting = () => {
             >
               4.
             </Typography>
-            Раз в месяц необходимо пополнять рекламный бюджет, для размещения на
-            Крыша.kz -{" "}
+            Раз в месяц мы запрашиваем у клиентов деньги на рекламу вашего
+            объявления на сайте Крыша.kz -{" "}
             <Typography
               component="span"
               variant="textBodyEmphasized"
               color="primary"
             >
-              от 5.000тг
+              10.000 тенге
             </Typography>
-            , размещение на сайте Roze.kz, создание видеообзора, размещение в
-            социальных сетях -{" "}
+            <br />
+            <br />
+            Размещение объявлений на сайтах и в социальных сетях, видеосъемка и
+            создание видеообзора - входит в стоимость наших услуг.
+            <br />
+            <br />
+            Если мы не продали недвижимость, фото и видеообзоры{" "}
             <Typography
               component="span"
               variant="textBodyEmphasized"
               color="primary"
             >
-              входит в стоимость наших услуг, дополнительных оплат нет
+              остаются у вас бесплатно
             </Typography>
           </Typography>
         </Box>

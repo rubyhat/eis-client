@@ -1,8 +1,7 @@
-import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import toast from "react-hot-toast";
 
-import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
+import { Box, MenuItem, Select, Typography } from "@mui/material";
 
 import { FormInputLabel } from "../../FormInputLabel";
 import { CustomInput } from "../../../../../../components/CustomInput";
@@ -11,16 +10,21 @@ import {
   selectInputProps,
   selectStyles,
 } from "../../../../../../shared/styles/select";
+import { SubmitButton } from "../SubmitButton";
+import { containerWrapperStyles } from "../assets";
 
 interface PriceFieldProps {
   isLoading: boolean;
 }
 export const PriceField = ({ isLoading }: PriceFieldProps) => {
   const { step, setStep } = useSellModuleStore();
-  const { formState, control, trigger, register } = useFormContext();
+  const { formState, control, trigger, register, getValues } = useFormContext();
 
   const handleClickSubmitButton = async () => {
-    const isValid = await trigger(["price", "exchange"]);
+    const triggerList = ["price"];
+    if (getValues().type !== "rent") triggerList.push("exchange");
+
+    const isValid = await trigger(triggerList);
     if (isValid) {
       setStep(step + 1);
     } else {
@@ -30,73 +34,63 @@ export const PriceField = ({ isLoading }: PriceFieldProps) => {
   };
 
   return (
-    <Box>
-      <Typography component="h6" variant="titleSecondRegular" mb={1.5}>
-        Стоимость
-      </Typography>
-      <Box mb={1.5}>
-        <FormInputLabel label="Укажите сумму" required />
-        <CustomInput
-          required
-          id="price"
-          register={register}
-          errors={formState.errors}
-          disabled={isLoading}
-          formatPrice={false}
-          placeholder="Введите сумму"
-          type="number"
-        />
-        {formState.errors.price && (
-          <Typography variant="textFootnoteRegular" color="error">
-            {formState.errors.price.message as string}
-          </Typography>
-        )}
-      </Box>
-      <Box marginBottom={1.5}>
-        <FormInputLabel label="Обмен" required />
-        <Controller
-          name="exchange"
-          control={control}
-          render={({ field }) => (
-            <Select
-              {...field}
-              displayEmpty
-              sx={selectStyles}
-              inputProps={{ sx: selectInputProps }}
-            >
-              <MenuItem value="" disabled>
-                Укажите есть ли обмен
-              </MenuItem>
-              <MenuItem value="yes">Есть</MenuItem>
-              <MenuItem value="no">Нет</MenuItem>
-            </Select>
+    <Box sx={containerWrapperStyles}>
+      <Box flexGrow={1}>
+        <Typography component="h6" variant="titleSecondRegular" mb={1.5}>
+          Стоимость
+        </Typography>
+        <Box mb={1.5}>
+          <FormInputLabel label="Укажите сумму" required />
+          <CustomInput
+            required
+            id="price"
+            register={register}
+            errors={formState.errors}
+            disabled={isLoading}
+            formatPrice={false}
+            placeholder="Введите сумму"
+            type="number"
+          />
+          {formState.errors.price && (
+            <Typography variant="textFootnoteRegular" color="error">
+              {formState.errors.price.message as string}
+            </Typography>
           )}
-        />
-        {formState.errors.exchange && (
-          <Typography variant="textFootnoteRegular" color="error">
-            {formState.errors.exchange.message as string}
-          </Typography>
+        </Box>
+        {getValues().type !== "rent" && (
+          <Box marginBottom={1.5}>
+            <FormInputLabel label="Обмен" required />
+            <Controller
+              name="exchange"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  displayEmpty
+                  sx={selectStyles}
+                  inputProps={{ sx: selectInputProps }}
+                >
+                  <MenuItem value="" disabled>
+                    Укажите есть ли обмен
+                  </MenuItem>
+                  <MenuItem value="yes">Есть</MenuItem>
+                  <MenuItem value="no">Нет</MenuItem>
+                </Select>
+              )}
+            />
+            {formState.errors.exchange && (
+              <Typography variant="textFootnoteRegular" color="error">
+                {formState.errors.exchange.message as string}
+              </Typography>
+            )}
+          </Box>
         )}
       </Box>
       <Box>
-        <Button
-          variant="contained"
-          fullWidth
-          size="large"
-          disabled={isLoading}
-          sx={{
-            bottom: 16,
-            textTransform: "none",
-            position: "absolute",
-            width: {
-              xs: "calc(100% - 32px)",
-              sm: 568,
-            },
-          }}
-          onClick={handleClickSubmitButton}
-        >
-          Продолжить
-        </Button>
+        <SubmitButton
+          isLoading={isLoading}
+          handleClickSubmitButton={handleClickSubmitButton}
+        />
       </Box>
     </Box>
   );

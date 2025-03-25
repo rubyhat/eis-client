@@ -39,7 +39,7 @@ export type FormValues = {
   cityRegion?: string;
   street: string;
   price: string;
-  exchange: string;
+  exchange?: string;
   pledge: string;
   documents: string;
   houseNumber?: string;

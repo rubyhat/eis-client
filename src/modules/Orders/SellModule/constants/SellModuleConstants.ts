@@ -43,3 +43,22 @@ export const arrsForKitchen = ["apartment", "house", "townhouse"];
 export const arrsForTotalFloor = ["apartment", "house", "townhouse"];
 export const arrsForLand = ["house", "cottage", "land"];
 export const arrsForHouseProperties = ["house", "cottage", "townhouse"];
+
+export const agreementLinks: { label: string; link: string }[] = [
+  {
+    label: "Продажа недвижимости (Город)",
+    link: "/static/docs/Продажа_недвижимости.pdf",
+  },
+  {
+    label: "Продажа недвижимости (Районы)",
+    link: "/static/docs/Продажа_недвижимости_районы.pdf",
+  },
+  {
+    label: "Продажа коммерции",
+    link: "/static/docs/Продажа_коммерческой_недвижимости.pdf",
+  },
+  {
+    label: "Аренда недвижимости",
+    link: "/static/docs/Сдача_недвижимости_в_аренду.pdf",
+  },
+];

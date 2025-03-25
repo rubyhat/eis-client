@@ -1,7 +1,5 @@
 import React from "react";
-import { Box, Button, Container, Grid, SwipeableDrawer } from "@mui/material";
-
-import toast from "react-hot-toast";
+import { Box, SwipeableDrawer } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
@@ -16,9 +14,10 @@ import { CommentField } from "../FormFileds/CommentField";
 import { CategoryFields } from "../FormFileds/CategoryFields";
 import { FinalField } from "../FormFileds/FinalField";
 import { SuccessForm } from "../SuccessForm";
-import { apiSellModule } from "../../api/apiSellModule";
 import { ImagesField } from "../ImagesField";
 import { initialFormState, keysToRemove } from "../../store/initValues";
+import { formStyles } from "../FormFileds/assets";
+import { useCreateSellOrderMutation } from "../../hooks";
 
 const drawerPaperProps = {
   sx: {
@@ -35,8 +34,8 @@ export const SellFormDrawer = () => {
     setStep,
     loadStateFromLocalStorage,
   } = useSellModuleStore();
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [isPolicyChecked, setIsPolicyChecked] = React.useState(false);
+
+  React.useEffect(() => setStep(1), [setStep]);
 
   const handleCloseDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -79,14 +78,7 @@ export const SellFormDrawer = () => {
     loadStateFromLocalStorage();
   }, [setValue, loadStateFromLocalStorage]);
 
-  const clearLocalStorage = () => {
-    // Очистка данных после успешной отправки
-    localStorage.removeItem("formData");
-    localStorage.removeItem("serviceTypes");
-    localStorage.removeItem("estateTypes");
-    localStorage.removeItem("cityTypes");
-    localStorage.removeItem("roomTypes");
-  };
+  const createSellOrderMutation = useCreateSellOrderMutation();
 
   const handleFormSubmit: SubmitHandler<FormValues> = (data) => {
     const formData = new FormData();
@@ -137,19 +129,7 @@ export const SellFormDrawer = () => {
       }
     });
 
-    // todo: add query mutation
-    apiSellModule
-      .create(formData)
-      .then(() => {
-        toast.success("Заявка создана!");
-        setStep(9);
-        clearLocalStorage(); // очищать форму после успешной отправки
-      })
-      .catch((error) => {
-        toast.error("Произошла ошибка!");
-        console.log(error);
-      })
-      .finally(() => setIsLoading(false));
+    createSellOrderMutation.mutate({ data: formData });
   };
 
   return (
@@ -166,59 +146,41 @@ export const SellFormDrawer = () => {
           onSubmit={handleSubmit(handleFormSubmit, (error) =>
             console.log("error data", error),
           )}
-          paddingBottom={2}
+          sx={formStyles}
         >
-          <Container>
-            <Grid container spacing={2} justifyContent="center">
-              <Grid item xs={12} md={6}>
-                <Box mb={1.5}>
-                  <DrawerHeader />
-                </Box>
-                {step === 1 && <UserInfoFields isLoading={isLoading} />}
-                {step === 2 && <EstateCategory isLoading={isLoading} />}
-                {step === 3 && (
-                  <GeopositionFields
-                    isLoading={isLoading}
-                    showApartmentNumberField={showApartmentNumberField}
-                  />
-                )}
-                {step === 4 && <ImagesField isLoading={isLoading} />}
-                {step === 5 && <CategoryFields isLoading={isLoading} />}
-                {step === 6 && <PriceField isLoading={isLoading} />}
-                {step === 7 && <CommentField isLoading={isLoading} />}
-                {step === 8 && (
-                  <FinalField
-                    isChecked={isPolicyChecked}
-                    setIsChecked={setIsPolicyChecked}
-                  />
-                )}
-                {step === 8 && (
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    fullWidth
-                    size="large"
-                    disabled={isLoading || !isPolicyChecked}
-                    sx={{
-                      bottom: 16,
-                      textTransform: "none",
-                      position: {
-                        xs: "absolute",
-                        sm: "inherit",
-                      },
-                      width: {
-                        xs: "calc(100% - 32px)",
-                        sm: 568,
-                      },
-                    }}
-                  >
-                    Отправить заявку
-                  </Button>
-                )}
-                {step === 9 && <SuccessForm />}
-              </Grid>
-            </Grid>
-          </Container>
+          <Box mb={1.5}>
+            <DrawerHeader />
+          </Box>
+          <Box flexGrow={1}>
+            {step === 1 && (
+              <UserInfoFields isLoading={createSellOrderMutation.isPending} />
+            )}
+            {step === 2 && (
+              <EstateCategory isLoading={createSellOrderMutation.isPending} />
+            )}
+            {step === 3 && (
+              <GeopositionFields
+                isLoading={createSellOrderMutation.isPending}
+                showApartmentNumberField={showApartmentNumberField}
+              />
+            )}
+            {step === 4 && (
+              <ImagesField isLoading={createSellOrderMutation.isPending} />
+            )}
+            {step === 5 && (
+              <CategoryFields isLoading={createSellOrderMutation.isPending} />
+            )}
+            {step === 6 && (
+              <PriceField isLoading={createSellOrderMutation.isPending} />
+            )}
+            {step === 7 && (
+              <CommentField isLoading={createSellOrderMutation.isPending} />
+            )}
+            {step === 8 && (
+              <FinalField isLoading={createSellOrderMutation.isPending} />
+            )}
+            {step === 9 && <SuccessForm />}
+          </Box>
         </Box>
       </FormProvider>
     </SwipeableDrawer>

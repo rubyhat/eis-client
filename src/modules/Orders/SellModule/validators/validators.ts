@@ -28,9 +28,12 @@ export const schema = yup.object().shape({
   street: yup.string().required("Пожалуйста, укажите улицу"),
   price: yup.string().required("Пожалуйста, укажите вашу стоимость"),
   ownerComment: yup.string(),
-  exchange: yup
-    .string()
-    .required("Пожалуйста, укажите рассматриваете ли обмен"),
+  exchange: yup.string().when("type", {
+    is: (v: string) => v === "rent",
+    then: (schema) =>
+      schema.required("Пожалуйста, укажите рассматриваете ли обмен"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
   pledge: yup.string().required("Пожалуйста, укажите состояние залога/ареста"),
   documents: yup.string().required("Пожалуйста, укажите состояние документов"),
   hasBasement: yup.boolean(),
